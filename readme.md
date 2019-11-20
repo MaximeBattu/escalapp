@@ -5,12 +5,13 @@
 - [NodeJs](https://nodejs.org/en/)
 - pdo_sqlite
 - mb_string
+- OpenSSL => pour composer
 
 # Getting Started
 
 - cloner l'application : `git clone https://gitlab.com/MaximeBattu/escalapp.git` 
 - ouvrir cmd dans le dossier crée/cloné
-- installer dépendances composer : `composer install`
+- installer dépendances composer : `composer install` OU `php composer.phar install`
 - créer le fichier sqlite : database.sqlite dans database/
 - dupliquer le fichier .env.example et le renomer `.env`
 - ouvrir le fichier .env et modifier le chemin de `DB_DATABASE` en y renseignant le chemin absolu vers le fichier database.sqlite
