@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/accueil', 'SiteController@index')->name('see_accueil');
 Route::get('/salle', 'SiteController@salleView')->name('see_salle');
 Route::get('/salle/bloc', 'SiteController@blocView')->name('see_bloc');
+Route::get('/salle/mur', 'SiteController@murView')->name('see_wall');
