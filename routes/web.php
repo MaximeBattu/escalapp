@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/climbing-route', 'ClimbingRouteController@index')->name('climbing_route');
+Route::get('/accueil', 'SiteController@index')->name('see_accueil');
+Route::get('/salle', 'SiteController@salleView')->name('see_salle');
+Route::get('/salle/bloc', 'SiteController@blocView')->name('see_bloc');
