@@ -1,5 +1,4 @@
-@include('header') 
-<?php dump(getcwd()); die();?>
+@include('header')
 <section class="text-center">
     <article class=""> <h1 class="Nom_Salle" >Nom de la salle</h1> </article>
     <article class="">Adresse/Lieu</article>
@@ -27,4 +26,4 @@
 </div>
 <div class="div_Espace_Separation_Salle">Nombre de Block</div>
 <div class="div_Espace_Separation_Salle">Nombre de Mur</div>
-@include('footer') 
+@include('footer')

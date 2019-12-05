@@ -19,6 +19,7 @@
     - si le chemin contient des espaces, le mettre entre guillemets
     - ex : `DB_DATABASE="F:/Users/Maxime BATTU/Desktop/escalapp/database/database.sqlite"`
 - lancer les migrations de la DB : `php artisan migrate`
+- lancer les seeders de la DB (pour avoir les données stockées en brute) : `php artisan db:seed`
 - génerer une clé d'apllication : `php artisan key:generate`
 - installer les dépendances frontend : `npm install`
 - compiler les fichiers frontend : `npm run dev`

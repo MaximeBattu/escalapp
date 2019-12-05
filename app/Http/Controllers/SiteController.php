@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Room;
 
 class SiteController extends Controller
 {
     public function index() {
-        return view("accueil");
+
+        $salles = Room::all();
+        dump($salles);die();
+
+        return view("accueil", [
+            'salles'=>$salles
+        ]);
     }
 
     public function salleView() {
