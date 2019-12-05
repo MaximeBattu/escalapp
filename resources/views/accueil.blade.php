@@ -1,5 +1,14 @@
 @include('header') 
+
 <div class="container">
+  <div class="row">
+    <div class="col-sm box" style="border:2px solid black;">col-sm</div>
+    <div class="col-sm box" style="border:2px solid black;">col-sm</div>
+    <div class="col-sm box" style="border:2px solid black;">col-sm</div>
+  </div>
+</div>
+
+<!-- <div class="container">
   <div class="row" style="height:60vh;text-align:center;">
     <div class="col col-md border border-dark" style="margin-right:10%;">
       <div class="border-bottom border-dark"  style="margin-left:-15px;margin-right:-15px;padding:50px;">
@@ -12,5 +21,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 @include('footer')
