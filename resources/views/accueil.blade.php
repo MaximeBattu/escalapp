@@ -1,10 +1,21 @@
-@include('header') 
+@include('header')
 
+<h1 class="text-center">Salles disponibles : {{count($salles)}}</h1>
 <div class="container">
   <div class="row">
-    <div class="col-sm box" style="border:2px solid black;">col-sm</div>
-    <div class="col-sm box" style="border:2px solid black;">col-sm</div>
-    <div class="col-sm box" style="border:2px solid black;">col-sm</div>
+      @foreach($salles as $salle)
+        <div class="col-sm box">
+            <p>
+                Nom : {{$salle->name_room}}
+            </p>
+            <p>
+                Numéro : {{$salle->tel_room}}
+            </p>
+            <p>
+                Adresse : {{$salle->address_room}}
+            </p>
+        </div>
+      @endforeach
   </div>
 </div>
 

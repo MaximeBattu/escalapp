@@ -10,7 +10,6 @@ class SiteController extends Controller
     public function index() {
 
         $salles = Room::all();
-        dump($salles);die();
 
         return view("accueil", [
             'salles'=>$salles

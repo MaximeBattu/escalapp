@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 <!DOCTYPE html>
 <html class="backgroundHtlm" lang="en" dir="ltr">
   <head>
