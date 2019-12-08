@@ -7,15 +7,6 @@ use App\Room;
 
 class SiteController extends Controller
 {
-    public function index() {
-
-        $salles = Room::all();
-
-        return view("accueil", [
-            'salles'=>$salles
-        ]);
-    }
-
     public function salleView() {
         return view('site/salle');
     }

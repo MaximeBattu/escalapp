@@ -12,14 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('accueil');
+    return redirect()->route("see_accueil");
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/accueil', 'HomeController@index')->name('see_accueil');
 
-Route::get('/accueil', 'SiteController@index')->name('see_accueil');
-Route::get('/salle', 'SiteController@salleView')->name('see_salle');
+Route::get('/salle/{id}', 'RoomController@viewRoom')->name('see_room');
+
+Route::get('/classement', 'ClassificationController@index')->name('see_classification');
+
+
 Route::get('/salle/bloc', 'SiteController@blocView')->name('see_bloc');
 Route::get('/salle/mur', 'SiteController@murView')->name('see_wall');

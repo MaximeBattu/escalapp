@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{config('app.name', 'Escalapp')}}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -80,9 +80,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Escalapp
-                </div>
+                <div class="title m-b-md">{{config('app.name', 'Escalapp')}}</div>
 
                 <div class="links">
                     <a href="{{route('see_accueil')}}">Accueil</a>
@@ -91,6 +89,6 @@
                 </div>
             </div>
         </div>
-        
+
     </body>
 </html>

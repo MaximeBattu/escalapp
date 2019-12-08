@@ -8,16 +8,16 @@
 
 <div class="container mt-5">
   <div class="row" style="height:60vh;text-align:center;">
-    <div class="col col-md border border-dark" style="margin-right:10%;">
+    <div class="col col-md border-dark" style="margin-right:10%;">
     <img src="/img/header1.jpg" alt="">
-      <div class="border-bottom border-dark"  style="margin-left:-15px;margin-right:-15px;padding:50px;">
+      <div class="border-dark"  style="margin-left:-15px;margin-right:-15px;padding:50px;">
          <h1><a href="{{route('see_bloc')}}">Bloc</a>
 </h1>
         <p><a id="img_salle_page_block" href="{{route('see_bloc')}}"></a></p>
       </div>
     </div>
-    <div class="col col-md border border-dark" style="margin-left:10%;">
-      <div class="border-bottom border-dark" style="margin-left:-15px;margin-right:-15px;padding:50px;">
+    <div class="col col-md border-dark" style="margin-left:10%;">
+      <div class=" border-dark" style="margin-left:-15px;margin-right:-15px;padding:50px;">
           <h1><a href="{{route('see_wall')}}">Mur</a> </h1>
         <p><a id="img_salle_page_salle" href="{{route('see_wall')}}"></a></p>
       </div>

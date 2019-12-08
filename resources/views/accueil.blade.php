@@ -1,36 +1,25 @@
 @include('header')
 
 <h1 class="text-center">Salles disponibles : {{count($salles)}}</h1>
-<div class="container">
-  <div class="row">
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-center">
       @foreach($salles as $salle)
-        <div class="col-sm box">
+        <div class="col-md-3 boxRoom">
             <p>
-                Nom : {{$salle->name_room}}
+                <strong>Nom :</strong> {{$salle->name_room}}
             </p>
             <p>
-                Numéro : {{$salle->tel_room}}
+                <strong>Numéro :</strong> {{$salle->tel_room}}
             </p>
             <p>
-                Adresse : {{$salle->address_room}}
+                <strong>Adresse :</strong> {{$salle->address_room}}
+            </p>
+            <p>
+                <a href="{{route('see_room', ['id'=>$salle->id_room])}}">Voir salle</a>
             </p>
         </div>
+
       @endforeach
   </div>
 </div>
-
-<!-- <div class="container">
-  <div class="row" style="height:60vh;text-align:center;">
-    <div class="col col-md border border-dark" style="margin-right:10%;">
-      <div class="border-bottom border-dark"  style="margin-left:-15px;margin-right:-15px;padding:50px;">
-          <h1>Contest 1</h1>
-      </div>
-    </div>
-    <div class="col col-md border border-dark" style="margin-left:10%;">
-      <div class="border-bottom border-dark" style="margin-left:-15px;margin-right:-15px;padding:50px;">
-          <h1>Contest 2</h1>
-      </div>
-    </div>
-  </div>
-</div> -->
 @include('footer')

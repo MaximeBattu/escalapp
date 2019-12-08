@@ -55,5 +55,27 @@ class DatabaseSeeder extends Seeder
         foreach($routes as $route) {
             DB::table('routes')->insert([$route]);
         }
+
+        $users = [
+            [
+                'name'=>'aze',
+                'email'=>'aze@aze.fr',
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+            ],
+            [
+                'name'=>'maxime',
+                'email'=>'maxime@battu.fr',
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+            ],
+            [
+                'name'=>'ianis',
+                'email'=>'ianis@pacaud.fr',
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+            ]
+        ];
+
+        foreach($users as $user) {
+            DB::table('users')->insert([$user]);
+        }
     }
 }
