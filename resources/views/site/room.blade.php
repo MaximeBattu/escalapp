@@ -16,7 +16,7 @@
 
 <div class="row justify-content-around">
     <div class="col-2 text-center">
-       <h1><a href="">Voie</a></h1>
+       <h1><a href="{{route('see_route', ['id'=>$salle->id_room])}}">Voie</a></h1>
         <img src="{{asset('img/mur1.jpg')}}"style="max-height:100%;max-width:100% ;">
     </div>
     <div class="col-2 text-center">

@@ -20,8 +20,10 @@ Auth::routes();
 Route::get('/accueil', 'HomeController@index')->name('see_accueil');
 
 Route::get('/salle/{id}', 'RoomController@viewRoom')->name('see_room');
+Route::get('/salle/{id}/voie','RoomController@viewRoutes')->name('see_route');
 
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
+
 
 
 Route::get('/salle/bloc', 'SiteController@blocView')->name('see_bloc');

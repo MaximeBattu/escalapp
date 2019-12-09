@@ -45,6 +45,20 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id_room'=>1,
+                'color_route'=>'red',
+                'difficulty_route'=>'7B',
+                'type_route'=>'V',
+                'url_photo'=> "jul"
+            ],
+            [
+                'id_room'=>1,
+                'color_route'=>'brown',
+                'difficulty_route'=>'6B+',
+                'type_route'=>'B',
+                'url_photo' =>"jul"
+            ],
+            [
+                'id_room'=>2,
                 'color_route'=>'brown',
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',

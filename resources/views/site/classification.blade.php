@@ -2,10 +2,10 @@
 
 <table class="table table- container" style="width: 80vw;">
     <thead>
-    <tr>
-        <th scope="col">Noms</th>
-        <th scope="col">Score</th>
-    </tr>
+        <tr>
+            <th scope="col">Noms</th>
+            <th scope="col">Score</th>
+        </tr>
     </thead>
     <tbody>
 
