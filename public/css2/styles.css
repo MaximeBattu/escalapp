@@ -1,13 +1,8 @@
-* {
-    overflow: hidden;
-}
-
 .navbar, .footer {
     background-color: rgba(120, 224, 143,1.0);
     height: 80px;
     z-index: 1;
 }
-
 
 .vertical {
     transform: translateY(125%);

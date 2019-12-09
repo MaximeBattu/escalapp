@@ -41,28 +41,28 @@ class DatabaseSeeder extends Seeder
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
                 'type_route'=>'V',
-                'url_photo'=> "jul"
+                'url_photo'=> "voie1.jpg"
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'red',
                 'difficulty_route'=>'7B',
                 'type_route'=>'V',
-                'url_photo'=> "jul"
+                'url_photo'=> "voie2.jpg"
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'brown',
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
-                'url_photo' =>"jul"
+                'url_photo' =>"voie3.jpg"
             ],
             [
                 'id_room'=>2,
                 'color_route'=>'brown',
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
-                'url_photo' =>"jul"
+                'url_photo' =>"voie4.jpg"
             ]
         ];
 
@@ -74,12 +74,14 @@ class DatabaseSeeder extends Seeder
             [
                 'name'=>'aze',
                 'email'=>'aze@aze.fr',
-                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
+                'score'=>100
             ],
             [
                 'name'=>'maxime',
                 'email'=>'maxime@battu.fr',
-                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
+                'score'=>3846
             ],
             [
                 'name'=>'ianis',

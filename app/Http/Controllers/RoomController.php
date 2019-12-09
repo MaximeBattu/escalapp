@@ -14,10 +14,5 @@ class RoomController extends Controller
             "salle"=>$salle
         ]);
     }
-    public function viewRoutes(int $id) {
-        $routes = Route::all()->where('id_room',$id);
-        return view('site/route',[
-            "routes"=>$routes
-        ]);
-    }
+
 }

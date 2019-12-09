@@ -17,11 +17,11 @@
 <div class="row justify-content-around">
     <div class="col-2 text-center">
        <h1><a href="{{route('see_route', ['id'=>$salle->id_room])}}">Voie</a></h1>
-        <img src="{{asset('img/mur1.jpg')}}"style="max-height:100%;max-width:100% ;">
+        <img src="{{asset('img/header1.jpg')}}"style="max-height:100%;max-width:100% ;">
     </div>
     <div class="col-2 text-center">
-        <h1><a href="">Bloc</a></h1>
-        <img src="{{asset('img/header1.jpg')}}"style="max-height:100%;max-width:100% ;">
+        <h1><a href="{{route('see_bloc', ['id'=>$salle->id_room])}}">Bloc</a></h1>
+        <img src="{{asset('img/mur1.jpg')}}"style="max-height:100%;max-width:100% ;">
     </div>
 </div>
 @include('footer')

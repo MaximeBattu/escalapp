@@ -6,7 +6,6 @@
         <th>Image</th>
         <th scope="col">Couleur</th>
         <th scope="col">Difficulté</th>
-        <th scope="col">Type</th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -18,8 +17,7 @@
             <td>{{$route->url_photo}}</td>
             <td>{{$route->color_route}}</td>
             <td>{{$route->difficulty_route}}</td>
-            <td>{{$route->type_route}}</td>
-            <td><a href="">Voir la voie</a></td>
+            <td><a href="{{route('see_specific_routeBloc', ['id'=>$route->id_route])}}">Voir la voie</a></td>
         </tr>
         @endif
 
