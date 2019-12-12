@@ -24,10 +24,10 @@ Route::get('/salle/{id}/voie','RouteController@viewRoutes')->name('see_route');
 Route::get('/salle/{id}/bloc','RouteController@viewBlocRoutes')->name('see_bloc');
 
 Route::get('/voie/{id}', 'RouteController@viewSpecificRoute')->name('see_specific_route');
-Route::get('/voieBloc/{id}', 'RouteController@viewSpecificRouteBloc')->name('see_specific_routeBloc');
+Route::get('/voie-bloc/{id}', 'RouteController@viewSpecificRouteBloc')->name('see_specific_routeBloc');
 
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
 
-Route::get('/profil/{id}', 'UserController@seeMyProfil')->name('see_my_profil');
+Route::get('/profil/{id}', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
 
 
