@@ -26,4 +26,12 @@
 - lancer l'application avec le serveur interne php : `php artisan serve`
 - ouvrir le navigateur et aller sur `localhost:8000` ou le port afficher sur le cmd
 
+# Adding project to git
+
+- Récupération du projet sur le git :  `git pull`
+- Ajout des fichiers : `git add .`
+- Status des fichiers ajoutés : `git status`
+- Commit les fichiers ajoutés : `git commit -m "Message"` 
+- Envoyer le commit sur le git : `git push origin master`
+
 
