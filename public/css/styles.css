@@ -1,1 +1,56 @@
-.footer,.navbar{background-color:#78e08f;height:80px;z-index:1}.vertical{-webkit-transform:translateY(125%);transform:translateY(125%)}.boxRoom{font-size:18px;text-align:center;padding:50px 0;margin:50px;border:1px solid #000}
+.navbar,
+.footer {
+    background-color: #78e08f;
+    height: 80px;
+    z-index: 1;
+}
+
+.vertical {
+    -webkit-transform: translateY(125%);
+    transform: translateY(125%);
+}
+
+.boxRoom {
+    font-size: 18px;
+    text-align: center;
+    padding: 50px 0px 50px 0px;
+    margin: 50px;
+    border: 1px solid black;
+}
+
+/* ADMIN */
+
+.salles-admin {
+    width: 80vw;
+    position: absolute;
+    left: 10vw;
+    margin-top: 5%;
+}
+
+.room-change {
+    text-align: center;
+    background-color: lightgrey;
+}
+
+
+/*       Gestion des bouttons administrateurs => "Gestion des salles" et "Gestion des comptes"          */
+.content-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button {
+    width: 300px;
+    font-size: 24px;
+    padding: 15px;
+    margin: 50px 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    transition: all 0.3s ease-in-out;
+}
+
+

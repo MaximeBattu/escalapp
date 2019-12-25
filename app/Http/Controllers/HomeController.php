@@ -19,5 +19,4 @@ class HomeController extends Controller
             'salles' => $salles
         ]);
     }
-
 }

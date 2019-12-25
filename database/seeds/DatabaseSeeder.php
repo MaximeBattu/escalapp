@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
                 'url_photo'=> "voie2.jpg"
             ],
             [
-                'id_room'=>1,
+                'id_room'=>3,
                 'color_route'=>'brown',
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
@@ -87,6 +87,12 @@ class DatabaseSeeder extends Seeder
                 'name'=>'ianis',
                 'email'=>'ianis@pacaud.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+            ],
+            [
+                'name'=>'admin',
+                'email'=>'admin@admin.fr',
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
+                'isAdmin'=>true
             ]
         ];
 
