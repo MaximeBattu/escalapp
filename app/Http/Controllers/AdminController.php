@@ -48,13 +48,33 @@ class AdminController extends Controller
         $numberphoneRoom = $request->input('numberphoneRoom');
         $address = $request->input('addressRoom');
 
-
-        Room::create(['name_room'=>$name,
-                      'tel_room'=>$numberphoneRoom,
-                      'address_room'=>$address]);
+        Room::create(['name_room'=>htmlspecialchars($name),
+                      'tel_room'=>htmlspecialchars($numberphoneRoom),
+                      'address_room'=>htmlspecialchars($address)]);
         if($request->submit == 'Ajouter')
-            return redirect('/admin/gestion-salle')->with('add-success','Successful ! You have adding a new room !');
+            return redirect('/admin/gestion-salle')->with('add-success','Successful ! You have added a new room !');
         else
-            return redirect()->back()->with('add-success','Successful ! You have adding a new room !');
+            return redirect()->back()->with('add-success','Successful ! You have added a new room !');
+    }
+
+    public function modifyRoom(int $id) {
+        $room = Room::find($id);
+        return view('admin/update-room', [
+            'room'=>$room
+        ]);
+    }
+
+    public function updateRoom(Request $request, int $id) {
+        $name = $request->input('nameRoom');
+        $numberphone = $request->input('numberphoneRoom');
+        $address = $request->input('addressRoom');
+
+        Room::find($id)->update([
+            'name_room'=>htmlspecialchars($name),
+            'tel_room'=>htmlspecialchars($numberphone),
+            'address_room'=>htmlspecialchars($address)
+        ]);
+
+        return redirect('/admin/gestion-salle');
     }
 }

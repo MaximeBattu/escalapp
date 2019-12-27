@@ -30,4 +30,3 @@
 </table>
 
 @endsection
-@include('footer')

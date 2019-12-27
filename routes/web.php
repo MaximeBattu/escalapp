@@ -25,6 +25,8 @@ Route::get('/accueil', 'HomeController@index')->name('see_home');
 Route::get('/admin/accueil', 'AdminController@seeHomeAdmin')->name('see_home_admin')->middleware('auth', 'admin');
 Route::get('/admin/gestion-salle', 'AdminController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
 Route::get('/admin/gestion-salle/supprimmer/{id}', 'AdminController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
+Route::get('/admin/gestion-salle/modifier/{id}', 'AdminController@modifyRoom')->name('modify_room')->middleware('auth','admin');
+Route::post('/admin/gestion-salle/modifier/{id}', 'AdminController@updateRoom')->name('update_room')->middleware('auth','admin');
 Route::get('/admin/gestion-salle/ajouter', 'AdminController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
 Route::post('/admin/gestion-salle/ajouter', 'AdminController@addRoom')->name('add_room')->middleware('auth', 'admin');
 Route::get('/admin/gestion-compte', 'AdminController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');

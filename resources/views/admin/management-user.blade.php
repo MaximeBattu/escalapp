@@ -42,4 +42,3 @@
 </table>
 
 @endsection
-@include('footer')

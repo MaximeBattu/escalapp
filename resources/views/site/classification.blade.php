@@ -20,6 +20,3 @@
         </tbody>
     </table>
 @endsection
-
-
-@include('footer')

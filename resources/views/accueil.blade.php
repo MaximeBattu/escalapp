@@ -39,7 +39,7 @@
                     <a href="{{route('see_room', ['id'=>$salle->id_room])}}">Voir salle</a>
                 </td>
                 <td class="col-md-1 room-change">
-                    <button type="button" class="btn btn-warning">Modifier</button>
+                    <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>
                 </td>
                 <td class="col-md-1 room-change">
                     <a type="button" class="btn btn-danger" href="{{route('delete_room',['id'=>$salle->id_room])}}">Supprimer</a>
@@ -82,4 +82,3 @@
     @endif
 
 @endsection
-@include('footer')

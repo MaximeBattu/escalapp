@@ -12,4 +12,3 @@
 </section>
 
 @endsection
-@include('footer')

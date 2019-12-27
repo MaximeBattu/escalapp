@@ -13,7 +13,7 @@ class UserController extends Controller
         if($id !== $connectedUserId) {
             return abort(404);
         }
-        $user = User::all()->where('id', $id);
+        $user = User::find($id);
         return view('site/profil', [
             'user' => $user
         ]);

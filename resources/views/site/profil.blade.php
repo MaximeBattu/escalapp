@@ -2,14 +2,11 @@
 @section('content')
 
     <section class="text-center">
-        @foreach($user as $u)
-            <h1>Nom : {{$u->name}}</h1> <br>
-            <h1>Email : {{$u->email}}</h1> <br>
-            <h1>Score : {{$u->score}}</h1> <br>
-            <h1>Voies faites : 0</h1> <br>
-            <h1>Voies réussites : 0</h1>
-        @endforeach
+        <h1>Nom : {{$user->name}}</h1> <br>
+        <h1>Email : {{$user->email}}</h1> <br>
+        <h1>Score : {{$user->score}}</h1> <br>
+        <h1>Voies faites : 0</h1> <br>
+        <h1>Voies réussites : 0</h1>
     </section>
 
 @endsection
-@include('footer')

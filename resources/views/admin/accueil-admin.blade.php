@@ -16,4 +16,3 @@
     </div>
 
 @endsection
-@include('footer')
