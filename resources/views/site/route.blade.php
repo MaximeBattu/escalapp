@@ -1,6 +1,8 @@
-@include('header')
+@extends('layouts.app')
+@section('content')
 
-<table class="table table- container" style="width: 80vw;">
+
+    <table class="table table- container" style="width: 80vw;">
     <thead>
     <tr>
         <th>Image</th>
@@ -27,4 +29,5 @@
 
 </table>
 
+@endsection
 @include('footer')

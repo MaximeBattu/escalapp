@@ -1,5 +1,7 @@
-@include('header')
-<section class="text-center">
+@extends('layouts.app')
+@section('content')
+
+    <section class="text-center">
     <article class="">
     <h1 class="Nom_Salle" >Type de voie : mur</h1>
             <h1>Numéro voie : {{$r->id_route}}</h1>
@@ -9,4 +11,5 @@
         </article>
 </section>
 
+@endsection
 @include('footer')

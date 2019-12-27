@@ -1,5 +1,5 @@
 .navbar, .footer {
-    background-color: rgba(120, 224, 143,1.0);
+    background-color: rgba(120, 224, 143, 1.0);
     height: 80px;
     z-index: 1;
 }
@@ -12,8 +12,12 @@
     font-size: 18px;
     text-align: center;
     padding: 50px 0px 50px 0px;
-    margin:50px;
+    margin: 50px;
     border: 1px solid black;
+}
+
+.table {
+    width: 80vw;
 }
 
 /* ADMIN */
@@ -41,7 +45,6 @@
 
 .button {
     width: 300px;
-    font-size: 24px;
     padding: 15px;
     margin: 50px 50px;
     transition: all 0.3s ease-in-out;
@@ -49,4 +52,30 @@
 
 .button:hover {
     transition: all 0.3s ease-in-out;
+}
+
+/* Salles */
+
+.add-room {
+    position: absolute;
+    top: 20%;
+    right: 10vw;
+    width: 300px;
+    font-size: 28px;
+
+}
+
+.adding-room {
+    width: 40vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 100px 50px 100px;
+    background-color: lightgrey;
+}
+
+.label-adding-room {
+    font-size: 24px;
+    margin: 20px 20px;
 }

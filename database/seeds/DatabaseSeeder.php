@@ -17,17 +17,23 @@ class DatabaseSeeder extends Seeder
             [
                 'name_room'=>'Bloc Trotter',
                 'tel_room'=>'0123456789',
-                'address_room'=>'2 rue de la Colombe'
+                'address_room'=>'2 rue de la Colombe',
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'name_room'=>'Bloc Trotter',
                 'tel_room'=>'1234567890',
-                'address_room'=>'8 rue à la Vilardière'
+                'address_room'=>'8 rue à la Vilardière',
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'name_room'=>'Parc des glaisins',
                 'tel_room'=>'2345678901',
-                'address_room'=>'2 chemin des chapelaines'
+                'address_room'=>'2 chemin des chapelaines',
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ]
         ];
 
@@ -41,28 +47,36 @@ class DatabaseSeeder extends Seeder
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
                 'type_route'=>'V',
-                'url_photo'=> "voie1.jpg"
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'red',
                 'difficulty_route'=>'7B',
                 'type_route'=>'V',
-                'url_photo'=> "voie2.jpg"
+                'url_photo'=> "voie2.jpg",
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'id_room'=>3,
                 'color_route'=>'brown',
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
-                'url_photo' =>"voie3.jpg"
+                'url_photo' =>"voie3.jpg",
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'id_room'=>2,
                 'color_route'=>'brown',
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
-                'url_photo' =>"voie4.jpg"
+                'url_photo' =>"voie4.jpg",
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ]
         ];
 
@@ -75,24 +89,34 @@ class DatabaseSeeder extends Seeder
                 'name'=>'aze',
                 'email'=>'aze@aze.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'score'=>100
+                'score'=>rand(0,10000),
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'name'=>'maxime',
                 'email'=>'maxime@battu.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'score'=>3846
+                'score'=>rand(0,10000),
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'name'=>'ianis',
                 'email'=>'ianis@pacaud.fr',
-                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e'
+                'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
+                'score'=>rand(0,10000),
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ],
             [
                 'name'=>'admin',
                 'email'=>'admin@admin.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'isAdmin'=>true
+                'score'=>10000000000000000,
+                'isAdmin'=>true,
+                'created_at'=>Carbon\Carbon::now(),
+                'updated_at'=>now()
             ]
         ];
 

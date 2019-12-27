@@ -1,5 +1,7 @@
-@include('header')
-<h1 class="text-center">
+@extends('layouts.app')
+@section('content')
+
+    <h1 class="text-center">
     Salle numéro : {{$salle->id_room}}
 </h1>
 <section class="text-center">
@@ -24,4 +26,6 @@
         <img src="{{asset('img/mur1.jpg')}}"style="max-height:100%;max-width:100% ;">
     </div>
 </div>
+
+@endsection
 @include('footer')
