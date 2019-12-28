@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Route;
+use App\Room;
 
 class RouteController extends Controller
 {
@@ -36,5 +37,18 @@ class RouteController extends Controller
         return view('site/specificRouteBloc', [
             "routeBloc" => $routeBloc
         ]);
+    }
+
+    public function seeRoutesAdmin(int $id) {
+        $routes = Route::all()->where('id_room',$id);
+        $room = Room::find($id);
+        return view('admin/routes-admin', [
+            'routes'=>$routes,
+            'room'=>$room
+        ]);
+    }
+
+    public function seeAddRoutes() {
+        return view('admin/adding-routes');
     }
 }

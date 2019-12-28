@@ -18,4 +18,17 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    /***
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * See page to manage users (delete, make admin)
+     * Admin Management
+     */
+    public function seeUserManagement()
+    {
+        $users = User::all();
+        return view('admin/management-user', [
+            'users' => $users
+        ]);
+    }
 }

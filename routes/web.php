@@ -22,14 +22,20 @@ Auth::routes();
 
 Route::get('/accueil', 'HomeController@index')->name('see_home');
 
-Route::get('/admin/accueil', 'AdminController@seeHomeAdmin')->name('see_home_admin')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salle', 'AdminController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salle/supprimmer/{id}', 'AdminController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salle/modifier/{id}', 'AdminController@modifyRoom')->name('modify_room')->middleware('auth','admin');
-Route::post('/admin/gestion-salle/modifier/{id}', 'AdminController@updateRoom')->name('update_room')->middleware('auth','admin');
-Route::get('/admin/gestion-salle/ajouter', 'AdminController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
-Route::post('/admin/gestion-salle/ajouter', 'AdminController@addRoom')->name('add_room')->middleware('auth', 'admin');
-Route::get('/admin/gestion-compte', 'AdminController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');
+Route::get('/admin/accueil', 'AdminController@index')->name('see_home_admin')->middleware('auth', 'admin');
+
+// GESTION SALLES
+Route::get('/admin/gestion-salle', 'RoomController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
+Route::get('/admin/gestion-salle/supprimmer/{id}', 'RoomController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
+Route::get('/admin/gestion-salle/modifier/{id}', 'RoomController@modifyRoom')->name('modify_room')->middleware('auth','admin');
+Route::post('/admin/gestion-salle/modifier/{id}', 'RoomController@updateRoom')->name('update_room')->middleware('auth','admin');
+Route::get('/admin/gestion-salle/ajouter', 'RoomController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
+Route::post('/admin/gestion-salle/ajouter', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
+Route::get('/admin/gestion-salle/salle{id}/voir-voie','RouteController@seeRoutesAdmin')->name('see_routes_admin')->middleware('auth','admin');
+Route::get('/admin/gestion-salle/salle{id}/voir-voir/ajouter-voie','RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
+
+// GESTION COMPTES
+Route::get('/admin/gestion-compte', 'UserController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');
 
 
 Route::get('/salle/{id}', 'RoomController@viewRoom')->name('see_room');

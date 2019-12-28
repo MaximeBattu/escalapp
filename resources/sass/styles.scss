@@ -30,7 +30,7 @@
     width: 80vw;
     position: absolute;
     left: 10vw;
-    margin-top: 5%;
+    margin: 5% 0 8% 0;
 }
 
 .room-change {
@@ -60,7 +60,8 @@
 
 /* Salles */
 
-.add-room {
+.add-room,
+.add-route {
     position: absolute;
     top: 20%;
     right: 10vw;
@@ -84,4 +85,28 @@
 .label-updating-room {
     font-size: 24px;
     margin: 20px 20px;
+}
+.boxroom {
+    height: 25vh;
+    margin: 50px 50px 0 50px;
+}
+
+/* [ ACCUEIL ] */
+
+#roomname {
+    margin-top: 5vh;
+    transition: 0.2s ease all;
+}
+
+.display-none {
+    opacity: 0;
+}
+
+.boxRoom:hover .display-none{
+    opacity: 1;
+    transition: 0.5s ease all;
+}
+
+.boxRoom:hover #roomname{
+    margin-top: 0;
 }

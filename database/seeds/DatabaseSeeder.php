@@ -18,22 +18,19 @@ class DatabaseSeeder extends Seeder
                 'name_room'=>'Bloc Trotter',
                 'tel_room'=>'0123456789',
                 'address_room'=>'2 rue de la Colombe',
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name_room'=>'Bloc Trotter',
                 'tel_room'=>'1234567890',
                 'address_room'=>'8 rue à la Vilardière',
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name_room'=>'Parc des glaisins',
                 'tel_room'=>'2345678901',
                 'address_room'=>'2 chemin des chapelaines',
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ]
         ];
 
@@ -48,17 +45,15 @@ class DatabaseSeeder extends Seeder
                 'difficulty_route'=>'6B',
                 'type_route'=>'V',
                 'url_photo'=> "voie1.jpg",
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'red',
                 'difficulty_route'=>'7B',
-                'type_route'=>'V',
+                'type_route'=>'B',
                 'url_photo'=> "voie2.jpg",
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>3,
@@ -66,8 +61,7 @@ class DatabaseSeeder extends Seeder
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
                 'url_photo' =>"voie3.jpg",
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>2,
@@ -75,8 +69,7 @@ class DatabaseSeeder extends Seeder
                 'difficulty_route'=>'6B+',
                 'type_route'=>'B',
                 'url_photo' =>"voie4.jpg",
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ]
         ];
 
@@ -90,24 +83,21 @@ class DatabaseSeeder extends Seeder
                 'email'=>'aze@aze.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'score'=>rand(0,10000),
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name'=>'maxime',
                 'email'=>'maxime@battu.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'score'=>rand(0,10000),
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name'=>'ianis',
                 'email'=>'ianis@pacaud.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'score'=>rand(0,10000),
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name'=>'admin',
@@ -115,8 +105,7 @@ class DatabaseSeeder extends Seeder
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'score'=>10000000000000000,
                 'isAdmin'=>true,
-                'created_at'=>Carbon\Carbon::now(),
-                'updated_at'=>now()
+                'created_at'=>Carbon\Carbon::now()
             ]
         ];
 

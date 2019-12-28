@@ -11,13 +11,13 @@
         {{csrf_field()}}
         <div class="form-group">
             <label for="nameRoom" class="label-adding-room">Nom</label>
-            <input type="text" value="nom" class="form-control" name="nameRoom">
+            <input type="text" placeholder="Nom de la salle" class="form-control" name="nameRoom" required>
 
             <label for="numberphoneRoom" class="label-adding-room">Numéro de téléphone</label>
-            <input type="text" class="form-control" name="numberphoneRoom">
+            <input  type="tel" pattern="[0-9]{10}"placeholder="Numéro de téléphone de la salle" class="form-control" name="numberphoneRoom" minlength="10" maxlength="10" required>
 
             <label for="addressRoom" class="label-adding-room">Adresse</label>
-            <input type="text" class="form-control" name="addressRoom">
+            <input type="text" placeholder="Adresse de la salle" class="form-control" name="addressRoom" required>
         </div>
 
         <button type="submit" class="btn btn-primary" name="submit" value="Ajouter et recommencer">Ajouter et
