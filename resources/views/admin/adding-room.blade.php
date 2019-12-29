@@ -28,7 +28,7 @@
 
     <div>
         @if(\Session::has('add-success'))
-            <div class="alert alert-success" id="add-success">
+            <div class="alert alert-success" id="addSuccessRoom">
                 {{\Session::get('add-success')}}
             </div>
         @endif

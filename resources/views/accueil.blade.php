@@ -1,12 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    @if(\Session::has('error'))
-        <div class="alert alert-danger">
-            {{\Session::get('error')}}
-        </div>
-    @endif
-
     @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true) <!-- on vérifie que l'utilisateur est connecté et qu'il est bien administrateur-->
 
     <h1 class="text-center">
@@ -53,14 +47,13 @@
             </tr>
         @endforeach
         </tbody>
+
     </table>
-    <div>
-        @if(\Session::has('add-success'))
-            <div class="alert alert-success" id="add-success">
-                {{\Session::get('add-success')}}
-            </div>
-        @endif
-    </div>
+    @if(\Session::has('add-success'))
+        <div class="alert alert-success" id="addSuccessRoom">
+            {{\Session::get('add-success')}}
+        </div>
+    @endif
     @else
         <h1 class="text-center">Salles disponibles : {{count($salles)}}</h1>
         <div class="container-fluid">
@@ -83,5 +76,11 @@
                 @endforeach
             </div>
         </div>
+
+        @if(\Session::has('error'))
+            <div class="alert alert-danger" id="adminAccessError">
+                {{\Session::get('error')}}
+            </div>
+        @endif
     @endif
 @endsection

@@ -24,12 +24,13 @@
         @foreach($routes as $route)
             <tr class="d-flex">
                 <td class="col-md-1"> {{$route->id_route}}</td>
-                <td class="col-md-1">{{$route->color_route}}</td>
                 @if($route->type_route == "V")
+                    <td class="col-md-1">{{$route->color_route}}</td>
                     <td class="col-md-2">{{$route->difficulty_route}}</td>
                     <td class="col-md-2">Voie</td>
                 @else
-                    <td class="col-md-2"></td>
+                    <td class="col-md-1"></td>
+                    <td class="col-md-2">{{$route->color_route}}</td>
                     <td class="col-md-2">Bloc</td>
                 @endif
                 <td class="col-md-2">{{$route->score_route}}</td>
@@ -39,10 +40,10 @@
                     <td class="col-md-2">Aucune mise à jour</td>
                 @endif
                 <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-warning" href="">Modifier</a>
+                    <a type="button" class="btn btn-warning" href="{{route('modify_route',['id'=>$room->id_room,'idroute'=>$route->id_route])}}">Modifier</a>
                 </td>
                 <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-danger" href="">Supprimer</a>
+                    <a type="button" class="btn btn-danger" href="{{route('delete_route',['id'=>$room->id_room,'idroute'=>$route->id_route])}}">Supprimer</a>
                 </td>
             </tr>
         @endforeach

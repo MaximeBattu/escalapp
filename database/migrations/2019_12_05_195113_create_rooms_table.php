@@ -18,7 +18,8 @@ class CreateRoomsTable extends Migration
             $table->string('name_room',100);
             $table->text('tel_room',10)->unique();
             $table->string('address_room',150);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

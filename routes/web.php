@@ -32,7 +32,13 @@ Route::post('/admin/gestion-salle/modifier/{id}', 'RoomController@updateRoom')->
 Route::get('/admin/gestion-salle/ajouter', 'RoomController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
 Route::post('/admin/gestion-salle/ajouter', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
 Route::get('/admin/gestion-salle/salle{id}/voir-voie','RouteController@seeRoutesAdmin')->name('see_routes_admin')->middleware('auth','admin');
-Route::get('/admin/gestion-salle/salle{id}/voir-voir/ajouter-voie','RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
+Route::get('/admin/gestion-salle/salle{id}/voir-voie/supprimer/{idroute}','RouteController@deleteRoute')->name('delete_route')->middleware('auth','admin');
+Route::get('/admin/gestion-salle/salle{id}/voir-voie/modifier/{idroute}','RouteController@modifyRoute')->name('modify_route')->middleware('auth','admin');
+Route::post('/admin/gestion-salle/salle{id}/voir-voie/modifier/{idroute}','RouteController@updateRoute')->name('update_route')->middleware('auth','admin');
+Route::get('/admin/gestion-salle/salle{id}/voir-voie/ajouter-voie','RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
+Route::post('/admin/gestion-salle/salle{id}/voir-voie/ajouter-voie', 'RouteController@addRoute')->name('add_route')->middleware('auth','admin');
+
+
 
 // GESTION COMPTES
 Route::get('/admin/gestion-compte', 'UserController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');
@@ -46,6 +52,6 @@ Route::get('/voie/{id}', 'RouteController@viewSpecificRoute')->name('see_specifi
 Route::get('/voie-bloc/{id}', 'RouteController@viewSpecificRouteBloc')->name('see_specific_routeBloc');
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
 
-Route::get('/profil/{id}', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
+Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
 
 

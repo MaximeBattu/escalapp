@@ -15,7 +15,7 @@
         <th class="col-md-3">email</th>
         <th class="col-md-2">Crée le</th>
         <th class="col-md-1">Administateur</th>
-        <th colspan="2" class="col-md-2 room-change">Changement</th>
+        <th class="col-md-1 room-change">Changement</th>
     </tr>
     </thead>
     <tbody>
@@ -30,9 +30,6 @@
             @else
                 <td class="col-md-1">Non</td>
             @endif
-            <td class="col-md-1 room-change">
-                <button type="button" class="btn btn-warning">Modifier</button>
-            </td>
             <td class="col-md-1 room-change">
                 <a type="button" class="btn btn-danger" href="">Supprimer</a>
             </td>

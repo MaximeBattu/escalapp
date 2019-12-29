@@ -50,7 +50,6 @@ class DatabaseSeeder extends Seeder
             [
                 'id_room'=>1,
                 'color_route'=>'red',
-                'difficulty_route'=>'7B',
                 'type_route'=>'B',
                 'url_photo'=> "voie2.jpg",
                 'created_at'=>Carbon\Carbon::now()
@@ -58,7 +57,6 @@ class DatabaseSeeder extends Seeder
             [
                 'id_room'=>3,
                 'color_route'=>'brown',
-                'difficulty_route'=>'6B+',
                 'type_route'=>'B',
                 'url_photo' =>"voie3.jpg",
                 'created_at'=>Carbon\Carbon::now()
@@ -66,7 +64,6 @@ class DatabaseSeeder extends Seeder
             [
                 'id_room'=>2,
                 'color_route'=>'brown',
-                'difficulty_route'=>'6B+',
                 'type_route'=>'B',
                 'url_photo' =>"voie4.jpg",
                 'created_at'=>Carbon\Carbon::now()

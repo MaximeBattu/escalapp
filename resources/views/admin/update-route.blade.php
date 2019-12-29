@@ -1,26 +1,23 @@
 @extends('layouts.app')
 @section('content')
+
     <h1>
-        <a href="{{route('see_room_management')}}">Retour</a>
+        <a href="{{route('see_routes_admin',['id'=>$route->id_room])}}">Retour</a>
     </h1>
-<div>
-    <h1 class="text-center">Ajoutez une ou plusieurs voies</h1>
-</div>
 
-
-    <form method="post" class="add-new-route" action="{{route('add_route', ['id'=>$room->id_room])}}">
+    <form method="post" class="modify-route" action="{{route('update_route',['id'=>$route->id_room,'idroute'=>$route->id_route])}}">
         {{@csrf_field() }}
         <div class="form-group">
             <label for="" class="label-updating-room">Type de route</label>
             <select name="typeRouteSelect" id="typeRouteSelect">
-                <option selected> </option>
+                <option selected>{{$route->type_route}}</option>
                 <option value="V">Voie</option>
                 <option value="B">Bloc</option>
             </select>
             <br>
             <label for="" class="label-updating-room">Couleur</label>
             <select name="colorRouteSelect" id="" required>
-                <option selected></option>
+                <option selected>{{$route->color_route}}</option>
                 <option value="red">Rouge</option>
                 <option value="brown">Marron</option>
                 <option value="blue">Bleue</option>
@@ -30,7 +27,7 @@
             <br>
             <label for="" class="label-updating-room">Difficulté</label>
             <select name="difficultySelect">
-                <option selected></option>
+                <option selected>{{$route->difficulty_route}}</option>
                 <option value="3">3</option>
                 <option value="3+">3+</option>
                 <option value="4a">4a</option>
@@ -61,19 +58,16 @@
                 <option value="9a+">9a+</option>
             </select>
             <br>
-
             <label for="" class="label-updating-room">Score</label>
-            <input type="text" pattern="[0-9]+" placeholder="Rentrez le score - ex : 1500" class="form-control" name="scoreRoute">
+            <input type="text" pattern="[0-9]+" placeholder="Rentrez le score - ex : 1500" class="form-control"
+                   name="scoreRoute" value="{{$route->score_route}}">
 
             <label for="" class="label-updating-room">Ajouter une photo</label>
-            <input type="text" placeholder="Url de l'image " class="form-control" name="urlPhotoRoute">
-
-
+            <input type="text" placeholder="Url de l'image " class="form-control" name="urlPhotoRoute"
+                   value="{{$route->url_photo}}">
         </div>
-        <button type="submit" class="btn btn-primary" name="submit" value="Ajouter et recommencer">Ajouter et recommencer</button>
-        <button type="submit" class="btn btn-primary" name="submit" value="Ajouter">Ajouter</button>
 
+        <button type="submit" class="btn btn-primary" name="submit" value="Mettre à jour">Mettre à jour</button>
     </form>
-
 
 @endsection

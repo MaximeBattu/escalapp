@@ -7,22 +7,18 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function seeMyProfil(int $id)
+    public function seeMyProfil()
     {
-        $connectedUserId = Auth::user()->id;
-        if($id !== $connectedUserId) {
-            return abort(404);
-        }
-        $user = User::find($id);
+        $user = User::find(Auth::user()->id);
         return view('site/profil', [
             'user' => $user
         ]);
     }
 
-    /***
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    /**
      * See page to manage users (delete, make admin)
      * Admin Management
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function seeUserManagement()
     {

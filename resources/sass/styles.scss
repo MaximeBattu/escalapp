@@ -1,7 +1,15 @@
+$textColor: #000000!important;
+$primaryColor : #00600f!important;
+
 .navbar, .footer {
-    background-color: rgba(120, 224, 143, 1.0);
+    background-color: $primaryColor;
     height: 80px;
     z-index: 1;
+    color: $textColor;
+}
+
+.nav-link {
+    color: $textColor;
 }
 
 .vertical {
@@ -67,11 +75,14 @@
     right: 10vw;
     width: 300px;
     font-size: 28px;
-
+    color : $textColor;
+    background-color: $primaryColor;
 }
 
 .adding-room,
-.modify-room {
+.modify-room,
+.modify-route,
+.add-new-route {
     width: 40vw;
     position: absolute;
     top: 50%;
@@ -79,6 +90,12 @@
     transform: translate(-50%, -50%);
     padding: 50px 100px 50px 100px;
     background-color: lightgrey;
+}
+
+.add-new-route{
+    position: absolute;
+    top: 60%;
+    left: 50%;
 }
 
 .label-adding-room,

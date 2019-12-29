@@ -15,7 +15,7 @@ class RoomController extends Controller
         ]);
     }
 
-    /***
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * See page to manage room (add room, modify room, delete room)
      * Admin Management
@@ -28,7 +28,7 @@ class RoomController extends Controller
             'salles' => $salles
         ]);
     }
-    /***
+    /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      * Delete the room clicked before
@@ -40,7 +40,7 @@ class RoomController extends Controller
         return redirect()->back();
     }
 
-    /***
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * Return view on admin/adding-room
      * Admin Management
@@ -50,7 +50,7 @@ class RoomController extends Controller
         return view('admin/adding-room');
     }
 
-    /***
+    /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * Enable to Add room to database with form (on blade.php) with XSS security
@@ -66,7 +66,9 @@ class RoomController extends Controller
             'name_room'=>htmlspecialchars($name),
             'tel_room'=>htmlspecialchars($numberphoneRoom),
             'address_room'=>htmlspecialchars($address),
-            'updated_at'=>""]);
+            'updated_at'=>null
+        ]);
+
         if($request->submit == 'Ajouter')
             return redirect('/admin/gestion-salle')->with('add-success','Successful ! You have added a new room !');
         else
@@ -86,12 +88,12 @@ class RoomController extends Controller
         ]);
     }
 
-    /***
+    /**
+     *  Change value of room (select by id) in the database -> replace old values by new values get on a form with post method
+     * Admin Management
      * @param Request $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * Change value of room (select by id) in the database -> replace old values by new values get on a form with post method
-     * Admin Management
      */
     public function updateRoom(Request $request, int $id) {
         $name = $request->input('nameRoom');
@@ -106,10 +108,6 @@ class RoomController extends Controller
         ]);
 
         return redirect('/admin/gestion-salle');
-
     }
 
-    public function seeRoutesAdmin(int $id) {
-
-    }
 }
