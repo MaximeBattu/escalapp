@@ -29,7 +29,7 @@
 
 # Adding project to git
 
-- Avant d'envoyer le projet il faut compilé les vues en mode production : `npm run prod`
+- Avant d'envoyer le projet il faut compiler les vues en mode production : `npm run prod`
 - Récupération du projet sur le git :  `git pull`
 - Ajout des fichiers : `git add .`
 - Status des fichiers ajoutés : `git status`
