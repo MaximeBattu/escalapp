@@ -29,10 +29,14 @@
 
 # Adding project to git
 
+- Avant d'envoyer le projet il faut compiler les vues en mode production : `npm run prod`
 - Récupération du projet sur le git :  `git pull`
 - Ajout des fichiers : `git add .`
 - Status des fichiers ajoutés : `git status`
 - Commit les fichiers ajoutés : `git commit -m "Message"` 
 - Envoyer le commit sur le git : `git push origin master`
 
+# Problems
+
+- Si vous avez des problèmes avec les vues laravel (style non chargé ou pas totalement chargé) hésiter pas à faire un : `npm run dev`
 
