@@ -2,7 +2,7 @@
 @section('content')
 
     @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true) <!-- on vérifie que l'utilisateur est connecté et qu'il est bien administrateur-->
-
+    <!-- za marche -->
     <h1 class="text-center">
         <a href="{{route('see_user_management')}}">Gestion des comptes</a>
     </h1>
