@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         $('#adminAccessError').fadeOut()
         $('#addSuccessRoom').fadeOut()
+        $('#administratorRight').fadeOut()
     },4000)
 
 })

@@ -76,7 +76,7 @@ class RouteController extends Controller
         if($request->submit == "Ajouter et recommencer") {
             return redirect()->back()->with('succes-route','You have added a new route to the room number : ' . $id);
         } else {
-            return redirect('/admin/gestion-salle/salle'.$id.'/voir-voie');
+            return redirect('/admin/gestion-salle/salle'.$id.'/voir-voie')->with('succes-route','You have added a new route to the room number : ' . $id);
         }
     }
 
