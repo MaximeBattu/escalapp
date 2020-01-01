@@ -94,13 +94,73 @@
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function () {
-  // disable succes or error message after 4s
+  var close = document.querySelector("#close");
+  var routeblocks = document.querySelector("#routeblocks");
+  var places = document.querySelectorAll(".place");
+  var open = document.querySelector("#open");
+  var number = 0;
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = places[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var place = _step.value;
+      number += 1;
+      if (number == 1) place.style.backgroundColor = "gold";else if (number == 2) place.style.backgroundColor = "silver";else if (number == 3) place.style.backgroundColor = "darkorange";
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  var contest = close.parentElement;
+  close.addEventListener("click", function () {
+    contest.style.display = "none";
+    open.style.display = "block";
+  });
+  open.addEventListener("click", function () {
+    contest.style.display = "block";
+    open.style.display = "none";
+  }); // disable succes or error message after 4s
+
   setTimeout(function () {
     $('#adminAccessError').fadeOut();
     $('#addSuccessRoom').fadeOut();
     $('#administratorRight').fadeOut();
   }, 4000);
 });
+
+function create(tag, text, parent) {
+  var classs = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  var id = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+  var o = document.createElement(tag);
+
+  if (text != null) {
+    o.appendChild(document.createTextNode(text));
+  }
+
+  if (classs != null) {
+    o.classList.add(classs);
+  }
+
+  if (id != null) {
+    o.id = id;
+  }
+
+  parent.appendChild(o);
+  return o;
+}
 
 /***/ }),
 

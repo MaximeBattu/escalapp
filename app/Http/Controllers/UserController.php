@@ -38,10 +38,11 @@ class UserController extends Controller
 
     public function modifyUser(int $id)
     {
+        $name = User::find($id)->name;
         User::find($id)->update([
             'isAdmin'=>true
         ]);
-        return redirect()->back()->with('success-modify','You have maded a new administrator');
+        return redirect()->back()->with('success-modify',$name.' is now administration on Escalapp !');
     }
 
     public function removeAdministratorRight(int $id) {
