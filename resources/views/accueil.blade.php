@@ -59,18 +59,20 @@
             <div class="row align-items-center justify-content-center">
                 @foreach($salles as $salle)
                     <div class="col-md-3 boxRoom">
-                        <p id="roomname">
-                            <strong>Nom :</strong> {{$salle->name_room}}
-                        </p>
-                        <p class="display-none">
-                            <strong>Numéro :</strong> {{$salle->tel_room}}
-                        </p>
-                        <p class="display-none">
-                            <strong>Adresse :</strong> {{$salle->address_room}}
-                        </p>
-                        <p class="display-none">
-                            <a href="{{route('see_room', ['id'=>$salle->id_room])}}">Voir salle</a>
-                        </p>
+                        <div id="roomInfo">
+                            <p id="roomname">
+                                <strong>Nom :</strong> {{$salle->name_room}}
+                            </p>
+                            <p class="display-none">
+                                <strong>Numéro :</strong> {{$salle->tel_room}}
+                            </p>
+                            <p class="display-none">
+                                <strong>Adresse :</strong> {{$salle->address_room}}
+                            </p>
+                            <p class="display-none">
+                                <a href="{{route('see_room', ['id'=>$salle->id_room])}}">Voir salle</a>
+                            </p>
+                        </div>
                     </div>
                 @endforeach
             </div>
