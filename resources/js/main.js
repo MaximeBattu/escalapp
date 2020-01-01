@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#addSuccessRoom').fadeOut()
         $('#administratorRight').fadeOut()
     },4000)
-
 })
 
 
