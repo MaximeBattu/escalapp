@@ -127,3 +127,49 @@ $primaryColor : #00600f!important;
 .boxRoom:hover #roomname{
     margin-top: 0;
 }
+
+
+/* Salles */
+
+#contest {
+    border: solid 2px;
+    height: 80vh;
+    width: 20vw;
+    text-align: center;
+    margin-top: -19vh;
+    margin-left: -10vw;
+}
+
+#contest>h2 {
+    padding: 2vh 0 2vh 0;
+    border-bottom: solid 2px;
+}
+
+#close {
+    cursor: pointer;
+    margin-left: 20vw;
+    width: 2vw;
+    font-size: 3vh;
+}
+
+#open {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    cursor: pointer;
+    width: 2vw;
+    font-size: 3vh;
+}
+
+#ranking {
+    height: 75%;
+    padding: 1vw;
+}
+
+#consult {
+    padding-top: 2vh;
+    text-align: center;
+    border-top: solid 2px;
+}
+

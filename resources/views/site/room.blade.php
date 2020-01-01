@@ -16,7 +16,18 @@
     </article>
 </section>
 
+
+
 <div class="row justify-content-around">
+    <div id="contest">
+        <h2>Contest en cours</h2>
+        <div id="close">x</div>
+        <div id="ranking">
+            
+        </div>
+        <div id="consult"><a href="">Consulter Contest</a></div>
+    </div>
+    <div id="open">></div>
     <div class="col-2 text-center">
        <h1><a href="{{route('see_route', ['id'=>$salle->id_room])}}">Voie</a></h1>
         <img src="{{asset('img/header1.jpg')}}"style="max-height:100%;max-width:100% ;">
