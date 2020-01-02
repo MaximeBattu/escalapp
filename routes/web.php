@@ -54,5 +54,7 @@ Route::get('/voie-bloc/{id}', 'RouteController@viewSpecificRouteBloc')->name('se
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
 
 Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
+Route::get('/profil/update', 'UserController@seeUpdateProfile')->name('update_profile');
+Route::post('profil/update', 'UserController@updateProfile')->name('set_update_profile');
 
 
