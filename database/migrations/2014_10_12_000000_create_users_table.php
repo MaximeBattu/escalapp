@@ -19,8 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('score')->default(1000);
+            $table->integer('score')->default(0);
             $table->boolean('isAdmin')->default(false);
+            $table->integer('nb_voies_faites')->default(0);
+            $table->integer('nb_voies_validees')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

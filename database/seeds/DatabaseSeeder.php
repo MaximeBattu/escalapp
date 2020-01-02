@@ -50,6 +50,21 @@ class DatabaseSeeder extends Seeder
             [
                 'id_room'=>1,
                 'color_route'=>'red',
+                'difficulty_route'=>'5c',
+                'type_route'=>'V',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>1,
+                'color_route'=>'brown',
+                'type_route'=>'B',
+                'url_photo'=> "saluss",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>1,
+                'color_route'=>'red',
                 'type_route'=>'B',
                 'url_photo'=> "voie2.jpg",
                 'created_at'=>Carbon\Carbon::now()
@@ -79,21 +94,18 @@ class DatabaseSeeder extends Seeder
                 'name'=>'aze',
                 'email'=>'aze@aze.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'score'=>rand(0,10000),
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name'=>'maxime',
                 'email'=>'maxime@battu.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'score'=>rand(0,10000),
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name'=>'ianis',
                 'email'=>'ianis@pacaud.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'score'=>rand(0,10000),
                 'created_at'=>Carbon\Carbon::now()
             ],
             [

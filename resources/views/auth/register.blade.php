@@ -75,4 +75,3 @@
     </div>
 </div>
 @endsection
-@include('footer')

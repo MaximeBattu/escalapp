@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -42,7 +41,7 @@ class UserController extends Controller
         User::find($id)->update([
             'isAdmin'=>true
         ]);
-        return redirect()->back()->with('success-modify',$name.' is now administration on Escalapp !');
+        return redirect()->back()->with('add-administrator-right',$name.' is now administrator on Escalapp !');
     }
 
     public function removeAdministratorRight(int $id) {
@@ -50,6 +49,6 @@ class UserController extends Controller
         User::find($id)->update([
             'isAdmin'=>false
         ]);
-        return redirect()->back()->with('remove-administrator-right','You have removed aministrator right to '.$name);
+        return redirect()->back()->with('remove-administrator-right','You have removed administrator right to '.$name);
     }
 }

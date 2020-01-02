@@ -19,7 +19,7 @@
                     <td>{{$routeBloc->url_photo}}</td>
                     <td>{{$routeBloc->color_route}}</td>
                     <td>{{$routeBloc->difficulty_route}}</td>
-                    <td><a href="{{route('see_specific_routeBloc', ['id'=>$routeBloc->id_route])}}">Voir le bloc</a>
+                    <td><a href="{{route('see_specific_route', ['idroom'=>$routeBloc->id_room,'id'=>$routeBloc->id_route])}}">Voir le bloc</a>
                     </td>
                 </tr>
             @endif

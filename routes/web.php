@@ -44,14 +44,18 @@ Route::get('/admin/gestion-compte/supprimer/{id}','UserController@deleteUser')->
 Route::get('/admin/gestion/modifier/mettre-administrateur/{id}','UserController@modifyUser')->name('modify_user')->middleware('auth','admin');
 Route::get('/admin/gestion/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')->name('remove_administrator_right')->middleware('auth','admin');
 
+//VALIDER/ESSAYER UNE VOIE / UN BLOC
+Route::get('/salle{id}', 'RoomController@viewRoom')->name('see_room');
+Route::get('/salle{id}/voie', 'RouteController@viewRoutes')->name('see_route');
+Route::get('/salle{id}/bloc', 'RouteController@viewBlocRoutes')->name('see_bloc');
+Route::get('/salle{idroom}/voie{id}', 'RouteController@viewSpecificRoute')->name('see_specific_route')->middleware('auth');
+Route::get('/salle{idroom}/voie{id}/valider','FinishedRoutesController@addValidatedRoute')->name('add_validated_route')->middleware('auth');
 
-Route::get('/salle/{id}', 'RoomController@viewRoom')->name('see_room');
-Route::get('/salle/{id}/voie', 'RouteController@viewRoutes')->name('see_route');
-Route::get('/salle/{id}/bloc', 'RouteController@viewBlocRoutes')->name('see_bloc');
 
-Route::get('/voie/{id}', 'RouteController@viewSpecificRoute')->name('see_specific_route');
-Route::get('/voie-bloc/{id}', 'RouteController@viewSpecificRouteBloc')->name('see_specific_routeBloc');
+
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
+
+//PROFIL
 
 Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
 

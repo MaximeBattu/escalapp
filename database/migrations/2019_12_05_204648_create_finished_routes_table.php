@@ -16,10 +16,16 @@ class CreateFinishedRoutesTable extends Migration
         Schema::create('finished_routes', function (Blueprint $table) {
             $table->integer('id_route');
             $table->integer('id_user');
-            $table->string('method',100);
-            $table->string('rate_desc',200);
+            $table->integer('id_room');
+            $table->string('method',100)->default('A vue');
+            $table->string('rate_desc',200)->nullable();
             $table->primary(['id_route','id_user']);
             $table->timestamps();
+        });
+
+        Schema::table('finished_toutes', function(Blueprint $table) {
+           $table->foreign('id_route')->references('id_route')->on('routes');
+           $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

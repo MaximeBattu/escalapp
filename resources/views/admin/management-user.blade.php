@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    @if(\Session::has('success-modify'))
+    @if(\Session::has('add-administrator-right'))
         <div class="alert alert-success" id="administratorRight">
-            {{\Session::get('success-modify')}}
+            {{\Session::get('add-administrator-right')}}
         </div>
     @endif
     @if(\Session::has('remove-administrator-right'))
