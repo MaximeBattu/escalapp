@@ -29,11 +29,11 @@
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container">
             @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true )
-                <a class="navbar-brand" href="{{ url('/admin/accueil') }}">
+                <a class="navbar-brand escalapp" href="{{ url('/admin/accueil') }}">
                     Escalapp
                 </a>
             @else
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand escalapp" href="{{ url('/') }}">
                     Escalapp
                 </a>
             @endif

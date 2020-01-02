@@ -1,10 +1,14 @@
-$textColor: #000000!important;
-$primaryColor : #00600f!important;
+$textColor: #ffffff!important;
+$primaryColor : #29434e!important;
 
 .navbar, .footer {
     background-color: $primaryColor;
     height: 80px;
     z-index: 1;
+    color: $textColor;
+}
+
+.escalapp {
     color: $textColor;
 }
 
@@ -17,11 +21,20 @@ $primaryColor : #00600f!important;
 }
 
 .boxRoom {
+    color: white;
     font-size: 18px;
     text-align: center;
     padding: 50px 0px 50px 0px;
-    margin: 50px;
     border: 1px solid black;
+    height: 25vh;
+    margin: 50px 50px 0 50px;
+    background-image: url(http://www.bloctrotters.com/IMG/jpg/2.jpg);
+}
+
+#roomInfo {
+    margin: 1vw;
+    height: 20vh;
+    background-color: rgba(0,0,0, 0.5);
 }
 
 .table {
@@ -103,16 +116,12 @@ $primaryColor : #00600f!important;
     font-size: 24px;
     margin: 20px 20px;
 }
-.boxroom {
-    height: 25vh;
-    margin: 50px 50px 0 50px;
-}
-
 /* [ ACCUEIL ] */
 
 #roomname {
     margin-top: 5vh;
-    transition: 0.2s ease all;
+    transition: 0.1s ease all;
+    border-radius: 5px;
 }
 
 .display-none {
@@ -121,11 +130,11 @@ $primaryColor : #00600f!important;
 
 .boxRoom:hover .display-none{
     opacity: 1;
-    transition: 0.5s ease all;
+    transition: 0.3s ease all;
 }
 
 .boxRoom:hover #roomname{
-    margin-top: 0;
+    margin-top: -5vh;
 }
 
 
@@ -172,4 +181,26 @@ $primaryColor : #00600f!important;
     text-align: center;
     border-top: solid 2px;
 }
+
+/* Classement */
+
+.ranking {
+    align-content: center;
+    margin-left: 7.5vw;
+    border: solid;
+}
+
+.columns {
+    background-color: #9e9e9e;
+    border-right: solid;
+    border-radius: 5px;
+}
+
+#middle-column {
+    border-right: solid;
+    border-left: solid;
+}
+
+
+
 

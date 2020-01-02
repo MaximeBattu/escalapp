@@ -9,4 +9,6 @@
         <h1>Voies réussites : 0</h1>
     </section>
 
+    <a href="{{route('update_profile')}}">Modifier mes informations</a>
+
 @endsection
