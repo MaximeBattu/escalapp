@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
+    <h1 class="navigabilite">
+        <a href="{{route('see_home')}}">Retour</a>
+    </h1>
     <h1 class="text-center">
         Salle numéro : {{$salle->id_room}}
     </h1>
@@ -51,6 +54,7 @@
             <h1><a href="{{route('see_bloc', ['id'=>$salle->id_room])}}">Bloc</a></h1>
             <img src="{{asset('img/mur1.jpg')}}" style="max-height:100%;max-width:100% ;">
         </div>
+
     </div>
 
 @endsection

@@ -52,13 +52,12 @@ Route::get('/salle{idroom}/voie{id}', 'RouteController@viewSpecificRoute')->name
 Route::get('/salle{idroom}/voie{id}/valider','FinishedRoutesController@addValidatedRoute')->name('add_validated_route')->middleware('auth');
 
 
-
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
 
 //PROFIL
 
 Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
 Route::get('/profil/update', 'UserController@seeUpdateProfile')->name('update_profile');
-Route::post('profil/update', 'UserController@updateProfile')->name('set_update_profile');
+Route::post('/profil/update', 'UserController@updateProfile')->name('set_update_profile');
 
 

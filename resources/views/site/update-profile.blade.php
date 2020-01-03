@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -98,14 +98,14 @@
                     </form>
                 </div>
             </div>
-            <a href="{{route('see_my_profil')}}">Retour</a>
+            <a class="btn btn-primary" href="{{route('see_my_profil')}}">Retour</a>
         </div>
     </div>
 </div>
 
 @if (session('updated'))
 
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="profileModification">
         {{ session('updated') }}
     </div>
 

@@ -35,7 +35,7 @@
                 @endif
                 <td class="col-md-2">{{$route->score_route}}</td>
                 @if(isset($route->updated_at))
-                    <td class="col-md-2">{{$route->updated_at}}</td>
+                    <td class="col-md-2">{{$route->updated_at->format('d/m/yy')}}</td>
                 @else
                     <td class="col-md-2">Aucune mise à jour</td>
                 @endif

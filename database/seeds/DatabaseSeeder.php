@@ -52,14 +52,14 @@ class DatabaseSeeder extends Seeder
                 'color_route'=>'red',
                 'difficulty_route'=>'5c',
                 'type_route'=>'V',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "voie5.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'brown',
                 'type_route'=>'B',
-                'url_photo'=> "saluss",
+                'url_photo'=> "voie6.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [

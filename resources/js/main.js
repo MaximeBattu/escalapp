@@ -1,3 +1,11 @@
+// disable succes or error message after 4s
+setTimeout(function() {
+    $('#adminAccessError').fadeOut()
+    $('#addSuccessRoom').fadeOut()
+    $('#administratorRight').fadeOut()
+    $('#profileModification').fadeOut()
+},4000)
+
 document.addEventListener('DOMContentLoaded', function() {
 
 	let contest = document.querySelector("#contest")
@@ -15,16 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		open.style.display = "none"
 	})
 
-    // disable succes or error message after 4s
-    setTimeout(function() {
-        $('#adminAccessError').fadeOut()
-        $('#addSuccessRoom').fadeOut()
-        $('#administratorRight').fadeOut()
-    },4000)
+
 })
 
 
-function create(tag, text, parent, classs=null, id=null) 
+function create(tag, text, parent, classs=null, id=null)
 {
 	let o = document.createElement(tag)
 	if (text != null) {

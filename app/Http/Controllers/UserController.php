@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Validation;
 
 class UserController extends Controller
@@ -24,6 +25,14 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Enable to change password and informations (like name, email)
+     * Check if old password and new password are differents
+     * Check if new password and password confirmation are the same
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws Validation\ValidationException
+     */
     public function updateProfile(Request $request) {
         $user = User::find(Auth::user()->id);
         $name = $user->name;
@@ -48,8 +57,8 @@ class UserController extends Controller
         }
 
         User::find($user->id)->update([
-            'name' => $name, 
-            'email' => $email, 
+            'name' => $name,
+            'email' => $email,
             'password' => $password
         ]);
 
@@ -69,6 +78,12 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Delete user directly on the database
+     * Admin Management
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteUser(int $id)
     {
         $name = User::find($id)->name;
@@ -76,6 +91,12 @@ class UserController extends Controller
         return redirect()->back()->with('success-delete-user', 'You have deleted a user : ' . $name);
     }
 
+    /**
+     * Admin can make a other admin
+     * Admin Management
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function modifyUser(int $id)
     {
         $name = User::find($id)->name;
@@ -85,6 +106,13 @@ class UserController extends Controller
         return redirect()->back()->with('add-administrator-right',$name.' is now administrator on Escalapp !');
     }
 
+    /**
+     * Admin can remove the right of administration for a administrator
+     * BUT Admin can't reamove the admin right for him-self => protection : have always one administrator on the site
+     * Admin Management
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function removeAdministratorRight(int $id) {
         $name = User::find($id)->name;
         User::find($id)->update([

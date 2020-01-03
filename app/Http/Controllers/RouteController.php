@@ -12,14 +12,24 @@ class RouteController extends Controller
 {
     public function viewRoutes(int $id)
     {
+        $idRoute = $id;
         $routes = Route::all()->where('id_room', $id);
         return view('site/route', [
-            "routes" => $routes
+            "routes" => $routes,
+            'idRoute'=>$idRoute
         ]);
     }
 
+    /**
+     * Check if id_room is the same in the URL and in the database
+     * Return 404 error if not
+     * @param int $idroom
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
+     */
     public function viewSpecificRoute(int $idroom, int $id)
     {
+        $idRoom = $idroom;
         $route = Route::find($id);
         $finishedRoute = FinishedRoute::where([
             'id_route'=>$id,
@@ -29,7 +39,8 @@ class RouteController extends Controller
         if($idroom == $route->id_room) {
             return view('site/specificRoute', [
                 "route" => $route,
-                'finishedRoute'=>$finishedRoute
+                'finishedRoute'=>$finishedRoute,
+                'idRoom'=>$idroom
             ]);
         } else {
             return abort(404);
@@ -38,9 +49,11 @@ class RouteController extends Controller
 
     public function viewBlocRoutes(int $id)
     {
+        $idRoute = $id;
         $routesBloc = Route::all()->where('id_room', $id);
         return view('site/bloc', [
-            "routesBloc" => $routesBloc
+            "routesBloc" => $routesBloc,
+            'idRoute'=>$idRoute
         ]);
     }
 

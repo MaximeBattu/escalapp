@@ -31,10 +31,14 @@
 # Adding project to git
 
 - Avant d'envoyer le projet il faut compiler les vues en mode production : `npm run prod`
-- Récupération du projet sur le git :  `git pull`
 - Ajout des fichiers : `git add .`
 - Status des fichiers ajoutés : `git status`
 - Commit les fichiers ajoutés : `git commit -m "Message"` 
+- Récupération du projet sur le git :  `git pull`
+    - Là vous devez lire l'inviter de commande : regarder sur quel fichier il y a des conflits et les régler en conséquences
+    - PS : c'est bien d'ouvrir les fichiers avec des conflits sur VSCode (il les gère de manière automatique : vous avez juste à cliquer tout en haut)
+    ![Example of conflict on VSCode](https://cdn.discordapp.com/attachments/586278324217708554/662438843210924043/unknown.png)
+    - Une fois que vous avez régler vos conflits : faite un `git add .` ainsi qu'un `git commit -m "votre message : exemple : solve conflicts on ..."`
 - Envoyer le commit sur le git : `git push origin master`
 
 # Problems

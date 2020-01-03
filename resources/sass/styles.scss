@@ -90,6 +90,7 @@ $primaryColor : #29434e!important;
     font-size: 28px;
     color : $textColor;
     background-color: $primaryColor;
+    border-color: $primaryColor;
 }
 
 .adding-room,
@@ -139,6 +140,12 @@ $primaryColor : #29434e!important;
 
 
 /* Salles */
+
+.navigabilite {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+}
 
 #contest {
     border: solid 2px;

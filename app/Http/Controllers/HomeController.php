@@ -7,8 +7,7 @@ use App\Room;
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
+     * Show the application dashboard => basic redirection
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()

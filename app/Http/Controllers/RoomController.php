@@ -10,6 +10,13 @@ use App\User;
 
 class RoomController extends Controller
 {
+    /**
+     * Load data from Table FinishedRoute
+     * We stock all the idUsers in a array named idsUsers
+     * Then we load all the user using the array idsUser (with FindMany)
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function viewRoom(int $id)
     {
         $voiesContest = FinishedRoute::all()->where('id_room', $id);
@@ -20,6 +27,7 @@ class RoomController extends Controller
                 $idsUser[] = $voieContest->id_user;
             }
             $uniqueIdUser = array_unique($idsUser);
+
 
             $users = User::findMany($uniqueIdUser);
 
@@ -35,7 +43,6 @@ class RoomController extends Controller
                 'users'=>null
             ]);
         }
-
     }
 
     /**
@@ -53,10 +60,10 @@ class RoomController extends Controller
     }
 
     /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
      * Delete the room clicked before
      * Admin Management
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteRoom(int $id)
     {
@@ -65,9 +72,9 @@ class RoomController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * Return view on admin/adding-room
      * Admin Management
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function seeAddingRoom()
     {
@@ -75,10 +82,10 @@ class RoomController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * Enable to Add room to database with form (on blade.php) with XSS security
      * Admin Management
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function addRoom(Request $request)
     {
@@ -100,10 +107,10 @@ class RoomController extends Controller
     }
 
     /***
-     * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * Load HTML page for the room clicked before (automatically generate)
      * Admin Management
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function modifyRoom(int $id)
     {

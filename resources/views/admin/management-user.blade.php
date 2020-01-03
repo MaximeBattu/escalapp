@@ -1,16 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    @if(\Session::has('add-administrator-right'))
-        <div class="alert alert-success" id="administratorRight">
-            {{\Session::get('add-administrator-right')}}
-        </div>
-    @endif
-    @if(\Session::has('remove-administrator-right'))
-        <div class="alert alert-success" id="administratorRight">
-            {{\Session::get('remove-administrator-right')}}
-        </div>
-    @endif
-    <h1 class="text-center">
+
+    <h1>
         <a href="{{route('see_room_management')}}">Gestion des salles</a>
     </h1>
 
@@ -60,5 +51,14 @@
         @endforeach
         </tbody>
     </table>
-
+    @if(\Session::has('add-administrator-right'))
+        <div class="alert alert-success" id="administratorRight">
+            {{\Session::get('add-administrator-right')}}
+        </div>
+    @endif
+    @if(\Session::has('remove-administrator-right'))
+        <div class="alert alert-success" id="administratorRight">
+            {{\Session::get('remove-administrator-right')}}
+        </div>
+    @endif
 @endsection
