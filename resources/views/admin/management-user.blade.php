@@ -10,7 +10,8 @@
             {{\Session::get('remove-administrator-right')}}
         </div>
     @endif
-    <h1 class="text-center">
+    <h1>
+        Aller à :
         <a href="{{route('see_room_management')}}">Gestion des salles</a>
     </h1>
 
@@ -40,8 +41,8 @@
                         <a type="button" class="btn btn-primary" href="{{route('modify_user',['id'=>$user->id])}}">Mettre
                             Administrateur</a>
                     </td>
-                    <td class="col-md-1 room-change">
-                        <a type="button" class="btn btn-danger" href="{{route('delete_user',['id'=>$user->id])}}">Supprimer</a>
+                    <td class="col-md-1 room-change td_suppr">
+                        <a type="button" class="btn btn-danger btn_suppr" href="{{route('delete_user',['id'=>$user->id])}}">Supprimer</a>
                     </td>
                 @elseif(isset(Auth::user()->id) && Auth::user()->id == $user->id && Auth::user()->isAdmin == true)
                     <td class="col-md-1">Oui</td>
@@ -52,8 +53,8 @@
                     <td class="col-md-2 room-change">
                         <a type="button" class="btn btn-warning" href="{{route('remove_administrator_right',['id'=>$user->id])}}">Enlever droits adminsitrateur</a>
                     </td>
-                    <td class="col-md-1 room-change">
-                        <a type="button" class="btn btn-danger" href="{{route('delete_user',['id'=>$user->id])}}">Supprimer</a>
+                    <td class="col-md-1 room-change td_suppr">
+                        <a type="button" class="btn btn-danger btn_suppr" href="{{route('delete_user',['id'=>$user->id])}}">Supprimer</a>
                     </td>
                 @endif
             </tr>
