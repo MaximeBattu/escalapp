@@ -29,6 +29,31 @@ $primaryColor : #29434e!important;
     height: 25vh;
     margin: 50px 50px 0 50px;
     background-image: url(http://www.bloctrotters.com/IMG/jpg/2.jpg);
+    cursor: pointer;
+}
+
+.boxRoom:hover, .boxRoom:visited, .boxRoom:link, .boxRoom:active {
+    text-decoration: none;
+    color: white;
+}
+
+.boxRoom:hover::after {
+    content: ">> Voir salle";
+    position: absolute;
+    bottom: 3vh;
+    font-size: 2.5vh;
+    color: gold;
+    animation: fromleft 0.2s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fromleft {
+    from {
+        left: 0;
+    }
+    to {
+        left: 15vw;
+    }
 }
 
 #roomInfo {
@@ -117,7 +142,9 @@ $primaryColor : #29434e!important;
     font-size: 24px;
     margin: 20px 20px;
 }
-/* [ ACCUEIL ] */
+/* [ VISITEUR ] */
+
+/* Accueil */
 
 #roomname {
     margin-top: 5vh;
@@ -138,6 +165,17 @@ $primaryColor : #29434e!important;
     margin-top: -5vh;
 }
 
+.routeBlocks {
+    padding: 0;
+    height: 25vh;
+}
+
+.routeBlocks:hover {
+    transform: scale(1.1);
+    box-shadow: 1vw 7.5vh 0 $primaryColor;
+    transition: 0.2s ease all;
+}
+
 
 /* Salles */
 
@@ -147,13 +185,33 @@ $primaryColor : #29434e!important;
     left: 25%;
 }
 
+/* Classement */
+
+.ranking {
+    align-content: center;
+    margin-left: 7.5vw;
+    border: solid;
+}
+
+.columns {
+    background-color: #9e9e9e;
+    border-right: solid;
+    border-radius: 5px;
+}
+
+#middle-column {
+    border-right: solid;
+    border-left: solid;
+}
+
+
+/* Voies - Blocs */
+
 #contest {
     border: solid 2px;
-    height: 80vh;
+    height: 70vh;
     width: 20vw;
     text-align: center;
-    margin-top: -19vh;
-    margin-left: -10vw;
 }
 
 #contest>h2 {
@@ -179,35 +237,13 @@ $primaryColor : #29434e!important;
 }
 
 #ranking {
-    height: 75%;
+    height: 70%;
     padding: 1vw;
 }
 
 #consult {
-    padding-top: 2vh;
+    padding-top: 2.5vh;
     text-align: center;
     border-top: solid 2px;
 }
-
-/* Classement */
-
-.ranking {
-    align-content: center;
-    margin-left: 7.5vw;
-    border: solid;
-}
-
-.columns {
-    background-color: #9e9e9e;
-    border-right: solid;
-    border-radius: 5px;
-}
-
-#middle-column {
-    border-right: solid;
-    border-left: solid;
-}
-
-
-
 

@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		contest.style.display = "block"
 		open.style.display = "none"
 	})
-
-
 })
 
 
