@@ -7,6 +7,7 @@ use App\FinishedRoute;
 use Illuminate\Http\Request;
 use App\Route;
 use App\Room;
+use App\User;
 
 class RouteController extends Controller
 {
@@ -14,9 +15,27 @@ class RouteController extends Controller
     {
         $idRoute = $id;
         $routes = Route::all()->where('id_room', $id);
+        $voiesContest = FinishedRoute::all()->where('id_room', $id);
+
+        $idsUser = [];
+        $idsRoute = [];
+        foreach ($voiesContest as $voieContest) {
+            $idsUser[] = $voieContest->id_user;
+            $idsRoute[] = $voieContest->id_route;
+        }
+
+        $uniqueIdsUser = array_unique($idsUser);
+        $uniqueIdsRoute = array_unique($idsRoute);
+
+        $users = User::FindMany($uniqueIdsUser);
+        $routesContest = Route::FindMany($uniqueIdsRoute);
+
         return view('site/route', [
             "routes" => $routes,
-            'idRoute'=>$idRoute
+            'idRoute' => $idRoute,
+            'users' => $users,
+            'routesContest' => $routesContest,
+            'voiesContest' => $voiesContest
         ]);
     }
 
@@ -32,15 +51,15 @@ class RouteController extends Controller
         $idRoom = $idroom;
         $route = Route::find($id);
         $finishedRoute = FinishedRoute::where([
-            'id_route'=>$id,
-            'id_user'=>Auth::user()->id
+            'id_route' => $id,
+            'id_user' => Auth::user()->id
         ])->get();
 
-        if($idroom == $route->id_room) {
+        if ($idroom == $route->id_room) {
             return view('site/specificRoute', [
                 "route" => $route,
-                'finishedRoute'=>$finishedRoute,
-                'idRoom'=>$idroom
+                'finishedRoute' => $finishedRoute,
+                'idRoom' => $idroom
             ]);
         } else {
             return abort(404);
@@ -53,7 +72,7 @@ class RouteController extends Controller
         $routesBloc = Route::all()->where('id_room', $id);
         return view('site/bloc', [
             "routesBloc" => $routesBloc,
-            'idRoute'=>$idRoute
+            'idRoute' => $idRoute
         ]);
     }
 
@@ -140,6 +159,4 @@ class RouteController extends Controller
 
         return redirect('admin/gestion-salle/salle' . $id . '/voir-voie')->with('modify-success', 'Modifications successful');
     }
-
-
 }

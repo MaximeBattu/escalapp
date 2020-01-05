@@ -44,29 +44,30 @@ class DatabaseSeeder extends Seeder
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
                 'type_route'=>'V',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>1,
-                'color_route'=>'red',
+                'color_route'=>'green',
                 'difficulty_route'=>'5c',
                 'type_route'=>'V',
-                'url_photo'=> "voie5.jpg",
+                'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'brown',
+                'difficulty_route'=>'7b+',
                 'type_route'=>'B',
-                'url_photo'=> "voie6.jpg",
+                'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_room'=>1,
                 'color_route'=>'red',
                 'type_route'=>'B',
-                'url_photo'=> "voie2.jpg",
+                'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
