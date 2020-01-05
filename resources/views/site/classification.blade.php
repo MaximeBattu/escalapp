@@ -4,7 +4,7 @@
     <table class="table ranking">
         <thead>
         <tr>
-            <th scope="col" class="columns">Rank</th>
+            <th scope="col" class="columns">Rang</th>
             <th scope="col" class="columns">Nom</th>
             <th scope="col" class="columns">Score</th>
         </tr>
