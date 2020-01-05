@@ -18,10 +18,8 @@ class FinishedRoutesController extends Controller
             foreach ($idsUserFinishedRoute as $idUserFinishedRoute) {
                 $kundleExist = FinishedRoute::where([
                     'id_user'=>$idUserFinishedRoute->id_user,
-                    'id_room'=>$idUserFinishedRoute->id_room
                 ])->get();
             }
-            dump($kundleExist);die();
 
             foreach ($idsUserFinishedRoute as $idUserFinishedRoute) {
                 if ($idUserFinishedRoute->id_user == Auth::user()->id && $idUserFinishedRoute->id_route == $id) {
@@ -32,7 +30,6 @@ class FinishedRoutesController extends Controller
             FinishedRoute::create([
                 'id_route' => $id,
                 'id_user' => Auth::user()->id,
-                'id_room' => $idroom,
                 'score_contest'=>$route->score_route
             ]);
         } else {
@@ -40,7 +37,6 @@ class FinishedRoutesController extends Controller
             FinishedRoute::create([
                 'id_route' => $id,
                 'id_user' => Auth::user()->id,
-                'id_room' => $idroom,
                 'score_contest'=>$route->score_route
             ]);
         }
