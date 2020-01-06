@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h1>
-        <a href="{{route('see_room',['id'=>$idRoute])}}">Retour</a>
-    </h1>
+
     <div class="row justify-content-around">
         <div id="contest">
             <h2>Contest en cours</h2>
@@ -15,8 +13,9 @@
         <div id="open">></div>
         <table class="table container">
             <thead>
-            <tr>
+            <tr class="trContentTh">
                 <th>Image</th>
+                <th>Couleur</th>
                 <th>Difficulté</th>
                 <th></th>
             </tr>
@@ -25,12 +24,40 @@
 
             @foreach($routesBloc as $routeBloc)
                 @if($routeBloc->type_route == "B")
-                    <tr>
-                        <td>{{$routeBloc->url_photo}}</td>
-                        <td>{{$routeBloc->color_route}}</td>
+                    <tr class="trContentTh">
                         <td>
-                            <a href="{{route('see_specific_route', ['idroom'=>$routeBloc->id_room,'id'=>$routeBloc->id_route])}}">Voir
-                                le bloc</a>
+                            @if($routeBloc->color_route != null)
+                                <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" class="imgVoie"
+                                     style="border: 3px solid {{$routeBloc->color_route}}">
+                            @else
+                                <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" class="imgVoie">
+
+                            @endif
+                        </td>
+                        <td><div class="colorVoie" style="background-color: {{$routeBloc->color_route}}"></div></td>
+                        <td>
+                            @if($routeBloc->difficulty_route != null)
+                                {{$routeBloc->difficulty_route}}
+                            @else
+                                Pas de difficulté sur ce bloc
+                            @endif
+
+                        </td>
+                        <td>
+                            @if(isset($finishedRoute) && $finishedRoute->isNotEmpty())
+                                @foreach($finishedRoute as $fr)
+                                    @if($fr->id_user == Auth::user()->id)
+                                        <p class="alert alert-success">
+                                            Déjà validée
+                                        </p>
+                                    @endif
+                                @endforeach
+                            @else
+                                <a class="btn btn-primary"
+                                   href="{{route('add_validated_route',['idroom'=>$routeBloc->id_room,'id'=>$routeBloc->id_route])}}">Valider
+                                    le
+                                    bloc</a>
+                            @endif
                         </td>
                     </tr>
                 @endif

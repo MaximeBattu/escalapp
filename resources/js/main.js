@@ -7,6 +7,22 @@ setTimeout(function() {
 },4000)
 
 document.addEventListener('DOMContentLoaded', function() {
+    let body = document.querySelector('body')
+    let imagesVoie = document.querySelectorAll('.imgVoie')
+    console.log(imagesVoie)
+
+    let div = create("div", null, body)
+    for(let imageVoie of imagesVoie) {
+        imageVoie.addEventListener('click', function() {
+            div.classList.toggle('imgOnPage')
+            imageVoie.classList.toggle('imgOnMiddleScreen')
+        })
+        div.addEventListener('click', function() {
+            div.classList.remove('imgOnPage')
+            imageVoie.classList.remove('imgOnMiddleScreen')
+        })
+    }
+
 
 	let contest = document.querySelector("#contest")
 	let close = document.querySelector("#close")

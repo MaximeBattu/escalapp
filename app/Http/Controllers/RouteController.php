@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Route;
 use App\Room;
 use App\Sector;
+use App\User;
 
 class RouteController extends Controller
 {
@@ -33,15 +34,15 @@ class RouteController extends Controller
         $idRoom = $idroom;
         $route = Route::find($id);
         $finishedRoute = FinishedRoute::where([
-            'id_route'=>$id,
-            'id_user'=>Auth::user()->id
+            'id_route' => $id,
+            'id_user' => Auth::user()->id
         ])->get();
 
-        if($idroom == $route->id_room) {
+        if ($idroom == $route->id_room) {
             return view('site/specificRoute', [
                 "route" => $route,
-                'finishedRoute'=>$finishedRoute,
-                'idRoom'=>$idroom
+                'finishedRoute' => $finishedRoute,
+                'idRoom' => $idroom
             ]);
         } else {
             return abort(404);
@@ -149,6 +150,4 @@ class RouteController extends Controller
             'idsector' => $sector->id_room
         ]);
     }
-
-
 }
