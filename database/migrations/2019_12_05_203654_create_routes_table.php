@@ -15,14 +15,14 @@ class CreateRoutesTable extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('id_route');
-            $table->integer('id_room');
+            $table->integer('id_sector');
             $table->string('color_route',50);
             $table->string('difficulty_route',3)->nullable();
-            $table->string('type_route',1);
             $table->string('url_photo',150)->nullable();
-            $table->integer('score_route')->default(100);
-            $table->foreign('id_room')->references('id_room')->on('rooms');
-            $table->timestamps();
+            $table->integer('score_route')->default(1000);
+            $table->foreign('id_sector')->references('id_sector')->on('sectors');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
 
     }

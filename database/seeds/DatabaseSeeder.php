@@ -38,51 +38,161 @@ class DatabaseSeeder extends Seeder
             DB::table('rooms')->insert([$room]);
         }
 
+        $sectors = [
+            [
+                'id_room'=>'1',
+                'name'=>'Aravis',
+                'climbing_type'=>'V',
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'1',
+                'name'=>'Vivarium',
+                'climbing_type'=>'V',
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'1',
+                'name'=>'Mandalaz',
+                'climbing_type'=>'V',
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'1',
+                'name'=>'Tournette',
+                'climbing_type'=>'B',
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'1',
+                'name'=>'Aquarium',
+                'climbing_type'=>'B',
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'2',
+                'name'=>'Vivarium',
+                'climbing_type'=>'V',
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'2',
+                'name'=>'Aravis',
+                'climbing_type'=>'V',
+                'created_at'=>Carbon\Carbon::now()
+            ]
+        ];
+
+        foreach ($sectors as $sector) {
+            DB::table('sectors')->insert([$sector]);
+        }
+
         $routes = [
             [
-                'id_room'=>1,
+                'id_sector'=>1,
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
-                'type_route'=>'V',
                 'url_photo'=> "voie1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'id_room'=>1,
+                'id_sector'=>1,
                 'color_route'=>'red',
-                'difficulty_route'=>'5c',
-                'type_route'=>'V',
-                'url_photo'=> "voie5.jpg",
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'id_room'=>1,
-                'color_route'=>'brown',
-                'type_route'=>'B',
-                'url_photo'=> "voie6.jpg",
-                'created_at'=>Carbon\Carbon::now()
-            ],
-            [
-                'id_room'=>1,
+                'id_sector'=>1,
                 'color_route'=>'red',
-                'type_route'=>'B',
-                'url_photo'=> "voie2.jpg",
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'id_room'=>3,
-                'color_route'=>'brown',
-                'type_route'=>'B',
-                'url_photo' =>"voie3.jpg",
+                'id_sector'=>2,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'id_room'=>2,
-                'color_route'=>'brown',
-                'type_route'=>'B',
-                'url_photo' =>"voie4.jpg",
+                'id_sector'=>2,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
                 'created_at'=>Carbon\Carbon::now()
-            ]
+            ],
+            [
+                'id_sector'=>3,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>3,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>3,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>5,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>5,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>5,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>5,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>4,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>4,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>6,
+                'color_route'=>'red',
+                'difficulty_route'=>'6B',
+                'url_photo'=> "voie1.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
         ];
 
         foreach($routes as $route) {
@@ -92,24 +202,28 @@ class DatabaseSeeder extends Seeder
         $users = [
             [
                 'name'=>'aze',
+                'firstname'=>'eza',
                 'email'=>'aze@aze.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'name'=>'maxime',
+                'name'=>'battu',
+                'firstname'=>'maxime',
                 'email'=>'maxime@battu.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'name'=>'ianis',
+                'name'=>'olivier',
+                'firstname'=>'ianis',
                 'email'=>'ianis@pacaud.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name'=>'admin',
+                'firstname'=>'admin',
                 'email'=>'admin@admin.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'score'=>10000000000000000,

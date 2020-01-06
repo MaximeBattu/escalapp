@@ -14,7 +14,7 @@ class UpdateForeignKeyCascade extends Migration
     public function up()
     {
         Schema::table('routes', function (Blueprint $table) {
-            $table->integer('id_room')->onDelete('cascade')->change();
+            $table->integer('id_sector')->onDelete('cascade')->change();
         });
     }
 

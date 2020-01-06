@@ -8,9 +8,29 @@ class Route extends Model
 {
 
     protected $primaryKey = 'id_route';
-    protected $fillable = ['color_route', 'difficulty_route', 'type_route', 'url_photo', 'score_route','updated_at','id_room'];
+    protected $fillable = ['id_sector', 'color_route', 'difficulty_route', 'url_photo', 'updated_at'];
 
     public function room () {
         return $this->belongsTo('App\Room');
+    }
+
+    public static function byRoomAndType(int $id_room, string $type) {
+    	return Route::select('routes.*')
+                ->join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
+                ->where([
+                    ['sectors.climbing_type', $type],
+                    ['sectors.id_room', $id_room]
+                ])
+                ->get();
+    }
+
+    public static function byRoomAndSector(int $id_room, int $id_sector) {
+    	return Route::select('routes.*')
+    			->join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
+    			->where([
+    				['sectors.id_sector', $id_sector],
+    				['sectors.id_room', $id_room]
+    			])
+    			->get();
     }
 }

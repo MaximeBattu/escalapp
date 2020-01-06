@@ -2,19 +2,12 @@
 @section('content')
 
     <h1>
-        <a href="{{route('see_routes_admin',['id'=>$route->id_room])}}">Retour</a>
+        <a href="{{route('see_routes_admin',['id'=>$sector->id_room,'idsector'=>$sector->id_sector])}}">Retour</a>
     </h1>
 
-    <form method="post" class="modify-route" action="{{route('update_route',['id'=>$route->id_room,'idroute'=>$route->id_route])}}">
+    <form method="post" class="modify-route" action="{{route('update_route',['id'=>$sector->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">
         {{@csrf_field() }}
         <div class="form-group">
-            <label for="" class="label-updating-room">Type de route</label>
-            <select name="typeRouteSelect" id="typeRouteSelect">
-                <option selected>{{$route->type_route}}</option>
-                <option value="V">Voie</option>
-                <option value="B">Bloc</option>
-            </select>
-            <br>
             <label for="" class="label-updating-room">Couleur</label>
             <select name="colorRouteSelect" id="" required>
                 <option selected>{{$route->color_route}}</option>
@@ -58,9 +51,6 @@
                 <option value="9a+">9a+</option>
             </select>
             <br>
-            <label for="" class="label-updating-room">Score</label>
-            <input type="text" pattern="[0-9]+" placeholder="Rentrez le score - ex : 1500" class="form-control"
-                   name="scoreRoute" value="{{$route->score_route}}">
 
             <label for="" class="label-updating-room">Ajouter une photo</label>
             <input type="text" placeholder="Url de l'image " class="form-control" name="urlPhotoRoute"

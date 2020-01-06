@@ -4,9 +4,9 @@
     <h1>
         <a href="{{route('see_room_management')}}">Gestion salles</a>
     </h1>
-    <h1 class="text-center">Toutes les voies de la salle : {{$room->name_room}}</h1>
+    <h1 class="text-center">Salle : {{$room->name_room}} / Secteur : {{$sector->name}}</h1>
     <div>
-        <a type="button" class="btn btn-success add-route" href="{{route('see_add_routes',['id'=>$room->id_room])}}">Ajouter une voie</a>
+        <a type="button" class="btn btn-success add-route" href="{{route('see_add_routes',['id'=>$room->id_room, 'idsector'=>$sector->id_sector])}}">Ajouter une voie</a>
     </div>
     <table class="table salles-admin">
         <thead>
@@ -24,7 +24,7 @@
         @foreach($routes as $route)
             <tr class="d-flex">
                 <td class="col-md-1"> {{$route->id_route}}</td>
-                @if($route->type_route == "V")
+                @if($sector->climbing_type == "V")
                     <td class="col-md-1">{{$route->color_route}}</td>
                     <td class="col-md-2">{{$route->difficulty_route}}</td>
                     <td class="col-md-2">Voie</td>
@@ -40,10 +40,10 @@
                     <td class="col-md-2">Aucune mise à jour</td>
                 @endif
                 <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-warning" href="{{route('modify_route',['id'=>$room->id_room,'idroute'=>$route->id_route])}}">Modifier</a>
+                    <a type="button" class="btn btn-warning" href="{{route('see_update_route',['id'=>$room->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">Modifier</a>
                 </td>
                 <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-danger" href="{{route('delete_route',['id'=>$room->id_room,'idroute'=>$route->id_route])}}">Supprimer</a>
+                    <a type="button" class="btn btn-danger" href="{{route('delete_route',['id'=>$room->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">Supprimer</a>
                 </td>
             </tr>
         @endforeach

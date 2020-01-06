@@ -2,7 +2,7 @@
 @section('content')
 
     <h1>
-        <a href="{{route('see_room',['id'=>$idRoute])}}">Retour</a>
+        <a href="{{route('see_room',['id'=>$id_room])}}">Retour</a>
     </h1>
     <div class="row justify-content-around">
         <div id="contest">
@@ -26,16 +26,12 @@
             <tbody>
 
             @foreach($routes as $route)
-                @if($route->type_route == "V")
                     <tr>
                         <td>{{$route->url_photo}}</td>
                         <td>{{$route->color_route}}</td>
                         <td>{{$route->difficulty_route}}</td>
-                        <td><a href="{{route('see_specific_route', ['idroom'=>$route->id_room,'id'=>$route->id_route])}}">Voir
-                                la voie</a></td>
+                        <td><a href="{{route('see_specific_route', ['idroom'=>$route->id_room,'id'=>$route->id_route])}}">Voir la voie</a></td>
                     </tr>
-                @endif
-
             @endforeach
 
             </tbody>

@@ -31,12 +31,18 @@ Route::get('/admin/gestion-salle/modifier/{id}', 'RoomController@modifyRoom')->n
 Route::post('/admin/gestion-salle/modifier/{id}', 'RoomController@updateRoom')->name('update_room')->middleware('auth','admin');
 Route::get('/admin/gestion-salle/ajouter', 'RoomController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
 Route::post('/admin/gestion-salle/ajouter', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salle/salle{id}/voir-voie','RouteController@seeRoutesAdmin')->name('see_routes_admin')->middleware('auth','admin');
-Route::get('/admin/gestion-salle/salle{id}/voir-voie/supprimer/{idroute}','RouteController@deleteRoute')->name('delete_route')->middleware('auth','admin');
-Route::get('/admin/gestion-salle/salle{id}/voir-voie/modifier/{idroute}','RouteController@modifyRoute')->name('modify_route')->middleware('auth','admin');
-Route::post('/admin/gestion-salle/salle{id}/voir-voie/modifier/{idroute}','RouteController@updateRoute')->name('update_route')->middleware('auth','admin');
-Route::get('/admin/gestion-salle/salle{id}/voir-voie/ajouter-voie','RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
-Route::post('/admin/gestion-salle/salle{id}/voir-voie/ajouter-voie', 'RouteController@addRoute')->name('add_route')->middleware('auth','admin');
+
+Route::get('/admin/gestion-salle/salle', 'SectorController@seeAllSectors')->name('see_sectors_admin')->middleware('auth','admin');
+Route::get('admin/gestion-salle/salle/delete-sector', 'SectorController@deleteSector')->name('delete_sector')->middleware('auth','admin');
+Route::get('admin/gestion-salle/salle/ajouter-secteur', 'SectorController@seeAddSector')->name('see_add_sector')->middleware('auth','admin');
+Route::post('admin/gestion-salle/salle/ajouter-secteur', 'SectorController@addSector')->name('add_sector')->middleware('auth','admin');
+Route::get('/admin/gestion-salle/salle{id}/secteur{idsector}','RouteController@seeRoutesAdmin')->name('see_routes_admin')->middleware('auth','admin');
+
+Route::get('admin/gestion-salle/salle{id}/secteur{idsector}/delete{idroute}', 'RouteController@deleteRoute')->name('delete_route')->middleware('auth','admin');
+Route::get('admin/gestion-salle/salle{id}/secteur{idsector}/update{idroute}', 'RouteController@seeUpdateRoute')->name('see_update_route')->middleware('auth','admin');
+Route::post('admin/gestion-salle/salle{id}/secteur{idsector}/update{idroute}', 'RouteController@updateRoute')->name('update_route')->middleware('auth','admin');
+Route::get('admin/gestion-salle/salle{id}/secteur{idsector}/add', 'RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
+Route::post('admin/gestion-salle/salle{id}/secteur{idsector}/add', 'RouteController@addRoute')->name('add_route')->middleware('auth','admin');
 
 // GESTION COMPTES
 Route::get('/admin/gestion-compte', 'UserController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');

@@ -36,6 +36,7 @@ class UserController extends Controller
     public function updateProfile(Request $request) {
         $user = User::find(Auth::user()->id);
         $name = $user->name;
+        $firstname = $user->firstname;
         $email = $user->email;
         $password = $user->password;
 
@@ -53,11 +54,13 @@ class UserController extends Controller
         }
         else {
             $name = $request->name;
+            $firstname = $request->firstname;
             $email = $request->email;
         }
 
         User::find($user->id)->update([
             'name' => $name,
+            'firstname' => $firstname,
             'email' => $email,
             'password' => $password
         ]);

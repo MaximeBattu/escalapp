@@ -7,16 +7,17 @@ use App\FinishedRoute;
 use Illuminate\Http\Request;
 use App\Route;
 use App\Room;
+use App\Sector;
 
 class RouteController extends Controller
 {
     public function viewRoutes(int $id)
     {
-        $idRoute = $id;
-        $routes = Route::all()->where('id_room', $id);
+        $routes = Route::byRoomAndType($id, 'V');
+
         return view('site/route', [
-            "routes" => $routes,
-            'idRoute'=>$idRoute
+            'routes' => $routes,
+            'id_room' => $id
         ]);
     }
 
@@ -49,11 +50,11 @@ class RouteController extends Controller
 
     public function viewBlocRoutes(int $id)
     {
-        $idRoute = $id;
-        $routesBloc = Route::all()->where('id_room', $id);
-        return view('site/bloc', [
-            "routesBloc" => $routesBloc,
-            'idRoute'=>$idRoute
+        $routes = Route::byRoomAndType($id, 'B');
+
+        return view('site/route', [
+            'routes' => $routes,
+            'id_room' => $id
         ]);
     }
 
@@ -65,80 +66,88 @@ class RouteController extends Controller
         ]);
     }
 
-    public function seeRoutesAdmin(int $id)
+    public function seeRoutesAdmin(int $id_room, int $id_sector)
     {
-        $routes = Route::all()->where('id_room', $id);
-        $room = Room::find($id);
+        $routes = Route::byRoomAndSector($id_room, $id_sector);
+        $sector = Sector::find($id_sector);
+        $room = Room::find($id_room);
         return view('admin/routes-admin', [
             'routes' => $routes,
+            'sector' => $sector,
             'room' => $room
         ]);
     }
 
-    public function seeAddRoutes(int $id)
+    public function seeAddRoutes(int $idsector)
     {
-        $room = Room::find($id);
+        $sector = Sector::find($idsector);
+        
         return view('admin/adding-routes', [
-            'room' => $room
+            'sector' => $sector
         ]);
     }
 
-    public function addRoute(Request $request, int $id)
+    public function addRoute(Request $request, int $idsector)
     {
         $color = $request->input('colorRouteSelect');
-        $type = $request->input('typeRouteSelect');
         $difficulty = $request->input('difficultySelect');
-        $score = $request->input('scoreRoute');
         $url = $request->input('urlPhotoRoute');
+
         Route::create([
+            'id_sector' => $idsector,
             'color_route' => $color,
             'difficulty_route' => $difficulty,
-            'type_route' => $type,
             'url_photo' => $url,
-            'score_route' => $score,
-            'updated_at' => null,
-            'id_room' => $id
+            'updated_at' => null
         ]);
 
         if ($request->submit == "Ajouter et recommencer") {
-            return redirect()->back()->with('succes-route', 'You have added a new route to the room number : ' . $id);
+            return redirect()->back()->with('succes-route', 'You have added a new route to the sector number : ' . $idsector);
         } else {
-            return redirect('/admin/gestion-salle/salle' . $id . '/voir-voie')->with('succes-route', 'You have added a new route to the room number : ' . $id);
+            $sector = Sector::find($idsector);
+
+            return redirect()->route('see_routes_admin', [
+                'id' => $sector->id_sector,
+                'idsector' => $sector->id_room
+            ]);
         }
     }
 
-    public function deleteRoute(int $id, int $idroute)
+    public function deleteRoute(int $id, int $idsector, int $idroute)
     {
         Route::find($idroute)->delete();
         return redirect()->back();
     }
 
-    public function modifyRoute(int $id, int $idroute)
+    public function seeUpdateRoute(int $idsector, int $idroute)
     {
         $route = Route::find($idroute);
+        $sector = Sector::find($idsector);
         return view('admin/update-route', [
-            'route' => $route
+            'route' => $route,
+            'sector' => $sector
         ]);
     }
 
-    public function updateRoute(Request $request, int $id, int $idroute)
+    public function updateRoute(Request $request, int $idroute, int $idsector)
     {
         $color = $request->input('colorRouteSelect');
-        $type = $request->input('typeRouteSelect');
         $difficulty = $request->input('difficultySelect');
-        $score = $request->input('scoreRoute');
         $url = $request->input('urlPhotoRoute');
+
+        $sector = Sector::find($idsector);
 
         Route::find($idroute)->update([
             'color_route' => $color,
             'difficulty_route' => $difficulty,
-            'type_route' => $type,
             'url_photo' => $url,
-            'score_route' => $score,
             'updated_at' => now()
         ]);
 
-        return redirect('admin/gestion-salle/salle' . $id . '/voir-voie')->with('modify-success', 'Modifications successful');
+        return redirect()->route('see_routes_admin', [
+            'id' => $sector->id_sector,
+            'idsector' => $sector->id_room
+        ]);
     }
 
 
