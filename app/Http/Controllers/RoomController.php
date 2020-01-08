@@ -90,12 +90,12 @@ class RoomController extends Controller
     public function addRoom(Request $request)
     {
         $name = $request->input('nameRoom');
-        $numberphoneRoom = $request->input('numberphoneRoom');
+        $email = $request->input('emailRoom');
         $address = $request->input('addressRoom');
 
         Room::create([
             'name_room' => htmlspecialchars($name),
-            'tel_room' => htmlspecialchars($numberphoneRoom),
+            'email' => htmlspecialchars($email),
             'address_room' => htmlspecialchars($address),
             'updated_at' => null
         ]);

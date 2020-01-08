@@ -13,8 +13,8 @@
             <label for="nameRoom" class="label-adding-room">Nom</label>
             <input type="text" placeholder="Nom de la salle" class="form-control" name="nameRoom" required>
 
-            <label for="numberphoneRoom" class="label-adding-room">Numéro de téléphone</label>
-            <input  type="tel" pattern="[0-9]{10}"placeholder="Numéro de téléphone de la salle" class="form-control" name="numberphoneRoom" minlength="10" maxlength="10" required>
+            <label for="emailRoom" class="label-adding-room">E-mail</label>
+            <input  type="email" placeholder="E-mail de la salle" class="form-control" name="emailRoom" required>
 
             <label for="addressRoom" class="label-adding-room">Adresse</label>
             <input type="text" placeholder="Adresse de la salle" class="form-control" name="addressRoom" required>

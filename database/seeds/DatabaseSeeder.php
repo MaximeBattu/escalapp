@@ -14,19 +14,19 @@ class DatabaseSeeder extends Seeder
         $rooms = [
             [
                 'name_room'=>'Bloc Trotter',
-                'tel_room'=>'0123456789',
+                'email'=>'bloc@wanadoo.fr',
                 'address_room'=>'2 rue de la Colombe',
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
-                'name_room'=>'Bloc Trotter',
-                'tel_room'=>'1234567890',
+                'name_room'=>'Blac Trotter',
+                'email'=>'blac@sfr.fr',
                 'address_room'=>'8 rue à la Vilardière',
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'name_room'=>'Parc des glaisins',
-                'tel_room'=>'2345678901',
+                'email'=>'glaisins@outlook.com',
                 'address_room'=>'2 chemin des chapelaines',
                 'created_at'=>Carbon\Carbon::now()
             ]

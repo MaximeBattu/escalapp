@@ -28,7 +28,7 @@
             <tr class="d-flex">
                 <td class="col-md-1">{{$salle->id_room}}</td>
                 <td class="col-md-2">{{$salle->name_room}}</td>
-                <td class="col-md-2">{{$salle->tel_room}}</td>
+                <td class="col-md-2">{{$salle->email}}</td>
                 <td class="col-md-2">{{$salle->address_room}}</td>
                 @if(isset($salle->updated_at))
                     <td class="col-md-2">{{$salle->updated_at->format('d/m/Y')}}</td>
@@ -65,7 +65,7 @@
                                 {{$salle->name_room}}
                             </p>
                             <p class="display-none">
-                                {{$salle->tel_room}}
+                                {{$salle->email}}
                             </p>
                             <p class="display-none">
                                 {{$salle->address_room}}
