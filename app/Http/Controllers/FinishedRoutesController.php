@@ -26,14 +26,14 @@ class FinishedRoutesController extends Controller
                 'id_route' => $id,
                 'id_user' => Auth::user()->id,
                 'score_contest'=>$route->score_route,
-                'id_room'=>$sectors[$route->id_sector]->id_room
+                'id_room'=>$sectors[$route->id_sector-1]->id_room
             ]);
         } else {
             FinishedRoute::create([
                 'id_route' => $id,
                 'id_user' => Auth::user()->id,
                 'score_contest'=>$route->score_route,
-                'id_room'=>$sectors[$route->id_sector]->id_room
+                'id_room'=>$sectors[$route->id_sector-1]->id_room
             ]);
 
         }

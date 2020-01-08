@@ -30,11 +30,7 @@
         <div id="open">></div>
         <table class="table table- container" style="width: 80vw;">
             <thead>
-<<<<<<< HEAD
             <tr class="text-center">
-=======
-            <tr class="trContentTh">
->>>>>>> 05c8109895a4bb4b57f77c425a8a8c76887e71b0
                 <th>Image</th>
                 <th scope="col">Couleur</th>
                 <th scope="col">Difficulté</th>
@@ -44,7 +40,6 @@
             <tbody>
 
             @foreach($routes as $route)
-<<<<<<< HEAD
                 <tr class="text-center">
                     <td>
                         @if($route->color_route != null)
@@ -95,40 +90,6 @@
                     @endif
 
                 </tr>
-=======
-                @if($route->type_route == "V")
-                    <tr class="trContentTh">
-                        <td>
-                            @if($route->color_route != null)
-                                <img src="{{URL::asset('/img/'.$route->url_photo)}}" class="imgVoie"
-                                     style="border: 3px solid {{$route->color_route}}">
-                            @else
-                                <img src="{{URL::asset('/img/'.$route->url_photo)}}" class="imgVoie">
-
-                            @endif
-                        </td>
-                        <td>
-                            <div class="colorVoie" style="background-color: {{$route->color_route}}"></div>
-                        </td>
-                        <td>{{$route->difficulty_route}}</td>
-                        <td>
-                            @if(isset($finishedRoute) && $finishedRoute->isNotEmpty())
-                                @foreach($finishedRoute as $fr)
-                                    @if($fr->id_user == Auth::user()->id)
-                                        <p class="alert alert-success">
-                                            Déjà validée
-                                        </p>
-                                    @endif
-                                @endforeach
-                            @else
-                                <a class="btn btn-primary"
-                                   href="{{route('add_validated_route',['idroom'=>$route->id_room,'id'=>$route->id_route])}}">Valider
-                                    la
-                                    voie</a>
-                            @endif
-                        </tr>
-                    @endif
->>>>>>> 05c8109895a4bb4b57f77c425a8a8c76887e71b0
             @endforeach
 
             </tbody>
