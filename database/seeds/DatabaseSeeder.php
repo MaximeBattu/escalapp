@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-
         $rooms = [
             [
                 'name_room'=>'Bloc Trotter',
@@ -92,105 +90,105 @@ class DatabaseSeeder extends Seeder
                 'id_sector'=>1,
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>1,
-                'color_route'=>'red',
+                'color_route'=>'blue',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>1,
-                'color_route'=>'red',
+                'color_route'=>'green',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>2,
-                'color_route'=>'red',
+                'color_route'=>'cyan',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>2,
-                'color_route'=>'red',
+                'color_route'=>'brown',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
-                'color_route'=>'red',
+                'color_route'=>'yellow',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
-                'color_route'=>'red',
+                'color_route'=>'pink',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
-                'color_route'=>'red',
+                'color_route'=>'purple',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'red',
+                'color_route'=>'orange',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'red',
+                'color_route'=>'black',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'red',
+                'color_route'=>'grey',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "bloc2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'red',
+                'color_route'=>'lightgrey',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>4,
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>4,
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>6,
                 'color_route'=>'red',
                 'difficulty_route'=>'6B',
-                'url_photo'=> "voie1.jpg",
+                'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
         ];

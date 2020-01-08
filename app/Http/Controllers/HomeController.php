@@ -13,7 +13,6 @@ class HomeController extends Controller
     public function index()
     {
         $salles = Room::all();
-
         return view('accueil', [
             'salles' => $salles
         ]);

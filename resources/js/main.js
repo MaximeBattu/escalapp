@@ -6,7 +6,23 @@ setTimeout(function() {
     $('#profileModification').fadeOut()
 },4000)
 
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    let body = document.querySelector('body')
+    let images = document.querySelectorAll("#image")
+    let div = create('div',null,body)
+    for(let image of images) {
+        console.log(image.classList)
+        image.addEventListener('click', function() {
+            div.classList.toggle("transparentDiv")
+            image.classList.toggle("imageCenter")
+        })
+        div.addEventListener('click', function() {
+            div.classList.remove("transparentDiv")
+            image.classList.remove("imageCenter")
+        })
+    }
 
 	let contest = document.querySelector("#contest")
 	let close = document.querySelector("#close")

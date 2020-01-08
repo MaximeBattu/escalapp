@@ -5,22 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\FinishedRoute;
 use App\Route;
+use App\Sector;
 
 class FinishedRoutesController extends Controller
 {
     public function addValidatedRoute(int $idroom, int $id)
     {
         $idsUserFinishedRoute = FinishedRoute::all();
+        $route = Route::find($id);
+        $sectors = Sector::all()->where('id_room',$idroom);
 
         if ($idsUserFinishedRoute->isNotEmpty()) {
-            $route = Route::find($id);
-
-            foreach ($idsUserFinishedRoute as $idUserFinishedRoute) {
-                $kundleExist = FinishedRoute::where([
-                    'id_user'=>$idUserFinishedRoute->id_user,
-                ])->get();
-            }
-
             foreach ($idsUserFinishedRoute as $idUserFinishedRoute) {
                 if ($idUserFinishedRoute->id_user == Auth::user()->id && $idUserFinishedRoute->id_route == $id) {
                     return abort(404);
@@ -30,18 +25,26 @@ class FinishedRoutesController extends Controller
             FinishedRoute::create([
                 'id_route' => $id,
                 'id_user' => Auth::user()->id,
-                'score_contest'=>$route->score_route
+                'score_contest'=>$route->score_route,
+                'id_room'=>$sectors[$route->id_sector]->id_room
             ]);
         } else {
-            $route = Route::find($id);
             FinishedRoute::create([
                 'id_route' => $id,
                 'id_user' => Auth::user()->id,
-                'score_contest'=>$route->score_route
+                'score_contest'=>$route->score_route,
+                'id_room'=>$sectors[0]->id_room
             ]);
+
         }
 
         $finishedRoute = FinishedRoute::all()->where('id_route', $id);
-        return redirect('/salle'.$idroom)->with(['finishedRoute' => $finishedRoute]);
+        return redirect()->back();
+    }
+
+    public function deleteValidatedRoute(int $idroom, int $id) {
+        FinishedRoute::where('id_route',$id)->delete();
+
+        return redirect()->back();
     }
 }

@@ -1,12 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1 class="navigabilite">
-        <a href="{{route('see_home')}}">Retour</a>
-    </h1>
-    <h1 class="text-center">
-        Salle numéro : {{$salle->id_room}}
-    </h1>
     <section class="text-center">
         <article class="">
             <h2 class="Nom_Salle">{{$salle->name_room}}</h2>

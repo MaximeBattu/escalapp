@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Route;
 use App\Room;
 use App\Sector;
+use App\User;
 
 class RouteController extends Controller
 {
@@ -15,10 +16,52 @@ class RouteController extends Controller
     {
         $routes = Route::byRoomAndType($id, 'V');
 
-        return view('site/route', [
-            'routes' => $routes,
-            'id_room' => $id
-        ]);
+        $idsSector = [];
+        foreach ($routes as $route) {
+            $idsSector[] = $route->id_sector;
+        }
+        $uniqueIdsSector = array_unique($idsSector);
+
+        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
+        $idsRoom = [];
+        foreach ($roomsByIdsSector as $room) {
+            $idsRoom[] = $room->id_room;
+        }
+        $uniqueIdsRoom = array_unique($idsRoom);
+        $idroom = implode('',$uniqueIdsRoom);
+
+        $room = Room::find($idroom);
+
+
+        $voiesContest = FinishedRoute::all()->where('id_room',$id);
+        if(isset(Auth::user()->id)){
+
+            $finishedRoute = FinishedRoute::where(['id_room'=>$id,'id_user'=>Auth::user()->id])->get();
+            $idsUser = [];
+            foreach ($voiesContest as $fr) {
+                $idsUser[] = $fr->id_user;
+            }
+
+            $uniqueIdsUser = array_unique($idsUser);
+            $users = User::FindMany($uniqueIdsUser);
+
+            if($voiesContest->isEmpty()){
+                $voiesContest = null;
+            }
+            return view('site/route', [
+                'routes' => $routes,
+                'room' => $room,
+                'finishedRoute'=>$finishedRoute,
+                'users' => $users,
+                'voiesContest'=>$voiesContest
+            ]);
+        } else {
+            return view('site/route', [
+                'routes' => $routes,
+                'room' => $room
+            ]);
+        }
+
     }
 
     /**
@@ -30,7 +73,6 @@ class RouteController extends Controller
      */
     public function viewSpecificRoute(int $idroom, int $id)
     {
-        $idRoom = $idroom;
         $route = Route::find($id);
         $finishedRoute = FinishedRoute::where([
             'id_route'=>$id,
@@ -52,10 +94,51 @@ class RouteController extends Controller
     {
         $routes = Route::byRoomAndType($id, 'B');
 
-        return view('site/route', [
-            'routes' => $routes,
-            'id_room' => $id
+        $idsSector = [];
+        foreach ($routes as $route) {
+            $idsSector[] = $route->id_sector;
+        }
+        $uniqueIdsSector = array_unique($idsSector);
+
+        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
+        $idsRoom = [];
+        foreach ($roomsByIdsSector as $room) {
+            $idsRoom[] = $room->id_room;
+        }
+        $uniqueIdsRoom = array_unique($idsRoom);
+        $idroom = implode('',$uniqueIdsRoom);
+
+        $room = Room::find($idroom);
+
+
+        $voiesContest = FinishedRoute::all()->where('id_room',$id);
+        if(isset(Auth::user()->id)){
+
+        $finishedRoute = FinishedRoute::where(['id_room'=>$id,'id_user'=>Auth::user()->id])->get();
+        $idsUser = [];
+        foreach ($voiesContest as $fr) {
+            $idsUser[] = $fr->id_user;
+        }
+
+        $uniqueIdsUser = array_unique($idsUser);
+        $users = User::FindMany($uniqueIdsUser);
+
+        if($voiesContest->isEmpty()){
+            $voiesContest = null;
+        }
+        return view('site/bloc', [
+            'routesBloc' => $routes,
+            'room' => $room,
+            'finishedRoute'=>$finishedRoute,
+            'users' => $users,
+            'voiesContest'=>$voiesContest
         ]);
+    } else {
+        return view('site/bloc', [
+            'routesBloc' => $routes,
+            'room' => $room
+        ]);
+    }
     }
 
     public function viewSpecificRouteBloc(int $idroom, int $id)
@@ -81,7 +164,7 @@ class RouteController extends Controller
     public function seeAddRoutes(int $idsector)
     {
         $sector = Sector::find($idsector);
-        
+
         return view('admin/adding-routes', [
             'sector' => $sector
         ]);

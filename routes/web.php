@@ -56,6 +56,7 @@ Route::get('/salle{id}/voie', 'RouteController@viewRoutes')->name('see_route');
 Route::get('/salle{id}/bloc', 'RouteController@viewBlocRoutes')->name('see_bloc');
 Route::get('/salle{idroom}/voie{id}', 'RouteController@viewSpecificRoute')->name('see_specific_route')->middleware('auth');
 Route::get('/salle{idroom}/voie{id}/valider','FinishedRoutesController@addValidatedRoute')->name('add_validated_route')->middleware('auth');
+Route::get('/salle{idroom}/voie{id}/supprimer','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
 
 
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
