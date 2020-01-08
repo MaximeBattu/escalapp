@@ -27,6 +27,7 @@ class CreateFinishedRoutesTable extends Migration
         Schema::table('finished_routes', function(Blueprint $table) {
            $table->foreign('id_route')->references('id_route')->on('routes');
            $table->foreign('id_user')->references('id')->on('users');
+           $table->foreign('id_room')->references('id_room')->on('rooms');
         });
     }
 

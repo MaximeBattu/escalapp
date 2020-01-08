@@ -75,15 +75,15 @@ class RouteController extends Controller
     {
         $route = Route::find($id);
         $finishedRoute = FinishedRoute::where([
-            'id_route'=>$id,
-            'id_user'=>Auth::user()->id
+            'id_route' => $id,
+            'id_user' => Auth::user()->id
         ])->get();
 
-        if($idroom == $route->id_room) {
+        if ($idroom == $route->id_room) {
             return view('site/specificRoute', [
                 "route" => $route,
-                'finishedRoute'=>$finishedRoute,
-                'idRoom'=>$idroom
+                'finishedRoute' => $finishedRoute,
+                'idRoom' => $idroom
             ]);
         } else {
             return abort(404);
@@ -232,6 +232,4 @@ class RouteController extends Controller
             'idsector' => $sector->id_room
         ]);
     }
-
-
 }

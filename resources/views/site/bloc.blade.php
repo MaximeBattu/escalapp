@@ -30,8 +30,9 @@
         <div id="open">></div>
         <table class="table container">
             <thead>
-            <tr>
+            <tr class="trContentTh">
                 <th>Image</th>
+                <th>Couleur</th>
                 <th>Difficulté</th>
                 <th></th>
             </tr>
