@@ -2,10 +2,6 @@
 @section('content')
 
     @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true) <!-- on vérifie que l'utilisateur est connecté et qu'il est bien administrateur-->
-    <h1>
-        Aller à :
-        <a href="{{route('see_user_management')}}">Gestion des comptes</a>
-    </h1>
 
     <h1 class="text-center">{{count($salles)}} Salles disponibles</h1>
     <div>
@@ -16,7 +12,7 @@
         <tr class="d-flex">
             <th class="col-md-1">ID</th>
             <th class="col-md-2">Nom</th>
-            <th class="col-md-2">Numéro téléphone</th>
+            <th class="col-md-2">Adresse mail</th>
             <th class="col-md-2">Adresse</th>
             <th class="col-md-2">Dernière mise à jour</th>
             <th class="col-md-1"></th>
