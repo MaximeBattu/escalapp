@@ -28,40 +28,53 @@ class RouteController extends Controller
             $idsRoom[] = $room->id_room;
         }
         $uniqueIdsRoom = array_unique($idsRoom);
-        $idroom = implode('',$uniqueIdsRoom);
+        $idroom = implode('', $uniqueIdsRoom);
 
         $room = Room::find($idroom);
 
 
-        $voiesContest = FinishedRoute::all()->where('id_room',$id);
-        if(isset(Auth::user()->id)){
+        $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'V'])->get();
+        $idsUser = [];
+        foreach ($voiesContest as $fr) {
+            $idsUser[] = $fr->id_user;
+        }
 
-            $finishedRoute = FinishedRoute::where(['id_room'=>$id,'id_user'=>Auth::user()->id])->get();
-            $idsUser = [];
-            foreach ($voiesContest as $fr) {
-                $idsUser[] = $fr->id_user;
+        $uniqueIdsUser = array_unique($idsUser);
+        $users = User::FindMany($uniqueIdsUser);
+        if (isset(Auth::user()->id)) {
+
+            $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();
+
+            foreach ($routes as $route) {
+                $route->finished = false;
             }
 
-            $uniqueIdsUser = array_unique($idsUser);
-            $users = User::FindMany($uniqueIdsUser);
+            foreach ($finishedRoute as $fr) {
+                foreach ($routes as $route) {
+                    if ($route->id_route === $fr->id_route) {
+                        $route->finished = true;
+                        break;
+                    }
+                }
+            }
 
-            if($voiesContest->isEmpty()){
+            if ($voiesContest->isEmpty()) {
                 $voiesContest = null;
             }
             return view('site/route', [
                 'routes' => $routes,
                 'room' => $room,
-                'finishedRoute'=>$finishedRoute,
                 'users' => $users,
-                'voiesContest'=>$voiesContest
+                'voiesContest' => $voiesContest
             ]);
         } else {
             return view('site/route', [
                 'routes' => $routes,
-                'room' => $room
+                'room' => $room,
+                'users' => $users,
+                'voiesContest' => $voiesContest
             ]);
         }
-
     }
 
     /**
@@ -98,23 +111,19 @@ class RouteController extends Controller
         foreach ($routes as $route) {
             $idsSector[] = $route->id_sector;
         }
-        $uniqueIdsSector = array_unique($idsSector);
+        $uniqueIdsSector = array_unique($idsSector); // array of ids sector without duplicate
 
-        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
+        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector); // we search all the sector by the precedent array
         $idsRoom = [];
         foreach ($roomsByIdsSector as $room) {
             $idsRoom[] = $room->id_room;
         }
         $uniqueIdsRoom = array_unique($idsRoom);
-        $idroom = implode('',$uniqueIdsRoom);
+        $idroom = implode('', $uniqueIdsRoom); //
 
-        $room = Room::find($idroom);
+        $room = Room::find($idroom); // now we can get the id of the room
 
-
-        $voiesContest = FinishedRoute::all()->where('id_room',$id);
-        if(isset(Auth::user()->id)){
-
-        $finishedRoute = FinishedRoute::where(['id_room'=>$id,'id_user'=>Auth::user()->id])->get();
+        $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'B'])->get();
         $idsUser = [];
         foreach ($voiesContest as $fr) {
             $idsUser[] = $fr->id_user;
@@ -123,25 +132,45 @@ class RouteController extends Controller
         $uniqueIdsUser = array_unique($idsUser);
         $users = User::FindMany($uniqueIdsUser);
 
-        if($voiesContest->isEmpty()){
-            $voiesContest = null;
+        if (isset(Auth::user()->id)) {
+
+            $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();
+
+            foreach ($routes as $route) {
+                $route->finished = false;
+            }
+
+            foreach ($finishedRoute as $fr) {
+                foreach ($routes as $route) {
+                    if ($route->id_route === $fr->id_route) {
+                        $route->finished = true;
+                        break;
+                    }
+                }
+            }
+
+
+            if ($voiesContest->isEmpty()) {
+                $voiesContest = null;
+            }
+            return view('site/bloc', [
+                'routesBloc' => $routes,
+                'room' => $room,
+                'users' => $users,
+                'voiesContest' => $voiesContest
+            ]);
+        } else {
+            return view('site/bloc', [
+                'routesBloc' => $routes,
+                'room' => $room,
+                'users' => $users,
+                'voiesContest' => $voiesContest
+            ]);
         }
-        return view('site/bloc', [
-            'routesBloc' => $routes,
-            'room' => $room,
-            'finishedRoute'=>$finishedRoute,
-            'users' => $users,
-            'voiesContest'=>$voiesContest
-        ]);
-    } else {
-        return view('site/bloc', [
-            'routesBloc' => $routes,
-            'room' => $room
-        ]);
-    }
     }
 
-    public function viewSpecificRouteBloc(int $idroom, int $id)
+    public
+    function viewSpecificRouteBloc(int $idroom, int $id)
     {
         $routeBloc = Route::find($id);
         return view('site/specificRouteBloc', [
@@ -149,7 +178,8 @@ class RouteController extends Controller
         ]);
     }
 
-    public function seeRoutesAdmin(int $id_room, int $id_sector)
+    public
+    function seeRoutesAdmin(int $id_room, int $id_sector)
     {
         $routes = Route::byRoomAndSector($id_room, $id_sector);
         $sector = Sector::find($id_sector);
@@ -161,7 +191,8 @@ class RouteController extends Controller
         ]);
     }
 
-    public function seeAddRoutes(int $idsector)
+    public
+    function seeAddRoutes(int $idsector)
     {
         $sector = Sector::find($idsector);
 
@@ -170,7 +201,8 @@ class RouteController extends Controller
         ]);
     }
 
-    public function addRoute(Request $request, int $idsector)
+    public
+    function addRoute(Request $request, int $idsector)
     {
         $color = $request->input('colorRouteSelect');
         $difficulty = $request->input('difficultySelect');
@@ -196,13 +228,15 @@ class RouteController extends Controller
         }
     }
 
-    public function deleteRoute(int $id, int $idsector, int $idroute)
+    public
+    function deleteRoute(int $id, int $idsector, int $idroute)
     {
         Route::find($idroute)->delete();
         return redirect()->back();
     }
 
-    public function seeUpdateRoute(int $idsector, int $idroute)
+    public
+    function seeUpdateRoute(int $idsector, int $idroute)
     {
         $route = Route::find($idroute);
         $sector = Sector::find($idsector);
@@ -212,7 +246,8 @@ class RouteController extends Controller
         ]);
     }
 
-    public function updateRoute(Request $request, int $idroute, int $idsector)
+    public
+    function updateRoute(Request $request, int $idroute, int $idsector)
     {
         $color = $request->input('colorRouteSelect');
         $difficulty = $request->input('difficultySelect');

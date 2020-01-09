@@ -17,6 +17,7 @@ class CreateFinishedRoutesTable extends Migration
             $table->integer('id_route');
             $table->integer('id_user');
             $table->integer('id_room');
+            $table->string('type_route',1);
             $table->integer('score_contest')->default(0);
             $table->string('method',100)->default('A vue');
             $table->string('rate_desc',200)->nullable();

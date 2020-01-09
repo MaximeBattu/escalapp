@@ -55,38 +55,19 @@
                     </td>
                     <td>{{$routeBloc->difficulty_route}}</td>
                     <td>
-                    @if(isset($finishedRoute) && $finishedRoute->isNotEmpty())
-
-                        @foreach($finishedRoute as $fr)
-                            @if(Auth::user()->id == $fr->id_user)
-                                @if($fr->id_route == $routeBloc->id_route)
-                                    <td>
-                                        <p class="alert alert-success">
-                                            Déjà validée
-                                        </p> <a class="btn btn-warning"
-                                                href="{{route('delete_validated_route',['idroom'=>$room->id_room,'id'=>$routeBloc->id_route])}}">Retirer
-                                            la
-                                            voie</a>
-                                    </td>
-                                @else
-                                    <td>
-                                        <a class="btn btn-primary"
-                                           href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$routeBloc->id_route])}}">Valider
-                                            la
-                                            voie</a>
-                                    </td>
-                                @endif
-                            @endif
-
-                        @endforeach
-
-                    @else
-                        <td>
-                            <a class="btn btn-primary"
+                        @if($routeBloc->finished)
+                            <div class="d-inline-block">
+                                Déjà validée
+                            </div>
+                            <a class="btn btn-warning d-inline-block"
+                               href="{{route('delete_validated_route',['idroom'=>$room->id_room,'id'=>$routeBloc->id_route])}}">Retirer
+                                la
+                                voie</a>
+                        @else
+                            <a class="btn btn-primary d-inline-block"
                                href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$routeBloc->id_route])}}">Valider
                                 la
                                 voie</a>
-                        </td>
                     @endif
 
                 </tr>

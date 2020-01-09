@@ -7,9 +7,9 @@
                 <h2>Contest en cours</h2>
                 <div id="close">x</div>
                 <div id="ranking">
-                    @if($users != null)
+                    @if(isset($users) && $users != null)
                         @foreach($users as $user)
-                            {{$user->name}}<br>
+                            {{$user->name}}
                         @endforeach
                     @else
                         <h1>Aucune voie n'a été validée pour l'instant</h1>
@@ -43,10 +43,10 @@
                 <tr class="text-center">
                     <td>
                         @if($route->color_route != null)
-                            <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img"  id="image"
+                            <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image"
                                  style="border:3px solid {{$route->color_route}}">
                         @else
-                            <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img"  id="image">
+                            <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image">
                         @endif
                     </td>
                     <td>
@@ -55,40 +55,21 @@
                     </td>
                     <td>{{$route->difficulty_route}}</td>
                     <td>
-                    @if(isset($finishedRoute) && $finishedRoute->isNotEmpty())
-
-                        @foreach($finishedRoute as $fr)
-                            @if(Auth::user()->id == $fr->id_user)
-                                @if($fr->id_route == $route->id_route)
-                                    <td>
-                                        <p class="alert alert-success">
-                                            Déjà validée
-                                        </p> <a class="btn btn-warning"
-                                                href="{{route('delete_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Retirer
-                                            la
-                                            voie</a>
-                                    </td>
-                                @else
-                                    <td>
-                                        <a class="btn btn-primary"
-                                           href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Valider
-                                            la
-                                            voie</a>
-                                    </td>
-                                @endif
-                            @endif
-
-                        @endforeach
-
-                    @else
-                        <td>
-                            <a class="btn btn-primary"
+                        @if($route->finished)
+                            <div class="d-inline-block">
+                                    Déjà validée
+                            </div>
+                            <a class="btn btn-warning d-inline-block"
+                               href="{{route('delete_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Retirer
+                                la
+                                voie</a>
+                        @else
+                            <a class="btn btn-primary d-inline-block"
                                href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Valider
                                 la
                                 voie</a>
-                        </td>
-                    @endif
-
+                        @endif
+                    </td>
                 </tr>
             @endforeach
 
