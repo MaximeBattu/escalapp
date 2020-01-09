@@ -41,6 +41,7 @@ class RouteController extends Controller
 
         $uniqueIdsUser = array_unique($idsUser);
         $users = User::FindMany($uniqueIdsUser);
+
         if (isset(Auth::user()->id)) {
 
             $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();

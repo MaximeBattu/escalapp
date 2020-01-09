@@ -8,7 +8,7 @@ setTimeout(function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-	
+
     let body = document.querySelector('body')
     let images = document.querySelectorAll("#image")
     let div = create('div',null,body)

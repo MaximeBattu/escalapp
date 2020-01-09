@@ -2,12 +2,12 @@
 @section('content')
 
     <div class="row justify-content-around">
-        @if(isset($voiesContest) && $voiesContest != null)
+        @if($voiesContest != null && $voiesContest->isNotEmpty())
             <div id="contest">
                 <h2>Contest en cours</h2>
                 <div id="close">x</div>
                 <div id="ranking">
-                    @if(isset($users) && $users != null)
+                    @if($users !== null && $users->isNotEmpty())
                         @foreach($users as $user)
                             {{$user->name}}
                         @endforeach
