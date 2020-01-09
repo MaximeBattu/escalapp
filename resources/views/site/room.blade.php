@@ -9,7 +9,7 @@
             {{$salle->address_room}}
         </article>
         <article class="">
-            {{$salle->tel_room}}
+            {{$salle->email}}
         </article>
     </section>
 

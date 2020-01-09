@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>
-        <a href="{{route('see_room_management')}}">Gestion salles</a>
-    </h1>
     <h1 class="text-center">Salle : {{$room->name_room}} / Secteur : {{$sector->name}}</h1>
     <div>
         <a type="button" class="btn btn-success add-route" href="{{route('see_add_routes',['id'=>$room->id_room, 'idsector'=>$sector->id_sector])}}">Ajouter une voie</a>

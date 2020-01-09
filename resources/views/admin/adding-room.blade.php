@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>
-        <a href="{{route('see_room_management')}}">Retour</a>
-    </h1>
-
     <h1 class="text-center">Ajoutez une ou plusieurs salles</h1>
 
     <form method="post" class="adding-room" action="{{route('add_room')}}">

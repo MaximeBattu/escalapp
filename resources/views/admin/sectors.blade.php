@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>
-        <a href="{{route('see_room_management')}}">Gestion salles</a>
-    </h1>
     <h1 class="text-center">Tous les secteurs de la salle : {{$room->name_room}}</h1>
     <div>
         <!-- A changer -->

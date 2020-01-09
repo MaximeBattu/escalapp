@@ -130,12 +130,12 @@ class RoomController extends Controller
     public function updateRoom(Request $request, int $id)
     {
         $name = $request->input('nameRoom');
-        $numberphone = $request->input('numberphoneRoom');
+        $email = $request->input('emailRoom');
         $address = $request->input('addressRoom');
 
         Room::find($id)->update([
             'name_room' => htmlspecialchars($name),
-            'tel_room' => htmlspecialchars($numberphone),
+            'email' => htmlspecialchars($email),
             'address_room' => htmlspecialchars($address),
             'updated_at' => now()
         ]);

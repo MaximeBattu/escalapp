@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>
-        <a href="{{route('see_routes_admin',['id'=>$sector->id_room,'idsector'=>$sector->id_sector])}}">Retour</a>
-    </h1>
-
     <form method="post" class="modify-route" action="{{route('update_route',['id'=>$sector->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">
         {{@csrf_field() }}
         <div class="form-group">

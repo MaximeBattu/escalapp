@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h1>
-        <a href="{{route('see_room_management')}}">Retour</a>
-    </h1>
+
     <div>
         <h1 class="text-center">Ajoutez une ou plusieurs voies</h1>
 
