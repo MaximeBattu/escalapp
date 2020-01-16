@@ -1,28 +1,40 @@
 @extends('layouts.app')
 @section('content')
 
-    <section class="text-center">
-        <article class="">
-            <h2 class="Nom_Salle">{{$salle->name_room}}</h2>
-        </article>
-        <article class="">
-            {{$salle->address_room}}
-        </article>
-        <article class="">
-            {{$salle->email}}
-        </article>
+    <section>
+        <div class="infos-room">
+            <section class="text-center">
+                <article class="">
+                    <h2 class="Nom_Salle">
+                        <strong>{{$salle->name_room}}</strong>
+                    </h2>
+                </article>
+                <article class="">
+                    {{$salle->address_room}}
+                </article>
+                <article class="">
+                    {{$salle->email}}
+                </article>
+            </section>
+        </div>
+        <div>
+            <a href="{{route('see_route', ['id'=>$salle->id_room])}}" class="text-center content-voie">
+                <div class="content-image">
+                    <span class="text-image-room">Voies</span>
+                    <img src="{{asset('img/header1.jpg')}}" class="clickable-image">
+                </div>
+
+            </a>
+            <a href="{{route('see_bloc', ['id'=>$salle->id_room])}}" class="text-center content-bloc">
+                <div class="content-image">
+                    <span class="text-image-room">Blocs</span>
+                    <img src="{{asset('img/bloc.jpg')}}" class="clickable-image">
+                </div>
+
+            </a>
+
+
+        </div>
     </section>
-
-    <div class="row justify-content-around">
-        <a href="{{route('see_routes', ['name_room'=>$salle->name_room])}}" class="text-center routeBlocks">
-            <h1>Voies</h1>
-            <img src="{{asset('img/header1.jpg')}}" style="max-height:100%;max-width:100% ;">
-        </a>
-        <a href="{{route('see_blocs', ['name_room'=>$salle->name_room])}}" class="text-center routeBlocks">
-            <h1>Blocs</h1>
-            <img src="{{asset('img/mur1.jpg')}}" style="max-height:100%;max-width:100% ;">
-        </a>
-
-    </div>
 
 @endsection

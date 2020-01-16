@@ -1,7 +1,7 @@
-$textColor: #ffffff!important;
-$primaryColor : #29434e!important;
+$textColor: #ffffff !important;
+$primaryColor: #29434e !important;
 
-.navbar{
+.navbar {
     background-color: $primaryColor;
     height: 80px;
     z-index: 1;
@@ -28,8 +28,10 @@ $primaryColor : #29434e!important;
     transform: translateY(125%);
 }
 
-.table {
-    width: 80vw;
+#tableContent {
+    margin-top: 50px;
+    width: 80vw !important;
+    display: block;
 }
 
 .main {
@@ -42,6 +44,7 @@ $primaryColor : #29434e!important;
     border-radius: 100%;
     z-index: 100;
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 
 .colorRoute {
@@ -62,19 +65,18 @@ $primaryColor : #29434e!important;
     top: 0;
     left: 0;
     z-index: 1;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .imageCenter {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     border-radius: 100%;
     height: 750px;
     width: 750px;
     z-index: 100;
-    transition: all 0.5s ease-in-out;
 }
 
 
@@ -150,11 +152,12 @@ $primaryColor : #29434e!important;
     z-index: 1;
     transition: 0.5s all ease-in-out;
 }
+
 .imgOnMiddleScreen {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     border-radius: 100%;
     width: 750px;
     height: 750px;
@@ -170,7 +173,7 @@ $primaryColor : #29434e!important;
     right: 10vw;
     width: 300px;
     font-size: 28px;
-    color : $textColor;
+    color: $textColor;
     background-color: $primaryColor;
     border-color: $primaryColor;
 }
@@ -188,7 +191,7 @@ $primaryColor : #29434e!important;
     background-color: lightgrey;
 }
 
-.add-new-route{
+.add-new-route {
     position: absolute;
     top: 60%;
     left: 50%;
@@ -199,6 +202,7 @@ $primaryColor : #29434e!important;
     font-size: 24px;
     margin: 20px 20px;
 }
+
 /* [ VISITEUR ] */
 
 /* Accueil */
@@ -225,14 +229,14 @@ $primaryColor : #29434e!important;
     bottom: 0;
     width: 100%;
     height: 5vh;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     transition: 0.25s ease all;
 }
 
-#roomInfo>p {
+#roomInfo > p {
     margin-top: 1vh;
 }
-    
+
 #roomname {
     transition: 0.1s ease all;
     border-radius: 5px;
@@ -243,7 +247,7 @@ $primaryColor : #29434e!important;
     opacity: 0;
 }
 
-.boxRoom:hover .display-none{
+.boxRoom:hover .display-none {
     display: block;
     opacity: 1;
     transition: 0.3s ease all;
@@ -297,32 +301,76 @@ $primaryColor : #29434e!important;
 /* Voies - Blocs */
 
 #contest {
-    border: solid 2px;
-    height: 70vh;
-    width: 20vw;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -15vw;
+    border: 2px solid black;
+    height: 100vh;
+    width: 13vw;
+    background-color: red;
     text-align: center;
+    z-index: 4;
+    transition: 0.4s all linear;
 }
 
-#contest>h2 {
+#closeContest {
+    position: fixed;
+    border: 2px solid black;
+    border-left: none;
+    top: 0;
+    left: -2vw;
+    width: 2vw;
+    height: 100vh;
+    background-color: red;
+    z-index: 4;
+    transition: 0.4s all linear;
+}
+
+#contest > h2 {
     padding: 2vh 0 2vh 0;
     border-bottom: solid 2px;
+}
+
+.chevron-center {
+    position:fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
 }
 
 #close {
     cursor: pointer;
     margin-left: 20vw;
     width: 2vw;
-    font-size: 3vh;
+    font-size: 50px;
 }
 
 #open {
-    display: none;
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 50%;
+    top: 0;
     cursor: pointer;
     width: 2vw;
-    font-size: 3vh;
+    border-right: 2px solid black;
+    background-color: red;
+    z-index: 4;
+    height: 100vh;
+    transition: 0.4s all ease-in-out;
+}
+
+.text-renverse,
+.text-close {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 28px;
+    transition: 1s all ease-in-out;
+}
+
+.text-renverse {
+    transform: rotate(-90deg);
 }
 
 #ranking {
@@ -336,3 +384,68 @@ $primaryColor : #29434e!important;
     border-top: solid 2px;
 }
 
+#open:hover,
+#closeContest:hover {
+    background-color: green;
+}
+
+/* AFFICHAGE SALLE */
+
+.infos-room {
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 3%;
+    font-size: 32px;
+    border: 4px solid black;
+    z-index: 10;
+}
+
+.content-voie,
+.content-bloc {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 0;
+    transition: 0.4s all linear;
+}
+
+.content-voie {
+    left:0;
+    border-right: 4px solid black;
+}
+
+.content-bloc {
+    right: 0;
+    border-left: 4px solid black;
+}
+
+.content-image {
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+}
+
+.clickable-image {
+    max-height:100%;
+    background-position: center center;
+}
+
+.text-image-room {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 72px;
+    color: black;
+    font-weight: bold;
+}
+
+.content-voie:hover,
+.content-bloc:hover {
+    opacity: 0.8;
+    transition: 0.4s all linear;
+    z-index: 0;
+}

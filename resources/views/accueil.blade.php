@@ -3,7 +3,6 @@
 
     @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true) <!-- on vérifie que l'utilisateur est connecté et qu'il est bien administrateur-->
 
-    <h1 class="text-center">{{count($salles)}} Salles disponibles</h1>
     <div>
         <a type="button" class="btn btn-success add-room" href="{{route('see_adding_room')}}">Ajouter une salle</a>
     </div>
