@@ -43,40 +43,15 @@
         <div id="tableContent">
             <table class="table">
                 <thead>
-                <tr class="text-center">
-                    <td>
-                        @if($route->color_route != null)
-                            <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image"
-                                 style="border:3px solid {{$route->color_route}}">
-                        @else
-                            <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image">
-                        @endif
-                    </td>
-                    <td>
-                        <div class="colorRoute" style="background-color: {{$route->color_route}}"></div>
-                        {{$route->color_route}}
-                    </td>
-                    <td>{{$route->difficulty_route}}</td>
-                    <td>
-                        @if($route->finished)
-                            <div class="d-inline-block">
-                                    Déjà validée
-                            </div>
-                            <a class="btn btn-warning d-inline-block"
-                               href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Retirer
-                                la
-                                voie</a>
-                        @else
-                            <a class="btn btn-primary d-inline-block"
-                               href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Valider
-                                la
-                                voie</a>
-                        @endif
-                    </td>
+                <tr class="trContentTh">
+                    <th>Image</th>
+                    <th>Couleur</th>
+                    <th>Difficulté</th>
+                    <th>Score</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-
                 @foreach($routes as $route)
                     <tr class="text-center">
                         <td>
@@ -92,18 +67,19 @@
                             {{$route->color_route}}
                         </td>
                         <td>{{$route->difficulty_route}}</td>
+                        <td>{{$route->score_route}}</td>
                         <td>
                             @if($route->finished)
                                 <div class="d-inline-block">
                                     Déjà validée
                                 </div>
                                 <a class="btn btn-warning d-inline-block"
-                                   href="{{route('delete_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Retirer
+                                   href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Retirer
                                     la
                                     voie</a>
                             @else
                                 <a class="btn btn-primary d-inline-block"
-                                   href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Valider
+                                   href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Valider
                                     la
                                     voie</a>
                             @endif
