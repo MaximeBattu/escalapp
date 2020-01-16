@@ -12,32 +12,46 @@ document.addEventListener('DOMContentLoaded', function() {
     let body = document.querySelector('body')
     let images = document.querySelectorAll("#image")
     let div = create('div',null,body)
+    let imageDiv = create("div",null, body,null,"centerImage")
+    let centerImage = document.querySelector("#centerImage")
+    console.log(images)
     for(let image of images) {
-        console.log(image.classList)
         image.addEventListener('click', function() {
+            console.log(image.style.borderColor)
             div.classList.toggle("transparentDiv")
-            image.classList.toggle("imageCenter")
+            imageDiv.classList.toggle("imageCenter")
+            imageDiv.style.background = "url('"+image.src+"')"
+            imageDiv.style.border = "3px solid " + image.style.borderColor
+            imageDiv.style.opacity = "1"
+            console.log(image.classList)
         })
         div.addEventListener('click', function() {
             div.classList.remove("transparentDiv")
-            image.classList.remove("imageCenter")
+            imageDiv.classList.remove("imageCenter")
+            imageDiv.style.background = null
+        })
+        centerImage.addEventListener('click', function() {
+            div.classList.remove("transparentDiv")
+            imageDiv.classList.remove("imageCenter")
+            imageDiv.style.background = null
         })
     }
 
 	let contest = document.querySelector("#contest")
-	let close = document.querySelector("#close")
 	let open = document.querySelector("#open")
-
-
-	close.addEventListener("click", function() {
-		contest.style.display = "none"
-		open.style.display = "block"
-	})
+    let close = document.querySelector("#closeContest")
 
 	open.addEventListener("click", function() {
-		contest.style.display = "block"
-		open.style.display = "none"
-	})
+		contest.style.left = "0"
+        open.style.left = "-5vw"
+        close.style.left ="13vw"
+    })
+
+    close.addEventListener("click", function() {
+        contest.style.left = "-13vw"
+        close.style.left = "-2vw"
+        open.style.left = "0"
+    })
 })
 
 

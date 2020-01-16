@@ -100,7 +100,7 @@ class RouteController extends Controller
                 'idRoom' => $idroom
             ]);
         } else {
-            return abort(404);
+            return redirect()->back();
         }
     }
 
