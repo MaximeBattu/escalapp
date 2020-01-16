@@ -3,7 +3,7 @@
 
     <h1 class="text-center">Ajoutez un secteur</h1>
 
-    <form method="post" class="adding-room" action="{{route('add_sector',['id_room'=>$room_id])}}">
+    <form method="post" class="adding-room" action="{{route('add_sector',['name_room'=>$room->name_room])}}">
         {{csrf_field()}}
         <div class="form-group">
             <label for="name" class="label-adding-room">Nom</label>

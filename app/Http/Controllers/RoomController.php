@@ -107,7 +107,7 @@ class RoomController extends Controller
         }
 
         if ($request->submit == 'Ajouter')
-            return redirect('/admin/gestion-salle')->with('add-success', 'Successful ! You have added a new room !');
+            return redirect()->route('see_room_management')->with('add-success', 'Successful ! You have added a new room !');
         else
             return redirect()->back()->with('add-success', 'Successful ! You have added a new room !');
     }
@@ -146,7 +146,7 @@ class RoomController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect('/admin/gestion-salle');
+        return redirect()->route('see_room_management');
     }
 
 }

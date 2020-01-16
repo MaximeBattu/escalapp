@@ -4,8 +4,9 @@
     <div>
         <h1 class="text-center">Ajoutez une ou plusieurs voies</h1>
 
+        <h1>{{$sector->name}}</h1>
         
-        <form method="post" class="add-new-route" action="{{route('add_route', ['id'=>$sector->id_room, 'idsector'=>$sector->id_sector])}}">
+        <form method="post" class="add-new-route" action="{{route('add_route', ['name_room'=>$name_room, 'name_sector'=>$sector->name])}}">
             {{@csrf_field() }}
             <div class="form-group">
                 <label for="" class="label-updating-room">Couleur</label>

@@ -3,7 +3,7 @@
 
     <h1 class="text-center">Salle : {{$room->name_room}} / Secteur : {{$sector->name}}</h1>
     <div>
-        <a type="button" class="btn btn-success add-route" href="{{route('see_add_routes',['id'=>$room->id_room, 'idsector'=>$sector->id_sector])}}">Ajouter une voie</a>
+        <a type="button" class="btn btn-success add-route" href="{{route('see_add_routes',['name_room'=>$room->name_room, 'name_sector'=>$sector->name])}}">Ajouter une voie</a>
     </div>
     <table class="table salles-admin">
         <thead>
@@ -37,10 +37,10 @@
                     <td class="col-md-2">Aucune mise à jour</td>
                 @endif
                 <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-warning" href="{{route('see_update_route',['id'=>$room->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">Modifier</a>
+                    <a type="button" class="btn btn-warning" href="{{route('see_update_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">Modifier</a>
                 </td>
                 <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-danger" href="{{route('delete_route',['id'=>$room->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">Supprimer</a>
+                    <a type="button" class="btn btn-danger" href="{{route('delete_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">Supprimer</a>
                 </td>
             </tr>
         @endforeach
