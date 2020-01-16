@@ -18,10 +18,11 @@ class RoomController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function viewRoom(int $id)
+    public function viewRoom(string $name)
     {
-        $voiesContest = FinishedRoute::all()->where('id_room', $id);
-        $salle = Room::find($id);
+        $salle = Room::where('name_room', $name)->first();
+        $voiesContest = FinishedRoute::all()->where('id_room', $salle->id_room);
+
 
         if ($voiesContest->isNotEmpty()) {
             foreach ($voiesContest as $voieContest) {

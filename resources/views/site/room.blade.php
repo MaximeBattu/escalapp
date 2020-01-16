@@ -14,11 +14,11 @@
     </section>
 
     <div class="row justify-content-around">
-        <a href="{{route('see_route', ['id'=>$salle->id_room])}}" class="text-center routeBlocks">
+        <a href="{{route('see_routes', ['name_room'=>$salle->name_room])}}" class="text-center routeBlocks">
             <h1>Voies</h1>
             <img src="{{asset('img/header1.jpg')}}" style="max-height:100%;max-width:100% ;">
         </a>
-        <a href="{{route('see_bloc', ['id'=>$salle->id_room])}}" class="text-center routeBlocks">
+        <a href="{{route('see_blocs', ['name_room'=>$salle->name_room])}}" class="text-center routeBlocks">
             <h1>Blocs</h1>
             <img src="{{asset('img/mur1.jpg')}}" style="max-height:100%;max-width:100% ;">
         </a>

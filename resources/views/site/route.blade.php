@@ -60,12 +60,12 @@
                                     Déjà validée
                             </div>
                             <a class="btn btn-warning d-inline-block"
-                               href="{{route('delete_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Retirer
+                               href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Retirer
                                 la
                                 voie</a>
                         @else
                             <a class="btn btn-primary d-inline-block"
-                               href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Valider
+                               href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Valider
                                 la
                                 voie</a>
                         @endif

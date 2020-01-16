@@ -51,11 +51,10 @@
         </div>
     @endif
     @else
-        <h1 class="text-center">Salles disponibles : {{count($salles)}}</h1>
         <div class="container-fluid">
             <div class="row align-items-center justify-content-center">
                 @foreach($salles as $salle)
-                    <a href="{{route('see_room', ['id'=>$salle->id_room])}}" class="col-md-3 boxRoom">
+                    <a href="{{route('see_room', ['name_room'=>$salle->name_room])}}" class="col-md-3 boxRoom">
                         <div id="roomInfo">
                             <p id="roomname">
                                 {{$salle->name_room}}

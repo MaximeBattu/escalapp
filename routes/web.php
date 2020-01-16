@@ -24,7 +24,7 @@ Route::get('/accueil', 'HomeController@index')->name('see_home');
 
 Route::get('/admin/accueil', 'AdminController@index')->name('see_home_admin')->middleware('auth', 'admin');
 
-// GESTION SALLES
+// ROOM ADMINISTRATION
 Route::get('/admin/gestion-salle', 'RoomController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
 Route::get('/admin/gestion-salle/supprimmer/{id}', 'RoomController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
 Route::get('/admin/gestion-salle/modifier/{id}', 'RoomController@modifyRoom')->name('modify_room')->middleware('auth','admin');
@@ -44,24 +44,23 @@ Route::post('admin/gestion-salle/salle{id}/secteur{idsector}/update{idroute}', '
 Route::get('admin/gestion-salle/salle{id}/secteur{idsector}/add', 'RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
 Route::post('admin/gestion-salle/salle{id}/secteur{idsector}/add', 'RouteController@addRoute')->name('add_route')->middleware('auth','admin');
 
-// GESTION COMPTES
+// ACCOUNT ADMINISTRATION
 Route::get('/admin/gestion-compte', 'UserController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');
 Route::get('/admin/gestion-compte/supprimer/{id}','UserController@deleteUser')->name('delete_user')->middleware('auth','admin');
 Route::get('/admin/gestion/modifier/mettre-administrateur/{id}','UserController@modifyUser')->name('modify_user')->middleware('auth','admin');
 Route::get('/admin/gestion/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')->name('remove_administrator_right')->middleware('auth','admin');
 
-//VALIDER/ESSAYER UNE VOIE / UN BLOC
-Route::get('/salle{id}', 'RoomController@viewRoom')->name('see_room');
-Route::get('/salle{id}/voie', 'RouteController@viewRoutes')->name('see_route');
-Route::get('/salle{id}/bloc', 'RouteController@viewBlocRoutes')->name('see_bloc');
-Route::get('/salle{idroom}/voie{id}', 'RouteController@viewSpecificRoute')->name('see_specific_route')->middleware('auth');
-Route::get('/salle{idroom}/voie{id}/valider','FinishedRoutesController@addValidatedRoute')->name('add_validated_route')->middleware('auth');
-Route::get('/salle{idroom}/voie{id}/supprimer','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
+//VALIDATE/TRY CLIBING ROUTE
+Route::get('/{name_room}', 'RoomController@viewRoom')->name('see_room');
+Route::get('/{name_room}/voies', 'RouteController@viewRoutes')->name('see_routes');
+Route::get('/{name_room}/blocs', 'RouteController@viewBlocRoutes')->name('see_blocs');
+Route::get('/{name_room}/valider{id}','FinishedRoutesController@addValidatedRoute')->name('validate_route')->middleware('auth');
+Route::get('/{name_room}/supprimer{id}','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
 
 
 Route::get('/classement', 'ClassificationController@index')->name('see_classification');
 
-//PROFIL
+//PROFILE
 
 Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
 Route::get('/profil/update', 'UserController@seeUpdateProfile')->name('update_profile');
