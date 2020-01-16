@@ -27,6 +27,10 @@
             <div class="alert alert-success popup" id="addSuccessRoom">
                 {{\Session::get('add-success')}}
             </div>
+        @elseif (\Session::has('add_failure'))
+            <div class="alert alert-danger popup" id="addSuccessRoom">
+                {{\Session::get('add_failure')}}
+            </div>
         @endif
     </div>
 @endsection

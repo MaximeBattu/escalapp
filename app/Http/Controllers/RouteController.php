@@ -12,9 +12,10 @@ use App\User;
 
 class RouteController extends Controller
 {
-    public function viewRoutes(int $id)
+    public function viewRoutes(string $name)
     {
-        $routes = Route::byRoomAndType($id, 'V');
+        $room = Room::where('name_room', $name)->first();
+        $routes = Route::byRoomAndType($room->id_room, 'V');
 
         $idsSector = [];
         foreach ($routes as $route) {
@@ -24,13 +25,11 @@ class RouteController extends Controller
 
         $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
         $idsRoom = [];
-        foreach ($roomsByIdsSector as $room) {
-            $idsRoom[] = $room->id_room;
+        foreach ($roomsByIdsSector as $sect) {
+            $idsRoom[] = $sect->id_room;
         }
         $uniqueIdsRoom = array_unique($idsRoom);
         $idroom = implode('', $uniqueIdsRoom);
-
-        $room = Room::find($idroom);
 
 
         $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'V'])->get();
@@ -44,7 +43,7 @@ class RouteController extends Controller
 
         if (isset(Auth::user()->id)) {
 
-            $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();
+            $finishedRoute = FinishedRoute::where(['id_room' => $idroom, 'id_user' => Auth::user()->id])->get();
 
             foreach ($routes as $route) {
                 $route->finished = false;
@@ -104,9 +103,10 @@ class RouteController extends Controller
         }
     }
 
-    public function viewBlocRoutes(int $id)
+    public function viewBlocRoutes(string $name)
     {
-        $routes = Route::byRoomAndType($id, 'B');
+        $room = Room::where('name_room', $name)->first(); // now we can get the id of the room
+        $routes = Route::byRoomAndType($room->id_room, 'B');
 
         $idsSector = [];
         foreach ($routes as $route) {
@@ -116,13 +116,11 @@ class RouteController extends Controller
 
         $roomsByIdsSector = Sector::FindMany($uniqueIdsSector); // we search all the sector by the precedent array
         $idsRoom = [];
-        foreach ($roomsByIdsSector as $room) {
-            $idsRoom[] = $room->id_room;
+        foreach ($roomsByIdsSector as $sect) {
+            $idsRoom[] = $sect->id_room;
         }
         $uniqueIdsRoom = array_unique($idsRoom);
         $idroom = implode('', $uniqueIdsRoom); //
-
-        $room = Room::find($idroom); // now we can get the id of the room
 
         $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'B'])->get();
         $idsUser = [];
@@ -135,7 +133,7 @@ class RouteController extends Controller
 
         if (isset(Auth::user()->id)) {
 
-            $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();
+            $finishedRoute = FinishedRoute::where(['id_room' => $room->id_room, 'id_user' => Auth::user()->id])->get();
 
             foreach ($routes as $route) {
                 $route->finished = false;

@@ -82,6 +82,27 @@
                                     la
                                     voie</a>
                         @endif
+                    </td>
+                    <td>
+                        <div class="colorRoute" style="background-color: {{$routeBloc->color_route}}"></div>
+                        {{$routeBloc->color_route}}
+                    </td>
+                    <td>{{$routeBloc->difficulty_route}}</td>
+                    <td>
+                        @if($routeBloc->finished)
+                            <div class="d-inline-block">
+                                Déjà validée
+                            </div>
+                            <a class="btn btn-warning d-inline-block"
+                               href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$routeBloc->id_route])}}">Retirer
+                                la
+                                voie</a>
+                        @else
+                            <a class="btn btn-primary d-inline-block"
+                               href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$routeBloc->id_route])}}">Valider
+                                la
+                                voie</a>
+                    @endif
 
                     </tr>
                 @endforeach
