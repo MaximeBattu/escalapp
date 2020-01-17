@@ -7,6 +7,8 @@
 
 .escalapp {
   color: #ffffff !important;
+  -webkit-transition: 0.4s all linear;
+  transition: 0.4s all linear;
 }
 
 .nav-link {
@@ -19,7 +21,6 @@
 }
 
 #tableContent {
-  margin-top: 50px;
   width: 70vw !important;
   display: block;
 }
@@ -70,6 +71,17 @@
   height: 750px;
   width: 750px;
   z-index: 100;
+  -webkit-transition: 0.5s width linear;
+  transition: 0.5s width linear;
+}
+
+.text-display {
+  font-size: 32px;
+}
+
+.nav-link,
+.escalapp {
+  font-size: 22px;
 }
 
 /* ADMIN */
@@ -232,6 +244,7 @@
   bottom: 0;
   width: 100%;
   height: 5vh;
+  font-size: 22px;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-transition: 0.25s ease all;
   transition: 0.25s ease all;
@@ -514,17 +527,16 @@
   z-index: 0;
   -webkit-transition: 0.4s all linear;
   transition: 0.4s all linear;
-  background-position: center center;
 }
 
 .content-voie {
   left: 0;
-  border-right: 4px solid black;
+  border-right: 2px solid black;
 }
 
 .content-bloc {
   right: 0;
-  border-left: 4px solid black;
+  border-left: 2px solid black;
 }
 
 .content-image {
@@ -549,9 +561,8 @@
 
 .content-voie:hover,
 .content-bloc:hover {
-  opacity: 0.75;
+  background-color: rgba(0, 0, 0, 0.5);
   -webkit-transition: 0.4s all linear;
   transition: 0.4s all linear;
-  z-index: 0;
 }
 

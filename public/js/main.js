@@ -156,15 +156,18 @@ document.addEventListener('DOMContentLoaded', function () {
   var contest = document.querySelector("#contest");
   var open = document.querySelector("#open");
   var close = document.querySelector("#closeContest");
+  var escalapp = document.querySelector(".escalapp");
   open.addEventListener("click", function () {
     contest.style.left = "0";
     open.style.left = "-5vw";
     close.style.left = "13vw";
+    escalapp.style.marginLeft = "10%";
   });
   close.addEventListener("click", function () {
     contest.style.left = "-13vw";
     close.style.left = "-2vw";
     open.style.left = "0";
+    escalapp.style.marginLeft = null;
   });
 });
 
@@ -198,7 +201,7 @@ function create(tag, text, parent) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/escalapp/public_html/escalapp/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /home/Ianis/Desktop/escalapp/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })
