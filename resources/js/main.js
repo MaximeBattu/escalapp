@@ -40,17 +40,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	let contest = document.querySelector("#contest")
 	let open = document.querySelector("#open")
     let close = document.querySelector("#closeContest")
+    let escalapp = document.querySelector(".escalapp");
 
 	open.addEventListener("click", function() {
 		contest.style.left = "0"
         open.style.left = "-5vw"
         close.style.left ="13vw"
+        escalapp.style.marginLeft = "10%"
     })
-
     close.addEventListener("click", function() {
         contest.style.left = "-13vw"
         close.style.left = "-2vw"
         open.style.left = "0"
+        escalapp.style.marginLeft = null
     })
 })
 

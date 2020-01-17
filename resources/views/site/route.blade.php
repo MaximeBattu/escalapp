@@ -44,10 +44,10 @@
             <table class="table">
                 <thead>
                 <tr class="trContentTh">
-                    <th>Image</th>
-                    <th>Couleur</th>
-                    <th>Difficulté</th>
-                    <th>Score</th>
+                    <th class="text-display">Image</th>
+                    <th class="text-display">Couleur</th>
+                    <th class="text-display">Difficulté</th>
+                    <th class="text-display">Score</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -57,18 +57,18 @@
                         <td>
                             @if($route->color_route != null)
                                 <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image"
-                                     style="border:3px solid {{$route->color_route}}">
+                                     style="border:6px solid {{$route->color_route}}">
                             @else
                                 <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image">
                             @endif
                         </td>
-                        <td>
+                        <td class="align-middle td-display">
                             <div class="colorRoute" style="background-color: {{$route->color_route}}"></div>
-                            {{$route->color_route}}
+                            <span class="text-display">{{$route->color_route}}</span>
                         </td>
-                        <td>{{$route->difficulty_route}}</td>
-                        <td>{{$route->score_route}}</td>
-                        <td>
+                        <td class="align-middle text-display">{{$route->difficulty_route}}</td>
+                        <td class="align-middle text-display">{{$route->score_route}}</td>
+                        <td class="align-middle text-display">
                             @if($route->finished)
                                 <div class="d-inline-block">
                                     Déjà validée

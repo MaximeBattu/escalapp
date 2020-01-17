@@ -21,14 +21,12 @@
             <a href="{{route('see_routes', ['name_room'=>$salle->name_room])}}" class="text-center content-voie">
                 <div class="content-image">
                     <span class="text-image-room">Voies</span>
-                    <img src="{{asset('img/header1.jpg')}}" class="clickable-image">
                 </div>
 
             </a>
             <a href="{{route('see_blocs', ['name_room'=>$salle->name_room])}}" class="text-center content-bloc">
                 <div class="content-image">
                     <span class="text-image-room">Blocs</span>
-                    <img src="{{asset('img/bloc.jpg')}}" class="clickable-image">
                 </div>
 
             </a>
