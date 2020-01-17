@@ -24,6 +24,13 @@ Route::get('/accueil', 'HomeController@index')->name('see_home');
 
 Route::get('/admin/accueil', 'AdminController@index')->name('see_home_admin')->middleware('auth', 'admin');
 
+
+// PROFILE
+
+Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
+Route::get('/profil/update', 'UserController@seeUpdateProfile')->name('update_profile');
+Route::post('/profil/update', 'UserController@updateProfile')->name('set_update_profile');
+
 // ROOM ADMINISTRATION
 Route::get('/admin/gestion-salles', 'RoomController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
 Route::get('/admin/gestion-salles/supprimmer{id}', 'RoomController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
@@ -59,12 +66,5 @@ Route::get('/{name_room}/voies', 'RouteController@viewRoutes')->name('see_routes
 Route::get('/{name_room}/blocs', 'RouteController@viewBlocRoutes')->name('see_blocs');
 Route::get('/{name_room}/valider{id}','FinishedRoutesController@addValidatedRoute')->name('validate_route')->middleware('auth');
 Route::get('/{name_room}/supprimer{id}','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
-
-
-// PROFILE
-
-Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
-Route::get('/profil/update', 'UserController@seeUpdateProfile')->name('update_profile');
-Route::post('/profil/update', 'UserController@updateProfile')->name('set_update_profile');
 
 
