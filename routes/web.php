@@ -24,7 +24,6 @@ Route::get('/accueil', 'HomeController@index')->name('see_home');
 
 Route::get('/admin/accueil', 'AdminController@index')->name('see_home_admin')->middleware('auth', 'admin');
 
-
 // PROFILE
 
 Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')->middleware('auth');
@@ -66,5 +65,3 @@ Route::get('/{name_room}/voies', 'RouteController@viewRoutes')->name('see_routes
 Route::get('/{name_room}/blocs', 'RouteController@viewBlocs')->name('see_blocs');
 Route::get('/{name_room}/valider{id}','FinishedRoutesController@addValidatedRoute')->name('validate_route')->middleware('auth');
 Route::get('/{name_room}/supprimer{id}','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
-
-

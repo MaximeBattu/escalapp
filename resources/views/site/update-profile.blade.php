@@ -55,7 +55,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn button-shadow">
                                     {{ __('Changer informations') }}
                                 </button>
                             </div>
@@ -104,7 +104,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn button-shadow">
                                     {{ __('Changer le mot de passe') }}
                                 </button>
                             </div>
@@ -112,7 +112,7 @@
                     </form>
                 </div>
             </div>
-            <a class="btn btn-primary" href="{{route('see_my_profil')}}">Retour</a>
+            <a class="btn button-shadow" href="{{route('see_my_profil')}}">Retour</a>
         </div>
     </div>
 </div>

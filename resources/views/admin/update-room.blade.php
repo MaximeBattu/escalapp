@@ -12,7 +12,7 @@
             <input type="text" value="{{$room->address_room}}" class="form-control" name="addressRoom" required>
         </div>
 
-        <button type="submit" class="btn btn-primary" name="submit" value="Mettre à jour">Mettre à jour</button>
+        <button type="submit" class="btn button-shadow" name="submit" value="Mettre à jour">Mettre à jour</button>
     </form>
 
 @endsection

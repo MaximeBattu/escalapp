@@ -18,7 +18,7 @@
                     @endif
                 @endforeach
             @else
-                <a class="btn btn-primary"
+                <a class="btn button-shadow"
                    href="{{route('add_validated_route',['idroom'=>$routeBloc->id_room,'id'=>$routeBloc->id_route])}}">Valider
                     la voie</a>
                 <a class="btn btn-warning" href="">J'ai essayé la voie</a>

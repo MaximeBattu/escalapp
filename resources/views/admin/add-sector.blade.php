@@ -15,7 +15,7 @@
         	<input type="radio" name="climbing_type" id="bloc" value="B">
         	<label for="bloc">Bloc</label>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn button-shadow">Ajouter</button>
     </form>
 
 @endsection

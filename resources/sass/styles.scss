@@ -8,16 +8,9 @@ $primaryColor: #29434e !important;
     color: $textColor;
 }
 
-.footer {
-    background-color: $primaryColor;
-    height: 5vh;
-    z-index: 1;
-    color: $textColor;
-    line-height: 99%;
-}
-
 .escalapp {
     color: $textColor;
+    transition: 0.4s all linear;
 }
 
 .nav-link {
@@ -29,7 +22,6 @@ $primaryColor: #29434e !important;
 }
 
 #tableContent {
-    margin-top: 50px;
     width: 70vw !important;
     display: block;
 }
@@ -77,8 +69,17 @@ $primaryColor: #29434e !important;
     height: 750px;
     width: 750px;
     z-index: 100;
+    transition: 0.5s width linear;
 }
 
+.text-display {
+    font-size: 32px;
+}
+
+.nav-link,
+.escalapp {
+    font-size: 22px;
+}
 
 /* ADMIN */
 
@@ -229,6 +230,7 @@ $primaryColor: #29434e !important;
     bottom: 0;
     width: 100%;
     height: 5vh;
+    font-size:22px;
     background-color: rgba(0, 0, 0, 0.5);
     transition: 0.25s ease all;
 }
@@ -384,6 +386,90 @@ $primaryColor: #29434e !important;
     border-top: solid 2px;
 }
 
+
+
+/* [Grimpeur] */
+
+/* Comptes */
+
+#title {
+    position: absolute;
+    top: 15vh;
+    left: 50vw;
+    transform: translateX(-7.5vw);
+}
+
+.infoCompte {
+    display: flex;
+    flex-direction: column;
+    margin: 20vh 0 0 30vw;
+    border-left: solid $primaryColor;
+    padding-left: 5vw;
+}
+
+.infoCompte>h1 {
+    margin: 3vh 0 3vh 0;
+    font-size: 2.5vh;
+}
+
+#photo {
+    position: absolute;
+    left: 5vw;
+    top: 15vh;
+    width: 15vw;
+    height: 15vw;
+    padding: 1vw;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#photo:hover i{
+    opacity: 1;
+}
+
+#photo>img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#photo>i {
+    position: absolute;
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0.5vw;
+    margin: 0.5vw;
+    border-radius: 100%;
+    cursor: pointer;
+    border: solid $primaryColor;
+    transition: 0.2s ease all;
+}
+
+#photo>i:hover {
+    background-color: $primaryColor;
+    color: white;
+}
+
+.modify {
+    position: absolute;
+    left: 5vw;
+    bottom: 5vh;
+}
+
+.button-shadow {
+    background-color: #233943;
+    color: white;
+    padding: 1vh;
+    margin: 0.5vw;
+}
+
+.button-shadow:hover {
+    color: white;
+    background-color: #355664;
+    box-shadow: 0 0 0.3vw #233943;
+}
+
+
 #open:hover,
 #closeContest:hover {
     background-color: green;
@@ -412,27 +498,26 @@ $primaryColor: #29434e !important;
     height: 100vh;
     z-index: 0;
     transition: 0.4s all linear;
-    background-position: center center;
 }
 
 .content-voie {
     left:0;
-    border-right: 4px solid black;
+    border-right: 2px solid black;
 }
 
 .content-bloc {
     right: 0;
-    border-left: 4px solid black;
+    border-left: 2px solid black;
 }
 
 .content-image {
     max-width:100%;
     max-height: 100%;
     overflow: hidden;
+
 }
 
 .clickable-image {
-
     background-repeat: no-repeat;
 }
 
@@ -447,7 +532,6 @@ $primaryColor: #29434e !important;
 
 .content-voie:hover,
 .content-bloc:hover {
-    opacity: 0.75;
+    background-color: rgba(0,0,0,0.5);
     transition: 0.4s all linear;
-    z-index: 0;
 }

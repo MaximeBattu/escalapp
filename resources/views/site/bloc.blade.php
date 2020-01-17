@@ -29,9 +29,9 @@
             <table class="table container">
                 <thead>
                 <tr class="trContentTh">
-                    <th>Image</th>
-                    <th>Couleur</th>
-                    <th>Difficulté</th>
+                    <th class="text-display">Image</th>
+                    <th class="text-display">Couleur</th>
+                    <th class="text-display">Difficulté</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -39,7 +39,7 @@
 
                 @foreach($routesBloc as $routeBloc)
                     <tr class="text-center">
-                        <td>
+                        <td class="text-display">
                             @if($routeBloc->color_route != null)
                                 <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img" id="image"
                                      style="border:3px solid {{$routeBloc->color_route}}">
@@ -47,12 +47,12 @@
                                 <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img" id="image">
                             @endif
                         </td>
-                        <td>
+                        <td class="align-middle text-display">
                             <div class="colorRoute" style="background-color: {{$routeBloc->color_route}}"></div>
                             {{$routeBloc->color_route}}
                         </td>
-                        <td>{{$routeBloc->difficulty_route}}</td>
-                        <td>
+                        <td class="align-middle text-display">{{$routeBloc->difficulty_route}}</td>
+                        <td class="align-middle text-display">
                             @if($routeBloc->finished)
                                 <a class="btn btn-warning d-inline-block"
                                    href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$routeBloc->id_route])}}">Retirer
