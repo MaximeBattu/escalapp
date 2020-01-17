@@ -12,168 +12,63 @@ use App\User;
 
 class RouteController extends Controller
 {
+    public static function returnViewByType(string $name, string $type) {
+
+        $room = Room::where('name_room', $name)->first();
+        $routes = Route::byRoomAndType($room->id_room, $type);
+
+
+        $users = User::select('users.*')
+                        ->join('finished_routes', 'finished_routes.id_user', '=', 'users.id')
+                        ->join('sectors', 'sectors.id_room', '=', $room->id_room)
+                        ->where('sectors.climbing_type', $type)->distinct()->get();
+
+        //dump($users);die();
+
+        $doneByUser = Route::select('routes.*')
+                                ->join('finished_routes', 'finished_routes.id_route', '=', 'routes.id_route')
+                                ->join('sectors', 'sectors.id_sector', '=', 'sectors.id_sector')
+                                ->where(['finished_routes.id_user'=>Auth::user()->id, 'sectors.climbing_type'=>$type])->get();
+
+        foreach($routes as $route) {
+            $route->finished = false;
+        }
+
+        foreach ($doneByUser as $done) {
+            foreach ($routes as $route) {
+                if ($route->id_route == $done->id_route) {
+                    $route->finished = true;
+                    break;
+                }
+            }
+        }
+
+        return [
+                'routes' => $routes,
+                'room' => $room,
+                'users' => $users 
+            ];
+    }
+
     public function viewRoutes(string $name)
     {
-        $room = Room::where('name_room', $name)->first();
-        $routes = Route::byRoomAndType($room->id_room, 'V');
+        $data = RouteController::returnViewByType($name, 'V');
 
-        $idsSector = [];
-        foreach ($routes as $route) {
-            $idsSector[] = $route->id_sector;
-        }
-        $uniqueIdsSector = array_unique($idsSector);
-
-        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
-        $idsRoom = [];
-        foreach ($roomsByIdsSector as $sect) {
-            $idsRoom[] = $sect->id_room;
-        }
-        $uniqueIdsRoom = array_unique($idsRoom);
-        $idroom = implode('', $uniqueIdsRoom);
-
-
-        $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'V'])->get();
-        $idsUser = [];
-        foreach ($voiesContest as $fr) {
-            $idsUser[] = $fr->id_user;
-        }
-
-        $uniqueIdsUser = array_unique($idsUser);
-        $users = User::FindMany($uniqueIdsUser);
-
-        if (isset(Auth::user()->id)) {
-
-            $finishedRoute = FinishedRoute::where(['id_room' => $idroom, 'id_user' => Auth::user()->id])->get();
-
-            foreach ($routes as $route) {
-                $route->finished = false;
-            }
-
-            foreach ($finishedRoute as $fr) {
-                foreach ($routes as $route) {
-                    if ($route->id_route === $fr->id_route) {
-                        $route->finished = true;
-                        break;
-                    }
-                }
-            }
-
-            if ($voiesContest->isEmpty()) {
-                $voiesContest = null;
-            }
-            return view('site/route', [
-                'routes' => $routes,
-                'room' => $room,
-                'users' => $users,
-                'voiesContest' => $voiesContest
-            ]);
-        } else {
-            return view('site/route', [
-                'routes' => $routes,
-                'room' => $room,
-                'users' => $users,
-                'voiesContest' => $voiesContest
-            ]);
-        }
+        return view('site/route', [
+            'routes' => $data['routes'],
+            'room' => $data['room'],
+            'users' => $data['users']
+        ]);
     }
 
-    /**
-     * Check if id_room is the same in the URL and in the database
-     * Return 404 error if not
-     * @param int $idroom
-     * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
-     */
-    public function viewSpecificRoute(int $idroom, int $id)
+    public function viewBlocs(string $name)
     {
-        $route = Route::find($id);
-        $finishedRoute = FinishedRoute::where([
-            'id_route' => $id,
-            'id_user' => Auth::user()->id
-        ])->get();
+        $data = RouteController::returnViewByType($name, 'B');
 
-        if ($idroom == $route->id_room) {
-            return view('site/specificRoute', [
-                "route" => $route,
-                'finishedRoute' => $finishedRoute,
-                'idRoom' => $idroom
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function viewBlocRoutes(string $name)
-    {
-        $room = Room::where('name_room', $name)->first(); // now we can get the id of the room
-        $routes = Route::byRoomAndType($room->id_room, 'B');
-
-        $idsSector = [];
-        foreach ($routes as $route) {
-            $idsSector[] = $route->id_sector;
-        }
-        $uniqueIdsSector = array_unique($idsSector); // array of ids sector without duplicate
-
-        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector); // we search all the sector by the precedent array
-        $idsRoom = [];
-        foreach ($roomsByIdsSector as $sect) {
-            $idsRoom[] = $sect->id_room;
-        }
-        $uniqueIdsRoom = array_unique($idsRoom);
-        $idroom = implode('', $uniqueIdsRoom); //
-
-        $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'B'])->get();
-        $idsUser = [];
-        foreach ($voiesContest as $fr) {
-            $idsUser[] = $fr->id_user;
-        }
-
-        $uniqueIdsUser = array_unique($idsUser);
-        $users = User::FindMany($uniqueIdsUser);
-
-        if (isset(Auth::user()->id)) {
-
-            $finishedRoute = FinishedRoute::where(['id_room' => $room->id_room, 'id_user' => Auth::user()->id])->get();
-
-            foreach ($routes as $route) {
-                $route->finished = false;
-            }
-
-            foreach ($finishedRoute as $fr) {
-                foreach ($routes as $route) {
-                    if ($route->id_route === $fr->id_route) {
-                        $route->finished = true;
-                        break;
-                    }
-                }
-            }
-
-
-            if ($voiesContest->isEmpty()) {
-                $voiesContest = null;
-            }
-            return view('site/bloc', [
-                'routesBloc' => $routes,
-                'room' => $room,
-                'users' => $users,
-                'voiesContest' => $voiesContest
-            ]);
-        } else {
-            return view('site/bloc', [
-                'routesBloc' => $routes,
-                'room' => $room,
-                'users' => $users,
-                'voiesContest' => $voiesContest
-            ]);
-        }
-    }
-
-    public
-    function viewSpecificRouteBloc(int $idroom, int $id)
-    {
-        $routeBloc = Route::find($id);
-        return view('site/specificRouteBloc', [
-            "routeBloc" => $routeBloc
+        return view('site/bloc', [
+            'routesBloc' => $data['routes'],
+            'room' => $data['room'],
+            'users' => $data['users']
         ]);
     }
 
@@ -271,3 +166,60 @@ class RouteController extends Controller
         ]);
     }
 }
+
+/*
+$idsSector = [];
+        foreach ($routes as $route) {
+            $idsSector[] = $route->id_sector;
+        }
+        $uniqueIdsSector = array_unique($idsSector);
+
+        $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
+        $idsRoom = [];
+        foreach ($roomsByIdsSector as $sect) {
+            $idsRoom[] = $sect->id_room;
+        }
+        $uniqueIdsRoom = array_unique($idsRoom);
+        $idroom = implode('', $uniqueIdsRoom);
+
+
+        $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'V'])->get();
+        $idsUser = [];
+        foreach ($voiesContest as $fr) {
+            $idsUser[] = $fr->id_user;
+        }
+
+        $uniqueIdsUser = array_unique($idsUser);
+        $users = User::FindMany($uniqueIdsUser);
+
+        if (isset(Auth::user()->id)) {
+
+            $finishedRoute = FinishedRoute::where(['id_room' => $idroom, 'id_user' => Auth::user()->id])->get();
+
+            foreach ($routes as $route) {
+                $route->finished = false;
+            }
+
+            foreach ($finishedRoute as $fr) {
+                foreach ($routes as $route) {
+                    if ($route->id_route === $fr->id_route) {
+                        $route->finished = true;
+                        break;
+                    }
+                }
+            }
+
+            if ($voiesContest->isEmpty()) {
+                $voiesContest = null;
+            }
+            return view('site/route', [
+                'routes' => $routes,
+                'room' => $room,
+                'users' => $users,
+                'voiesContest' => $voiesContest
+            ]);
+        } else {
+            
+        }
+*/
+

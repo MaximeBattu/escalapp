@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\FinishedRoute;
 use App\Room;
+use App\Route;
 use App\User;
 
 
@@ -20,31 +21,23 @@ class RoomController extends Controller
      */
     public function viewRoom(string $name)
     {
-        $salle = Room::where('name_room', $name)->first();
-        $voiesContest = FinishedRoute::all()->where('id_room', $salle->id_room);
+        $room = Room::where('name_room', $name)->first();
+
+        $count = Route::join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
+                        ->where(['id_room'=>$room->id_room,'climbing_type'=>'V'])->count();
+        $hasRoutes = $count > 0 ? true : false;
 
 
-        if ($voiesContest->isNotEmpty()) {
-            foreach ($voiesContest as $voieContest) {
-                $idsUser[] = $voieContest->id_user;
-            }
-            $uniqueIdUser = array_unique($idsUser);
+        $count = Route::join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
+                        ->where(['id_room'=>$room->id_room,'climbing_type'=>'V'])->count();
+        $hasBlocs = $count > 0 ? true: false;
 
 
-            $users = User::findMany($uniqueIdUser);
-
-            return view('site/room', [
-                'salle' => $salle,
-                'voiesContest' => $voiesContest,
-                'users'=>$users
-            ]);
-        } else {
-            return view('site/room', [
-                "salle" => $salle,
-                'voiesContest' => $voiesContest,
-                'users'=>null
-            ]);
-        }
+        return view('site/room', [
+            "room" => $room,
+            "hasRoutes" => $hasRoutes,
+            "hasBlocs" => $hasBlocs
+        ]);
     }
 
     /**

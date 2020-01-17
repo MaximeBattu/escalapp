@@ -63,7 +63,7 @@ Route::get('/classement', 'ClassificationController@index')->name('see_classific
 // VALIDATE/TRY CLIBING ROUTE
 Route::get('/{name_room}', 'RoomController@viewRoom')->name('see_room');
 Route::get('/{name_room}/voies', 'RouteController@viewRoutes')->name('see_routes');
-Route::get('/{name_room}/blocs', 'RouteController@viewBlocRoutes')->name('see_blocs');
+Route::get('/{name_room}/blocs', 'RouteController@viewBlocs')->name('see_blocs');
 Route::get('/{name_room}/valider{id}','FinishedRoutesController@addValidatedRoute')->name('validate_route')->middleware('auth');
 Route::get('/{name_room}/supprimer{id}','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
 

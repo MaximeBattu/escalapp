@@ -2,11 +2,10 @@
 @section('content')
 
     <div class="row justify-content-around">
-        @if($voiesContest != null && $voiesContest->isNotEmpty())
             <div id="contest">
                 <h2>Contest en cours</h2>
                 <div id="ranking">
-                    @if($users !== null && $users->isNotEmpty())
+                    @if($users != null && $users->isNotEmpty())
                         @foreach($users as $user)
                             {{$user->name}}
                         @endforeach
@@ -21,20 +20,6 @@
                     <i class="fa fa-chevron-left"></i>
                 </div>
             </div>
-        @else
-            <div id="contest">
-                <h2>Contest en cours</h2>
-                <div id="ranking">
-                    <h1>Aucune voie n'a été validé pour l'instnant</h1>
-                </div>
-                <div id="consult"><a href="">Consulter Contest</a></div>
-            </div>
-            <div id="closeContest">
-                <div class="text-close">
-                    <i class="fa fa-chevron-left"></i>
-                </div>
-            </div>
-        @endif
         <div id="open">
             <div class="text-renverse">
                 CONTEST
@@ -70,9 +55,6 @@
                         <td>{{$route->score_route}}</td>
                         <td>
                             @if($route->finished)
-                                <div class="d-inline-block">
-                                    Déjà validée
-                                </div>
                                 <a class="btn btn-warning d-inline-block"
                                    href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Retirer
                                     la

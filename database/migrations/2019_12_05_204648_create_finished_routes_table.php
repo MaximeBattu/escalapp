@@ -15,20 +15,17 @@ class CreateFinishedRoutesTable extends Migration
     {
         Schema::create('finished_routes', function (Blueprint $table) {
             $table->integer('id_route');
-            $table->integer('id_user');
-            $table->integer('id_room');
+            $table->integer('id_user');;
+            $table->integer('id_sector');
             $table->string('type_route',1);
-            $table->integer('score_contest')->default(0);
-            $table->string('method',100)->default('A vue');
-            $table->string('rate_desc',200)->nullable();
             $table->primary(['id_route','id_user']);
             $table->timestamps();
         });
 
         Schema::table('finished_routes', function(Blueprint $table) {
            $table->foreign('id_route')->references('id_route')->on('routes');
+           $table->foreign('id_sector')->references('id_sector')->on('sectors');
            $table->foreign('id_user')->references('id')->on('users');
-           $table->foreign('id_room')->references('id_room')->on('rooms');
         });
     }
 
