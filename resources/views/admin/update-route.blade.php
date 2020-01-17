@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <form method="post" class="modify-route" action="{{route('update_route',['id'=>$sector->id_room,'idsector'=>$sector->id_sector,'idroute'=>$route->id_route])}}">
+    <form method="post" class="modify-route" action="{{route('update_route',['name_room'=>$name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">
         {{@csrf_field() }}
         <div class="form-group">
             <label for="" class="label-updating-room">Couleur</label>

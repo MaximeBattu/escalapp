@@ -104,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var body = document.querySelector('body');
   var images = document.querySelectorAll("#image");
   var div = create('div', null, body);
+  var imageDiv = create("div", null, body, null, "centerImage");
+  var centerImage = document.querySelector("#centerImage");
+  console.log(images);
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
@@ -111,14 +114,24 @@ document.addEventListener('DOMContentLoaded', function () {
   try {
     var _loop = function _loop() {
       var image = _step.value;
-      console.log(image.classList);
       image.addEventListener('click', function () {
+        console.log(image.style.borderColor);
         div.classList.toggle("transparentDiv");
-        image.classList.toggle("imageCenter");
+        imageDiv.classList.toggle("imageCenter");
+        imageDiv.style.background = "url('" + image.src + "')";
+        imageDiv.style.border = "3px solid " + image.style.borderColor;
+        imageDiv.style.opacity = "1";
+        console.log(image.classList);
       });
       div.addEventListener('click', function () {
         div.classList.remove("transparentDiv");
-        image.classList.remove("imageCenter");
+        imageDiv.classList.remove("imageCenter");
+        imageDiv.style.background = null;
+      });
+      centerImage.addEventListener('click', function () {
+        div.classList.remove("transparentDiv");
+        imageDiv.classList.remove("imageCenter");
+        imageDiv.style.background = null;
       });
     };
 
@@ -141,15 +154,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var contest = document.querySelector("#contest");
-  var close = document.querySelector("#close");
   var open = document.querySelector("#open");
-  close.addEventListener("click", function () {
-    contest.style.display = "none";
-    open.style.display = "block";
-  });
+  var close = document.querySelector("#closeContest");
   open.addEventListener("click", function () {
-    contest.style.display = "block";
-    open.style.display = "none";
+    contest.style.left = "0";
+    open.style.left = "-5vw";
+    close.style.left = "13vw";
+  });
+  close.addEventListener("click", function () {
+    contest.style.left = "-13vw";
+    close.style.left = "-2vw";
+    open.style.left = "0";
   });
 });
 

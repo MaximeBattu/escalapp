@@ -4,7 +4,7 @@
     <h1 class="text-center">Tous les secteurs de la salle : {{$room->name_room}}</h1>
     <div>
         <!-- A changer -->
-        <a type="button" class="btn btn-success add-route" href="{{route('see_add_sector',['id_room'=>$room->id_room])}}">Ajouter un secteur</a>
+        <a type="button" class="btn btn-success add-route" href="{{route('see_add_sector',['name_room'=>$room->name_room])}}">Ajouter un secteur</a>
     </div>
     <table class="table salles-admin">
         <thead>
@@ -36,11 +36,17 @@
                     <a type="button" class="btn button-shadow" href="{{route('see_routes_admin', ['id'=>$sector->id_room,'idsector'=>$sector->id_sector])}}">Voir secteur</a>
                 </td>
                 <td class="col-md-2 room-change">
-                    <a type="button" class="btn btn-danger" href="{{route('delete_sector',['id'=>$sector->id_sector])}}">Supprimer</a>
+                    <a type="button" class="btn btn-danger" href="{{route('delete_sector',['name_room'=>$room->name_room,'id'=>$sector->id_sector])}}">Supprimer</a>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+
+    @if (\Session::has('sector-deletion'))
+        <div class="alert alert-success">
+            {{\Session::get('sector-deletion')}}
+        </div>
+    @endif
 
 @endsection

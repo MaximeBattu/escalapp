@@ -8,11 +8,9 @@ use App\Room;
 
 class SectorController extends Controller
 {
-    public function seeAllSectors() {
-        $id_room = $_GET['id'];
-
-    	$sectors = Sector::fromRoom($id_room);
-    	$room = Room::find($id_room);
+    public function seeAllSectors(string $name) {
+        $room = Room::where('name_room', $name)->first();
+    	$sectors = Sector::fromRoom($room->id_room);
 
     	return view('admin/sectors', [
     		'sectors' => $sectors,
@@ -25,20 +23,21 @@ class SectorController extends Controller
 
     	Sector::deleteSector($id_sector);
 
-		return redirect()->back();    	
+		return redirect()->back()->with('sector-deletion', 'Le secteur a été supprimé');    	
     }
 
-    public function seeAddSector() {
-        $id_room = $_GET['id_room'];
+    public function seeAddSector(string $name) {
+        $room = Room::where('name_room', $name)->first();
 
     	return view('admin/add-sector', [
-    		'room_id' => $id_room
+    		'room' => $room
     	]);
     }
 
-    public function addSector(Request $request) {
-        Sector::add($request->name, $request->climbing_type, $request->id_room);
+    public function addSector(Request $request, string $name) {
+        $room = Room::where('name_room', $name)->first();
+        Sector::add($request->name, $request->climbing_type, $room->id_room);
 
-    	return redirect()->route('see_sectors_admin', ['id'=>$request->id_room]);
+    	return redirect()->route('see_sectors_admin', ['name_room'=>$room->name_room]);
     }
 }

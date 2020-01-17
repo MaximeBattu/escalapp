@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\FinishedRoute;
 use App\Room;
 use App\User;
@@ -17,10 +18,11 @@ class RoomController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function viewRoom(int $id)
+    public function viewRoom(string $name)
     {
-        $voiesContest = FinishedRoute::all()->where('id_room', $id);
-        $salle = Room::find($id);
+        $salle = Room::where('name_room', $name)->first();
+        $voiesContest = FinishedRoute::all()->where('id_room', $salle->id_room);
+
 
         if ($voiesContest->isNotEmpty()) {
             foreach ($voiesContest as $voieContest) {
@@ -93,15 +95,19 @@ class RoomController extends Controller
         $email = $request->input('emailRoom');
         $address = $request->input('addressRoom');
 
-        Room::create([
-            'name_room' => htmlspecialchars($name),
-            'email' => htmlspecialchars($email),
-            'address_room' => htmlspecialchars($address),
-            'updated_at' => null
-        ]);
+        try {
+            Room::create([
+                'name_room' => htmlspecialchars($name),
+                'email' => htmlspecialchars($email),
+                'address_room' => htmlspecialchars($address),
+                'updated_at' => null
+            ]);
+        } catch (QueryException $ex) {
+            return redirect()->back()->with('add_failure', 'La salle existe déjà');
+        }
 
         if ($request->submit == 'Ajouter')
-            return redirect('/admin/gestion-salle')->with('add-success', 'Successful ! You have added a new room !');
+            return redirect()->route('see_room_management')->with('add-success', 'Successful ! You have added a new room !');
         else
             return redirect()->back()->with('add-success', 'Successful ! You have added a new room !');
     }
@@ -140,7 +146,7 @@ class RoomController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect('/admin/gestion-salle');
+        return redirect()->route('see_room_management');
     }
 
 }

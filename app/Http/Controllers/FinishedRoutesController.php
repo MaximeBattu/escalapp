@@ -9,11 +9,14 @@ use App\Sector;
 
 class FinishedRoutesController extends Controller
 {
-    public function addValidatedRoute(int $idroom, int $id)
+    public function addValidatedRoute($name, int $id)
     {
         $idsUserFinishedRoute = FinishedRoute::all();
         $route = Route::find($id);
-        $sectors = Sector::all()->where('id_room',$idroom);
+
+        $sectors = Sector::select('sectors.*')
+                        ->join('rooms', 'sectors.id_room', '=', 'rooms.id_room')
+                        ->where('rooms.name_room', $name)->get();
 
         if ($idsUserFinishedRoute->isNotEmpty()) {
             foreach ($idsUserFinishedRoute as $idUserFinishedRoute) {
@@ -44,8 +47,8 @@ class FinishedRoutesController extends Controller
         return redirect()->back();
     }
 
-    public function deleteValidatedRoute(int $idroom, int $id) {
-        FinishedRoute::where('id_route',$id)->delete();
+    public function deleteValidatedRoute(string $name, int $id) {
+        FinishedRoute::where(['id_route'=>$id, 'id_user'=>Auth::user()->id])->delete();
 
         return redirect()->back();
     }

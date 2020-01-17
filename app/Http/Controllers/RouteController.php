@@ -12,9 +12,10 @@ use App\User;
 
 class RouteController extends Controller
 {
-    public function viewRoutes(int $id)
+    public function viewRoutes(string $name)
     {
-        $routes = Route::byRoomAndType($id, 'V');
+        $room = Room::where('name_room', $name)->first();
+        $routes = Route::byRoomAndType($room->id_room, 'V');
 
         $idsSector = [];
         foreach ($routes as $route) {
@@ -24,13 +25,11 @@ class RouteController extends Controller
 
         $roomsByIdsSector = Sector::FindMany($uniqueIdsSector);
         $idsRoom = [];
-        foreach ($roomsByIdsSector as $room) {
-            $idsRoom[] = $room->id_room;
+        foreach ($roomsByIdsSector as $sect) {
+            $idsRoom[] = $sect->id_room;
         }
         $uniqueIdsRoom = array_unique($idsRoom);
         $idroom = implode('', $uniqueIdsRoom);
-
-        $room = Room::find($idroom);
 
 
         $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'V'])->get();
@@ -44,7 +43,7 @@ class RouteController extends Controller
 
         if (isset(Auth::user()->id)) {
 
-            $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();
+            $finishedRoute = FinishedRoute::where(['id_room' => $idroom, 'id_user' => Auth::user()->id])->get();
 
             foreach ($routes as $route) {
                 $route->finished = false;
@@ -100,13 +99,14 @@ class RouteController extends Controller
                 'idRoom' => $idroom
             ]);
         } else {
-            return abort(404);
+            return redirect()->back();
         }
     }
 
-    public function viewBlocRoutes(int $id)
+    public function viewBlocRoutes(string $name)
     {
-        $routes = Route::byRoomAndType($id, 'B');
+        $room = Room::where('name_room', $name)->first(); // now we can get the id of the room
+        $routes = Route::byRoomAndType($room->id_room, 'B');
 
         $idsSector = [];
         foreach ($routes as $route) {
@@ -116,13 +116,11 @@ class RouteController extends Controller
 
         $roomsByIdsSector = Sector::FindMany($uniqueIdsSector); // we search all the sector by the precedent array
         $idsRoom = [];
-        foreach ($roomsByIdsSector as $room) {
-            $idsRoom[] = $room->id_room;
+        foreach ($roomsByIdsSector as $sect) {
+            $idsRoom[] = $sect->id_room;
         }
         $uniqueIdsRoom = array_unique($idsRoom);
         $idroom = implode('', $uniqueIdsRoom); //
-
-        $room = Room::find($idroom); // now we can get the id of the room
 
         $voiesContest = FinishedRoute::where(['id_room' => $idroom, 'type_route' => 'B'])->get();
         $idsUser = [];
@@ -135,7 +133,7 @@ class RouteController extends Controller
 
         if (isset(Auth::user()->id)) {
 
-            $finishedRoute = FinishedRoute::where(['id_room' => $id, 'id_user' => Auth::user()->id])->get();
+            $finishedRoute = FinishedRoute::where(['id_room' => $room->id_room, 'id_user' => Auth::user()->id])->get();
 
             foreach ($routes as $route) {
                 $route->finished = false;
@@ -180,11 +178,12 @@ class RouteController extends Controller
     }
 
     public
-    function seeRoutesAdmin(int $id_room, int $id_sector)
+    function seeRoutesAdmin(string $name_room, string $name_sector)
     {
-        $routes = Route::byRoomAndSector($id_room, $id_sector);
-        $sector = Sector::find($id_sector);
-        $room = Room::find($id_room);
+        $sector = Sector::where('name', $name_sector)->first();
+        $room = Room::where('name_room', $name_room)->first();
+        $routes = Route::byRoomAndSector($room->id_room, $sector->id_sector);
+
         return view('admin/routes-admin', [
             'routes' => $routes,
             'sector' => $sector,
@@ -193,24 +192,27 @@ class RouteController extends Controller
     }
 
     public
-    function seeAddRoutes(int $idsector)
+    function seeAddRoutes(string $name_room, string $name_sector)
     {
-        $sector = Sector::find($idsector);
+        $sector = Sector::where('name', $name_sector)->first();
 
         return view('admin/adding-routes', [
-            'sector' => $sector
+            'sector' => $sector,
+            'name_room' => $name_room
         ]);
     }
 
     public
-    function addRoute(Request $request, int $idsector)
+    function addRoute(Request $request, string $name_room, string $name_sector)
     {
         $color = $request->input('colorRouteSelect');
         $difficulty = $request->input('difficultySelect');
         $url = $request->input('urlPhotoRoute');
 
+        $sector = Sector::where('name', $name_sector)->first();
+
         Route::create([
-            'id_sector' => $idsector,
+            'id_sector' => $sector->id_sector,
             'color_route' => $color,
             'difficulty_route' => $difficulty,
             'url_photo' => $url,
@@ -218,43 +220,43 @@ class RouteController extends Controller
         ]);
 
         if ($request->submit == "Ajouter et recommencer") {
-            return redirect()->back()->with('succes-route', 'You have added a new route to the sector number : ' . $idsector);
+            return redirect()->back()->with('succes-route', 'You have added a new route to the sector number : ' . $sector->id_sector);
         } else {
-            $sector = Sector::find($idsector);
-
             return redirect()->route('see_routes_admin', [
-                'id' => $sector->id_sector,
-                'idsector' => $sector->id_room
+                'name_room' => $name_room,
+                'name_sector' => $sector->name
             ]);
         }
     }
 
     public
-    function deleteRoute(int $id, int $idsector, int $idroute)
+    function deleteRoute(string $name_room, string $name_sector, int $idroute)
     {
         Route::find($idroute)->delete();
         return redirect()->back();
     }
 
     public
-    function seeUpdateRoute(int $idsector, int $idroute)
+    function seeUpdateRoute(string $name_room, string $name_sector, int $idroute)
     {
         $route = Route::find($idroute);
-        $sector = Sector::find($idsector);
+        $sector = Sector::where('name', $name_sector)->first();
         return view('admin/update-route', [
             'route' => $route,
-            'sector' => $sector
+            'sector' => $sector,
+            'name_room' => $name_room
         ]);
     }
 
     public
-    function updateRoute(Request $request, int $idroute, int $idsector)
+    function updateRoute(Request $request, string $name_room, string $name_sector, int $idroute)
     {
         $color = $request->input('colorRouteSelect');
         $difficulty = $request->input('difficultySelect');
         $url = $request->input('urlPhotoRoute');
 
-        $sector = Sector::find($idsector);
+        $sector = Sector::where('name', $name_sector)->first();
+        $room = Room::where('name_room', $name_room)->first();
 
         Route::find($idroute)->update([
             'color_route' => $color,
@@ -264,8 +266,8 @@ class RouteController extends Controller
         ]);
 
         return redirect()->route('see_routes_admin', [
-            'id' => $sector->id_sector,
-            'idsector' => $sector->id_room
+            'name_room' => $room->name_room,
+            'name_sector' => $sector->name
         ]);
     }
 }
