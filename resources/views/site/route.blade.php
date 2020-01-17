@@ -64,7 +64,7 @@
                                 la
                                 voie</a>
                         @else
-                            <a class="btn btn-primary d-inline-block"
+                            <a class="btn button-shadow d-inline-block"
                                href="{{route('add_validated_route',['idroom'=>$room->id_room,'id'=>$route->id_route])}}">Valider
                                 la
                                 voie</a>

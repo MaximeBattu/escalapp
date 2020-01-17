@@ -32,7 +32,7 @@
                     <td class="col-md-2">Aucune mise à jour</td>
                 @endif
                 <td class="col-md-1">
-                    <a type="button" class="btn btn-primary" href="{{route('see_sectors_admin', ['id'=>$salle->id_room])}}">Voir salle</a>
+                    <a type="button" class="btn button-shadow" href="{{route('see_sectors_admin', ['id'=>$salle->id_room])}}">Voir salle</a>
                 </td>
                 <td class="col-md-1 room-change">
                     <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>

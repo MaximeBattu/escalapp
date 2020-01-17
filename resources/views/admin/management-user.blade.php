@@ -26,7 +26,7 @@
                 @if($user->isAdmin == false)
                     <td class="col-md-1">Non</td>
                     <td class="col-md-2 room-change">
-                        <a type="button" class="btn btn-primary" href="{{route('modify_user',['id'=>$user->id])}}">Mettre
+                        <a type="button" class="btn button-shadow" href="{{route('modify_user',['id'=>$user->id])}}">Mettre
                             Administrateur</a>
                     </td>
                     <td class="col-md-1 room-change td_suppr">

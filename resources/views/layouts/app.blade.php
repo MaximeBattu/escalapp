@@ -16,6 +16,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!--
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 -->
@@ -99,14 +100,6 @@
 
     </main>
 </div>
-
-<footer class="footer expand-md fixed-bottom page-footer font-small text-light">
-    <!-- Copyright -->
-    <div class="footer-copyright text-center vertical">© 2018 Copyright -
-        <a href="https://lapp.in2p3.fr/" class="text-primary" target="_blank">Lapp Annecy</a>
-    </div>
-    <!-- Copyright -->
-</footer>
 
 </body>
 </html>

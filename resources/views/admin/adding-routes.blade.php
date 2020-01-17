@@ -57,8 +57,8 @@
 
 
             </div>
-            <button type="submit" class="btn btn-primary" name="submit" value="Ajouter et recommencer">Ajouter et recommencer</button>
-            <button type="submit" class="btn btn-primary" name="submit" value="Ajouter">Ajouter</button>
+            <button type="submit" class="btn button-shadow" name="submit" value="Ajouter et recommencer">Ajouter et recommencer</button>
+            <button type="submit" class="btn button-shadow" name="submit" value="Ajouter">Ajouter</button>
 
         </form>
     </div>

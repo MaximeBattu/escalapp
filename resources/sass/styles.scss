@@ -8,14 +8,6 @@ $primaryColor : #29434e!important;
     color: $textColor;
 }
 
-.footer {
-    background-color: $primaryColor;
-    height: 5vh;
-    z-index: 1;
-    color: $textColor;
-    line-height: 99%;
-}
-
 .escalapp {
     color: $textColor;
 }
@@ -335,4 +327,88 @@ $primaryColor : #29434e!important;
     text-align: center;
     border-top: solid 2px;
 }
+
+
+
+/* [Grimpeur] */
+
+/* Comptes */
+
+#title {
+    position: absolute;
+    top: 15vh;
+    left: 50vw;
+    transform: translateX(-7.5vw);
+}
+
+.infoCompte {
+    display: flex;
+    flex-direction: column;
+    margin: 20vh 0 0 30vw;
+    border-left: solid $primaryColor;
+    padding-left: 5vw;
+}
+
+.infoCompte>h1 {
+    margin: 3vh 0 3vh 0;
+    font-size: 2.5vh;
+}
+
+#photo {
+    position: absolute;
+    left: 5vw;
+    top: 15vh;
+    width: 15vw;
+    height: 15vw;
+    padding: 1vw;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#photo:hover i{
+    opacity: 1;
+}
+
+#photo>img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#photo>i {
+    position: absolute;
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0.5vw;
+    margin: 0.5vw;
+    border-radius: 100%;
+    cursor: pointer;
+    border: solid $primaryColor;
+    transition: 0.2s ease all;
+}
+
+#photo>i:hover {
+    background-color: $primaryColor;
+    color: white;
+}
+
+.modify {
+    position: absolute;
+    left: 5vw;
+    bottom: 5vh;
+}
+
+.button-shadow {
+    background-color: #233943;
+    color: white;
+    padding: 1vh;
+    margin: 0.5vw;
+}
+
+.button-shadow:hover {
+    color: white;
+    background-color: #355664;
+    box-shadow: 0 0 0.3vw #233943;
+}
+
 
