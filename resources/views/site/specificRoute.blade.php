@@ -33,7 +33,7 @@
                     @endif
                 @endforeach
             @else
-                <a class="btn btn-primary"
+                <a class="btn button-shadow"
                    href="{{route('add_validated_route',['idroom'=>$route->id_room,'id'=>$route->id_route])}}">Valider la
                     voie</a>
             @endif

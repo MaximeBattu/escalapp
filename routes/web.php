@@ -65,7 +65,3 @@ Route::get('/{name_room}/voies', 'RouteController@viewRoutes')->name('see_routes
 Route::get('/{name_room}/blocs', 'RouteController@viewBlocRoutes')->name('see_blocs');
 Route::get('/{name_room}/valider{id}','FinishedRoutesController@addValidatedRoute')->name('validate_route')->middleware('auth');
 Route::get('/{name_room}/supprimer{id}','FinishedRoutesController@deleteValidatedRoute')->name('delete_validated_route')->middleware('auth');
-
-
-
-
