@@ -1,47 +1,47 @@
-# Prérequis
+# Prerequisite
 
 - php >= 7.2
 - [Composer](https://getcomposer.org/)
 - [NodeJs](https://nodejs.org/en/)
-- pdo_sqlite (extension php => dans php.ini)
-- mb_string (extension php => dans php.ini)
-- OpenSSL => pour composer (rajouter : `extension=php_openssl.dll` à la fin du fichier)
+- pdo_sqlite (php extension => file : php.ini)
+- mb_string (php extension => file : php.ini)
+- OpenSSL => needed for composer (add : `extension=php_openssl.dll` at the end of file php.ini)
 
 # Getting Started
 
-- cloner l'application : `git clone https://github.com/MaximeBattu/escalapp.git` 
-- ouvrir cmd dans le dossier crée/cloné
-- installer dépendances composer : `composer install` OU `php composer.phar install`
-- installer aussi la dépendance doctrine (pour que les changements (update) s'executent bien ) : `composer require doctrine/dbal`
-- créer le fichier sqlite : `database.sqlite` dans `database/`
-- dupliquer le fichier `.env.example` et le renomer `.env` => situer à la racine du dossier `escalapp`
-- ouvrir le fichier .env et modifier le chemin de `DB_DATABASE` en y renseignant le chemin absolu vers le fichier `database.sqlite`
-    - attention : mettre des `/` à la place des `\`
-    - si le chemin contient des espaces, le mettre entre guillemets
-    - ex : `DB_DATABASE="F:/Users/Maxime BATTU/Desktop/escalapp/database/database.sqlite"`
-- lancer les migrations de la DB : `php artisan migrate`
-- lancer les seeders de la DB (pour avoir les données stockées en brute) : `php artisan db:seed`
-- génerer une clé d'apllication : `php artisan key:generate`
-- installer les dépendances frontend : `npm install`
-- compiler les fichiers frontend : `npm run dev`
-- lancer l'application avec le serveur interne php : `php artisan serve`
-- ouvrir le navigateur et aller sur `localhost:8000` ou le port afficher sur le cmd
-- Si vous faîtes du style lancer : `npm run watch` dans une autre console 
+- clone the application : `git clone https://github.com/MaximeBattu/escalapp.git` 
+- open command terminal in the folder created/cloned
+- install composer : `composer install` OR `php composer.phar install`
+- install composer dependency : doctrine (to make sure update migration are working ) : `composer require doctrine/dbal`
+- create sqlite file : `database.sqlite` in `database/`
+- duplicate file `.env.example` and rename it `.env` => situated at the root of the folder `escalapp`
+- open the following file `.env` and modify `DB_DATABASE` you have to pass the absolute path to `database.sqlite`
+    - Warning : put `/` instead of `\` (on Windows)
+    - If the path contains space, put it in quotes
+    - Ex : `DB_DATABASE="F:/Users/Maxime BATTU/Desktop/escalapp/database/database.sqlite"`
+- launch database migrations : `php artisan migrate`
+- launch database seeders : `php artisan db:seed`
+- generate application key : `php artisan key:generate`
+- install frontend dependencies : `npm install`
+- compile frontend files : `npm run dev`
+- launch application with php local server : `php artisan serve`
+- open your browser and search `localhost:8000` or the affected port (display on command terminal)
+- If you want to do css/js, launch : `npm run watch` in an other command terminal 
 
 # Adding project to git
 
-- Avant d'envoyer le projet il faut compiler les vues en mode production : `npm run prod`
-- Ajout des fichiers : `git add .`
-- Status des fichiers ajoutés : `git status`
-- Commit les fichiers ajoutés : `git commit -m "Message"` 
-- Récupération du projet sur le git :  `git pull`
-    - Là vous devez lire l'inviter de commande : regarder sur quel fichier il y a des conflits et les régler en conséquences
-    - PS : c'est bien d'ouvrir les fichiers avec des conflits sur VSCode (il les gère de manière automatique : vous avez juste à cliquer tout en haut)
+- Before sending your modifications on the git you must compile your frontend files (production mod) `npm run prod`
+- Add the files you modified/created/deleted : `git add .`
+- Check the status of the files you've added : `git status`
+- Commit your modification : `git commit -m "Message"` 
+- After pushing you need to pull the actual project : `git pull` or `git pull origin master`
+    - You need to read the command terminal and see in which files you have conflicts and fixed them
+    - It's good to open the files with conflicts on VSCode : it helps you to fixed your conflicts (automatically)
     ![Example of conflict on VSCode](https://cdn.discordapp.com/attachments/586278324217708554/662438843210924043/unknown.png)
-    - Une fois que vous avez régler vos conflits : faite un `git add .` ainsi qu'un `git commit -m "votre message : exemple : solve conflicts on ..."`
-- Envoyer le commit sur le git : `git push origin master`
+    - Once you fixed your conflicts you need to add the files you modified `git add .` then commit your changes `git commit -m "your message : solve conflicts on ..."`
+- Finally you can push your modifications on the git : `git push` or `git push origin master`
 
 # Problems
 
-- Si vous avez des problèmes avec les vues laravel (style non chargé ou pas totalement chargé) hésiter pas à faire un : `npm run dev`
+- If you have style problem when you pulled the project launch : `npm run dev`
 

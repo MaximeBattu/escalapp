@@ -23,12 +23,13 @@ class RouteController extends Controller
                         ->join('sectors', 'sectors.id_room', '=', $room->id_room)
                         ->where('sectors.climbing_type', $type)->distinct()->get();
 
-        //dump($users);die();
-
-        $doneByUser = Route::select('routes.*')
-                                ->join('finished_routes', 'finished_routes.id_route', '=', 'routes.id_route')
-                                ->join('sectors', 'sectors.id_sector', '=', 'sectors.id_sector')
-                                ->where(['finished_routes.id_user'=>Auth::user()->id, 'sectors.climbing_type'=>$type])->get();
+        $doneByUser = null;
+        if(isset(Auth::user()->id)) {
+            $doneByUser = Route::select('routes.*')
+                ->join('finished_routes', 'finished_routes.id_route', '=', 'routes.id_route')
+                ->join('sectors', 'sectors.id_sector', '=', 'sectors.id_sector')
+                ->where(['finished_routes.id_user'=>Auth::user()->id, 'sectors.climbing_type'=>$type])->get();
+        }
 
         foreach($routes as $route) {
             $route->finished = false;
@@ -46,7 +47,7 @@ class RouteController extends Controller
         return [
                 'routes' => $routes,
                 'room' => $room,
-                'users' => $users 
+                'users' => $users
             ];
     }
 
@@ -219,7 +220,7 @@ $idsSector = [];
                 'voiesContest' => $voiesContest
             ]);
         } else {
-            
+
         }
 */
 

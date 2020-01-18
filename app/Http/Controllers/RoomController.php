@@ -13,10 +13,8 @@ use App\User;
 class RoomController extends Controller
 {
     /**
-     * Load data from Table FinishedRoute
-     * We stock all the idUsers in a array named idsUsers
-     * Then we load all the user using the array idsUser (with FindMany)
-     * @param int $id
+     *
+     * @param string $name
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function viewRoom(string $name)
@@ -29,9 +27,8 @@ class RoomController extends Controller
 
 
         $count = Route::join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
-                        ->where(['id_room'=>$room->id_room,'climbing_type'=>'V'])->count();
+                        ->where(['id_room'=>$room->id_room,'climbing_type'=>'B'])->count();
         $hasBlocs = $count > 0 ? true: false;
-
 
         return view('site/room', [
             "room" => $room,

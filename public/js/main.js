@@ -201,7 +201,7 @@ function create(tag, text, parent) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/Ianis/Desktop/escalapp/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })
