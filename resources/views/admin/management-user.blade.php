@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1 class="text-center">{{count($users)}} utilisateurs enregistrés</h1>
-
-    <table class="table salles-admin">
+    <table class="table users-admin">
         <thead>
         <tr class="d-flex">
             <th class="col-md-1">ID</th>

@@ -12,43 +12,44 @@ use App\User;
 
 class RouteController extends Controller
 {
-    public static function returnViewByType(string $name, string $type) {
-
+    public static function returnViewByType(string $name, string $type)
+    {
         $room = Room::where('name_room', $name)->first();
         $routes = Route::byRoomAndType($room->id_room, $type);
 
-
         $users = User::select('users.*')
-                        ->join('finished_routes', 'finished_routes.id_user', '=', 'users.id')
-                        ->join('sectors', 'sectors.id_room', '=', $room->id_room)
-                        ->where('sectors.climbing_type', $type)->distinct()->get();
+            ->join('finished_routes', 'finished_routes.id_user', '=', 'users.id')
+            ->join('sectors', 'sectors.id_room', '=', $room->id_room)
+            ->where('sectors.climbing_type', $type)->distinct()->get();
 
         $doneByUser = null;
-        if(isset(Auth::user()->id)) {
+        if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')
                 ->join('finished_routes', 'finished_routes.id_route', '=', 'routes.id_route')
-                ->join('sectors', 'sectors.id_sector', '=', 'sectors.id_sector')
-                ->where(['finished_routes.id_user'=>Auth::user()->id, 'sectors.climbing_type'=>$type])->get();
-        }
+                ->join('sectors', 'sectors.id_sector', '=', 'routes.id_sector')
+                ->where(['finished_routes.id_user' => Auth::user()->id, 'sectors.climbing_type' => $type])->get();
 
-        foreach($routes as $route) {
-            $route->finished = false;
-        }
-
-        foreach ($doneByUser as $done) {
             foreach ($routes as $route) {
-                if ($route->id_route == $done->id_route) {
-                    $route->finished = true;
-                    break;
+                $route->finished = false;
+            }
+
+            foreach ($doneByUser as $done) {
+                foreach ($routes as $route) {
+                    if ($route->id_route == $done->id_route) {
+                        $route->finished = true;
+                        break;
+                    }
                 }
             }
+
         }
 
+
         return [
-                'routes' => $routes,
-                'room' => $room,
-                'users' => $users
-            ];
+            'routes' => $routes,
+            'room' => $room,
+            'users' => $users
+        ];
     }
 
     public function viewRoutes(string $name)
@@ -73,8 +74,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public
-    function seeRoutesAdmin(string $name_room, string $name_sector)
+    public function seeRoutesAdmin(string $name_room, string $name_sector)
     {
         $sector = Sector::where('name', $name_sector)->first();
         $room = Room::where('name_room', $name_room)->first();
@@ -87,8 +87,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public
-    function seeAddRoutes(string $name_room, string $name_sector)
+    public function seeAddRoutes(string $name_room, string $name_sector)
     {
         $sector = Sector::where('name', $name_sector)->first();
 
@@ -98,8 +97,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public
-    function addRoute(Request $request, string $name_room, string $name_sector)
+    public function addRoute(Request $request, string $name_room, string $name_sector)
     {
         $color = $request->input('colorRouteSelect');
         $difficulty = $request->input('difficultySelect');
@@ -125,15 +123,13 @@ class RouteController extends Controller
         }
     }
 
-    public
-    function deleteRoute(string $name_room, string $name_sector, int $idroute)
+    public function deleteRoute(string $name_room, string $name_sector, int $idroute)
     {
         Route::find($idroute)->delete();
         return redirect()->back();
     }
 
-    public
-    function seeUpdateRoute(string $name_room, string $name_sector, int $idroute)
+    public function seeUpdateRoute(string $name_room, string $name_sector, int $idroute)
     {
         $route = Route::find($idroute);
         $sector = Sector::where('name', $name_sector)->first();
@@ -144,8 +140,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public
-    function updateRoute(Request $request, string $name_room, string $name_sector, int $idroute)
+    public function updateRoute(Request $request, string $name_room, string $name_sector, int $idroute)
     {
         $color = $request->input('colorRouteSelect');
         $difficulty = $request->input('difficultySelect');

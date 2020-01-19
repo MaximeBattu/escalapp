@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Route;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation;
+use App\User;
+use App\FinishedRoute;
 
 class UserController extends Controller
 {
     public function seeMyProfil()
     {
         $user = User::find(Auth::user()->id);
+        $doneByUser = Route::select('routes.*','sectors.*','rooms.*')
+            ->join('finished_routes', 'finished_routes.id_route', '=', 'routes.id_route')
+            ->join('sectors', 'sectors.id_sector', '=', 'routes.id_sector')
+            ->join('rooms','rooms.id_room','=','sectors.id_room')
+            ->where('finished_routes.id_user',Auth::user()->id)->get();
+
         return view('site/profil', [
-            'user' => $user
+            'user' => $user,
+            'finishedRoutes'=>$doneByUser
         ]);
     }
 

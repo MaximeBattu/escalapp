@@ -1,5 +1,7 @@
 $textColor: #ffffff !important;
 $primaryColor: #29434e !important;
+$contestColor :#cfd8dc!important;
+$contestColorDark:#9ea7aa!important;
 
 .navbar {
     background-color: $primaryColor;
@@ -48,45 +50,35 @@ $primaryColor: #29434e !important;
     margin-bottom: 10%;
 }
 
-.transparentDiv {
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.5;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: all 0.2s ease-in-out;
-}
-
-.imageCenter {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 100%;
-    height: 750px;
-    width: 750px;
-    z-index: 100;
-    transition: 0.5s width linear;
-}
-
 .text-display {
-    font-size: 32px;
+    font-size: 22px;
 }
 
 .nav-link,
+.dropdown-item,
 .escalapp {
     font-size: 22px;
 }
 
+.escalapp {
+    font-size: 34px;
+    font-weight: bold;
+}
+
 /* ADMIN */
 
-.salles-admin {
+.salles-admin,
+.users-admin {
     width: 80vw;
     position: absolute;
     left: 10vw;
+}
+
+.salles-admin {
+    margin: 8% 0 8% 0;
+}
+
+.users-admin {
     margin: 5% 0 8% 0;
 }
 
@@ -97,7 +89,7 @@ $primaryColor: #29434e !important;
 
 .popup {
     position: absolute;
-    width: 95%;
+    width: 100%;
     bottom: 5vh !important;
     z-index: 2;
 }
@@ -122,14 +114,6 @@ $primaryColor: #29434e !important;
     transition: all 0.3s ease-in-out;
 }
 
-.imgVoie {
-    height: 150px;
-    width: 150px;
-    border-radius: 100%;
-    z-index: 100;
-    transition: 0.3s all ease-in-out;
-}
-
 .colorVoie {
     height: 75px;
     width: 75px;
@@ -143,32 +127,11 @@ $primaryColor: #29434e !important;
     font-size: 20px;
 }
 
-.imgOnPage {
-    position: absolute;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    opacity: 0.5;
-    z-index: 1;
-    transition: 0.5s all ease-in-out;
-}
-
-.imgOnMiddleScreen {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 100%;
-    width: 750px;
-    height: 750px;
-    transition: 0.5s all ease-in-out;
-}
-
 /* Salles */
 
 .add-room,
 .add-route {
+    display: block;
     position: absolute;
     top: 20%;
     right: 10vw;
@@ -177,6 +140,7 @@ $primaryColor: #29434e !important;
     color: $textColor;
     background-color: $primaryColor;
     border-color: $primaryColor;
+    margin-bottom: 10%;
 }
 
 .adding-room,
@@ -205,6 +169,61 @@ $primaryColor: #29434e !important;
 }
 
 /* [ VISITEUR ] */
+
+.transparentDiv {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.imageCenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    height: 750px;
+    width: 750px;
+    z-index: 100;
+    transition: 0.5s width linear;
+}
+
+
+.imgVoie {
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    z-index: 100;
+    transition: 0.3s all ease-in-out;
+}
+
+.imgOnPage {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+    transition: 0.5s all ease-in-out;
+}
+
+.imgOnMiddleScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    width: 750px;
+    height: 750px;
+    transition: 0.5s all ease-in-out;
+}
 
 /* Accueil */
 
@@ -310,7 +329,7 @@ $primaryColor: #29434e !important;
     border: 2px solid black;
     height: 100vh;
     width: 13vw;
-    background-color: red;
+    background-color:$contestColor;
     text-align: center;
     z-index: 4;
     transition: 0.4s all linear;
@@ -324,7 +343,7 @@ $primaryColor: #29434e !important;
     left: -2vw;
     width: 2vw;
     height: 100vh;
-    background-color: red;
+    background-color: $contestColor;
     z-index: 4;
     transition: 0.4s all linear;
 }
@@ -355,7 +374,7 @@ $primaryColor: #29434e !important;
     cursor: pointer;
     width: 2vw;
     border-right: 2px solid black;
-    background-color: red;
+    background-color: $contestColor;
     z-index: 4;
     height: 100vh;
     transition: 0.4s all ease-in-out;
@@ -472,7 +491,7 @@ $primaryColor: #29434e !important;
 
 #open:hover,
 #closeContest:hover {
-    background-color: green;
+    background-color: $contestColorDark;
 }
 
 /* AFFICHAGE SALLE */
@@ -491,7 +510,9 @@ $primaryColor: #29434e !important;
 }
 
 .content-voie,
-.content-bloc {
+.content-bloc,
+.content-empty-voie,
+.content-empty-bloc {
     position: absolute;
     top: 0;
     width: 50vw;
@@ -500,15 +521,24 @@ $primaryColor: #29434e !important;
     transition: 0.4s all linear;
 }
 
-.content-voie {
+.content-voie,
+.content-empty-voie {
     left:0;
     border-right: 2px solid black;
 }
 
-.content-bloc {
+.content-bloc,
+.content-empty-bloc {
     right: 0;
     border-left: 2px solid black;
 }
+
+.content-empty-bloc,
+.content-empty-voie {
+    height: 100%;
+    background-color: rgba(111,111,111,0.5);
+}
+
 
 .content-image {
     max-width:100%;
@@ -532,6 +562,6 @@ $primaryColor: #29434e !important;
 
 .content-voie:hover,
 .content-bloc:hover {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(207,216,220,0.7);
     transition: 0.4s all linear;
 }
