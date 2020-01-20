@@ -49279,7 +49279,27 @@ if (false) {} else {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'E:\\Users\\Maxime\\Desktop\\Dossiers\\escalapp\\node_modules\\webpack\\buildin\\global.js'");
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 
@@ -49290,7 +49310,29 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'E:\\Users\\Maxime\\Desktop\\Dossiers\\escalapp\\node_modules\\webpack\\buildin\\module.js'");
+module.exports = function(module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
 
 /***/ }),
 
@@ -49475,9 +49517,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\sass\styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! /home/Ianis/Desktop/escalapp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/Ianis/Desktop/escalapp/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/Ianis/Desktop/escalapp/resources/sass/styles.scss */"./resources/sass/styles.scss");
 
 
 /***/ })
