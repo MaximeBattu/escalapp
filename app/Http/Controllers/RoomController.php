@@ -21,12 +21,12 @@ class RoomController extends Controller
     {
         $room = Room::where('name_room', $name)->first();
 
-        $count = Route::join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
+        $count = Route::join('sectors', 'routes.id_sector', 'sectors.id_sector')
                         ->where(['id_room'=>$room->id_room,'climbing_type'=>'V'])->count();
         $hasRoutes = $count > 0 ? true : false;
 
 
-        $count = Route::join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
+        $count = Route::join('sectors', 'routes.id_sector', 'sectors.id_sector')
                         ->where(['id_room'=>$room->id_room,'climbing_type'=>'B'])->count();
         $hasBlocs = $count > 0 ? true: false;
 
