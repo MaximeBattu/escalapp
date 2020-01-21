@@ -15,12 +15,12 @@ class RouteController extends Controller
     public static function returnViewByType(string $name, string $type)
     {
         $room = Room::where('name_room', $name)->first();
-        $routes = Route::byRoomAndType($room->id_room, $type);                        
+        $routes = Route::byRoomAndType($room->id_room, $type);
 
         $users = User::select('users.*')
                     ->join('finished_routes', 'users.id', 'finished_routes.id_user')
                     ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
-                    ->where(['climbing_type'=>$type, 'id_room'=>$room->id_room])->distinct()->get();
+                    ->where(['sectors.climbing_type'=>$type, 'sectors.id_room'=>$room->id_room])->distinct()->get();
 
         if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')
