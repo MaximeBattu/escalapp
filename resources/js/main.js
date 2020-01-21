@@ -29,11 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
             div.classList.remove("transparentDiv")
             imageDiv.classList.remove("imageCenter")
             imageDiv.style.background = null
+            centerImage.style.border = "none"
         })
         centerImage.addEventListener('click', function() {
             div.classList.remove("transparentDiv")
             imageDiv.classList.remove("imageCenter")
             imageDiv.style.background = null
+            centerImage.style.border = "none"
         })
     }
 

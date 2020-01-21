@@ -22,6 +22,8 @@ class RouteController extends Controller
             ->join('sectors', 'sectors.id_room', '=', $room->id_room)
             ->where('sectors.climbing_type', $type)->distinct()->get();
 
+
+
         $doneByUser = null;
         if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')

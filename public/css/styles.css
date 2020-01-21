@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #29434e !important;
+  background-color: #212121 !important;
   height: 80px;
   z-index: 1;
   color: #ffffff !important;
@@ -48,18 +48,15 @@
   margin-bottom: 10%;
 }
 
-.text-display {
-  font-size: 22px;
-}
-
+.text-display,
 .nav-link,
 .dropdown-item,
 .escalapp {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .escalapp {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -139,8 +136,8 @@
   width: 300px;
   font-size: 28px;
   color: #ffffff !important;
-  background-color: #29434e !important;
-  border-color: #29434e !important;
+  background-color: #212121 !important;
+  border-color: #212121 !important;
   margin-bottom: 10%;
 }
 
@@ -302,7 +299,7 @@
 .routeBlocks:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  box-shadow: 1vw 7vh 5px #29434e !important;
+  box-shadow: 1vw 7vh 5px #212121 !important;
   -webkit-transition: 0.2s ease all;
   transition: 0.2s ease all;
 }
@@ -344,7 +341,7 @@
   border: 2px solid black;
   height: 100vh;
   width: 13vw;
-  background-color: #cfd8dc !important;
+  background-color: #484848 !important;
   text-align: center;
   z-index: 4;
   -webkit-transition: 0.4s all linear;
@@ -359,7 +356,7 @@
   left: -2vw;
   width: 2vw;
   height: 100vh;
-  background-color: #cfd8dc !important;
+  background-color: #484848 !important;
   z-index: 4;
   -webkit-transition: 0.4s all linear;
   transition: 0.4s all linear;
@@ -392,7 +389,7 @@
   cursor: pointer;
   width: 2vw;
   border-right: 2px solid black;
-  background-color: #cfd8dc !important;
+  background-color: #484848 !important;
   z-index: 4;
   height: 100vh;
   -webkit-transition: 0.4s all ease-in-out;
@@ -446,7 +443,7 @@
   -webkit-box-direction: normal;
           flex-direction: column;
   margin: 20vh 0 0 30vw;
-  border-left: solid #29434e !important;
+  border-left: solid #212121 !important;
   padding-left: 5vw;
 }
 
@@ -484,13 +481,13 @@
   margin: 0.5vw;
   border-radius: 100%;
   cursor: pointer;
-  border: solid #29434e !important;
+  border: solid #212121 !important;
   -webkit-transition: 0.2s ease all;
   transition: 0.2s ease all;
 }
 
 #photo > i:hover {
-  background-color: #29434e !important;
+  background-color: #212121 !important;
   color: white;
 }
 
@@ -515,7 +512,7 @@
 
 #open:hover,
 #closeContest:hover {
-  background-color: #9ea7aa !important;
+  background-color: #484848 !important;
 }
 
 /* AFFICHAGE SALLE */

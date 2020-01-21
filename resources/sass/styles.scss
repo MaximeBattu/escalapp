@@ -1,7 +1,7 @@
 $textColor: #ffffff !important;
-$primaryColor: #29434e !important;
-$contestColor :#cfd8dc!important;
-$contestColorDark:#9ea7aa!important;
+$primaryColor: #212121 !important;
+$contestColor :#484848!important;
+$contestColorDark:#484848!important;
 
 .navbar {
     background-color: $primaryColor;
@@ -50,18 +50,15 @@ $contestColorDark:#9ea7aa!important;
     margin-bottom: 10%;
 }
 
-.text-display {
-    font-size: 22px;
-}
-
+.text-display,
 .nav-link,
 .dropdown-item,
 .escalapp {
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .escalapp {
-    font-size: 34px;
+    font-size: 30px;
     font-weight: bold;
 }
 
