@@ -20,6 +20,7 @@ class CreateRoutesTable extends Migration
             $table->string('difficulty_route',3)->nullable();
             $table->string('url_photo',150)->nullable();
             $table->integer('score_route')->default(1000);
+            $table->integer('nb_user_done')->default(0);
             $table->foreign('id_sector')->references('id_sector')->on('sectors');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
