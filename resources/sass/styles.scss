@@ -3,10 +3,14 @@ $primaryColor: #212121 !important;
 $contestColor :#484848!important;
 $contestColorDark:#484848!important;
 
+* {
+    font-family:Arial;
+}
+
 .navbar {
     background-color: $primaryColor;
     height: 80px;
-    z-index: 1;
+    z-index: 10;
     color: $textColor;
 }
 
@@ -324,12 +328,14 @@ $contestColorDark:#484848!important;
     top: 0;
     left: -15vw;
     border: 2px solid black;
+    border-right-color:white ;
     height: 100vh;
     width: 13vw;
     background-color:$contestColor;
     text-align: center;
-    z-index: 4;
+    z-index: 20;
     transition: 0.4s all linear;
+    color: white;
 }
 
 #closeContest {
@@ -341,8 +347,9 @@ $contestColorDark:#484848!important;
     width: 2vw;
     height: 100vh;
     background-color: $contestColor;
-    z-index: 4;
+    z-index: 20;
     transition: 0.4s all linear;
+    color: white;
 }
 
 #contest > h2 {
@@ -372,9 +379,10 @@ $contestColorDark:#484848!important;
     width: 2vw;
     border-right: 2px solid black;
     background-color: $contestColor;
-    z-index: 4;
+    z-index: 20;
     height: 100vh;
     transition: 0.4s all ease-in-out;
+    color: white;
 }
 
 .text-renverse,
@@ -514,7 +522,7 @@ $contestColorDark:#484848!important;
     top: 0;
     width: 50vw;
     height: 100vh;
-    z-index: 0;
+    z-index: 1;
     transition: 0.4s all linear;
 }
 
@@ -528,6 +536,19 @@ $contestColorDark:#484848!important;
 .content-empty-bloc {
     right: 0;
     border-left: 2px solid black;
+}
+
+.content-image-room {
+    margin-top: 80px;
+}
+
+.image-room {
+    z-index: 0;
+    max-height:100%;
+}
+
+.room-bloc {
+    max-width: 100%;
 }
 
 .content-empty-bloc,
@@ -557,8 +578,7 @@ $contestColorDark:#484848!important;
     font-weight: bold;
 }
 
-.content-voie:hover,
-.content-bloc:hover {
-    background-color: rgba(207,216,220,0.7);
+.content-image-room:hover {
+    opacity: 0.7;
     transition: 0.4s all linear;
 }
