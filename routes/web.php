@@ -51,8 +51,8 @@ Route::get('admin/gestion-salles/{name_room}/{name_sector}/ajouter-voie', 'Route
 Route::post('admin/gestion-salles/{name_room}/{name_sector}/ajouter-voie', 'RouteController@addRoute')->name('add_route')->middleware('auth','admin');
 
 // ACCOUNT ADMINISTRATION
-Route::get('/admin/gestion-compte', 'UserController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');
-Route::get('/admin/gestion-compte/supprimer/{id}','UserController@deleteUser')->name('delete_user')->middleware('auth','admin');
+Route::get('/admin/gestion-comptes', 'UserController@seeUserManagement')->name('see_user_management')->middleware('auth', 'admin');
+Route::get('/admin/gestion-comptes/supprimer/{id}','UserController@deleteUser')->name('delete_user')->middleware('auth','admin');
 Route::get('/admin/gestion/modifier/mettre-administrateur/{id}','UserController@modifyUser')->name('modify_user')->middleware('auth','admin');
 Route::get('/admin/gestion/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')->name('remove_administrator_right')->middleware('auth','admin');
 

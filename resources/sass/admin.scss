@@ -1,9 +1,11 @@
 $textColor: #ffffff !important;
 $primaryColor: #212121 !important;
+$contestColor :#484848!important;
 
 .salles-admin,
 .users-admin {
     width: 80vw;
+    top: 7vh;
     position: absolute;
     left: 10vw;
 }
@@ -18,7 +20,6 @@ $primaryColor: #212121 !important;
 
 .room-change {
     text-align: center;
-    background-color: lightgrey;
 }
 
 .popup {
@@ -99,4 +100,32 @@ $primaryColor: #212121 !important;
 .label-updating-room {
     font-size: 24px;
     margin: 20px 20px;
+}
+
+.delete {
+    color: red;
+    list-style-type: none!important;
+    text-decoration: none!important;
+    transition: 100ms all linear;
+}
+
+.delete:hover {
+    color:#bf360c!important;
+    transition: 100ms all linear;
+}
+
+.modify-user {
+    color:#484848;
+    list-style-type: none!important;
+    text-decoration: none!important;
+    transition: 100ms all linear;
+}
+
+.modify-user:hover {
+    color:black;
+    transition: 100ms all linear;
+}
+
+.user-is-admin {
+    color: #00ff67;
 }

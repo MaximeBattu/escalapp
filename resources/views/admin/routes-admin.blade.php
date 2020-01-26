@@ -7,40 +7,40 @@
     </div>
     <table class="table salles-admin">
         <thead>
-        <tr class="d-flex">
-            <th class="col-md-1">ID</th>
-            <th class="col-md-1">Couleur</th>
-            <th class="col-md-2">Difficulté</th>
-            <th class="col-md-2">Type de voie</th>
-            <th class="col-md-2">Score</th>
-            <th class="col-md-2">Dernière mise à jour</th>
-            <th colspan="2" class="col-md-2 room-change">Changement</th>
+        <tr>
+            <th class="table-text">ID</th>
+            <th class="table-text">Couleur</th>
+            <th class="table-text">Difficulté</th>
+            <th class="table-text">Type de voie</th>
+            <th class="table-text">Score</th>
+            <th class="table-text">Dernière mise à jour</th>
+            <th class="table-text">Changement</th>
         </tr>
         </thead>
         <tbody>
         @foreach($routes as $route)
-            <tr class="d-flex">
-                <td class="col-md-1"> {{$route->id_route}}</td>
+            <tr>
+                <td class="align-middle table-text"> {{$route->id_route}}</td>
                 @if($sector->climbing_type == "V")
-                    <td class="col-md-1">{{$route->color_route}}</td>
-                    <td class="col-md-2">{{$route->difficulty_route}}</td>
-                    <td class="col-md-2">Voie</td>
+                    <td class="align-middle table-text">{{$route->color_route}}</td>
+                    <td class="align-middle table-text">{{$route->difficulty_route}}</td>
+                    <td class="align-middle table-text">Voie</td>
                 @else
-                    <td class="col-md-1"></td>
-                    <td class="col-md-2">{{$route->color_route}}</td>
-                    <td class="col-md-2">Bloc</td>
+                    <td class="align-middle table-text"></td>
+                    <td class="align-middle table-text">{{$route->color_route}}</td>
+                    <td class="align-middle table-text">Bloc</td>
                 @endif
-                <td class="col-md-2">{{$route->score_route}}</td>
+                <td class="align-middle table-text">{{$route->score_route}}</td>
                 @if(isset($route->updated_at))
-                    <td class="col-md-2">{{$route->updated_at->format('d/m/yy')}}</td>
+                    <td class="align-middle table-text">{{$route->updated_at->format('d/m/yy')}}</td>
                 @else
-                    <td class="col-md-2">Aucune mise à jour</td>
+                    <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
-                <td class="col-md-1 room-change">
+                {{--<td class="align-middle table-text">
                     <a type="button" class="btn btn-warning" href="{{route('see_update_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">Modifier</a>
-                </td>
-                <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-danger" href="{{route('delete_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">Supprimer</a>
+                </td>--}}
+                <td class="align-middle table-text text-center">
+                    <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}"></a>
                 </td>
             </tr>
         @endforeach

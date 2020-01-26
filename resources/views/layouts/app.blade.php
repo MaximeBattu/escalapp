@@ -59,6 +59,18 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true )
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/gestion-salles') }}">
+                                Gestion salles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/gestion-comptes') }}">
+                                Gestion comptes
+                            </a>
+                        </li>
+                    @endif
                 {{--<li class="nav-item">
                     <a class="nav-link align-middle" href="{{route('see_classification')}}">Classement</a>
                 </li>--}}

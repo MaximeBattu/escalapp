@@ -3,44 +3,40 @@
 
     <table class="table users-admin">
         <thead>
-        <tr class="d-flex">
-            <th class="col-md-1">ID</th>
-            <th class="col-md-2">Prénom</th>
-            <th class="col-md-2">Nom</th>
-            <th class="col-md-2">email</th>
-            <th class="col-md-1">Crée le</th>
-            <th class="col-md-1">Administateur</th>
-            <th colspan="2" class="col-md-3 room-change">Changement</th>
-        </tr>
+            <tr>
+                <th class="table-text">ID</th>
+                <th class="table-text">Prénom</th>
+                <th class="table-text">Nom</th>
+                <th class="table-text">email</th>
+                <th class="table-text">Crée le</th>
+                <th class="table-text">Administateur</th>
+                <th class="room-change table-text">Changement</th>
+            </tr>
         </thead>
         <tbody>
         @foreach($users as $user)
-            <tr class="d-flex">
-                <td class="col-md-1" scope="row">{{$user->id}}</td>
-                <td class="col-md-2">{{$user->firstname}}</td>
-                <td class="col-md-2">{{$user->name}}</td>
-                <td class="col-md-2">{{$user->email}}</td>
-                <td class="col-md-1">{{$user->created_at->format('d/m/Y')}}</td>
+            <tr>
+                <td class="align-middle table-text">{{$user->id}}</td>
+                <td class="align-middle table-text">{{$user->firstname}}</td>
+                <td class="align-middle table-text">{{$user->name}}</td>
+                <td class="align-middle table-text">{{$user->email}}</td>
+                <td class="align-middle table-text">{{$user->created_at->format('d/m/Y')}}</td>
                 @if($user->isAdmin == false)
-                    <td class="col-md-1">Non</td>
-                    <td class="col-md-2 room-change">
-                        <a type="button" class="btn button-shadow" href="{{route('modify_user',['id'=>$user->id])}}">Mettre
-                            Administrateur</a>
-                    </td>
-                    <td class="col-md-1 room-change td_suppr">
-                        <a type="button" class="btn btn-danger btn_suppr" href="{{route('delete_user',['id'=>$user->id])}}">Supprimer</a>
+                    <td class="align-middle table-text">Non</td>
+                    <td class="align-middle table-text d-flex justify-content-around">
+                        <a type="button" class="fas fa-user-edit fa-2x modify-user" href="{{route('modify_user',['id'=>$user->id])}}"></a>
+                        <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_user',['id'=>$user->id])}}"></a>
                     </td>
                 @elseif(isset(Auth::user()->id) && Auth::user()->id == $user->id && Auth::user()->isAdmin == true)
-                    <td class="col-md-1">Oui</td>
-                    <td class="col-md-2 room-change"></td>
-                    <td class="col-md-1 room-change"></td>
-                @else
-                    <td class="col-md-1">Oui</td>
-                    <td class="col-md-2 room-change">
-                        <a type="button" class="btn btn-warning" href="{{route('remove_administrator_right',['id'=>$user->id])}}">Enlever droits adminsitrateur</a>
+                    <td class="align-middle table-text">Oui</td>
+                    <td class="align-middle table-text d-flex justify-content-around user-is-admin">
+                        <i class="fas fa-user-check fa-2x"></i>
                     </td>
-                    <td class="col-md-1 room-change td_suppr">
-                        <a type="button" class="btn btn-danger btn_suppr" href="{{route('delete_user',['id'=>$user->id])}}">Supprimer</a>
+                @else
+                    <td class="align-middle table-text">Oui</td>
+                    <td class="align-middle table-text d-flex justify-content-around">
+                        <a type="button" class="fas fa-user-check fa-2x modify-user" href="{{route('remove_administrator_right',['id'=>$user->id])}}"></a>
+                        <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_user',['id'=>$user->id])}}"></a>
                     </td>
                 @endif
             </tr>
