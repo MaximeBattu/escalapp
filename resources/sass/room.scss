@@ -1,0 +1,65 @@
+$primaryColor: #212121 !important;
+/* Accueil */
+
+.boxRoom {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 50px 0px 50px 0px;
+    border: 1px solid black;
+    height: 25vh;
+    margin: 50px 50px 0 50px;
+    background-image: url(http://www.bloctrotters.com/IMG/jpg/2.jpg);
+    cursor: pointer;
+}
+
+.boxRoom:hover, .boxRoom:visited, .boxRoom:link, .boxRoom:active {
+    text-decoration: none;
+    color: white;
+}
+
+#roomInfo {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    font-size:22px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.25s ease all;
+}
+
+#roomInfo > p {
+    margin-top: 1vh;
+}
+
+#roomname {
+    transition: 0.1s ease all;
+    border-radius: 5px;
+}
+
+.display-none {
+    display: none;
+    opacity: 0;
+}
+
+.boxRoom:hover .display-none {
+    display: block;
+    opacity: 1;
+    transition: 0.3s ease all;
+}
+
+.boxRoom:hover #roomInfo {
+    height: 80%;
+}
+
+.routeBlocks {
+    padding: 0;
+    height: 25vh;
+    transition: 0.2s ease all;
+}
+
+.routeBlocks:hover {
+    transform: scale(1.1);
+    box-shadow: 1vw 7vh 5px $primaryColor;
+    transition: 0.2s ease all;
+}
