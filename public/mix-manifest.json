@@ -2,5 +2,11 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/styles.css": "/css/styles.css",
+    "/css/profile.css": "/css/profile.css",
+    "/css/room.css": "/css/room.css",
+    "/css/route-boulder.css": "/css/route-boulder.css",
+    "/css/admin.css": "/css/admin.css",
+    "/css/contest.css": "/css/contest.css",
+    "/css/user.css": "/css/user.css",
     "/js/main.js": "/js/main.js"
 }

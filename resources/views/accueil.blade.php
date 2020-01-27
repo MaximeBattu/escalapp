@@ -8,36 +8,36 @@
     </div>
     <table class="table salles-admin">
         <thead>
-        <tr class="d-flex">
-            <th class="col-md-1">ID</th>
-            <th class="col-md-2">Nom</th>
-            <th class="col-md-2">Adresse mail</th>
-            <th class="col-md-2">Adresse</th>
-            <th class="col-md-2">Dernière mise à jour</th>
-            <th class="col-md-1"></th>
-            <th colspan="2" class="col-md-2 room-change">Changement</th>
+        <tr>
+            <th class="table-text">ID</th>
+            <th class="table-text">Nom</th>
+            <th class="table-text">Adresse mail</th>
+            <th class="table-text">Adresse</th>
+            <th class="table-text">Dernière mise à jour</th>
+            <th class="table-text"></th>
+            <th colspan="2" class="table-text">Changement</th>
         </tr>
         </thead>
         <tbody>
         @foreach($salles as $salle)
-            <tr class="d-flex">
-                <td class="col-md-1">{{$salle->id_room}}</td>
-                <td class="col-md-2">{{$salle->name_room}}</td>
-                <td class="col-md-2">{{$salle->email}}</td>
-                <td class="col-md-2">{{$salle->address_room}}</td>
+            <tr>
+                <td class="align-middle table-text">{{$salle->id_room}}</td>
+                <td class="align-middle table-text">{{$salle->name_room}}</td>
+                <td class="align-middle table-text">{{$salle->email}}</td>
+                <td class="align-middle table-text">{{$salle->address_room}}</td>
                 @if(isset($salle->updated_at))
-                    <td class="col-md-2">{{$salle->updated_at->format('d/m/Y')}}</td>
+                    <td class="align-middle table-text">{{$salle->updated_at->format('d/m/Y')}}</td>
                 @else
-                    <td class="col-md-2">Aucune mise à jour</td>
+                    <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
-                <td class="col-md-1">
+                <td class="align-middle table-text">
                     <a type="button" class="btn button-shadow" href="{{route('see_sectors_admin', ['name_room'=>$salle->name_room])}}">Voir salle</a>
                 </td>
-                <td class="col-md-1 room-change">
+                {{--<td class="align-middle table-text">
                     <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>
-                </td>
-                <td class="col-md-1 room-change">
-                    <a type="button" class="btn btn-danger" href="{{route('delete_room',['id'=>$salle->id_room])}}">Supprimer</a>
+                </td>--}}
+                <td class="align-middle table-text text-center">
+                    <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_room',['id'=>$salle->id_room])}}"></a>
                 </td>
             </tr>
         @endforeach

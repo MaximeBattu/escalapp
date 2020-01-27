@@ -27,15 +27,6 @@
         </div>
         <div id="tableContent">
             <table class="table">
-                <thead>
-                <tr class="trContentTh">
-                    <th class="text-display">Image</th>
-                    <th class="text-display">Couleur</th>
-                    <th class="text-display">Difficulté</th>
-                    <th class="text-display">Score</th>
-                    <th></th>
-                </tr>
-                </thead>
                 <tbody>
                 @foreach($routes as $route)
                     <tr class="text-center">
@@ -47,23 +38,15 @@
                                 <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image">
                             @endif
                         </td>
-                        <td class="align-middle td-display">
-                            <div class="colorRoute" style="background-color: {{$route->color_route}}"></div>
-                            <span class="text-display">{{$route->color_route}}</span>
-                        </td>
-                        <td class="align-middle text-display">{{$route->difficulty_route}}</td>
-                        <td class="align-middle text-display">{{$route->score_route}}</td>
-                        <td class="align-middle text-display">
+                        <td class="align-middle table-text">{{$route->difficulty_route}}</td>
+                        <td class="align-middle table-text">{{$route->score_route}} pts</td>
+                        <td class="align-middle table-text">
                             @if($route->finished)
-                                <a class="btn btn-warning d-inline-block"
-                                   href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Retirer
-                                    la
-                                    voie</a>
+                                <a class="fa fa-check fa-2x finished-check"
+                                   href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}"></a>
                             @else
-                                <a class="btn btn-primary d-inline-block"
-                                   href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}">Valider
-                                    la
-                                    voie</a>
+                                <a class="fas fa-check-square fa-3x validate-check"
+                                   href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}"></a>
                             @endif
                         </td>
                     </tr>
