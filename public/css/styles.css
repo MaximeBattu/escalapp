@@ -444,26 +444,55 @@
           transform: translateX(-7.5vw);
 }
 
-.infoCompte {
+#infoCompte {
+  display: -webkit-box;
+  display: flex;
+  margin-top: 15vh;
+}
+
+#otherInfo {
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
-  margin: 20vh 0 0 30vw;
-  border-left: solid #212121 !important;
-  padding-left: 5vw;
+  width: 30vw;
 }
 
-.infoCompte > h1 {
-  margin: 3vh 0 3vh 0;
+#otherInfo > h1 {
+  margin: 3vh 0 3vh 5vw;
   font-size: 2.5vh;
 }
 
-#photo {
+#achievement-container {
   position: absolute;
-  left: 5vw;
-  top: 15vh;
+  right: 3vw;
+  top: 25vh;
+  width: 45vw;
+  height: 70vh;
+  font-size: 2.5vh;
+  padding-left: 2vw;
+  border-left: solid;
+}
+
+.roomsuccess {
+  height: 4.5vh;
+  font-size: 4vh;
+  text-align: center;
+  font-weight: bold;
+  background-color: #212121 !important;
+  color: white;
+  cursor: pointer;
+  margin-top: 2vh;
+}
+
+.score {
+  display: none;
+  border-bottom: solid;
+  margin-bottom: 2vh;
+}
+
+#photo {
   width: 15vw;
   height: 15vw;
   padding: 1vw;
@@ -607,5 +636,25 @@
   opacity: 0.7;
   -webkit-transition: 0.4s all linear;
   transition: 0.4s all linear;
+}
+
+/* Formulaires */
+
+input[type=text],
+input[type=email],
+input[type=password],
+select.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+select.form-control:focus {
+  box-shadow: none;
 }
 

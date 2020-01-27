@@ -42,7 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	let contest = document.querySelector("#contest")
 	let open = document.querySelector("#open")
     let close = document.querySelector("#closeContest")
-    let escalapp = document.querySelector(".escalapp");
+    let escalapp = document.querySelector(".escalapp")
+    let roomsuccess = document.querySelectorAll(".roomsuccess")
+    let scores = document.querySelectorAll(".score")
+
+    for (let title of roomsuccess) {
+        title.addEventListener("click", function() {
+            for(let score of scores) {
+                score.style.display = "block"
+            }
+        })
+    }
 
 	open.addEventListener("click", function() {
 		contest.style.left = "0"
