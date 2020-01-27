@@ -6,8 +6,37 @@ setTimeout(function() {
     $('#profileModification').fadeOut()
 },4000)
 
-
 document.addEventListener('DOMContentLoaded', function() {
+    
+   /* let tdsRoom = document.querySelectorAll(".room-modify");
+    console.log(tdsRoom)
+    for(let tdRoom of tdsRoom) {
+        tdRoom.addEventListener("dblclick", function () {
+            let content = $(tdRoom).text()
+            $(tdRoom).replaceWith($('<input type="text" id="input" value="'+content+'">'))
+            let input = document.querySelector("#input")
+            input.addEventListener("keydown", event => {
+                if(event.keyCode === 13) {
+                    let newContent = $("#input").val()
+                    $(input).replaceWith($('<td class="align-middle table-text room-modify">'+newContent+'</td>'))
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: 'admin/gestion-salles/modifier/route/'+tdRoom.id,
+                        type: 'POST',
+                        data: JSON.stringify({
+                            name: newContent
+                        })
+                    }).then(res => console.log(res))
+                        .catch(err => {
+                            console.error('JE SUIS LAAAAAAAAAA')
+                            console.error(err)
+                        })
+                }
+            })
+        })
+    }*/
 
     let body = document.querySelector('body')
     let images = document.querySelectorAll("#image")

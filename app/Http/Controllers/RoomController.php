@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\FinishedRoute;
@@ -137,6 +138,10 @@ class RoomController extends Controller
         ]);
 
         return redirect()->route('see_room_management');
+    }
+
+    public function ajaxUpdate(Request $request) {
+        $content = $request->all();
     }
 
 }
