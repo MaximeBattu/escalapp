@@ -15,6 +15,8 @@ class UserController extends Controller
     public function seeMyProfil()
     {
         $user = User::find(Auth::user()->id);
+        $user->score = User::getUserScore($user->id)->SCORE; 
+
         $doneByUser = Route::select('routes.*','sectors.*','rooms.*')
             ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
             ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
@@ -23,7 +25,7 @@ class UserController extends Controller
 
         return view('site/profil', [
             'user' => $user,
-            'finishedRoutes'=>$doneByUser
+            'finishedRoutes'=>$doneByUser,
         ]);
     }
 
