@@ -1,27 +1,49 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1 class="text-center">Ajoutez une ou plusieurs salles</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card formContainer">
+                <div class="card-header formTitle">{{ __('Ajouter une ou plusieurs salles') }}</div>
+                <div class="card-body">
+                    <form method="post" action="{{route('add_room')}}">
+                        {{csrf_field()}}
 
+                        <div class="form-group row new-infos">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom Salle') }}</label>
 
-    <form method="post" class="adding-room" action="{{route('add_room')}}">
-        {{csrf_field()}}
-        <div class="form-group">
-            <label for="nameRoom" class="label-adding-room">Nom</label>
-            <input type="text" placeholder="Nom de la salle" class="form-control" name="nameRoom" required>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" placeholder="nom salle">
+                            </div>
+                        </div>
 
-            <label for="emailRoom" class="label-adding-room">E-mail</label>
-            <input  type="email" placeholder="E-mail de la salle" class="form-control" name="emailRoom" required>
+                        <div class="form-group row new-infos">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
-            <label for="addressRoom" class="label-adding-room">Adresse</label>
-            <input type="text" placeholder="Adresse de la salle" class="form-control" name="addressRoom" required>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" placeholder="e-mail">
+                            </div>
+                        </div>
+
+                        <div class="form-group row new-infos">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Adresse') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" placeholder="adresse">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter et recommencer">
+                            Ajouter et recommencer
+                        </button>
+                        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter">Ajouter</button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter et recommencer">Ajouter et
-            recommencer
-        </button>
-        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter">Ajouter</button>
-    </form>
+    </div>
+</div>
 
     <div>
         @if(\Session::has('add-success'))

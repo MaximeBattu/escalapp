@@ -282,7 +282,7 @@ function create(tag, text, parent) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /home/escalapp/public_html/escalapp/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })
