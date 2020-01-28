@@ -3,6 +3,7 @@
 
     <h1 class="text-center">Ajoutez une ou plusieurs salles</h1>
 
+
     <form method="post" class="adding-room" action="{{route('add_room')}}">
         {{csrf_field()}}
         <div class="form-group">

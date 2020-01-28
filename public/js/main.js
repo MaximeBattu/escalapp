@@ -101,6 +101,35 @@ setTimeout(function () {
   $('#profileModification').fadeOut();
 }, 4000);
 document.addEventListener('DOMContentLoaded', function () {
+  /* let tdsRoom = document.querySelectorAll(".room-modify");
+   console.log(tdsRoom)
+   for(let tdRoom of tdsRoom) {
+       tdRoom.addEventListener("dblclick", function () {
+           let content = $(tdRoom).text()
+           $(tdRoom).replaceWith($('<input type="text" id="input" value="'+content+'">'))
+           let input = document.querySelector("#input")
+           input.addEventListener("keydown", event => {
+               if(event.keyCode === 13) {
+                   let newContent = $("#input").val()
+                   $(input).replaceWith($('<td class="align-middle table-text room-modify">'+newContent+'</td>'))
+                   $.ajax({
+                       headers: {
+                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                       },
+                       url: 'admin/gestion-salles/modifier/route/'+tdRoom.id,
+                       type: 'POST',
+                       data: JSON.stringify({
+                           name: newContent
+                       })
+                   }).then(res => console.log(res))
+                       .catch(err => {
+                           console.error('JE SUIS LAAAAAAAAAA')
+                           console.error(err)
+                       })
+               }
+           })
+       })
+   }*/
   var body = document.querySelector('body');
   var images = document.querySelectorAll("#image");
   var div = create('div', null, body);
@@ -159,6 +188,56 @@ document.addEventListener('DOMContentLoaded', function () {
   var open = document.querySelector("#open");
   var close = document.querySelector("#closeContest");
   var escalapp = document.querySelector(".escalapp");
+  var roomsuccess = document.querySelectorAll(".roomsuccess");
+  var scores = document.querySelectorAll(".score");
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = roomsuccess[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var title = _step2.value;
+      title.addEventListener("click", function () {
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+
+        try {
+          for (var _iterator3 = scores[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var score = _step3.value;
+            score.style.display = "block";
+          }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+              _iterator3["return"]();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
+          }
+        }
+      });
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
   open.addEventListener("click", function () {
     contest.style.left = "0";
     open.style.left = "-5vw";

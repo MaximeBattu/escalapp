@@ -34,8 +34,64 @@ html {
     margin: 50px 50px;
 }
 
-.text-display,
-.nav-link,
-.dropdown-item{
+.text-display{
     font-size: 18px;
+    text-align: center;
+    padding: 50px 0px 50px 0px;
+    border: 1px solid black;
+    height: 25vh;
+    margin: 50px 50px 0 50px;
+    background-url: 'public/img/hom.jpg';
+    cursor: pointer;
 }
+
+
+
+
+/* Salles */
+
+.navigabilite {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+}
+
+/* Classement */
+
+.ranking {
+    align-content: center;
+    margin-left: 7.5vw;
+    border: solid;
+}
+
+.columns {
+    background-color: #9e9e9e;
+    border-right: solid;
+    border-radius: 5px;
+}
+
+#middle-column {
+    border-right: solid;
+    border-left: solid;
+}
+
+/* Formulaires */
+
+input[type="text"], input[type="email"], input[type="password"],
+select.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
+select.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+
+

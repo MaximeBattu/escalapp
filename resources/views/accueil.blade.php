@@ -20,11 +20,11 @@
         </thead>
         <tbody>
         @foreach($salles as $salle)
-            <tr>
-                <td class="align-middle table-text">{{$salle->id_room}}</td>
-                <td class="align-middle table-text">{{$salle->name_room}}</td>
-                <td class="align-middle table-text">{{$salle->email}}</td>
-                <td class="align-middle table-text">{{$salle->address_room}}</td>
+            <tr id="room-admin">
+                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->id_room}}</td>
+                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->name_room}}</td>
+                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->email}}</td>
+                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->address_room}}</td>
                 @if(isset($salle->updated_at))
                     <td class="align-middle table-text">{{$salle->updated_at->format('d/m/Y')}}</td>
                 @else
@@ -55,16 +55,18 @@
                 @foreach($salles as $salle)
                     <a href="{{route('see_room', ['name_room'=>$salle->name_room])}}" class="col-md-3 boxRoom">
                         <div id="roomInfo">
-                            <p id="roomname">
-                                {{$salle->name_room}}
-                            </p>
-                            <p class="display-none">
-                                {{$salle->email}}
-                            </p>
-                            <p class="display-none">
-                                {{$salle->address_room}}
-                            </p>
+                        <p id="roomname">
+                            {{$salle->name_room}}
+                        </p>
+                        <p class="display-none">
+                            {{$salle->email}}
+                        </p>
+                        <p class="display-none">
+                            {{$salle->address_room}}
+                        </p>
                         </div>
+                    </img>
+
                     </a>
                 @endforeach
             </div>

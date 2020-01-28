@@ -37,6 +37,7 @@ Route::get('/admin/gestion-salles/modifier{id}', 'RoomController@modifyRoom')->n
 Route::post('/admin/gestion-salles/modifier{id}', 'RoomController@updateRoom')->name('update_room')->middleware('auth','admin');
 Route::get('/admin/gestion-salles/ajouter', 'RoomController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
 Route::post('/admin/gestion-salles/ajouter', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
+Route::post('admin/gestion-salles/modifier/route/{idRoute}','RoomController@ajaxUpdate')->middleware('auth','admin');
 
 Route::get('/admin/gestion-salles/{name_room}', 'SectorController@seeAllSectors')->name('see_sectors_admin')->middleware('auth','admin');
 Route::get('admin/gestion-salles/{name_room}/supprimer-secteur', 'SectorController@deleteSector')->name('delete_sector')->middleware('auth','admin');
