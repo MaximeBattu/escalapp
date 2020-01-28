@@ -7,11 +7,12 @@ setTimeout(function() {
 },4000)
 
 document.addEventListener('DOMContentLoaded', function() {
-    
-   /* let tdsRoom = document.querySelectorAll(".room-modify");
-    console.log(tdsRoom)
+
+    let tdsRoom = document.querySelectorAll(".room-modify");
     for(let tdRoom of tdsRoom) {
-        tdRoom.addEventListener("dblclick", function () {
+        tdRoom.addEventListener("dblclick", event => {
+            console.log(event)
+            console.log(event.childNodes)
             let content = $(tdRoom).text()
             $(tdRoom).replaceWith($('<input type="text" id="input" value="'+content+'">'))
             let input = document.querySelector("#input")
@@ -23,20 +24,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: 'admin/gestion-salles/modifier/route/'+tdRoom.id,
+                        url: '/admin/gestion-salles/modifier/route/'+tdRoom.id,
                         type: 'POST',
                         data: JSON.stringify({
+                            id: tdRoom.id,
                             name: newContent
                         })
                     }).then(res => console.log(res))
                         .catch(err => {
-                            console.error('JE SUIS LAAAAAAAAAA')
                             console.error(err)
                         })
                 }
             })
         })
-    }*/
+    }
 
     let body = document.querySelector('body')
     let images = document.querySelectorAll("#image")

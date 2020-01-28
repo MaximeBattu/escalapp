@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use App\FinishedRoute;
 use App\Room;
 use App\Route;
-use App\User;
 
 
 class RoomController extends Controller
@@ -141,7 +138,15 @@ class RoomController extends Controller
     }
 
     public function ajaxUpdate(Request $request) {
-        $content = $request->all();
+        $body = $request->getContent();
+        $idRoom = json_decode($body)->id;
+        $name = json_decode($body)->name;
+
+        $room = Room::find($idRoom);
+        $room->name_room = $name;
+        $room->save();
+
+        return \response('OK',200);
     }
 
 }

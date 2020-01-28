@@ -101,48 +101,75 @@ setTimeout(function () {
   $('#profileModification').fadeOut();
 }, 4000);
 document.addEventListener('DOMContentLoaded', function () {
-  /* let tdsRoom = document.querySelectorAll(".room-modify");
-   console.log(tdsRoom)
-   for(let tdRoom of tdsRoom) {
-       tdRoom.addEventListener("dblclick", function () {
-           let content = $(tdRoom).text()
-           $(tdRoom).replaceWith($('<input type="text" id="input" value="'+content+'">'))
-           let input = document.querySelector("#input")
-           input.addEventListener("keydown", event => {
-               if(event.keyCode === 13) {
-                   let newContent = $("#input").val()
-                   $(input).replaceWith($('<td class="align-middle table-text room-modify">'+newContent+'</td>'))
-                   $.ajax({
-                       headers: {
-                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                       },
-                       url: 'admin/gestion-salles/modifier/route/'+tdRoom.id,
-                       type: 'POST',
-                       data: JSON.stringify({
-                           name: newContent
-                       })
-                   }).then(res => console.log(res))
-                       .catch(err => {
-                           console.error('JE SUIS LAAAAAAAAAA')
-                           console.error(err)
-                       })
-               }
-           })
-       })
-   }*/
-  var body = document.querySelector('body');
-  var images = document.querySelectorAll("#image");
-  var div = create('div', null, body);
-  var imageDiv = create("div", null, body, null, "centerImage");
-  var centerImage = document.querySelector("#centerImage");
-  console.log(images);
+  var tdsRoom = document.querySelectorAll(".room-modify");
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
     var _loop = function _loop() {
-      var image = _step.value;
+      var tdRoom = _step.value;
+      tdRoom.addEventListener("dblclick", function (event) {
+        console.log(event);
+        console.log(event.childNodes);
+        var content = $(tdRoom).text();
+        $(tdRoom).replaceWith($('<input type="text" id="input" value="' + content + '">'));
+        var input = document.querySelector("#input");
+        input.addEventListener("keydown", function (event) {
+          if (event.keyCode === 13) {
+            var newContent = $("#input").val();
+            $(input).replaceWith($('<td class="align-middle table-text room-modify">' + newContent + '</td>'));
+            $.ajax({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              url: '/admin/gestion-salles/modifier/route/' + tdRoom.id,
+              type: 'POST',
+              data: JSON.stringify({
+                id: tdRoom.id,
+                name: newContent
+              })
+            }).then(function (res) {
+              return console.log(res);
+            })["catch"](function (err) {
+              console.error(err);
+            });
+          }
+        });
+      });
+    };
+
+    for (var _iterator = tdsRoom[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      _loop();
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  var body = document.querySelector('body');
+  var images = document.querySelectorAll("#image");
+  var div = create('div', null, body);
+  var imageDiv = create("div", null, body, null, "centerImage");
+  var centerImage = document.querySelector("#centerImage");
+  console.log(images);
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    var _loop2 = function _loop2() {
+      var image = _step2.value;
       image.addEventListener('click', function () {
         console.log(image.style.borderColor);
         div.classList.toggle("transparentDiv");
@@ -166,62 +193,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     };
 
-    for (var _iterator = images[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      _loop();
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-        _iterator["return"]();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  var contest = document.querySelector("#contest");
-  var open = document.querySelector("#open");
-  var close = document.querySelector("#closeContest");
-  var escalapp = document.querySelector(".escalapp");
-  var roomsuccess = document.querySelectorAll(".roomsuccess");
-  var scores = document.querySelectorAll(".score");
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = roomsuccess[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var title = _step2.value;
-      title.addEventListener("click", function () {
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
-
-        try {
-          for (var _iterator3 = scores[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var score = _step3.value;
-            score.style.display = "block";
-          }
-        } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-              _iterator3["return"]();
-            }
-          } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
-            }
-          }
-        }
-      });
+    for (var _iterator2 = images[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      _loop2();
     }
   } catch (err) {
     _didIteratorError2 = true;
@@ -234,6 +207,60 @@ document.addEventListener('DOMContentLoaded', function () {
     } finally {
       if (_didIteratorError2) {
         throw _iteratorError2;
+      }
+    }
+  }
+
+  var contest = document.querySelector("#contest");
+  var open = document.querySelector("#open");
+  var close = document.querySelector("#closeContest");
+  var escalapp = document.querySelector(".escalapp");
+  var roomsuccess = document.querySelectorAll(".roomsuccess");
+  var scores = document.querySelectorAll(".score");
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = roomsuccess[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var title = _step3.value;
+      title.addEventListener("click", function () {
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+          for (var _iterator4 = scores[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var score = _step4.value;
+            score.style.display = "block";
+          }
+        } catch (err) {
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+              _iterator4["return"]();
+            }
+          } finally {
+            if (_didIteratorError4) {
+              throw _iteratorError4;
+            }
+          }
+        }
+      });
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+        _iterator3["return"]();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
       }
     }
   }
@@ -282,7 +309,7 @@ function create(tag, text, parent) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })
