@@ -71,9 +71,6 @@
                             </a>
                         </li>
                     @endif
-                {{--<li class="nav-item">
-                    <a class="nav-link align-middle" href="{{route('see_classification')}}">Classement</a>
-                </li>--}}
                 <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">

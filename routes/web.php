@@ -57,7 +57,7 @@ Route::get('/admin/gestion/modifier/mettre-administrateur/{id}','UserController@
 Route::get('/admin/gestion/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')->name('remove_administrator_right')->middleware('auth','admin');
 
 
-Route::get('/classement', 'ClassificationController@index')->name('see_classification');
+//Route::get('/classement', 'UserController@ranking')->name('see_classification');
 
 // VALIDATE/TRY CLIBING ROUTE
 Route::get('/{name_room}', 'RoomController@viewRoom')->name('see_room');

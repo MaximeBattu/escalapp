@@ -27,7 +27,7 @@ class CreateTrigger extends Migration
             BEGIN
                 UPDATE routes SET
                     nb_user_done = nb_user_done - 1,
-                    score_route = 1000 / nb_user_done               
+                    score_route = 1000 / (nb_user_done - 1)               
                 WHERE id_route = OLD.id_route;
             END');
 
