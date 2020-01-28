@@ -20,11 +20,20 @@
         </thead>
         <tbody>
         @foreach($salles as $salle)
-            <tr id="room-admin">
-                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->id_room}}</td>
-                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->name_room}}</td>
-                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->email}}</td>
-                <td class="align-middle table-text room-modify" id="{{$salle->id_room}}">{{$salle->address_room}}</td>
+            <tr id="room-admin"> <!-- devrait être une classe -->
+                <td class="align-middle table-text room-id">{{$salle->id_room}}</td>
+                <td class="align-middle table-text room-name updatable-field">{{$salle->name_room}}</td>
+                <td class="d-none room-name-td">
+                    <input type="text" class="room-name-input field-update">
+                </td>
+                <td class="align-middle table-text room-email updatable-field">{{$salle->email}}</td>
+                <td class="d-none room-email-td">
+                    <input type="text" class="room-email-input field-update">
+                </td>
+                <td class="align-middle table-text room-address updatable-field">{{$salle->address_room}}</td>
+                <td class="d-none room-address-td">
+                    <input type="text" class="room-address-input field-update">
+                </td>
                 @if(isset($salle->updated_at))
                     <td class="align-middle table-text">{{$salle->updated_at->format('d/m/Y')}}</td>
                 @else

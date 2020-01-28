@@ -1,67 +1,104 @@
 // disable succes or error message after 4s
-setTimeout(function() {
+setTimeout(function () {
     $('#adminAccessError').fadeOut()
     $('#addSuccessRoom').fadeOut()
     $('#administratorRight').fadeOut()
     $('#profileModification').fadeOut()
-},4000)
+}, 4000)
 
-document.addEventListener('DOMContentLoaded', function() {
+const DISPLAY_NONE = 'd-none'
 
-    let tdsRoom = document.querySelectorAll(".room-modify");
-    for(let tdRoom of tdsRoom) {
-        tdRoom.addEventListener("dblclick", event => {
-            console.log(event)
-            console.log(event.childNodes)
-            let content = $(tdRoom).text()
-            $(tdRoom).replaceWith($('<input type="text" id="input" value="'+content+'">'))
-            let input = document.querySelector("#input")
-            input.addEventListener("keydown", event => {
-                if(event.keyCode === 13) {
-                    let newContent = $("#input").val()
-                    $(input).replaceWith($('<td class="align-middle table-text room-modify">'+newContent+'</td>'))
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: '/admin/gestion-salles/modifier/route/'+tdRoom.id,
-                        type: 'POST',
-                        data: JSON.stringify({
-                            id: tdRoom.id,
-                            name: newContent
-                        })
-                    }).then(res => console.log(res))
-                        .catch(err => {
-                            console.error(err)
-                        })
-                }
+document.addEventListener('DOMContentLoaded', function () {
+
+    /**
+     * @param {object} room
+     * @param {number} room.id
+     * @param {string} room.name
+     * @param {string} room.address
+     * @param {string} room.email
+     *
+     * @return {Promise}
+     */
+    function updateRoom(room) {
+        return $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: `/admin/gestion-salles/modifier/route/${room.id}`,
+            type: 'PUT',
+            data: JSON.stringify({
+                name: room.name,
+                email: room.email,
+                address: room.address
             })
         })
     }
 
+    $('.updatable-field').on('dblclick', function (e) {
+        const $td = $(this)
+        console.log($td)
+        const a = $td.next().children('.field-update')
+        a.val($td.html())
+        $(this).addClass(DISPLAY_NONE)
+        $(this).parent().find('.room-name-td').removeClass(DISPLAY_NONE)
+    })
+
+    $(document).on('keydown', '.field-update', function (e) {
+        if (e.keyCode === 13) {
+            const $input = $(this)
+            const newValue = $input.val()
+            const $td = $input.parent()
+            $td.addClass(DISPLAY_NONE)
+
+            $td.parent().find('.room-name').removeClass(DISPLAY_NONE)
+            $td.prev().html(newValue)
+
+            const $tr = $td.parent()
+            const id = $tr.find('.room-id').html()
+            const name = $tr.find('.room-name').html()
+            const email = $tr.find('.room-email').html()
+            const address = $tr.find('.room-address').html()
+
+            updateRoom({
+                id,
+                name,
+                email,
+                address
+            }).then(res => console.log(res))
+                .catch(err => {
+                    console.error(err)
+                })
+
+            /* .then(res => {
+             console.log('success')
+         }).catch(console.error)*/
+        }
+    })
+
+
     let body = document.querySelector('body')
     let images = document.querySelectorAll("#image")
-    let div = create('div',null,body)
-    let imageDiv = create("div",null, body,null,"centerImage")
+    let div = create('div', null, body)
+    let imageDiv = create("div", null, body, null, "centerImage")
     let centerImage = document.querySelector("#centerImage")
     console.log(images)
-    for(let image of images) {
-        image.addEventListener('click', function() {
+    for (let image of images) {
+        image.addEventListener('click', function () {
             console.log(image.style.borderColor)
             div.classList.toggle("transparentDiv")
             imageDiv.classList.toggle("imageCenter")
-            imageDiv.style.background = "url('"+image.src+"')"
+            imageDiv.style.background = "url('" + image.src + "')"
             imageDiv.style.border = "3px solid " + image.style.borderColor
             imageDiv.style.opacity = "1"
             console.log(image.classList)
         })
-        div.addEventListener('click', function() {
+        div.addEventListener('click', function () {
             div.classList.remove("transparentDiv")
             imageDiv.classList.remove("imageCenter")
             imageDiv.style.background = null
             centerImage.style.border = "none"
         })
-        centerImage.addEventListener('click', function() {
+        centerImage.addEventListener('click', function () {
             div.classList.remove("transparentDiv")
             imageDiv.classList.remove("imageCenter")
             imageDiv.style.background = null
@@ -69,28 +106,28 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-	let contest = document.querySelector("#contest")
-	let open = document.querySelector("#open")
+    let contest = document.querySelector("#contest")
+    let open = document.querySelector("#open")
     let close = document.querySelector("#closeContest")
     let escalapp = document.querySelector(".escalapp")
     let roomsuccess = document.querySelectorAll(".roomsuccess")
     let scores = document.querySelectorAll(".score")
 
     for (let title of roomsuccess) {
-        title.addEventListener("click", function() {
-            for(let score of scores) {
+        title.addEventListener("click", function () {
+            for (let score of scores) {
                 score.style.display = "block"
             }
         })
     }
 
-	open.addEventListener("click", function() {
-		contest.style.left = "0"
+    open.addEventListener("click", function () {
+        contest.style.left = "0"
         open.style.left = "-5vw"
-        close.style.left ="13vw"
+        close.style.left = "13vw"
         escalapp.style.marginLeft = "10%"
     })
-    close.addEventListener("click", function() {
+    close.addEventListener("click", function () {
         contest.style.left = "-13vw"
         close.style.left = "-2vw"
         open.style.left = "0"
@@ -99,18 +136,17 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 
-function create(tag, text, parent, classs=null, id=null)
-{
-	let o = document.createElement(tag)
-	if (text != null) {
-		o.appendChild(document.createTextNode(text))
-	}
-	if (classs!= null) {
-		o.classList.add(classs)
-	}
-	if (id!= null) {
-		o.id = id
-	}
-	parent.appendChild(o)
-	return o
+function create(tag, text, parent, classs = null, id = null) {
+    let o = document.createElement(tag)
+    if (text != null) {
+        o.appendChild(document.createTextNode(text))
+    }
+    if (classs != null) {
+        o.classList.add(classs)
+    }
+    if (id != null) {
+        o.id = id
+    }
+    parent.appendChild(o)
+    return o
 }

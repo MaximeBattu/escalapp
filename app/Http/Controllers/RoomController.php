@@ -137,13 +137,15 @@ class RoomController extends Controller
         return redirect()->route('see_room_management');
     }
 
-    public function ajaxUpdate(Request $request) {
-        $body = $request->getContent();
-        $idRoom = json_decode($body)->id;
-        $name = json_decode($body)->name;
+    public function ajaxUpdate(Request $request, int $idRoom) {
+        $name = json_decode($request->getContent())->name;
+        $email = json_decode($request->getContent())->email;
+        $address = json_decode($request->getContent())->address;
 
         $room = Room::find($idRoom);
         $room->name_room = $name;
+        $room->email = $email;
+        $room->address_room = $address;
         $room->save();
 
         return \response('OK',200);
