@@ -9,6 +9,17 @@ html {
   color: #ffffff !important;
 }
 
+.formTitle {
+  background-color: #212121 !important;
+  font-size: 18px;
+  color: white;
+}
+
+.formContainer {
+  border: 1px solid #212121 !important;
+  font-size: 18px;
+}
+
 .escalapp {
   color: #ffffff !important;
   -webkit-transition: 0.4s all linear;
@@ -18,6 +29,7 @@ html {
 }
 
 .nav-link {
+  font-size: 17.5px;
   color: #ffffff !important;
 }
 

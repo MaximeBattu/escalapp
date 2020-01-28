@@ -7,7 +7,9 @@
                 <div id="ranking">
                     @if($users != null && $users->isNotEmpty())
                         @foreach($users as $user)
-                            {{$user->name}}
+                            <div>
+                                <p>{{$user->name." ".$user->score}}</p>
+                            </div>
                         @endforeach
                     @else
                         <h1>Aucune voie n'a été validée pour l'instant</h1>

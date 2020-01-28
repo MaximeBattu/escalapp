@@ -22,6 +22,15 @@ class RouteController extends Controller
                     ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
                     ->where(['sectors.climbing_type'=>$type, 'sectors.id_room'=>$room->id_room])->distinct()->get();
 
+        if ($users->isNotEmpty()) {
+            $scores = User::getUsersScore($users->pluck('id')->toArray());
+            foreach ($users as $user) {
+                $user->score = $scores[$user->id];
+            }
+
+            $users = $users->sortByDesc('score');
+        }
+
         if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')
                 ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
@@ -42,7 +51,6 @@ class RouteController extends Controller
             }
 
         }
-
 
         return [
             'routes' => $routes,

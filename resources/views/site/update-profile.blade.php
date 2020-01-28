@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Informations') }}</div>
+            <div class="card formContainer">
+                <div class="card-header formTitle">{{ __('Informations') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('set_update_profile') }}">
-                        @csrf
+                        {{csrf_field()}}
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
@@ -112,7 +112,7 @@
                     </form>
                 </div>
             </div>
-            <a class="btn button-shadow" href="{{route('see_my_profil')}}">Retour</a>
+           <!--  <a class="btn button-shadow" href="{{route('see_my_profil')}}">Retour</a> -->
         </div>
     </div>
 </div>
