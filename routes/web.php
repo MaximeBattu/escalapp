@@ -32,9 +32,9 @@ Route::post('/profil/update', 'UserController@updateProfile')->name('set_update_
 
 // ROOM ADMINISTRATION
 Route::get('/admin/gestion-salles', 'RoomController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salles/supprimmer{id}', 'RoomController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salles/modifier{id}', 'RoomController@modifyRoom')->name('modify_room')->middleware('auth','admin');
-Route::post('/admin/gestion-salles/modifier{id}', 'RoomController@updateRoom')->name('update_room')->middleware('auth','admin');
+Route::get('/admin/gestion-salles/supprimer/{id}', 'RoomController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
+Route::get('/admin/gestion-salles/modifier/{id}', 'RoomController@modifyRoom')->name('modify_room')->middleware('auth','admin');
+Route::post('/admin/gestion-salles/modifier/{id}', 'RoomController@updateRoom')->name('update_room')->middleware('auth','admin');
 Route::get('/admin/gestion-salles/ajouter', 'RoomController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
 Route::post('/admin/gestion-salles/ajouter', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
 Route::put('/admin/gestion-salles/modifier/route/{idRoute}','RoomController@ajaxUpdate')->middleware('auth','admin');

@@ -74,7 +74,6 @@
                             {{$salle->address_room}}
                         </p>
                         </div>
-                    </img>
 
                     </a>
                 @endforeach

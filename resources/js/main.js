@@ -36,11 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $('.updatable-field').on('dblclick', function (e) {
         const $td = $(this)
-        console.log($td)
-        const a = $td.next().children('.field-update')
-        a.val($td.html())
-        $(this).addClass(DISPLAY_NONE)
-        $(this).parent().find('.room-name-td').removeClass(DISPLAY_NONE)
+        $td.next().children('.field-update').val($td.html())
+        $td.addClass(DISPLAY_NONE)
+        $td.next().removeClass(DISPLAY_NONE)
     })
 
     $(document).on('keydown', '.field-update', function (e) {
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const $td = $input.parent()
             $td.addClass(DISPLAY_NONE)
 
-            $td.parent().find('.room-name').removeClass(DISPLAY_NONE)
+            $td.prev().removeClass(DISPLAY_NONE)
             $td.prev().html(newValue)
 
             const $tr = $td.parent()
