@@ -18,9 +18,9 @@ class RouteController extends Controller
         $routes = Route::byRoomAndType($room->id_room, $type);
 
         $users = User::select('users.*')
-                    ->join('finished_routes', 'users.id', 'finished_routes.id_user')
-                    ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
-                    ->where(['sectors.climbing_type'=>$type, 'sectors.id_room'=>$room->id_room])->distinct()->get();
+            ->join('finished_routes', 'users.id', 'finished_routes.id_user')
+            ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
+            ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $room->id_room])->distinct()->get();
 
         if ($users->isNotEmpty()) {
             $scores = User::getUsersScore($users->pluck('id')->toArray());
@@ -167,6 +167,28 @@ class RouteController extends Controller
             'name_room' => $room->name_room,
             'name_sector' => $sector->name
         ]);
+    }
+
+    /**
+     * Function for ajax treatment on route management
+     * Enable to Admin right
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function ajaxUpdateRoute(Request $request, int $id)
+    {
+        $color = json_decode($request->getContent())->color;
+        $difficulty = json_decode($request->getContent())->difficulty;
+        $score = json_decode($request->getContent())->score;
+
+        $route = Route::find($id);
+        $route->color_route = $color;
+        $route->difficulty_route = $difficulty;
+        $route->score_route = $score;
+        $route->save();
+
+        return \response('OK', 200);
     }
 }
 

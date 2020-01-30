@@ -20,17 +20,26 @@
         <tbody>
         @foreach($routes as $route)
             <tr>
-                <td class="align-middle table-text"> {{$route->id_route}}</td>
+                <td class="align-middle table-text route-id"> {{$route->id_route}}</td>
                 @if($sector->climbing_type == "V")
-                    <td class="align-middle table-text">{{$route->color_route}}</td>
-                    <td class="align-middle table-text">{{$route->difficulty_route}}</td>
+                    <td class="align-middle table-text route-color updatable-field-route">{{$route->color_route}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
+                    <td class="d-none align-middle route-difficulty-td">
+                        <input type="text" class="route-difficulty-input input-text-size field-update-route">
+                    </td>
                     <td class="align-middle table-text">Voie</td>
                 @else
                     <td class="align-middle table-text"></td>
                     <td class="align-middle table-text">{{$route->color_route}}</td>
                     <td class="align-middle table-text">Bloc</td>
                 @endif
-                <td class="align-middle table-text">{{$route->score_route}}</td>
+                <td class="align-middle table-text route-score updatable-field-route">{{$route->score_route}}</td>
+                <td class="d-none align-middle route-score-td">
+                    <input type="text" class="route-score-input input-text-size field-update-route">
+                </td>
                 @if(isset($route->updated_at))
                     <td class="align-middle table-text">{{$route->updated_at->format('d/m/yy')}}</td>
                 @else

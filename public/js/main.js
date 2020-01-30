@@ -102,6 +102,13 @@ setTimeout(function () {
 }, 4000);
 var DISPLAY_NONE = 'd-none';
 document.addEventListener('DOMContentLoaded', function () {
+  // AJAX UPDATE FOR ROOM
+  $('.updatable-field-room').on('dblclick', function (e) {
+    var $td = $(this);
+    $td.next().children('.field-update-room').val($td.html()).focus();
+    $td.addClass(DISPLAY_NONE);
+    $td.next().removeClass(DISPLAY_NONE);
+  });
   /**
    * @param {object} room
    * @param {number} room.id
@@ -111,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
    *
    * @return {Promise}
    */
+
   function updateRoom(room) {
     return $.ajax({
       headers: {
@@ -126,13 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  $('.updatable-field').on('dblclick', function (e) {
-    var $td = $(this);
-    $td.next().children('.field-update').val($td.html());
-    $td.addClass(DISPLAY_NONE);
-    $td.next().removeClass(DISPLAY_NONE);
-  });
-  $(document).on('keydown', '.field-update', function (e) {
+  $(document).on('keydown', '.field-update-room', function (e) {
     if (e.keyCode === 13) {
       var $input = $(this);
       var newValue = $input.val();
@@ -151,13 +153,110 @@ document.addEventListener('DOMContentLoaded', function () {
         email: email,
         address: address
       }).then(function (res) {
-        return console.log(res);
-      })["catch"](function (err) {
-        console.error(err);
-      });
-      /* .then(res => {
-       console.log('success')
-      }).catch(console.error)*/
+        console.log('success room modification');
+      })["catch"](console.error);
+      /* */
+    }
+  }); // AJAX UPDATE FOR SECTOR
+
+  $('.updatable-field-sector').on('dblclick', function (e) {
+    var $td = $(this);
+    $td.next().children('.field-update-sector').val($td.html()).focus();
+    $td.addClass(DISPLAY_NONE);
+    $td.next().removeClass(DISPLAY_NONE);
+  });
+  /**
+   *
+   * @param {object} sector
+   * @param {number} sector.id
+   * @param {string} sector.name
+   * @return {Promise}
+   */
+
+  function updateSector(sector) {
+    return $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/admin/gestion-salles/modifier/sector/".concat(sector.id),
+      type: 'PUT',
+      data: JSON.stringify({
+        name_sector: sector.name
+      })
+    });
+  }
+
+  $(document).on('keydown', '.field-update-sector', function (e) {
+    if (e.keyCode === 13) {
+      var $input = $(this);
+      var newValue = $input.val();
+      var $td = $input.parent();
+      $td.addClass(DISPLAY_NONE);
+      $td.prev().removeClass(DISPLAY_NONE);
+      $td.prev().html(newValue);
+      var $tr = $td.parent();
+      var id = $tr.find('.sector-id').html();
+      var name = $tr.find('.sector-name').html();
+      updateSector({
+        id: id,
+        name: name
+      }).then(function (res) {
+        console.log('succes sector modification');
+      })["catch"](console.error);
+    }
+  }); // AJAX UPDATE FOR ROUTE
+
+  $('.updatable-field-route').on('dblclick', function (e) {
+    var $td = $(this);
+    $td.next().children('.field-update-route').val($td.html()).focus();
+    $td.addClass(DISPLAY_NONE);
+    $td.next().removeClass(DISPLAY_NONE);
+  });
+  /**
+   * @param {object} route
+   * @param {number} route.id
+   * @param {string} route.color
+   * @param {string} route.difficulty
+   * @param {number} route.score
+   * @return {Promise}
+   */
+
+  function updateRoute(route) {
+    return $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/admin/gestion-salles/modifier/route/".concat(route.id),
+      type: 'PUT',
+      data: JSON.stringify({
+        color: route.color,
+        difficulty: route.difficulty,
+        score: route.score
+      })
+    });
+  }
+
+  $(document).on('keydown', '.field-update-route', function (e) {
+    if (e.keyCode === 13) {
+      var $input = $(this);
+      var newValue = $input.val();
+      var $td = $input.parent();
+      $td.addClass(DISPLAY_NONE);
+      $td.prev().removeClass(DISPLAY_NONE);
+      $td.prev().html(newValue);
+      var $tr = $td.parent();
+      var id = $tr.find('.route-id').html();
+      var color = $tr.find('.route-color').html();
+      var difficulty = $tr.find('.route-difficulty').html();
+      var score = $tr.find('.route-score').html();
+      updateRoute({
+        id: id,
+        color: color,
+        difficulty: difficulty,
+        score: score
+      }).then(function (res) {
+        console.log('succes route modification');
+      })["catch"](console.error);
     }
   });
   var body = document.querySelector('body');
@@ -312,7 +411,7 @@ function create(tag, text, parent) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })

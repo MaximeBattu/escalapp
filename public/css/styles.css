@@ -53,6 +53,10 @@ html {
   cursor: pointer;
 }
 
+.input-text-size {
+  font-size: 22px;
+}
+
 /* Salles */
 
 .navigabilite {

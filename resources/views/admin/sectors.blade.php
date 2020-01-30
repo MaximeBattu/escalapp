@@ -20,8 +20,11 @@
         <tbody>
         @foreach($sectors as $sector)
             <tr>
-                <td class="align-middle table-text"> {{$sector->id_sector}}</td>
-                <td class="align-middle table-text"> {{$sector->name}}</td>
+                <td class="align-middle table-text sector-id"> {{$sector->id_sector}}</td>
+                <td class="align-middle table-text sector-name updatable-field-sector"> {{$sector->name}}</td>
+                <td class="d-none align-middle sector-name-td">
+                    <input type="text" class="room-sector-input input-text-size field-update-sector">
+                </td>
                 @if($sector->climbing_type == "V")
                     <td class="align-middle table-text">Voie</td>
                 @else

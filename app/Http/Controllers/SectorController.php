@@ -23,7 +23,7 @@ class SectorController extends Controller
 
     	Sector::deleteSector($id_sector);
 
-		return redirect()->back()->with('sector-deletion', 'Le secteur a été supprimé');    	
+		return redirect()->back()->with('sector-deletion', 'Le secteur a été supprimé');
     }
 
     public function seeAddSector(string $name) {
@@ -39,5 +39,15 @@ class SectorController extends Controller
         Sector::add($request->name, $request->climbing_type, $room->id_room);
 
     	return redirect()->route('see_sectors_admin', ['name_room'=>$room->name_room]);
+    }
+
+    public function ajaxUpdateSector(Request $request, int $id) {
+        $name = json_decode($request->getContent())->name_sector;
+
+        $sector = Sector::find($id);
+        $sector->name = $name;
+        $sector->save();
+
+        return \response('OK',200);
     }
 }

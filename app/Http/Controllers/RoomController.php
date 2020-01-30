@@ -20,13 +20,13 @@ class RoomController extends Controller
         $room = Room::where('name_room', $name)->first();
 
         $count = Route::join('sectors', 'routes.id_sector', 'sectors.id_sector')
-                        ->where(['id_room'=>$room->id_room,'climbing_type'=>'V'])->count();
+            ->where(['id_room' => $room->id_room, 'climbing_type' => 'V'])->count();
         $hasRoutes = $count > 0 ? true : false;
 
 
         $count = Route::join('sectors', 'routes.id_sector', 'sectors.id_sector')
-                        ->where(['id_room'=>$room->id_room,'climbing_type'=>'B'])->count();
-        $hasBlocs = $count > 0 ? true: false;
+            ->where(['id_room' => $room->id_room, 'climbing_type' => 'B'])->count();
+        $hasBlocs = $count > 0 ? true : false;
 
         return view('site/room', [
             "room" => $room,
@@ -137,7 +137,14 @@ class RoomController extends Controller
         return redirect()->route('see_room_management');
     }
 
-    public function ajaxUpdate(Request $request, int $idRoom) {
+    /**
+     * @param Request $request
+     * @param int $idRoom
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+
+    public function ajaxUpdateRoom(Request $request, int $idRoom)
+    {
         $name = json_decode($request->getContent())->name;
         $email = json_decode($request->getContent())->email;
         $address = json_decode($request->getContent())->address;
@@ -148,7 +155,7 @@ class RoomController extends Controller
         $room->address_room = $address;
         $room->save();
 
-        return \response('OK',200);
+        return \response('OK', 200);
     }
 
 }
