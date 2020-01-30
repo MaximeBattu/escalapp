@@ -40,7 +40,7 @@
                     <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
                 <td class="align-middle table-text">
-                    <a type="button" class="btn button-shadow" href="{{route('see_sectors_admin', ['name_room'=>$salle->name_room])}}">Voir salle</a>
+                    <a type="button" class="btn button-shadow" href="{{route('see_sectors_admin', ['id'=>$salle->id_room, 'name_room_slug' => Str::slug($salle->name_room) ])}}">Voir salle</a>
                 </td>
                 {{--<td class="align-middle table-text">
                     <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>
@@ -62,7 +62,7 @@
         <div class="container-fluid">
             <div class="row align-items-center justify-content-center">
                 @foreach($salles as $salle)
-                    <a href="{{route('see_room', ['name_room'=>$salle->name_room])}}" class="col-md-3 boxRoom">
+                    <a href="{{route('see_room', ['name_room_slug'=>Str::slug($salle->name_room),'id'=>$salle->id_room])}}" class="col-md-3 boxRoom">
                         <div id="roomInfo">
                         <p id="roomname">
                             {{$salle->name_room}}

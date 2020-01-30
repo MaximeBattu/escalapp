@@ -5,11 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sector;
 use App\Room;
+use Illuminate\Support\Str;
 
 class SectorController extends Controller
 {
-    public function seeAllSectors(string $name) {
-        $room = Room::where('name_room', $name)->first();
+    public function seeAllSectors(string $routeSlug, int $id) {
+        $room = Room::find($id);
+        $computedSlug = Str::slug($room->name_room);
+
+        if ($computedSlug !== $routeSlug) {
+            return redirect(null, 301)->route('see_sectors_admin', [
+                'name_room_slug' => $computedSlug,
+                'id' =>$id
+            ]);
+        }
+
     	$sectors = Sector::fromRoom($room->id_room);
 
     	return view('admin/sectors', [
@@ -26,9 +36,16 @@ class SectorController extends Controller
 		return redirect()->back()->with('sector-deletion', 'Le secteur a été supprimé');
     }
 
-    public function seeAddSector(string $name) {
-        $room = Room::where('name_room', $name)->first();
+    public function seeAddSector(string $routeSlug, int $id) {
+        $room = Room::find($id);
+        $computedSlug = Str::slug($room->name_room);
 
+        if ($computedSlug !== $routeSlug) {
+            return redirect(null, 301)->route('see_add_sector', [
+                'name_room_slug' => $computedSlug,
+                'id' =>$id
+            ]);
+        }
     	return view('admin/add-sector', [
     		'room' => $room
     	]);

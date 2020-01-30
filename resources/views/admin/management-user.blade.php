@@ -24,8 +24,15 @@
                 @if($user->isAdmin == false)
                     <td class="align-middle table-text">Non</td>
                     <td class="align-middle table-text d-flex justify-content-around">
-                        <a type="button" class="fas fa-user-edit fa-2x modify-user" href="{{route('modify_user',['id'=>$user->id])}}"></a>
-                        <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_user',['id'=>$user->id])}}"></a>
+                        <form method="post" action="{{route('modify_user',['id'=>$user->id])}}">
+                            {{ csrf_field() }}
+                            <button class="fas fa-user-edit fa-2x modify-user" type="submit"></button>
+                        </form>
+                        <form method="post" action="{{route('delete_user',['id'=>$user->id])}}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="fas fa-trash-alt fa-2x delete"></button>
+                        </form>
                     </td>
                 @elseif(isset(Auth::user()->id) && Auth::user()->id == $user->id && Auth::user()->isAdmin == true)
                     <td class="align-middle table-text">Oui</td>
@@ -35,8 +42,15 @@
                 @else
                     <td class="align-middle table-text">Oui</td>
                     <td class="align-middle table-text d-flex justify-content-around">
-                        <a type="button" class="fas fa-user-check fa-2x modify-user" href="{{route('remove_administrator_right',['id'=>$user->id])}}"></a>
-                        <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_user',['id'=>$user->id])}}"></a>
+                        <form method="post" action="{{route('remove_administrator_right',['id'=>$user->id])}}">
+                            {{ csrf_field() }}
+                            <button class="fas fa-user-check fa-2x modify-user user-is-admin other-user-is-admin"></button>
+                        </form>
+                        <form method="post" action="{{route('delete_user',['id'=>$user->id])}}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="fas fa-trash-alt fa-2x delete"></button>
+                        </form>
                     </td>
                 @endif
             </tr>

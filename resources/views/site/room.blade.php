@@ -19,7 +19,7 @@
         </div>
         <div>
             @if($hasRoutes && $hasBlocs)
-                <a href="{{route('see_routes', ['name_room'=>$room->name_room])}}" class="text-center content-voie">
+                <a href="{{route('see_routes', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-voie">
                     <div class="content-image">
                         <div class="content-image-room">
                             <img src="{{URL::asset('/img/mur.jpg')}}" alt="" class="image-room">
@@ -27,7 +27,7 @@
                         <span class="text-image-room">Voies</span>
                     </div>
                 </a>
-                <a href="{{route('see_blocs', ['name_room'=>$room->name_room])}}" class="text-center content-bloc">
+                <a href="{{route('see_blocs', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-bloc">
                     <div class="content-image">
                         <div class="content-image-room">
                             <img src="{{URL::asset('/img/bloc.jpg')}}" alt="" class="image-room room-bloc">

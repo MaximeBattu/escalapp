@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: `/admin/gestion-salles/modifier/route/${room.id}`,
+            url: `/admin/gestion-salles/modifier/salle/${room.id}`,
             type: 'PUT',
             data: JSON.stringify({
                 name: room.name,

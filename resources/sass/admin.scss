@@ -108,6 +108,8 @@ $contestColor :#484848!important;
     list-style-type: none!important;
     text-decoration: none!important;
     transition: 100ms all linear;
+    background:none;
+    border:none;
 }
 
 .delete:hover {
@@ -120,6 +122,8 @@ $contestColor :#484848!important;
     list-style-type: none!important;
     text-decoration: none!important;
     transition: 100ms all linear;
+    background:none;
+    border:none;
 }
 
 .modify-user:hover {
@@ -128,7 +132,13 @@ $contestColor :#484848!important;
 }
 
 .user-is-admin {
-    color: #00ff67;
+    color: #1565c0;
+    transition: 100ms all linear;
+}
+
+.other-user-is-admin:hover {
+    color: #003c8f;
+    transition: 100ms all linear;
 }
 
 .new-infos {

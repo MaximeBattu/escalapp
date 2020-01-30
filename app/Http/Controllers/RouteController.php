@@ -9,18 +9,19 @@ use App\Route;
 use App\Room;
 use App\Sector;
 use App\User;
+use Illuminate\Support\Str;
 
 class RouteController extends Controller
 {
-    public static function returnViewByType(string $name, string $type)
+    public static function returnViewByType(int $idRoom, string $type)
     {
-        $room = Room::where('name_room', $name)->first();
-        $routes = Route::byRoomAndType($room->id_room, $type);
+        $room = Room::find($idRoom);
+        $routes = Route::byRoomAndType($idRoom, $type);
 
         $users = User::select('users.*')
             ->join('finished_routes', 'users.id', 'finished_routes.id_user')
             ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
-            ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $room->id_room])->distinct()->get();
+            ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->get();
 
         if ($users->isNotEmpty()) {
             $scores = User::getUsersScore($users->pluck('id')->toArray());
@@ -59,10 +60,22 @@ class RouteController extends Controller
         ];
     }
 
-    public function viewRoutes(string $name)
+    public function viewRoutes(string $roomSlugVoie, int $id)
     {
-        $data = RouteController::returnViewByType($name, 'V');
+       $room = Room::find($id);
 
+        if($room === null){
+            return abort('404','Invalid value of Room id');
+        }
+
+        $computedNameRoomSlug = Str::slug($room->name_room);
+        if ($computedNameRoomSlug !== $roomSlugVoie) {
+            return redirect(null, 301)->route('see_routes', [
+                'name_room_slug' => $computedNameRoomSlug,
+                'id' => $id
+            ]);
+        }
+        $data = RouteController::returnViewByType($id, 'V');
         return view('site/route', [
             'routes' => $data['routes'],
             'room' => $data['room'],
@@ -70,9 +83,23 @@ class RouteController extends Controller
         ]);
     }
 
-    public function viewBlocs(string $name)
+    public function viewBlocs(string $roomSlugBloc, int $id)
     {
-        $data = RouteController::returnViewByType($name, 'B');
+        $room = Room::find($id);
+
+        if($room === null){
+            return abort('404','Invalid value of Room id');
+        }
+
+        $computedNameRoomSlug = Str::slug($room->name_room);
+        if ($computedNameRoomSlug !== $roomSlugBloc) {
+            return redirect(null, 301)->route('see_blocs', [
+                'name_room_slug' => $computedNameRoomSlug,
+                'id' => $id
+            ]);
+        }
+
+        $data = RouteController::returnViewByType($id, 'B');
 
         return view('site/bloc', [
             'routesBloc' => $data['routes'],
@@ -81,10 +108,27 @@ class RouteController extends Controller
         ]);
     }
 
-    public function seeRoutesAdmin(string $name_room, string $name_sector)
+    /**
+     * @param string $roomSlug
+     * @param int $idRoom
+     * @param string $sectorSlug
+     * @param int $idSector
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function seeRoutesAdmin(string $roomSlug,int $idRoom, string $sectorSlug, int $idSector)
     {
-        $sector = Sector::where('name', $name_sector)->first();
-        $room = Room::where('name_room', $name_room)->first();
+        $sector = Sector::find($idSector);
+        $room = Room::find($idRoom);
+        $computedNameRoomSlug = Str::slug($room->name_room);
+        $computedNameSectorSlug = Str::slug($sector->name);
+        if ($computedNameRoomSlug !== $roomSlug || $computedNameSectorSlug !== $sectorSlug) {
+            return redirect(null, 301)->route('see_routes_admin', [
+                'name_room_slug' => $computedNameRoomSlug,
+                'id_room' =>$idRoom,
+                'name_sector_slug'=>$computedNameSectorSlug,
+                'id_sector'=>$idSector
+            ]);
+        }
         $routes = Route::byRoomAndSector($room->id_room, $sector->id_sector);
 
         return view('admin/routes-admin', [
@@ -94,6 +138,11 @@ class RouteController extends Controller
         ]);
     }
 
+    /**
+     * @param string $name_room
+     * @param string $name_sector
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function seeAddRoutes(string $name_room, string $name_sector)
     {
         $sector = Sector::where('name', $name_sector)->first();
@@ -104,6 +153,12 @@ class RouteController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param string $name_room
+     * @param string $name_sector
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addRoute(Request $request, string $name_room, string $name_sector)
     {
         $color = $request->input('colorRouteSelect');
@@ -130,6 +185,13 @@ class RouteController extends Controller
         }
     }
 
+    /**
+     * Admin management
+     * @param string $name_room
+     * @param string $name_sector
+     * @param int $idroute
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteRoute(string $name_room, string $name_sector, int $idroute)
     {
         Route::find($idroute)->delete();
@@ -144,28 +206,6 @@ class RouteController extends Controller
             'route' => $route,
             'sector' => $sector,
             'name_room' => $name_room
-        ]);
-    }
-
-    public function updateRoute(Request $request, string $name_room, string $name_sector, int $idroute)
-    {
-        $color = $request->input('colorRouteSelect');
-        $difficulty = $request->input('difficultySelect');
-        $url = $request->input('urlPhotoRoute');
-
-        $sector = Sector::where('name', $name_sector)->first();
-        $room = Room::where('name_room', $name_room)->first();
-
-        Route::find($idroute)->update([
-            'color_route' => $color,
-            'difficulty_route' => $difficulty,
-            'url_photo' => $url,
-            'updated_at' => now()
-        ]);
-
-        return redirect()->route('see_routes_admin', [
-            'name_room' => $room->name_room,
-            'name_sector' => $sector->name
         ]);
     }
 

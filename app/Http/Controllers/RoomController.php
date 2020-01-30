@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Room;
 use App\Route;
+use Illuminate\Support\Str;
 
 
 class RoomController extends Controller
@@ -15,14 +16,22 @@ class RoomController extends Controller
      * @param string $name
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function viewRoom(string $name)
+    public function viewRoom(string $roomSlug, int $id)
     {
-        $room = Room::where('name_room', $name)->first();
+        $room = Room::find($id);
+
+        $computedNameRoomSlug = Str::slug($room->name_room);
+
+        if ($computedNameRoomSlug !== $roomSlug) {
+            return redirect(null, 301)->route('see_room', [
+                'name_room_slug' => $computedNameRoomSlug,
+                'id' => $id
+            ]);
+        }
 
         $count = Route::join('sectors', 'routes.id_sector', 'sectors.id_sector')
             ->where(['id_room' => $room->id_room, 'climbing_type' => 'V'])->count();
         $hasRoutes = $count > 0 ? true : false;
-
 
         $count = Route::join('sectors', 'routes.id_sector', 'sectors.id_sector')
             ->where(['id_room' => $room->id_room, 'climbing_type' => 'B'])->count();
@@ -100,49 +109,11 @@ class RoomController extends Controller
             return redirect()->back()->with('add-success', 'Successful ! You have added a new room !');
     }
 
-    /***
-     * Load HTML page for the room clicked before (automatically generate)
-     * Admin Management
-     * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function modifyRoom(int $id)
-    {
-        $room = Room::find($id);
-        return view('admin/update-room', [
-            'room' => $room
-        ]);
-    }
-
-    /**
-     *  Change value of room (select by id) in the database -> replace old values by new values get on a form with post method
-     * Admin Management
-     * @param Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function updateRoom(Request $request, int $id)
-    {
-        $name = $request->input('nameRoom');
-        $email = $request->input('emailRoom');
-        $address = $request->input('addressRoom');
-
-        Room::find($id)->update([
-            'name_room' => htmlspecialchars($name),
-            'email' => htmlspecialchars($email),
-            'address_room' => htmlspecialchars($address),
-            'updated_at' => now()
-        ]);
-
-        return redirect()->route('see_room_management');
-    }
-
     /**
      * @param Request $request
      * @param int $idRoom
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-
     public function ajaxUpdateRoom(Request $request, int $idRoom)
     {
         $name = json_decode($request->getContent())->name;

@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      url: "/admin/gestion-salles/modifier/route/".concat(room.id),
+      url: "/admin/gestion-salles/modifier/salle/".concat(room.id),
       type: 'PUT',
       data: JSON.stringify({
         name: room.name,
@@ -411,7 +411,7 @@ function create(tag, text, parent) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Users\Maxime\Desktop\Dossiers\escalapp\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
     <h1 class="text-center">Tous les secteurs de la salle : {{$room->name_room}}</h1>
     <div>
         <!-- A changer -->
-        <a type="button" class="btn btn-success add-route" href="{{route('see_add_sector',['name_room'=>$room->name_room])}}">Ajouter un secteur</a>
+        <a type="button" class="btn btn-success add-route"
+           href="{{route('see_add_sector',['name_room'=>$room->name_room])}}">Ajouter un secteur</a>
     </div>
     <table class="table salles-admin">
         <thead>
@@ -36,10 +36,18 @@
                     <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
                 <td class="align-middle table-text">
-                    <a type="button" class="btn button-shadow" href="{{route('see_routes_admin', ['name_room'=>$room->name_room,'name_sector'=>$sector->name])}}">Voir secteur</a>
+                    <a type="button" class="btn button-shadow" href="{{route('see_routes_admin',[
+                    'name_room_slug'=>Str::slug($room->name_room),
+                    'id_room'=>$room->id_room,
+                    'name_sector_slug'=>Str::slug($sector->name),
+                    'id_sector'=>$sector->id_sector
+                    ])}}">
+                        Voir secteur
+                    </a>
                 </td>
                 <td class="align-middle table-text text-center">
-                    <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_sector',['name_room'=>$room->name_room,'id'=>$sector->id_sector])}}"></a>
+                    <a type="button" class="fas fa-trash-alt fa-2x delete"
+                       href="{{route('delete_sector',['name_room'=>$room->name_room,'id'=>$sector->id_sector])}}"></a>
                 </td>
             </tr>
         @endforeach
