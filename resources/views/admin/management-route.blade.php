@@ -23,7 +23,7 @@
                href="{{route('see_add_routes',['name_room'=>$room->name_room, 'name_sector'=>$sector->name])}}">Ajouter
                 une voie</a>
         </div>
-        <table class="table salles-admin">
+        <table class="table table-hover salles-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>
@@ -32,7 +32,7 @@
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Score</th>
                 <th class="table-text">Dernière mise à jour</th>
-                <th class="table-text">Changement</th>
+                <th class="table-text"></th>
             </tr>
             </thead>
             <tbody>

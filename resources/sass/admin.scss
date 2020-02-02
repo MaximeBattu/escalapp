@@ -118,7 +118,9 @@ $contestColor :#484848!important;
 }
 
 .delete {
+    position: relative;
     color: red;
+    top: 8px;
     list-style-type: none!important;
     text-decoration: none!important;
     transition: 100ms all linear;

@@ -22,7 +22,7 @@
                href="{{route('see_add_sector',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}">Ajouter
                 un secteur</a>
         </div>
-        <table class="table salles-admin">
+        <table class="table table-hover salles-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>
@@ -30,7 +30,7 @@
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Mise à jour</th>
                 <th class="table-text"></th>
-                <th colspan="2" class="table-text room-change"></th>
+                <th class="table-text"></th>
             </tr>
             </thead>
             <tbody>
@@ -51,19 +51,23 @@
                     @else
                         <td class="align-middle table-text">Aucune mise à jour</td>
                     @endif
-                    <td class="align-middle table-text">
-                        <a type="button" class="btn button-shadow" href="{{route('see_routes_admin',[
+                    <td class="align-middle table-text"></td>
+                    <td class="align-middle table-text text-center">
+                        <div class="d-inline-block">
+                            <a type="button" class="btn button-shadow" href="{{route('see_routes_admin',[
                     'name_room_slug'=>Str::slug($room->name_room),
                     'id_room'=>$room->id_room,
                     'name_sector_slug'=>Str::slug($sector->name),
                     'id_sector'=>$sector->id_sector
                     ])}}">
-                            Voir secteur
-                        </a>
-                    </td>
-                    <td class="align-middle table-text text-center">
-                        <a type="button" class="fas fa-trash-alt fa-2x delete"
-                           href="{{route('delete_sector',['name_room'=>$room->name_room,'id'=>$sector->id_sector])}}"></a>
+                                Voir secteur
+                            </a>
+                        </div>
+                        <div class="d-inline-block">
+                            <a type="button" class="fas fa-trash-alt fa-2x delete"
+                               href="{{route('delete_sector',['name_room'=>$room->name_room,'id'=>$sector->id_sector])}}"></a>
+
+                        </div>
                     </td>
                 </tr>
             @endforeach

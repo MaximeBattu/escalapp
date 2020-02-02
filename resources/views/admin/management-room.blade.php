@@ -5,7 +5,7 @@
     <div>
         <a type="button" class="btn button-shadow add-room" href="{{route('see_add_room')}}">Ajouter une salle</a>
     </div>
-    <table class="table salles-admin">
+    <table class="table table-hover salles-admin">
         <thead>
         <tr>
             <th class="table-text">ID</th>
@@ -14,7 +14,7 @@
             <th class="table-text">Adresse</th>
             <th class="table-text">Mise à jour</th>
             <th class="table-text"></th>
-            <th colspan="2" class="table-text">Changement</th>
+            <th class="table-text"></th>
         </tr>
         </thead>
         <tbody>
@@ -39,16 +39,23 @@
                     <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
                 <td class="align-middle table-text">
-                    <a type="button" class="btn button-shadow"
-                       href="{{route('see_sectors_admin', ['id'=>$salle->id_room, 'name_room_slug' => Str::slug($salle->name_room) ])}}">Voir
-                        salle</a>
+
                 </td>
                 {{--<td class="align-middle table-text">
                     <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>
                 </td>--}}
                 <td class="align-middle table-text text-center">
-                    <a type="button" class="fas fa-trash-alt fa-2x delete"
-                       href="{{route('delete_room',['id'=>$salle->id_room])}}"></a>
+                    <div class="d-inline-block">
+                        <a type="button" class="btn button-shadow"
+                           href="{{route('see_sectors_admin', ['id'=>$salle->id_room, 'name_room_slug' => Str::slug($salle->name_room) ])}}">Voir
+                            salle</a>
+                    </div>
+
+                    <div class="d-inline-block">
+                        <a type="button" class="fas fa-trash-alt fa-2x delete"
+                           href="{{route('delete_room',['id'=>$salle->id_room])}}"></a>
+                    </div>
+
                 </td>
             </tr>
         @endforeach

@@ -36,26 +36,22 @@
                     </div>
                 </a>
             @elseif($hasRoutes && $hasBlocs == false)
-                <a href="{{route('see_routes', ['name_room'=>$room->name_room])}}" class="text-center content-voie">
+                <a href="{{route('see_routes', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-only-voie">
                     <div class="content-image">
-                        <div class="content-image-room">
+                        <div class="content-image-voie-room">
                             <img src="{{URL::asset('/img/mur.jpg')}}" alt="" class="image-room">
                         </div>
-                        <span class="text-image-room">Voies</span>
+                        <span class="text-image-route">Voies</span>
                     </div>
                 </a>
-                <div class="text-center content-empty-bloc">
-                    <div class="content-image">
-                        <span class="text-image-room">Aucun blocs n'a été enregistrés</span>
-                    </div>
-                </div>
+
             @elseif($hasRoutes == false && $hasBlocs)
                 <div class="text-center content-empty-voie">
                     <div class="content-image">
                         <span class="text-image-room">Aucune voies n'a été enregistrées</span>
                     </div>
                 </div>
-                <a href="{{route('see_blocs', ['name_room'=>$room->name_room])}}" class="text-center content-bloc">
+                <a href="{{route('see_blocs',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-bloc">
                     <div class="content-image">
                         <div class="content-image-room">
                             <img src="{{URL::asset('/img/bloc.jpg')}}" alt="" class="image-room room-bloc">
@@ -64,15 +60,8 @@
                     </div>
                 </a>
             @else
-                <div class="text-center content-empty-voie">
-                    <div class="content-image">
-                        <span class="text-image-room">Aucune voies n'a été enregistrées</span>
-                    </div>
-                </div>
-                <div class="text-center content-empty-bloc">
-                    <div class="content-image">
-                        <span class="text-image-room">Aucun blocs n'a été enregistrés</span>
-                    </div>
+                <div>
+                    <h1 class="text-center">Aucun bloc / voie n'a été renseigné</h1>
                 </div>
             @endif
 

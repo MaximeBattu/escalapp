@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <table class="table users-admin">
+    <table class="table table-hover users-admin">
         <thead>
             <tr>
                 <th class="table-text">ID</th>
@@ -10,7 +10,7 @@
                 <th class="table-text">email</th>
                 <th class="table-text">Crée le</th>
                 <th class="table-text">Administateur</th>
-                <th class="room-change table-text">Changement</th>
+                <th class="room-change table-text"></th>
             </tr>
         </thead>
         <tbody>
