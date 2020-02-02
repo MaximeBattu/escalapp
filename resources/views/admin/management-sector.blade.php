@@ -4,7 +4,7 @@
     <div>
         <!-- A changer -->
         <a type="button" class="btn btn-success add-route"
-           href="{{route('see_add_sector',['name_room'=>$room->name_room])}}">Ajouter un secteur</a>
+           href="{{route('see_add_sector',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}">Ajouter un secteur</a>
     </div>
     <table class="table salles-admin">
         <thead>

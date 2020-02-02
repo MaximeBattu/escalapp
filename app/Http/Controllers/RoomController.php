@@ -52,8 +52,7 @@ class RoomController extends Controller
     public function seeRoomManagement()
     {
         $salles = Room::all();
-
-        return view('accueil', [
+        return view('admin/management-room', [
             'salles' => $salles
         ]);
     }
@@ -75,9 +74,9 @@ class RoomController extends Controller
      * Admin Management
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function seeAddingRoom()
+    public function seeAddRoom()
     {
-        return view('admin/adding-room');
+        return view('admin/add-room');
     }
 
     /**

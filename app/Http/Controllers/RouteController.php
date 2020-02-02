@@ -131,7 +131,7 @@ class RouteController extends Controller
         }
         $routes = Route::byRoomAndSector($room->id_room, $sector->id_sector);
 
-        return view('admin/routes-admin', [
+        return view('admin/management-route', [
             'routes' => $routes,
             'sector' => $sector,
             'room' => $room
@@ -147,7 +147,7 @@ class RouteController extends Controller
     {
         $sector = Sector::where('name', $name_sector)->first();
 
-        return view('admin/adding-routes', [
+        return view('admin/add-route', [
             'sector' => $sector,
             'name_room' => $name_room
         ]);

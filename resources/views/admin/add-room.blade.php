@@ -5,39 +5,40 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card formContainer">
-                <div class="card-header formTitle">{{ __('Ajouter une ou plusieurs salles') }}</div>
+                <div class="card-header formTitle font-size-head-form">{{ __('Ajouter une ou plusieurs salles') }}</div>
                 <div class="card-body">
                     <form method="post" action="{{route('add_room')}}">
                         {{csrf_field()}}
 
                         <div class="form-group row new-infos">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom Salle') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Nom Salle') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="nom salle">
+                                <input id="name" type="text" class="form-control font-size-text" name="nameRoom" placeholder="nom salle">
                             </div>
                         </div>
 
                         <div class="form-group row new-infos">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right font-size-text">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="e-mail">
+                                <input id="name" type="text" class="form-control font-size-text" name="emailRoom" placeholder="e-mail">
                             </div>
                         </div>
 
                         <div class="form-group row new-infos">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Adresse') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Adresse') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="adresse">
+                                <input id="name" type="text" class="form-control font-size-text" name="addressRoom" placeholder="adresse">
                             </div>
                         </div>
 
-                        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter et recommencer">
+                        <button type="submit" class="btn button-shadow font-size-text" name="submit" value="Ajouter">Ajouter</button>
+
+                        <button type="submit" class="btn button-shadow font-size-text" name="submit" value="Ajouter et recommencer">
                             Ajouter et recommencer
                         </button>
-                        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter">Ajouter</button>
                     </form>
                 </div>
             </div>

@@ -34,8 +34,8 @@ Route::post('/profil/mise-a-jour', 'UserController@updateProfile')->name('set_up
 Route::get('/admin/gestion-salles', 'RoomController@seeRoomManagement')->name('see_room_management')->middleware('auth', 'admin');
 // TODO Delete HTTP Verb
 Route::get('/admin/gestion-salles/supprimer/{id}', 'RoomController@deleteRoom')->name('delete_room')->middleware('auth', 'admin');
-Route::get('/admin/gestion-salles/ajouter', 'RoomController@seeAddingRoom')->name('see_adding_room')->middleware('auth', 'admin');
-Route::post('/admin/gestion-salles/ajouter', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
+Route::get('/admin/gestion-salles/ajouter-salle', 'RoomController@seeAddRoom')->name('see_add_room')->middleware('auth', 'admin');
+Route::post('/admin/gestion-salles/ajouter-salle', 'RoomController@addRoom')->name('add_room')->middleware('auth', 'admin');
 Route::put('/admin/gestion-salles/modifier/salle/{id_room}','RoomController@ajaxUpdateRoom')->middleware('auth','admin');
 
 Route::get('/admin/gestion-salles/{name_room_slug}-{id}', 'SectorController@seeAllSectors')
@@ -73,7 +73,7 @@ Route::put('/admin/gestion-salles/modifier/sector/{id_sector}','SectorController
 Route::get('admin/gestion-salles/{name_room}/{name_sector}/delete{idroute}', 'RouteController@deleteRoute')->name('delete_route')->middleware('auth','admin');
 
 // TODO pass slug name room, id room, slug name sector and id sector
-Route::get('/admin/gestion-salles/{name_room}/{name_sector}/ajouter-voie', 'RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
+Route::get('/admin/gestion-salles/{name_room}/{name_sector}/ajouter-route', 'RouteController@seeAddRoutes')->name('see_add_routes')->middleware('auth','admin');
 Route::post('/admin/gestion-salles/salle/{id_room}/secteur/{id_sector}', 'RouteController@addRoute')->name('add_route')->middleware('auth','admin');
 Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@ajaxUpdateRoute')->middleware('auth','admin');
 

@@ -22,7 +22,7 @@ class SectorController extends Controller
 
     	$sectors = Sector::fromRoom($room->id_room);
 
-    	return view('admin/sectors', [
+    	return view('admin/management-sector', [
     		'sectors' => $sectors,
     		'room' => $room
     	]);
