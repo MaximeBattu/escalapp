@@ -58,12 +58,11 @@
         </tbody>
     </table>
     @if(\Session::has('add-administrator-right'))
-        <div class="alert alert-success popup" id="administratorRight">
+        <div class="alert alert-success popup font-size-text" id="administratorRight">
             {{\Session::get('add-administrator-right')}}
         </div>
-    @endif
-    @if(\Session::has('remove-administrator-right'))
-        <div class="alert alert-success popup" id="administratorRight">
+    @elseif(\Session::has('remove-administrator-right'))
+        <div class="alert alert-success popup font-size-text" id="administratorRight">
             {{\Session::get('remove-administrator-right')}}
         </div>
     @endif

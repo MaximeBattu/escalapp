@@ -18,8 +18,9 @@ class CreateSectorsTable extends Migration
             $table->integer('id_room');
             $table->string('name',50);
             $table->string('climbing_type',1);
-            $table->foreign('id_room')->references('id_room')->on('rooms');
+            $table->foreign('id_room')->references('id_room')->on('rooms')->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['id_room','name']);
         });
     }
 

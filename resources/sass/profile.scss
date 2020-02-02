@@ -1,5 +1,6 @@
 $primaryColor: #212121 !important;
 $contestColorDark:#484848!important;
+$contestColor :#484848!important;
 /* Comptes */
 
 #title {
@@ -99,6 +100,7 @@ $contestColorDark:#484848!important;
     color: white;
     padding: 1vh;
     margin: 0.5vw;
+    font-size: 22px;
 }
 
 .button-shadow:hover {

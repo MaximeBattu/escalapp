@@ -101,7 +101,7 @@ class RouteController extends Controller
 
         $data = RouteController::returnViewByType($id, 'B');
 
-        return view('site/bloc', [
+        return view('site/boulder', [
             'routesBloc' => $data['routes'],
             'room' => $data['room'],
             'users' => $data['users']
@@ -196,17 +196,6 @@ class RouteController extends Controller
     {
         Route::find($idroute)->delete();
         return redirect()->back();
-    }
-
-    public function seeUpdateRoute(string $name_room, string $name_sector, int $idroute)
-    {
-        $route = Route::find($idroute);
-        $sector = Sector::where('name', $name_sector)->first();
-        return view('admin/update-route', [
-            'route' => $route,
-            'sector' => $sector,
-            'name_room' => $name_room
-        ]);
     }
 
     /**

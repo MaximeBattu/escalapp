@@ -2,6 +2,10 @@ html {
   font-family: Arial;
 }
 
+.table {
+    margin-bottom: 0!important;
+}
+
 .navbar {
   background-color: #212121 !important;
   height: 80px;
@@ -54,11 +58,11 @@ html {
 }
 
 .input-text-size {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .font-size-text {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .font-size-head-form {

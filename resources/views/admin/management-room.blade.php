@@ -3,7 +3,7 @@
 
 
     <div>
-        <a type="button" class="btn btn-success add-room" href="{{route('see_add_room')}}">Ajouter une salle</a>
+        <a type="button" class="btn button-shadow add-room" href="{{route('see_add_room')}}">Ajouter une salle</a>
     </div>
     <table class="table salles-admin">
         <thead>
@@ -12,7 +12,7 @@
             <th class="table-text">Nom</th>
             <th class="table-text">Adresse mail</th>
             <th class="table-text">Adresse</th>
-            <th class="table-text">Dernière mise à jour</th>
+            <th class="table-text">Mise à jour</th>
             <th class="table-text"></th>
             <th colspan="2" class="table-text">Changement</th>
         </tr>
@@ -39,13 +39,16 @@
                     <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
                 <td class="align-middle table-text">
-                    <a type="button" class="btn button-shadow" href="{{route('see_sectors_admin', ['id'=>$salle->id_room, 'name_room_slug' => Str::slug($salle->name_room) ])}}">Voir salle</a>
+                    <a type="button" class="btn button-shadow"
+                       href="{{route('see_sectors_admin', ['id'=>$salle->id_room, 'name_room_slug' => Str::slug($salle->name_room) ])}}">Voir
+                        salle</a>
                 </td>
                 {{--<td class="align-middle table-text">
                     <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>
                 </td>--}}
                 <td class="align-middle table-text text-center">
-                    <a type="button" class="fas fa-trash-alt fa-2x delete" href="{{route('delete_room',['id'=>$salle->id_room])}}"></a>
+                    <a type="button" class="fas fa-trash-alt fa-2x delete"
+                       href="{{route('delete_room',['id'=>$salle->id_room])}}"></a>
                 </td>
             </tr>
         @endforeach
@@ -53,7 +56,7 @@
 
     </table>
     @if(\Session::has('add-success'))
-        <div class="alert alert-success popup" id="addSuccessRoom">
+        <div class="alert alert-success popup font-size-text" id="addSuccessRoom">
             {{\Session::get('add-success')}}
         </div>
     @endif

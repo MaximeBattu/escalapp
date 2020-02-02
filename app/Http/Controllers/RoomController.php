@@ -66,7 +66,7 @@ class RoomController extends Controller
     public function deleteRoom(int $id)
     {
         Room::find($id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('delete-route-succes','Vous avez supprimé la salle');
     }
 
     /**
@@ -103,9 +103,9 @@ class RoomController extends Controller
         }
 
         if ($request->submit == 'Ajouter')
-            return redirect()->route('see_room_management')->with('add-success', 'Successful ! You have added a new room !');
+            return redirect()->route('see_room_management')->with('add-success', 'Vous avez ajouté une nouvelle salle !');
         else
-            return redirect()->back()->with('add-success', 'Successful ! You have added a new room !');
+            return redirect()->back()->with('add-success',  'Vous avez ajouté une nouvelle salle !');
     }
 
     /**

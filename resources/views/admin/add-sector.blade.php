@@ -1,15 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card formContainer">
                 <div class="card-header formTitle">{{ __('Ajouter un secteur') }}</div>
                 <div class="card-body">
-                    <form method="post" action="{{route('add_sector',['name_room'=>$room->name_room])}}">
-                        {{csrf_field()}}
+                    <form method="post" action="{{route('add_sector',['id'=>$room->id_room])}}">
+                        {{csrf_field() }}
 
                         <div class="form-group row new-infos">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom Secteur') }}</label>
@@ -28,10 +27,10 @@
                             </div>
                         </div>
 
+                        <button type="submit" class="btn button-shadow" name="submit" value="Ajouter">Ajouter</button>
                         <button type="submit" class="btn button-shadow" name="submit" value="Ajouter et recommencer">
                             Ajouter et recommencer
                         </button>
-                        <button type="submit" class="btn button-shadow">Ajouter</button>
                     </form>
                 </div>
             </div>

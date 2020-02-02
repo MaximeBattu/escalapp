@@ -20,5 +20,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/route-boulder.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/contest.scss', 'public/css')
-    .sass('resources/sass/user.scss', 'public/css');
+    .sass('resources/sass/user.scss', 'public/css')
+    .sass('resources/sass/media-queries.scss', 'public/css');
 

@@ -29,6 +29,7 @@ $contestColor :#484848!important;
     width: 100%;
     left: 0;
     z-index: 2;
+    text-align: center;
 }
 
 /*       Gestion des bouttons administrateurs => "Gestion des salles" et "Gestion des comptes"          */
@@ -66,16 +67,27 @@ $contestColor :#484848!important;
 
 /* Salles */
 
+.add-sector-no-data,
+.add-route-no-data {
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    color: $textColor;
+    border-color: $primaryColor;
+    margin-bottom: 10%;
+}
+
 .add-room,
-.add-route {
+.add-route,
+.add-sector{
     display: block;
     position: absolute;
-    top: 20%;
+    top: 110px;
     right: 10vw;
     width: 300px;
-    font-size: 28px;
     color: $textColor;
-    background-color: $primaryColor;
     border-color: $primaryColor;
     margin-bottom: 10%;
 }

@@ -28,7 +28,7 @@
             </div>
         </div>
         <div id="tableContent">
-            <table class="table">
+            <table class="table table-route">
                 <tbody>
                 @foreach($routes as $route)
                     <tr class="text-center">

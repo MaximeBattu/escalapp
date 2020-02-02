@@ -49521,6 +49521,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/media-queries.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/media-queries.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/profile.scss":
 /*!*************************************!*\
   !*** ./resources/sass/profile.scss ***!
@@ -49577,9 +49588,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ./resources/sass/profile.scss ./resources/sass/room.scss ./resources/sass/route-boulder.scss ./resources/sass/admin.scss ./resources/sass/contest.scss ./resources/sass/user.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ./resources/sass/profile.scss ./resources/sass/room.scss ./resources/sass/route-boulder.scss ./resources/sass/admin.scss ./resources/sass/contest.scss ./resources/sass/user.scss ./resources/sass/media-queries.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49591,7 +49602,8 @@ __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sa
 __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sass\route-boulder.scss */"./resources/sass/route-boulder.scss");
 __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sass\admin.scss */"./resources/sass/admin.scss");
 __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sass\contest.scss */"./resources/sass/contest.scss");
-module.exports = __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sass\user.scss */"./resources/sass/user.scss");
+__webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sass\user.scss */"./resources/sass/user.scss");
+module.exports = __webpack_require__(/*! F:\Users\Maxime BATTU\Desktop\code\escalapp\resources\sass\media-queries.scss */"./resources/sass/media-queries.scss");
 
 
 /***/ })
