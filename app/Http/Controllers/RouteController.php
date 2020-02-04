@@ -16,8 +16,21 @@ class RouteController extends Controller
     public static function returnViewByType(int $idRoom, string $type)
     {
         $room = Room::find($idRoom);
+        
         $routes = Route::byRoomAndType($idRoom, $type);
+        
+        $idsSector = [];
+        $difficultiesRoute = []; 
+        $colorsRoute = [];
+        foreach ($routes as $route => $sector) {
+            $idsSector[] = $sector->id_sector;
+            $difficultiesRoute[] = $sector->difficulty_route;
+            $colorsRoute[] = $sector->color_route;
 
+        }
+        $sectors = Sector::findMany($idsSector);
+
+        
         $users = User::select('users.*')
             ->join('finished_routes', 'users.id', 'finished_routes.id_user')
             ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
@@ -56,7 +69,10 @@ class RouteController extends Controller
         return [
             'routes' => $routes,
             'room' => $room,
-            'users' => $users
+            'users' => $users,
+            'sectors'=>$sectors,
+            'difficulties' => array_unique($difficultiesRoute),
+            'colors' => array_unique($colorsRoute)
         ];
     }
 
@@ -79,7 +95,10 @@ class RouteController extends Controller
         return view('site/route', [
             'routes' => $data['routes'],
             'room' => $data['room'],
-            'users' => $data['users']
+            'users' => $data['users'],
+            'sectors'=>$data['sectors'],
+            'difficulties' => $data['difficulties'],
+            'colors'=>$data['colors']
         ]);
     }
 
@@ -104,7 +123,10 @@ class RouteController extends Controller
         return view('site/boulder', [
             'routesBloc' => $data['routes'],
             'room' => $data['room'],
-            'users' => $data['users']
+            'users' => $data['users'],
+            'sectors'=>$data['sectors'],
+            'difficulties' => $data['difficulties'],
+            'colors'=>$data['colors']
         ]);
     }
 
@@ -218,6 +240,144 @@ class RouteController extends Controller
         $route->save();
 
         return \response('OK', 200);
+    }
+
+    public function filterRoute(Request $request,string $roomSlug ,int $id) {
+        $room = Room::find($id);
+        $computedNameRoomSlug = Str::slug($room->name_room);
+        if ($computedNameRoomSlug !== $roomSlug) {
+            return redirect(null, 301)->route('filter_route', [
+                'name_room_slug' => $computedNameRoomSlug,
+                'id_room' => $id
+            ]);
+        }
+
+
+        $nameSector = $request->input('sectorNameFilter');
+        $colorRoute = $request->input('colorFilter');
+        $difficulty = $request->input('difficultyFilter');
+
+        $data = RouteController::returnViewByType($id, 'V');
+
+        $idsSector = [];
+        foreach($data['sectors'] as $sector) {
+            $idsSector[] = $sector->id_sector; 
+        }
+
+        $routes = Route::select('routes.*')
+        ->join('sectors', 'routes.id_sector', 'sectors.id_sector')
+        ->whereIn('sectors.id_sector',array_unique($idsSector)); // load only sector on the room and not all
+
+        if($nameSector !== null) {
+            $routes = $routes->where('sectors.name',$nameSector);
+        }
+        if($colorRoute !== null) {
+            $routes = $routes->where('routes.color_route',$colorRoute);
+        }
+        if($difficulty !== null) {
+            $routes = $routes->where('routes.difficulty_route',$difficulty);
+        }
+
+        $routes = $routes->distinct()->get();
+
+        if (isset(Auth::user()->id)) {
+            $doneByUser = Route::select('routes.*')
+                ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
+                ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
+                ->where(['finished_routes.id_user' => Auth::user()->id, 'sectors.climbing_type' => 'V'])->get();
+
+            foreach ($routes as $route) {
+                $route->finished = false;
+            }
+
+            foreach ($doneByUser as $done) {
+                foreach ($routes as $route) {
+                    if ($route->id_route == $done->id_route) {
+                        $route->finished = true;
+                        break;
+                    }
+                }
+            }
+
+        }
+       
+
+        return view('site/route', [
+            'routes' => $routes,
+            'room' => $data['room'],
+            'users' => $data['users'],
+            'sectors'=>$data['sectors'],
+            'difficulties' => $data['difficulties'],
+            'colors'=>$data['colors']
+        ]);
+    }
+
+    public function filterBoulder(Request $request,string $roomSlug ,int $id) {
+        $room = Room::find($id);
+        $computedNameRoomSlug = Str::slug($room->name_room);
+        if ($computedNameRoomSlug !== $roomSlug) {
+            return redirect(null, 301)->route('filter_route', [
+                'name_room_slug' => $computedNameRoomSlug,
+                'id_room' => $id
+            ]);
+        }
+
+        $nameSector = $request->input('sectorNameFilter');
+        $colorRoute = $request->input('colorFilter');
+        $difficulty = $request->input('difficultyFilter');
+
+        $data = RouteController::returnViewByType($id, 'B');
+
+        $idsSector = [];
+        foreach($data['sectors'] as $sector) {
+            $idsSector[] = $sector->id_sector; 
+        }
+
+        $routes = Route::select('routes.*')
+        ->join('sectors', 'routes.id_sector', 'sectors.id_sector')
+        ->whereIn('sectors.id_sector',array_unique($idsSector)); // load only sector on the room and not all
+
+        if($nameSector !== null) {
+            $routes = $routes->where('sectors.name',$nameSector);
+        }
+        if($colorRoute !== null) {
+            $routes = $routes->where('routes.color_route',$colorRoute);
+        }
+        if($difficulty !== null) {
+            $routes = $routes->where('routes.difficulty_route',$difficulty);
+        }
+
+        $routes = $routes->distinct()->get();
+
+        if (isset(Auth::user()->id)) {
+            $doneByUser = Route::select('routes.*')
+                ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
+                ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
+                ->where(['finished_routes.id_user' => Auth::user()->id, 'sectors.climbing_type' => 'B'])->get();
+
+            foreach ($routes as $route) {
+                $route->finished = false;
+            }
+
+            foreach ($doneByUser as $done) {
+                foreach ($routes as $route) {
+                    if ($route->id_route == $done->id_route) {
+                        $route->finished = true;
+                        break;
+                    }
+                }
+            }
+        }
+       
+
+        return view('site/boulder', [
+            'routesBloc' => $routes,
+            'room' => $data['room'],
+            'users' => $data['users'],
+            'sectors'=>$data['sectors'],
+            'difficulties' => $data['difficulties'],
+            'colors'=>$data['colors']
+        ]);
     }
 }
 

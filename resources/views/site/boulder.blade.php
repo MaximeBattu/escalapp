@@ -58,4 +58,81 @@
             </table>
         </div>
     </div>
+    <section class="filter">
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card formContainer">
+                            <div
+                                class="card-header formTitle font-size-head-form">{{ __('Filtre') }}</div>
+                            <div class="card-body d-inline">
+                                <form method="post" action="{{route('filter_boulder',['name_room_slug'=>Str::slug($room->name_room),'id_room'=>$room->id_room])}}">
+                                    {{csrf_field()}}
+    
+                                    <div class="form-group row new-infos">
+                                        <label for="name"
+                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Nom secteur') }}</label>
+    
+                                        <div class="col-md-6">
+                                            <select id="name" type="text" class="form-control selectpicker font-size-text" name="sectorNameFilter"
+                                                placeholder="nom salle">
+                                                <option value="">Nom secteur</option>
+                                                @foreach($sectors as $sector)
+                                                    <option value="{{$sector->name}}" @if( old($sector->name)  == $sector->name) selected="selected" @endif>{{$sector->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row new-infos">
+                                        <label for="name"
+                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Couleur') }}</label>
+    
+                                        <div class="col-md-6">
+                                            <select id="name" type="text" class="form-control font-size-text" name="colorFilter"
+                                                placeholder="nom salle">
+                                                <option value="">Couleur route</option>
+                                                @foreach($colors as $color)
+                                                 <option value="{{$color}}">{{$color}}</option>
+                                                @endforeach 
+                                            </select>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row new-infos">
+                                        <label for="name"
+                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Difficulté') }}</label>
+    
+                                        <div class="col-md-6">
+                                            <select id="name" type="text" class="form-control font-size-text" name="difficultyFilter"
+                                                placeholder="nom salle">
+                                                <option value="">Difficulté</option>
+                                                @foreach($difficulties as $difficulty)
+                                                 <option value="{{$difficulty}}">{{$difficulty}}</option>
+                                                @endforeach 
+                                            </select>
+                                        </div>
+                                    </div>
+    
+                                    <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
+                                            value="Filtre">Filter
+                                    </button>
+                                   
+                                </form>
+                                <form method="post">
+    
+                                        <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
+                                        value="Filtre">Réinitialiser
+                                </button>
+        
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+        </section>
 @endsection

@@ -93,6 +93,18 @@ Route::post('/admin/gestion-salles/salle/{id_room}/secteur/{id_sector}', 'RouteC
 Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@ajaxUpdateRoute')
     ->middleware('auth','admin');
 
+Route::post('{name_room_slug}-{id_room}/voies/','RouteController@filterRoute')->name('filter_route')
+    ->where([
+        'name_room_slug'=>'[a-z0-9\-]+',
+        'id_room'=>'[0-9]+'
+    ]);;
+
+Route::post('{name_room_slug}-{id_room}/blocs/','RouteController@filterBoulder')->name('filter_boulder')
+->where([
+    'name_room_slug'=>'[a-z0-9\-]+',
+    'id_room'=>'[0-9]+'
+]);;
+
 // ACCOUNT ADMINISTRATION
 Route::get('/admin/gestion-comptes', 'UserController@seeUserManagement')->name('see_user_management')
     ->middleware('auth', 'admin');
