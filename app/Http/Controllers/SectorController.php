@@ -72,7 +72,7 @@ class SectorController extends Controller
         $name = json_decode($request->getContent())->name_sector;
 
         $sector = Sector::find($id);
-        $sector->name = $name;
+        $sector->name = trim($name);
         $sector->save();
 
         return \response('OK', 200);

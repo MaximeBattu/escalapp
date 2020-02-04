@@ -120,9 +120,9 @@ class RoomController extends Controller
         $address = json_decode($request->getContent())->address;
 
         $room = Room::find($idRoom);
-        $room->name_room = $name;
-        $room->email = $email;
-        $room->address_room = $address;
+        $room->name_room = trim($name);
+        $room->email = trim($email);
+        $room->address_room = trim($address);
         $room->save();
 
         return \response('OK', 200);

@@ -14,14 +14,20 @@ class Route extends Model
         return $this->belongsTo('App\Room');
     }
 
-    public static function byRoomAndType(int $id_room, string $type) {
-    	return Route::select('routes.*')
+    public function byRoomAndType(int $id_room, string $type, array $routeExtraParameters = []) {
+    	$request = Route::select('routes.*')
                 ->join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
                 ->where([
                     ['sectors.climbing_type', $type],
                     ['sectors.id_room', $id_room]
-                ])
-                ->get();
+                ]);
+    	foreach ($routeExtraParameters as $name => $value) {
+    	    if ($value) {
+                $request->where($name, '=', $value);
+            }
+        }
+
+    	return $request->get();
     }
 
     public static function byRoomAndSector(int $id_room, int $id_sector) {

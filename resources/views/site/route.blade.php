@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="row justify-content-around">
             <div id="contest">
                 <h2>Contest en cours</h2>
@@ -69,50 +68,45 @@
                         <div
                             class="card-header formTitle font-size-head-form">{{ __('Filtre') }}</div>
                         <div class="card-body d-inline">
-                            <form method="post" action="{{route('filter_route',['name_room_slug'=>Str::slug($room->name_room),'id_room'=>$room->id_room])}}">
-                                {{csrf_field()}}
-
+                            <form id="filter-form" action="#">
                                 <div class="form-group row new-infos">
-                                    <label for="name"
+                                    <label for="sector"
                                         class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Nom secteur') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="name" type="text" class="form-control selectpicker font-size-text" name="sectorNameFilter"
-                                            placeholder="nom salle">
+                                        <select id="sector" type="text" class="form-control selectpicker font-size-text" name="sectorNameFilter">
                                             <option value="">Nom secteur</option>
                                             @foreach($sectors as $sector)
-                                                <option value="{{$sector->name}}" @if( old($sector->name)  == $sector->name) selected="selected" @endif>{{$sector->name}}</option>
+                                                <option @if($sector->name === $selectedName) {{ 'selected' }} @endif value="{{$sector->name}}">{{$sector->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row new-infos">
-                                    <label for="name"
+                                    <label for="color"
                                         class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Couleur') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="name" type="text" class="form-control font-size-text" name="colorFilter"
-                                            placeholder="nom salle">
+                                        <select id="color" type="text" class="form-control font-size-text" name="colorFilter">
                                             <option value="">Couleur route</option>
                                             @foreach($colors as $color)
-                                             <option value="{{$color}}">{{$color}}</option>
-                                            @endforeach 
+                                             <option @if($color === $selectedColor) {{ 'selected' }} @endif value="{{$color}}">{{$color}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row new-infos">
-                                    <label for="name"
+                                    <label for="difficulty"
                                         class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Difficulté') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="name" type="text" class="form-control font-size-text" name="difficultyFilter"
-                                            placeholder="nom salle">
+                                        <select id="difficulty" type="text" class="form-control font-size-text" name="difficultyFilter"">
                                             <option value="">Difficulté</option>
                                             @foreach($difficulties as $difficulty)
-                                             <option value="{{$difficulty}}">{{$difficulty}}</option>
-                                            @endforeach 
+                                             <option @if($difficulty === $selectedDifficulty) {{ 'selected' }} @endif value="{{$difficulty}}">{{$difficulty}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -120,14 +114,14 @@
                                 <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
                                         value="Filtre">Filter
                                 </button>
-                               
+
                             </form>
                             <form method="post">
 
                                     <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
                                     value="Filtre">Réinitialiser
                             </button>
-    
+
                                 </form>
                         </div>
                     </div>
@@ -138,4 +132,11 @@
 
     </section>
 
+@endsection
+
+@section('scripts')
+    <script>
+        const pageUrl = '{{ Request::url() }}'
+    </script>
+    <script src="{{asset('js/route.js')}}"></script>
 @endsection

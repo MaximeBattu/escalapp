@@ -9,5 +9,6 @@
     "/css/contest.css": "/css/contest.css",
     "/css/user.css": "/css/user.css",
     "/css/media-queries.css": "/css/media-queries.css",
-    "/js/main.js": "/js/main.js"
+    "/js/main.js": "/js/main.js",
+    "/js/route.js": "/js/route.js"
 }

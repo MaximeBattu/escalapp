@@ -28,9 +28,6 @@
     <!--
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 -->
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{asset('js/main.js')}}"></script>
 
 </head>
 <body>
@@ -117,6 +114,12 @@
 
     </main>
 </div>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{asset('js/main.js')}}"></script>
+
+@yield('scripts')
 
 </body>
 </html>
