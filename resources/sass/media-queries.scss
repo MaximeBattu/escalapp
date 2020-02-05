@@ -1,5 +1,6 @@
 @media screen and (max-width:1750px) {
-    .table-text {
+    .table-text, 
+    .font-size-text {
         font-size:18px
     }
 
@@ -10,7 +11,8 @@
 }
 
 @media screen and (max-width:1500px) {
-    .table-text {
+    .table-text, 
+    .font-size-text {
         font-size:16px
     }
 
@@ -21,7 +23,8 @@
 }
 
 @media screen and (max-width:1350px) {
-    .table-text {
+    .table-text, 
+    .font-size-text {
         font-size:14px
     }
 

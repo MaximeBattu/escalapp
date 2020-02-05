@@ -23,7 +23,7 @@
                href="{{route('see_add_routes',['name_room'=>$room->name_room, 'name_sector'=>$sector->name])}}">Ajouter
                 une voie</a>
         </div>
-        <table class="table table-hover salles-admin">
+        <table class="table table-hover voies-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>
@@ -32,6 +32,8 @@
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Score</th>
                 <th class="table-text">Dernière mise à jour</th>
+                <th class="table-text">Labels</th>
+                <th class="table-text"></th>
                 <th class="table-text"></th>
             </tr>
             </thead>
@@ -66,6 +68,18 @@
                     {{--<td class="align-middle table-text">
                         <a type="button" class="btn btn-warning" href="{{route('see_update_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">Modifier</a>
                     </td>--}}
+                    <td class="align-middle table-text">
+                        <select name="" id="">
+                            <option value=""></option>
+                            <option value="">Agilité</option>
+                            <option value="">Physique</option>
+                            <option value="">Rapide</option>
+                        </select>
+                    </td>
+                    <td class="align-middle table-text">
+                        <input type="text" placeholder="ajouter un label">
+                    </td>
+                    
                     <td class="align-middle table-text text-center">
                         <a type="button" class="fas fa-trash-alt fa-2x delete"
                            href="{{route('delete_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}"></a>

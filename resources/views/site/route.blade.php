@@ -74,7 +74,7 @@
                                         class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Nom secteur') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="sector" type="text" class="form-control selectpicker font-size-text" name="sectorNameFilter">
+                                        <select id="sector" type="text" class="form-control selectpicker font-size-text" name="sectorName">
                                             <option value="">Nom secteur</option>
                                             @foreach($sectors as $sector)
                                                 <option @if($sector->name === $selectedName) {{ 'selected' }} @endif value="{{$sector->name}}">{{$sector->name}}</option>
@@ -88,7 +88,7 @@
                                         class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Couleur') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="color" type="text" class="form-control font-size-text" name="colorFilter">
+                                        <select id="color" type="text" class="form-control font-size-text" name="color">
                                             <option value="">Couleur route</option>
                                             @foreach($colors as $color)
                                              <option @if($color === $selectedColor) {{ 'selected' }} @endif value="{{$color}}">{{$color}}</option>
@@ -102,7 +102,7 @@
                                         class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Difficulté') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="difficulty" type="text" class="form-control font-size-text" name="difficultyFilter"">
+                                        <select id="difficulty" type="text" class="form-control font-size-text" name="difficulty"">
                                             <option value="">Difficulté</option>
                                             @foreach($difficulties as $difficulty)
                                              <option @if($difficulty === $selectedDifficulty) {{ 'selected' }} @endif value="{{$difficulty}}">{{$difficulty}}</option>
@@ -116,13 +116,13 @@
                                 </button>
 
                             </form>
-                            <form method="post">
+                            <!-- <form method="post">
 
                                     <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
                                     value="Filtre">Réinitialiser
                             </button>
 
-                                </form>
+                                </form> -->
                         </div>
                     </div>
                 </div>

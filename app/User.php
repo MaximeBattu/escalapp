@@ -56,5 +56,6 @@ class User extends Authenticatable
 
     public static function getUsersScore($ids) {
         return User::getScores()->whereIn('id',$ids)->pluck('SCORE','ID');
-    }
+    } 
+
 }

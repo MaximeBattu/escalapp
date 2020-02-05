@@ -116,13 +116,13 @@
                                     </button>
                                    
                                 </form>
-                                <form method="post">
+                                <!-- <form method="post">
 
                                         <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
                                         value="Filtre">Réinitialiser
                                 </button>
         
-                                    </form>
+                                    </form> -->
                             </div>
                         </div>
                     </div>

@@ -7,16 +7,21 @@ $('#filter-form').submit(function(e){
 
     const queryParam = []
     if (sectorName !== '') {
-        queryParam.push(`sectorNameFilter=${sectorName}`)
+        queryParam.push(`sectorName=${sectorName}`)
     }
     if (color !== '') {
-        queryParam.push(`colorFilter=${color}`)
+        queryParam.push(`color=${color}`)
     }
     if (difficulty !== '') {
-        queryParam.push(`difficultyFilter=${difficulty}`)
+        queryParam.push(`difficulty=${difficulty}`)
     }
 
-   // if (queryParam.length !== 0) { // TODO Remplacer par réinitialiser ???
+    console.log(queryParam);
+    
+
+   if (queryParam.length !== 0) { // TODO Remplacer par réinitialiser ???
         window.location = `${pageUrl}?${queryParam.join('&')}`
-    //}
+    } else {
+        window.location = `${pageUrl}`
+    }
 })

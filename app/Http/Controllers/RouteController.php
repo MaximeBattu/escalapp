@@ -104,9 +104,9 @@ class RouteController extends Controller
             ]);
         }
 
-        $nameSector = $request->input('sectorNameFilter');
-        $colorRoute = $request->input('colorFilter');
-        $difficulty = $request->input('difficultyFilter');
+        $nameSector = $request->input('sectorName');
+        $colorRoute = $request->input('color');
+        $difficulty = $request->input('difficulty');
 
 
         $data = $this->returnViewByType($id, 'V', [
@@ -144,9 +144,9 @@ class RouteController extends Controller
             ]);
         }
 
-        $nameSector = $request->input('sectorNameFilter');
-        $colorRoute = $request->input('colorFilter');
-        $difficulty = $request->input('difficultyFilter');
+        $nameSector = $request->input('sectorName');
+        $colorRoute = $request->input('color');
+        $difficulty = $request->input('difficulty');
 
         $data = $this->returnViewByType($id, 'B', [
             'name'=>$nameSector,

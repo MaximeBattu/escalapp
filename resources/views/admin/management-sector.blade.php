@@ -29,8 +29,7 @@
                 <th class="table-text">Nom</th>
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Mise à jour</th>
-                <th class="table-text"></th>
-                <th class="table-text"></th>
+                
             </tr>
             </thead>
             <tbody>
@@ -51,8 +50,7 @@
                     @else
                         <td class="align-middle table-text">Aucune mise à jour</td>
                     @endif
-                    <td class="align-middle table-text"></td>
-                    <td class="align-middle table-text text-center">
+                    <td class="align-middle table-text text-right">
                         <div class="d-inline-block">
                             <a type="button" class="btn button-shadow" href="{{route('see_routes_admin',[
                     'name_room_slug'=>Str::slug($room->name_room),

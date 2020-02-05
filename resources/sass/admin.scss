@@ -3,15 +3,16 @@ $primaryColor: #212121 !important;
 $contestColor :#484848!important;
 
 .salles-admin,
-.users-admin {
+.users-admin,
+.voies-admin {
     width: 80vw;
-    top: 7vh;
+    top: 25vh;
     position: absolute;
     left: 10vw;
 }
 
-.salles-admin {
-    margin: 8% 0 8% 0;
+.users-admin {
+    top: 12.5vh;
 }
 
 .users-admin {
@@ -84,9 +85,9 @@ $contestColor :#484848!important;
 .add-sector{
     display: block;
     position: absolute;
-    top: 110px;
-    right: 10vw;
-    width: 300px;
+    top: 100px;
+    right: 4vw;
+    width: 250px;
     color: $textColor;
     border-color: $primaryColor;
     margin-bottom: 10%;
