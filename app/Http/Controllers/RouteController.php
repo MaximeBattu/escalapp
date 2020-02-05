@@ -128,7 +128,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public function viewBlocs(string $roomSlugBloc, int $id)
+    public function viewBlocs(Request $request, string $roomSlugBloc, int $id)
     {
         $room = Room::find($id);
 
@@ -144,7 +144,15 @@ class RouteController extends Controller
             ]);
         }
 
-        $data = RouteController::returnViewByType($id, 'B');
+        $nameSector = $request->input('sectorNameFilter');
+        $colorRoute = $request->input('colorFilter');
+        $difficulty = $request->input('difficultyFilter');
+
+        $data = $this->returnViewByType($id, 'B', [
+            'name'=>$nameSector,
+            'color_route' => $colorRoute,
+            'difficulty_route'=>$difficulty
+        ]);
 
         return view('site/boulder', [
             'routesBloc' => $data['routes'],
@@ -152,7 +160,10 @@ class RouteController extends Controller
             'users' => $data['users'],
             'sectors'=>$data['sectors'],
             'difficulties' => $data['difficulties'],
-            'colors'=>$data['colors']
+            'colors'=>$data['colors'],
+            'selectedName'=>$nameSector,
+            'selectedColor' => $colorRoute,
+            'selectedDifficulty'=>$difficulty
         ]);
     }
 
