@@ -224,7 +224,6 @@ class DatabaseSeeder extends Seeder
                 'firstname'=>'admin',
                 'email'=>'admin@admin.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
-                'score'=>10000000000000000,
                 'isAdmin'=>true,
                 'created_at'=>Carbon\Carbon::now()
             ]

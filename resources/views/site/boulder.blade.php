@@ -164,3 +164,9 @@
     </script>
     <script src="{{asset('js/route.js')}}"></script>
 @endsection
+@section('scripts')
+    <script>
+        const pageUrl = '{{ Request::url() }}'
+    </script>
+    <script src="{{asset('js/route.js')}}"></script>
+@endsection

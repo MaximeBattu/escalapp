@@ -14,7 +14,6 @@
             <th class="table-text">Adresse</th>
             <th class="table-text">Mise à jour</th>
             <th class="table-text"></th>
-            <th class="table-text"></th>
         </tr>
         </thead>
         <tbody>
@@ -38,9 +37,6 @@
                 @else
                     <td class="align-middle table-text">Aucune mise à jour</td>
                 @endif
-                <td class="align-middle table-text">
-
-                </td>
                 <td class="align-middle table-text text-center">
                     <div class="d-inline-block">
                         <a type="button" class="btn button-shadow"
