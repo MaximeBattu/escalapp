@@ -41,9 +41,6 @@
                 <td class="align-middle table-text">
 
                 </td>
-                {{--<td class="align-middle table-text">
-                    <a type="button" class="btn btn-warning" href="{{route('modify_room',['id'=>$salle->id_room])}}">Modifier</a>
-                </td>--}}
                 <td class="align-middle table-text text-center">
                     <div class="d-inline-block">
                         <a type="button" class="btn button-shadow"
@@ -52,8 +49,12 @@
                     </div>
 
                     <div class="d-inline-block">
-                        <a type="button" class="fas fa-trash-alt fa-2x delete"
-                           href="{{route('delete_room',['id'=>$salle->id_room])}}"></a>
+                        <form method="post" action="{{route('delete_room',['id'=>$salle->id_room])}}">
+                            {{csrf_field()}}
+                            <a type="button" class="fas fa-trash-alt fa-2x delete"
+                               href=""></a>
+                        </form>
+
                     </div>
 
                 </td>
@@ -68,4 +69,8 @@
         </div>
     @endif
 
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/admin/room-admin.js')}}"></script>
 @endsection

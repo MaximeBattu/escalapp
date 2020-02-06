@@ -12,10 +12,20 @@ use App\FinishedRoute;
 
 class UserController extends Controller
 {
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     public function seeMyProfil()
     {
         $user = User::find(Auth::user()->id);
-        $user->score = User::getUserScore($user->id)->SCORE; 
+        $user->score = $this->user->getUserScore($user->id)->SCORE;
 
         $doneByUser = Route::select('routes.*','sectors.*','rooms.*')
             ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
@@ -45,6 +55,7 @@ class UserController extends Controller
      * @throws Validation\ValidationException
      */
     public function updateProfile(Request $request) {
+
         $user = User::find(Auth::user()->id);
         $name = $user->name;
         $firstname = $user->firstname;
@@ -75,7 +86,9 @@ class UserController extends Controller
             'email' => $email,
             'password' => $password
         ]);
-
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Cache-Control: post-check=0, pre-check=0", false);
+        header("Pragma: no-cache");
         return redirect()->route('update_profile')->with('updated','Changements enregistrés');
     }
 

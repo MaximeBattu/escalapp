@@ -60,7 +60,6 @@ $contestColorDark:#484848!important;
     background-color: $contestColor;
     z-index: 20;
     height: 100vh;
-    transition: 0.4s all ease-in-out;
     color: white;
 }
 
@@ -71,7 +70,6 @@ $contestColorDark:#484848!important;
     transform: translateY(-50%);
     font-weight: bold;
     font-size: 28px;
-    transition: 1s all ease-in-out;
 }
 
 .text-renverse {

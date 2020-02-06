@@ -38,10 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    private static function getScores() {
-
-        return User::select(DB::raw('users.id AS ID, 
+    private function getScores() {
+        return User::select(DB::raw('users.id AS ID,
                                     CASE WHEN sum(routes.score_route) IS NULL then 0
                                         ELSE sum(routes.score_route)
                                         END as SCORE'))
@@ -50,11 +48,11 @@ class User extends Authenticatable
                     ->groupBy('users.id');
     }
 
-    public static function getUserScore($id) {
+    public function getUserScore($id) {
         return User::getScores()->where('id',$id)->first();
     }
 
-    public static function getUsersScore($ids) {
+    public function getUsersScore($ids) {
         return User::getScores()->whereIn('id',$ids)->pluck('SCORE','ID');
     }
 }

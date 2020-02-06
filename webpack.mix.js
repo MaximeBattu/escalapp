@@ -12,8 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/main.js','public/js')
+    .js('resources/js/main.js', 'public/js')
     .js('resources/js/route.js', 'public/js')
+    .js('resources/js/admin/room-admin.js', 'public/js/admin')
+    .js('resources/js/admin/route-admin.js', 'public/js/admin')
+    .js('resources/js/admin/sector-admin.js', 'public/js/admin')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/styles.scss', `public/css`)
     .sass('resources/sass/profile.scss', 'public/css')

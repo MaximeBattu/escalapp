@@ -85,9 +85,14 @@ Route::put('/admin/gestion-salles/modifier/sector/{id_sector}','SectorController
 Route::get('admin/gestion-salles/{name_room}/{name_sector}/delete{idroute}', 'RouteController@deleteRoute')
     ->name('delete_route')->middleware('auth','admin');
 
-// TODO pass slug name room, id room, slug name sector and id sector
-Route::get('/admin/gestion-salles/{name_room}/{name_sector}/ajouter-route', 'RouteController@seeAddRoutes')
-    ->name('see_add_routes')->middleware('auth','admin');
+Route::get('/admin/gestion-salles/{name_room_slug}-{id_room}/{name_sector_slug}-{id_sector}/ajouter-route', 'RouteController@seeAddRoutes')
+    ->name('see_add_routes')->middleware('auth','admin')
+    ->where([
+        'name_room_slug'=>'[a-z0-9\-]+',
+        'id_room'=>'[0-9]+',
+        'name_sector_slug'=>'[a-z0-9\-]+',
+        'id_sector'=>'[0-9]+'
+    ]);;
 Route::post('/admin/gestion-salles/salle/{id_room}/secteur/{id_sector}', 'RouteController@addRoute')
     ->name('add_route')->middleware('auth','admin');
 Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@ajaxUpdateRoute')

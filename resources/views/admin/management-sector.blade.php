@@ -74,15 +74,19 @@
             </tbody>
         </table>
         @if (\Session::has('sector-deletion'))
-            <div class="alert alert-success popup font-size-text">
+            <div class="alert alert-success popup font-size-text" id="sector-deletion">
                 {{\Session::get('sector-deletion')}}
             </div>
         @elseif(\Session::has('add_sector_failure'))
-            <div class="alert alert-warning popup font-size-text">
+            <div class="alert alert-warning popup font-size-text" id="add-sector-failure">
                 {{\Session::get('add_sector_failure')}}
             </div>
         @endif
 
     @endif
 
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/admin/sector-admin.js')}}"></script>
 @endsection

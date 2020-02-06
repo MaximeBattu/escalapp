@@ -30,7 +30,7 @@ class Route extends Model
     	return $request->get();
     }
 
-    public static function byRoomAndSector(int $id_room, int $id_sector) {
+    public function byRoomAndSector(int $id_room, int $id_sector) {
     	return Route::select('routes.*')
     			->join('sectors', 'routes.id_sector', '=', 'sectors.id_sector')
     			->where([

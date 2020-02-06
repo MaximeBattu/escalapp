@@ -1,4 +1,7 @@
 {
+    "/js/admin/room-admin.js": "/js/admin/room-admin.js",
+    "/js/admin/route-admin.js": "/js/admin/route-admin.js",
+    "/js/admin/sector-admin.js": "/js/admin/sector-admin.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/styles.css": "/css/styles.css",

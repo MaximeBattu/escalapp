@@ -32,10 +32,9 @@
                     <tr class="text-center">
                         <td class="align-middle table-text">
                             @if($routeBloc->color_route != null)
-                                    <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img"
-                                         id="image"
-                                         style="border:6px solid {{$routeBloc->color_route}};">
-
+                                <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img"
+                                     id="image"
+                                     style="border:6px solid {{$routeBloc->color_route}};">
                             @else
                                 <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img" id="image">
                             @endif
@@ -60,79 +59,108 @@
     </div>
     <section class="filter">
 
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card formContainer">
-                            <div
-                                class="card-header formTitle font-size-head-form">{{ __('Filtre') }}</div>
-                            <div class="card-body d-inline">
-                                <form method="post" action="{{route('filter_boulder',['name_room_slug'=>Str::slug($room->name_room),'id_room'=>$room->id_room])}}">
-                                    {{csrf_field()}}
-    
-                                    <div class="form-group row new-infos">
-                                        <label for="name"
-                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Nom secteur') }}</label>
-    
-                                        <div class="col-md-6">
-                                            <select id="name" type="text" class="form-control selectpicker font-size-text" name="sectorNameFilter"
-                                                placeholder="nom salle">
-                                                <option value="">Nom secteur</option>
-                                                @foreach($sectors as $sector)
-                                                    <option value="{{$sector->name}}" @if( old($sector->name)  == $sector->name) selected="selected" @endif>{{$sector->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card formContainer">
+                        <div
+                            class="card-header formTitle font-size-head-form">
+                            {{ __('Filtre') }}
+                        </div>
+                        <div class="card-body d-inline">
+                            <form id="filter-form" action="#">
+
+                                <div class="form-group row new-infos">
+                                    <label for="sector"
+                                           class="col-md-4 col-form-label text-md-right font-size-text">
+                                        {{ __('Nom secteur') }}
+                                    </label>
+
+                                    <div class="col-md-6">
+                                        <select id="sector" type="text" class="form-control selectpicker font-size-text"
+                                                name="sectorName">
+                                            <option value="">Nom secteur</option>
+                                            @foreach($sectors as $sector)
+                                                <option
+                                                    @if($sector->name === $selectedName) {{ 'selected' }} @endif value="{{$sector->name}}">{{$sector->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-    
-                                    <div class="form-group row new-infos">
-                                        <label for="name"
-                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Couleur') }}</label>
-    
-                                        <div class="col-md-6">
-                                            <select id="name" type="text" class="form-control font-size-text" name="colorFilter"
-                                                placeholder="nom salle">
-                                                <option value="">Couleur route</option>
-                                                @foreach($colors as $color)
-                                                 <option value="{{$color}}">{{$color}}</option>
-                                                @endforeach 
-                                            </select>
-                                        </div>
+                                </div>
+
+                                <div class="form-group row new-infos">
+                                    <label for="color"
+                                           class="col-md-4 col-form-label text-md-right font-size-text">
+                                        {{ __('Couleur') }}
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select id="color" type="text" class="form-control font-size-text" name="color">
+                                            <option value="">Couleur route</option>
+                                            @foreach($colors as $color)
+                                                <option
+                                                    @if($color === $selectedColor) {{ 'selected' }} @endif value="{{$color}}">{{$color}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-    
-                                    <div class="form-group row new-infos">
-                                        <label for="name"
-                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Difficulté') }}</label>
-    
-                                        <div class="col-md-6">
-                                            <select id="name" type="text" class="form-control font-size-text" name="difficultyFilter"
-                                                placeholder="nom salle">
-                                                <option value="">Difficulté</option>
-                                                @foreach($difficulties as $difficulty)
-                                                 <option value="{{$difficulty}}">{{$difficulty}}</option>
-                                                @endforeach 
-                                            </select>
-                                        </div>
+                                </div>
+
+                                <div class="form-group row new-infos">
+                                    <label for="difficulty"
+                                           class="col-md-4 col-form-label text-md-right font-size-text">
+                                        {{ __('Difficulté') }}
+                                    </label>
+
+                                    <div class="col-md-6">
+                                        <select id="difficulty" type="text" class="form-control font-size-text"
+                                                name="difficulty">
+                                            <option value="">Difficulté</option>
+                                            @foreach($difficulties as $difficulty)
+                                                <option
+                                                    @if($difficulty === $selectedDifficulty) {{ 'selected' }} @endif value="{{$difficulty}}">{{$difficulty}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-    
-                                    <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
-                                            value="Filtre">Filter
-                                    </button>
-                                   
-                                </form>
-                                <form method="post">
-    
-                                        <button type="submit" class="d-inline-block btn button-shadow font-size-text" name="submit"
-                                        value="Filtre">Réinitialiser
+                                </div>
+
+                                <button type="submit" class="d-inline-block btn button-shadow font-size-text"
+                                        name="submit"
+                                        value="Filtre">Filter
                                 </button>
-        
-                                    </form>
-                            </div>
+
+                            </form>
+                            <form id="reset-form" action="#">
+                                <button type="submit" class="d-inline-block btn button-shadow font-size-text"
+                                        name="submit" value="Filtre">
+                                    Réinitialiser
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-    
-    
-        </section>
+        </div>
+
+
+    </section>
+@endsection
+@section('scripts')
+    <script>
+        const pageUrl = '{{ Request::url() }}'
+
+        function create(tag, text, parent, classs = null, id = null) {
+            let o = document.createElement(tag)
+            if (text != null) {
+                o.appendChild(document.createTextNode(text))
+            }
+            if (classs != null) {
+                o.classList.add(classs)
+            }
+            if (id != null) {
+                o.id = id
+            }
+            parent.appendChild(o)
+            return o
+        }
+    </script>
+    <script src="{{asset('js/route.js')}}"></script>
 @endsection

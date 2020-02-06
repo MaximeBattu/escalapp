@@ -11,7 +11,12 @@
         <div>
             <!-- A changer -->
             <a type="button" class="btn button-shadow add-route-no-data"
-               href="{{route('see_add_routes',['name_room'=>$room->name_room, 'name_sector'=>$sector->name])}}">Ajouter
+               href="{{route('see_add_routes',[
+                    'name_room_slug'=>Str::slug($room->name_room),
+                    'id_room'=>$room->id_room,
+                    'name_sector_slug'=>Str::slug($sector->name),
+                    'id_sector'=>$sector->id_sector
+                    ])}}">Ajouter
                 une voie</a>
         </div>
 
@@ -20,7 +25,12 @@
         <h1 class="text-center">Salle : {{$room->name_room}} / Secteur : {{$sector->name}}</h1>
         <div>
             <a type="button" class="btn button-shadow add-route"
-               href="{{route('see_add_routes',['name_room'=>$room->name_room, 'name_sector'=>$sector->name])}}">Ajouter
+               href="{{route('see_add_routes',[
+                    'name_room_slug'=>Str::slug($room->name_room),
+                    'id_room'=>$room->id_room,
+                    'name_sector_slug'=>Str::slug($sector->name),
+                    'id_sector'=>$sector->id_sector
+                    ])}}">Ajouter
                 une voie</a>
         </div>
         <table class="table table-hover salles-admin">
@@ -63,9 +73,6 @@
                     @else
                         <td class="align-middle table-text">Aucune mise à jour</td>
                     @endif
-                    {{--<td class="align-middle table-text">
-                        <a type="button" class="btn btn-warning" href="{{route('see_update_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}">Modifier</a>
-                    </td>--}}
                     <td class="align-middle table-text text-center">
                         <a type="button" class="fas fa-trash-alt fa-2x delete"
                            href="{{route('delete_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}"></a>
@@ -78,3 +85,8 @@
     @endif
 
 @endsection
+
+@section('scripts')
+    <script src="{{asset('js/admin/route-admin.js')}}"></script>
+@endsection
+
