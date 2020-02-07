@@ -41,7 +41,7 @@ Route::post('/profil/mise-a-jour', 'UserController@updateProfile')->name('set_up
 Route::get('/admin/gestion-salles', 'RoomController@seeRoomManagement')->name('see_room_management')
     ->middleware('auth', 'admin');
 // TODO Delete HTTP Verb
-Route::get('/admin/gestion-salles/supprimer/{id}', 'RoomController@deleteRoom')->name('delete_room')
+Route::delete('/admin/gestion-salles/supprimer/{id}', 'RoomController@deleteRoom')->name('delete_room')
     ->middleware('auth', 'admin');
 Route::get('/admin/gestion-salles/ajouter-salle', 'RoomController@seeAddRoom')->name('see_add_room')
     ->middleware('auth', 'admin');
@@ -97,6 +97,10 @@ Route::post('/admin/gestion-salles/salle/{id_room}/secteur/{id_sector}', 'RouteC
     ->name('add_route')->middleware('auth','admin');
 Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@ajaxUpdateRoute')
     ->middleware('auth','admin');
+Route::put('/voies/route/{idRoute}/utilisateur/{idUser}','RouteController@ajaxAddLike')
+    ->middleware('auth');
+Route::put('/voies/route/{idRoute}/utilisateur/{idUser}/supprimer','RouteController@ajaxRemoveLike')
+    ->middleware('auth');
 
 Route::post('{name_room_slug}-{id_room}/blocs/','RouteController@filterBoulder')->name('filter_boulder')
 ->where([

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\Auth;
-use App\FinishedRoute;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Route;
 use App\Room;
 use App\Sector;
 use App\User;
-use Illuminate\Support\Str;
+use App\LikedRoute;
 
 class RouteController extends Controller
 {
@@ -59,15 +60,19 @@ class RouteController extends Controller
             $users = $users->sortByDesc('score');
         }
 
+        foreach ($routes as $route) {
+            $route->finished = false;
+            $route->number_likes = 0;
+            $route->liked = false;
+        }
+
         if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')
                 ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
                 ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
                 ->where(['finished_routes.id_user' => Auth::user()->id, 'sectors.climbing_type' => $type])->get();
 
-            foreach ($routes as $route) {
-                $route->finished = false;
-            }
+
 
             foreach ($doneByUser as $done) {
                 foreach ($routes as $route) {
@@ -77,13 +82,27 @@ class RouteController extends Controller
                     }
                 }
             }
+
+            $likedByUser = LikedRoute::where('id_user', Auth::user()->id)->get();
+            foreach ($likedByUser as $like) {
+                foreach ($routes as $route) {
+                    if ($route->id_route == $like->id_route && Auth::user()->id == $like->id_user) {
+                        $route->liked = true;
+
+                    }
+                }
+            }
+
+        }
+        foreach($routes as $route) {
+            $route->number_likes = LikedRoute::where('id_route',$route->id_route)->count();
         }
 
         return [
             'routes' => $routes,
             'room' => $room,
             'users' => $users,
-            'sectors'=>$sectors,
+            'sectors' => $sectors,
             'difficulties' => array_unique($difficultiesRoute),
             'colors' => array_unique($colorsRoute)
         ];
@@ -91,10 +110,10 @@ class RouteController extends Controller
 
     public function viewRoutes(Request $request, string $roomSlugVoie, int $id)
     {
-       $room = Room::find($id);
+        $room = Room::find($id);
 
-        if($room === null){
-            return abort('404','Invalid value of Room id');
+        if ($room === null) {
+            return abort('404', 'Invalid value of Room id');
         }
 
         $computedNameRoomSlug = Str::slug($room->name_room);
@@ -111,21 +130,21 @@ class RouteController extends Controller
 
 
         $data = $this->returnViewByType($id, 'V', [
-            'name'=>$nameSector,
+            'name' => $nameSector,
             'color_route' => $colorRoute,
-            'difficulty_route'=>$difficulty
+            'difficulty_route' => $difficulty
         ]);
 
         return view('site/route', [
             'routes' => $data['routes'],
             'room' => $data['room'],
             'users' => $data['users'],
-            'sectors'=>$data['sectors'],
+            'sectors' => $data['sectors'],
             'difficulties' => $data['difficulties'],
-            'colors'=>$data['colors'],
-            'selectedName'=>$nameSector,
+            'colors' => $data['colors'],
+            'selectedName' => $nameSector,
             'selectedColor' => $colorRoute,
-            'selectedDifficulty'=>$difficulty
+            'selectedDifficulty' => $difficulty
         ]);
     }
 
@@ -133,8 +152,8 @@ class RouteController extends Controller
     {
         $room = Room::find($id);
 
-        if($room === null){
-            return abort('404','Invalid value of Room id');
+        if ($room === null) {
+            return abort('404', 'Invalid value of Room id');
         }
 
         $computedNameRoomSlug = Str::slug($room->name_room);
@@ -149,21 +168,21 @@ class RouteController extends Controller
         $difficulty = $request->input('difficulty');
 
         $data = $this->returnViewByType($id, 'B', [
-            'name'=>$nameSector,
+            'name' => $nameSector,
             'color_route' => $colorRoute,
-            'difficulty_route'=>$difficulty
+            'difficulty_route' => $difficulty
         ]);
 
         return view('site/boulder', [
             'routesBloc' => $data['routes'],
             'room' => $data['room'],
             'users' => $data['users'],
-            'sectors'=>$data['sectors'],
+            'sectors' => $data['sectors'],
             'difficulties' => $data['difficulties'],
-            'colors'=>$data['colors'],
-            'selectedName'=>$nameSector,
+            'colors' => $data['colors'],
+            'selectedName' => $nameSector,
             'selectedColor' => $colorRoute,
-            'selectedDifficulty'=>$difficulty
+            'selectedDifficulty' => $difficulty
         ]);
     }
 
@@ -174,7 +193,7 @@ class RouteController extends Controller
      * @param int $idSector
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function seeRoutesAdmin(string $roomSlug,int $idRoom, string $sectorSlug, int $idSector)
+    public function seeRoutesAdmin(string $roomSlug, int $idRoom, string $sectorSlug, int $idSector)
     {
         $sector = Sector::find($idSector);
         $room = Room::find($idRoom);
@@ -183,9 +202,9 @@ class RouteController extends Controller
         if ($computedNameRoomSlug !== $roomSlug || $computedNameSectorSlug !== $sectorSlug) {
             return redirect(null, 301)->route('see_routes_admin', [
                 'name_room_slug' => $computedNameRoomSlug,
-                'id_room' =>$idRoom,
-                'name_sector_slug'=>$computedNameSectorSlug,
-                'id_sector'=>$idSector
+                'id_room' => $idRoom,
+                'name_sector_slug' => $computedNameSectorSlug,
+                'id_sector' => $idSector
             ]);
         }
         $routes = $this->route->byRoomAndSector($room->id_room, $sector->id_sector);
@@ -204,7 +223,7 @@ class RouteController extends Controller
      * @param int $idSector
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function seeAddRoutes(string $roomSlug,int $idRoom, string $sectorSlug, int $idSector)
+    public function seeAddRoutes(string $roomSlug, int $idRoom, string $sectorSlug, int $idSector)
     {
         $room = Room::find($idRoom);
         $sector = Sector::Find($idSector);
@@ -213,15 +232,15 @@ class RouteController extends Controller
         if ($computedNameRoomSlug !== $roomSlug || $computedNameSectorSlug !== $sectorSlug) {
             return redirect(null, 301)->route('see_add_routes', [
                 'name_room_slug' => $computedNameRoomSlug,
-                'id_room' =>$idRoom,
-                'name_sector_slug'=>$computedNameSectorSlug,
-                'id_sector'=>$idSector
+                'id_room' => $idRoom,
+                'name_sector_slug' => $computedNameSectorSlug,
+                'id_sector' => $idSector
             ]);
         }
         return view('admin/add-route', [
             'sector' => $sector,
             'name_room' => $sector->name,
-            'room'=>$room
+            'room' => $room
         ]);
     }
 
@@ -259,12 +278,10 @@ class RouteController extends Controller
 
     /**
      * Admin management
-     * @param string $name_room
-     * @param string $name_sector
      * @param int $idroute
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteRoute(string $name_room, string $name_sector, int $idroute)
+    public function deleteRoute(int $idroute)
     {
         Route::find($idroute)->delete();
         return redirect()->back();
@@ -289,6 +306,33 @@ class RouteController extends Controller
         $route->score_route = trim($score);
         $route->save();
 
+        return \response('OK', 200);
+    }
+
+    public function ajaxAddLike(Request $request)
+    {
+        $idRoute = json_decode($request->getContent())->idRoute;
+        $idUser = json_decode($request->getContent())->idUser;
+        try {
+            LikedRoute::create([
+                'id_user' => $idUser,
+                'id_route' => $idRoute
+            ]);
+        } catch (QueryException $e) {
+            return \response('Conflict', 409);
+        }
+        return \response('OK', 200);
+    }
+
+    public function ajaxRemoveLike(Request $request)
+    {
+        $idRoute = json_decode($request->getContent())->idRoute;
+        $idUser = json_decode($request->getContent())->idUser;
+
+        LikedRoute::where([
+            'id_route' => $idRoute,
+            'id_user' => $idUser
+        ])->delete();
         return \response('OK', 200);
     }
 

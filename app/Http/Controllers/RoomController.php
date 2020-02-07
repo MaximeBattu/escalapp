@@ -98,7 +98,7 @@ class RoomController extends Controller
                 'address_room' => htmlspecialchars($address),
                 'updated_at' => null
             ]);
-        } catch (QueryException $ex) {
+        } catch (QueryException $e) {
             return redirect()->back()->with('add_failure', 'La salle existe déjà');
         }
 

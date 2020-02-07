@@ -51,6 +51,15 @@
                                    href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}"></a>
                             @endif
                         </td>
+                        <td class="align-middle table-text align-bottom">
+                            <span class="d-none like-route-id">{{$route->id_route}}</span>
+                            <i class="far fa-comment fa-1x d-inline-block"></i>
+                            @if($route->liked)
+                                <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>{{$route->number_likes}}
+                            @else
+                                <i class="far fa-thumbs-up fa-1x d-inline-block like like-route"></i>{{$route->number_likes}}
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
 
@@ -108,12 +117,12 @@
                                     <div class="col-md-6">
                                         <select id="difficulty" type="text" class="form-control font-size-text"
                                                 name="difficulty">
-                                        <option value="">Difficulté</option>
-                                        @foreach($difficulties as $difficulty)
-                                            <option
-                                                @if($difficulty === $selectedDifficulty) {{ 'selected' }} @endif value="{{$difficulty}}">{{$difficulty}}</option>
+                                            <option value="">Difficulté</option>
+                                            @foreach($difficulties as $difficulty)
+                                                <option
+                                                    @if($difficulty === $selectedDifficulty) {{ 'selected' }} @endif value="{{$difficulty}}">{{$difficulty}}</option>
                                             @endforeach
-                                            </select>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -140,6 +149,12 @@
 @endsection
 
 @section('scripts')
+    @if(isset(Auth::user()->id))
+        <script>
+
+            const idUser = '{{Auth::user()->id}}'
+        </script>
+    @endif
     <script>
         const pageUrl = '{{ Request::url() }}'
 
@@ -157,7 +172,6 @@
             parent.appendChild(o)
             return o
         }
-
     </script>
     <script src="{{asset('js/route.js')}}"></script>
 @endsection

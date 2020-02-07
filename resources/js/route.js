@@ -85,3 +85,73 @@ close.addEventListener("click", function () {
     open.style.left = "0"
     escalapp.style.marginLeft = null
 })
+
+/**
+ *
+ * @param {object} parameters
+ * @param {number} parameters.idRoute
+ * @param {number} parameters.idUser
+ *
+ * @return {promise}
+ */
+function addLikeUser(parameters) {
+    return $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/voies/route/${parameters.idRoute}/utilisateur/${parameters.idUser}`,
+        type: 'PUT',
+        data: JSON.stringify({
+            idRoute: parameters.idRoute,
+            idUser: parameters.idUser
+        })
+    })
+}
+
+$('.like-route').on('click', function (e) {
+    $(this).toggleClass('far like-route fas unlike-route')
+
+    const idRoute = $(this).parent().find('.like-route-id').html()
+    addLikeUser({
+        idRoute,
+        idUser
+    }).then(res => {
+        console.log('success like user')
+    }).catch(console.error)
+
+})
+
+/**
+ *
+ * @param {object} parameters
+ * @param {number} parameters.idRoute
+ * @param {number} parameters.idUser
+ *
+ * @return {promise}
+ */
+function removeLikeUser(parameters) {
+    return $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/voies/route/${parameters.idRoute}/utilisateur/${parameters.idUser}/supprimer`,
+        type: 'PUT',
+        data: JSON.stringify({
+            idRoute: parameters.idRoute,
+            idUser: parameters.idUser
+        })
+    })
+}
+
+$('.unlike-route').on('click',function(e) {
+    $(this).toggleClass('far unlike-route fas like-route')
+
+    const idRoute = $(this).parent().find('.like-route-id').html()
+    removeLikeUser({
+        idRoute,
+        idUser
+    }).then(res => {
+        console.log('succes unlike user')
+    }).catch(console.error)
+})
+

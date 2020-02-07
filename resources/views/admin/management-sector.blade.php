@@ -9,7 +9,7 @@
         </div>
 
         <div>
-            <a type="button" class="btn button-shadow add-sector-no-data"
+            <a type="button" class="btn button-shadow button-text-size add-sector-no-data"
                href="{{route('see_add_sector',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}">Ajouter
                 un secteur</a>
         </div>
@@ -29,7 +29,7 @@
                 <th class="table-text">Nom</th>
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Mise à jour</th>
-                
+
             </tr>
             </thead>
             <tbody>

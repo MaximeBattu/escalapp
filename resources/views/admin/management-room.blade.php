@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         @foreach($salles as $salle)
-            <tr id="room-admin"> <!-- devrait être une classe -->
+            <tr id="room-admin">
                 <td class="align-middle table-text room-id">{{$salle->id_room}}</td>
                 <td class="align-middle table-text room-name updatable-field-room">{{$salle->name_room}}</td>
                 <td class="d-none align-middle room-name-td">
@@ -47,8 +47,8 @@
                     <div class="d-inline-block">
                         <form method="post" action="{{route('delete_room',['id'=>$salle->id_room])}}">
                             {{csrf_field()}}
-                            <a type="button" class="fas fa-trash-alt fa-2x delete"
-                               href=""></a>
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="fas fa-trash-alt fa-2x delete"></button>
                         </form>
 
                     </div>
