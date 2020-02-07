@@ -36,11 +36,11 @@
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container">
             @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true )
-                <a class="navbar-brand escalapp" href="{{ url('/accueil') }}">
+                <a class="navbar-brand escalapp" href="{{ url('/admin/accueil') }}">
                     Escalapp
                 </a>
             @else
-                <a class="navbar-brand escalapp" href="{{ url('/') }}">
+                <a class="navbar-brand escalapp" href="{{ url('/accueil') }}">
                     Escalapp
                 </a>
             @endif
@@ -59,16 +59,29 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto font-size-text">
                     @if(isset(Auth::user()->id) && Auth::user()->isAdmin == true )
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/gestion-salles') }}">
-                                Gestion salles
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/gestion-comptes') }}">
+                    <li class="nav-item">
+                            <a class="nav-link font-size-text" href="{{ url('/admin/gestion-comptes') }}">
                                 Gestion comptes
                             </a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle font-size-text font-size__menu" href="#"
+                            role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Salles
+                                 <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item font-size-text" href="{{route('see_room_management')}}">
+                                    Gestion des salles
+                                </a>
+                                <a class="dropdown-item font-size-text" href="{{route('see_home')}}">
+                                    Voir les salles
+                                </a>
+                            </div>
+                        </li>
+                        
                     @endif
                 <!-- Authentication Links -->
                     @guest
