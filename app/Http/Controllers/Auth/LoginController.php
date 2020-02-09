@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -19,31 +20,8 @@ class LoginController extends Controller
     |
     */
 
+
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/accueil';
-    protected function redirectTo() {
-        if(isset(Auth::user()->id) && Auth::user()->isAdmin == true) {
-            return '/admin/accueil';
-        }
-        return '/accueil';
-    }
-
-    public function showLoginForm()
-    {
-        if(!session()->has('url.intended'))
-        {
-            session(['url.intended' => url()->previous()]);
-        }
-        return view('auth.login');
-    }
-
-   
 
     /**
      * Create a new controller instance.
@@ -52,6 +30,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        session(['url.intended' => url()->previous()]);
+        $this->redirectTo = session()->get('url.intended');
+
         $this->middleware('guest')->except('logout');
     }
 }

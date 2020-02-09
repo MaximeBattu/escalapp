@@ -56,7 +56,7 @@
                         <td class="align-middle table-text route-color updatable-field-route">{{$route->color->name_color}}</td>
                         <td class="align-middle table-text route-code updatable-field-route">{{$route->color->code_color}}</td>
                         <td class="d-none align-middle route-color-td">
-                            <input type="text" class="route-color-input input-text-size field-update-route">
+                            <input type="text" class="route-color-input input-text-size field-update-route" maxlength="7">
                         </td>
                         <td class="align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
                         <td class="d-none align-middle route-difficulty-td">
