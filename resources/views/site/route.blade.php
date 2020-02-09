@@ -33,9 +33,9 @@
                 @foreach($routes as $route)
                     <tr class="text-center">
                         <td>
-                            @if($route->color_route != null)
+                            @if($route->color != null)
                                 <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image"
-                                     style="border:6px solid {{$route->color_route}}">
+                                     style="border:5px solid {{$route->color->code_color}}">
                             @else
                                 <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image">
                             @endif
@@ -55,9 +55,11 @@
                             <span class="d-none like-route-id">{{$route->id_route}}</span>
                             <i class="far fa-comment fa-1x d-inline-block"></i>
                             @if($route->liked)
-                                <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>{{$route->number_likes}}
+                                <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>
+                                <span class="number-like">{{$route->number_likes}}</span>
                             @else
-                                <i class="far fa-thumbs-up fa-1x d-inline-block like like-route"></i>{{$route->number_likes}}
+                                <i class="far fa-thumbs-up fa-1x d-inline-block like like-route"></i>
+                                <span class="number-like">{{$route->number_likes}}</span>
                             @endif
                         </td>
                     </tr>
@@ -153,6 +155,10 @@
         <script>
 
             const idUser = '{{Auth::user()->id}}'
+        </script>
+    @else
+        <script>
+            const idUser = null
         </script>
     @endif
     <script>

@@ -16,16 +16,19 @@ class CreateRoutesTable extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('id_route');
             $table->integer('id_sector');
-            $table->string('color_route',50);
+            $table->integer('id_color');
             $table->string('difficulty_route',3)->nullable();
             $table->string('url_photo',150)->nullable();
             $table->integer('score_route')->default(1000);
             $table->integer('nb_user_done')->default(0);
-            $table->foreign('id_sector')->references('id_sector')->on('sectors');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
 
+        Schema::table('routes', function(Blueprint $table) {
+            $table->foreign('id_sector')->references('id_sector')->on('sectors');
+            $table->foreign('id_color')->references('id_color')->on('colors_routes');
+        });
     }
 
     /**

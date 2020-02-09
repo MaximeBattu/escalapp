@@ -31,10 +31,10 @@
                 @foreach($routesBloc as $routeBloc)
                     <tr class="text-center">
                         <td class="align-middle table-text">
-                            @if($routeBloc->color_route != null)
+                            @if($routeBloc->id_color != null)
                                 <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img"
                                      id="image"
-                                     style="border:6px solid {{$routeBloc->color_route}};">
+                                     style="border:5px solid {{$routeBloc->color->code_color}};">
                             @else
                                 <img src="{{URL::asset('/img/'.$routeBloc->url_photo)}}" alt="" class="img" id="image">
                             @endif

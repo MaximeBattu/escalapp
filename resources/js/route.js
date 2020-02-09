@@ -1,5 +1,5 @@
 // FILTER PART
-$('#filter-form').submit(function(e){
+$('#filter-form').submit(function (e) {
     e.preventDefault()
 
     const sectorName = $('#sector').val()
@@ -22,7 +22,7 @@ $('#filter-form').submit(function(e){
     }
 });
 
-$('#reset-form').click(function(e){
+$('#reset-form').click(function (e) {
     e.preventDefault()
     window.location = pageUrl
 });
@@ -108,17 +108,22 @@ function addLikeUser(parameters) {
     })
 }
 
-$('.like-route').on('click', function (e) {
-    $(this).toggleClass('far like-route fas unlike-route')
 
+$('.like-route').one('click', function () {
     const idRoute = $(this).parent().find('.like-route-id').html()
-    addLikeUser({
-        idRoute,
-        idUser
-    }).then(res => {
-        console.log('success like user')
-    }).catch(console.error)
-
+    if (idUser == null) {
+        window.location = '/login'
+        alert('Vous devez être connecté pour effectuer cette action')
+    } else {
+        $(this).toggleClass('far like-route fas unlike-route')
+        $(this).next().text(parseInt($(this).next().text(), 10) + 1)
+        addLikeUser({
+            idRoute,
+            idUser
+        }).then(res => {
+            console.log('success like user')
+        }).catch(console.error)
+    }
 })
 
 /**
@@ -143,9 +148,9 @@ function removeLikeUser(parameters) {
     })
 }
 
-$('.unlike-route').on('click',function(e) {
+$('.unlike-route').one('click', function (e) {
     $(this).toggleClass('far unlike-route fas like-route')
-
+    $(this).next().text(parseInt($(this).next().text(), 10) - 1)
     const idRoute = $(this).parent().find('.like-route-id').html()
     removeLikeUser({
         idRoute,

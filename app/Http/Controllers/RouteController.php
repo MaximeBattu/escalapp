@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ColorRoute;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -34,16 +35,17 @@ class RouteController extends Controller
 
         $routes = $this->route->byRoomAndType($idRoom, $type, $routeExtraParameters);
 
+
         $routesIntiales = $this->route->byRoomAndType($idRoom, $type, []);
 
         $idsSector = [];
         $difficultiesRoute = [];
-        $colorsRoute = [];
+        $colorsName = [];
         foreach ($routesIntiales as $route => $sector) {
             $idsSector[] = $sector->id_sector;
             $difficultiesRoute[] = $sector->difficulty_route;
-            $colorsRoute[] = $sector->color_route;
-
+            $sector->color = ColorRoute::find($sector->id_color);
+            $colorsName[] = $sector->color->name_color;
         }
         $sectors = Sector::findMany($idsSector);
 
@@ -64,6 +66,7 @@ class RouteController extends Controller
             $route->finished = false;
             $route->number_likes = 0;
             $route->liked = false;
+            $route->color = null;
         }
 
         if (isset(Auth::user()->id)) {
@@ -96,6 +99,7 @@ class RouteController extends Controller
         }
         foreach($routes as $route) {
             $route->number_likes = LikedRoute::where('id_route',$route->id_route)->count();
+            $route->color = ColorRoute::find($route->id_color);
         }
 
         return [
@@ -104,7 +108,7 @@ class RouteController extends Controller
             'users' => $users,
             'sectors' => $sectors,
             'difficulties' => array_unique($difficultiesRoute),
-            'colors' => array_unique($colorsRoute)
+            'colors' => array_unique($colorsName)
         ];
     }
 
@@ -131,10 +135,9 @@ class RouteController extends Controller
 
         $data = $this->returnViewByType($id, 'V', [
             'name' => $nameSector,
-            'color_route' => $colorRoute,
+            'id_color' => $colorRoute,
             'difficulty_route' => $difficulty
         ]);
-
         return view('site/route', [
             'routes' => $data['routes'],
             'room' => $data['room'],
@@ -169,7 +172,7 @@ class RouteController extends Controller
 
         $data = $this->returnViewByType($id, 'B', [
             'name' => $nameSector,
-            'color_route' => $colorRoute,
+            'id_color' => $colorRoute,
             'difficulty_route' => $difficulty
         ]);
 

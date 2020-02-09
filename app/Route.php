@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\ColorRoute;
+
 
 class Route extends Model
 {
@@ -22,6 +24,11 @@ class Route extends Model
                     ['sectors.id_room', $id_room]
                 ]);
     	foreach ($routeExtraParameters as $name => $value) {
+
+    	    if($name === 'id_color' && $value !== null) {
+    	        $color = ColorRoute::where('name_color',$value)->get('id_color')->first();
+    	        $value = $color->id_color;
+            }
     	    if ($value) {
                 $request->where($name, '=', $value);
             }

@@ -85,108 +85,139 @@ class DatabaseSeeder extends Seeder
             DB::table('sectors')->insert([$sector]);
         }
 
+        $colors = [
+            [
+                'name_color' => 'Rouge',
+                'code_color' => '#BB0B0B'
+            ],
+            [
+                'name_color' => 'Vert',
+                'code_color' => '#B0F2B6'
+            ],
+            [
+                'name_color' => 'Bleue',
+                'code_color' => '#0000FF'
+            ],
+            [
+                'name_color' => 'Verte',
+                'code_color' => ' #008000'
+            ],
+            [
+                'name_color' => 'Violette',
+                'code_color' => ' #FF00FF'
+            ],
+            [
+                'name_color' => 'Orange',
+                'code_color' => ' #FFA500'
+            ],
+        ];
+
+        foreach ($colors as $color) {
+            DB::table('colors_routes')->insert([$color]);
+        }
+
         $routes = [
             [
                 'id_sector'=>1,
-                'color_route'=>'red',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>1,
-                'color_route'=>'blue',
+                'id_color'=>2,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>1,
-                'color_route'=>'green',
+                'id_color'=>3,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>2,
-                'color_route'=>'cyan',
+                'id_color'=>4,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>2,
-                'color_route'=>'brown',
+                'id_color'=>4,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
-                'color_route'=>'yellow',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
-                'color_route'=>'pink',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
-                'color_route'=>'purple',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'orange',
+                'id_color'=>5,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'black',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'grey',
+                'id_color'=>5,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "bloc2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
-                'color_route'=>'lightgrey',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>4,
-                'color_route'=>'red',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>4,
-                'color_route'=>'red',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>6,
-                'color_route'=>'red',
+                'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
