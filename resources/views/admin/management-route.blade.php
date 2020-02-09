@@ -37,6 +37,7 @@
             <tr>
                 <th class="table-text">ID</th>
                 <th class="table-text">Couleur</th>
+                <th class="table-text">Code Couleur</th>
                 <th class="table-text">Difficulté</th>
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Score</th>
@@ -51,7 +52,9 @@
                 <tr>
                     <td class="align-middle table-text route-id"> {{$route->id_route}}</td>
                     @if($sector->climbing_type == "V")
-                        <td class="align-middle table-text route-color updatable-field-route">{{$route->color_route}}</td>
+                        <td class="d-none color-id">{{$route->color->id_color}}</td>
+                        <td class="align-middle table-text route-color updatable-field-route">{{$route->color->name_color}}</td>
+                        <td class="align-middle table-text route-code updatable-field-route">{{$route->color->code_color}}</td>
                         <td class="d-none align-middle route-color-td">
                             <input type="text" class="route-color-input input-text-size field-update-route">
                         </td>

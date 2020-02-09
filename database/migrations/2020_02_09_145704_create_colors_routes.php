@@ -17,6 +17,7 @@ class CreateColorsRoutes extends Migration
             $table->bigIncrements('id_color');
             $table->string('name_color',255);
             $table->string('code_color',255);
+            $table->timestamps();
         });
     }
 

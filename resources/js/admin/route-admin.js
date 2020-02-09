@@ -10,6 +10,7 @@ $('.updatable-field-route').on('dblclick', function (e) {
 /**
  * @param {object} route
  * @param {number} route.id
+ * @param {number} route.id_color
  * @param {string} route.color
  * @param {string} route.difficulty
  * @param {number} route.score
@@ -23,6 +24,7 @@ function updateRoute(route) {
         url: `/admin/gestion-salles/modifier/route/${route.id}`,
         type: 'PUT',
         data: JSON.stringify({
+            id_color: route.id_color,
             color: route.color,
             difficulty: route.difficulty,
             score: route.score
@@ -44,12 +46,14 @@ $(document).on('keydown', '.field-update-route', function (e) {
 
         const $tr = $td.parent()
         const id = $tr.find('.route-id').html()
-        const color = $tr.find('.route-color').html()
+        const id_color = $tr.find('.color-id').html()
+        const color = $tr.find('.route-code').html()
         const difficulty = $tr.find('.route-difficulty').html()
         const score = $tr.find('.route-score').html()
 
         updateRoute({
             id,
+            id_color,
             color,
             difficulty,
             score

@@ -8,4 +8,5 @@ class ColorRoute extends Model
 {
     protected $table = 'colors_routes';
     protected $primaryKey = 'id_color';
+    protected $fillable = ['name_color','code_color'];
 }

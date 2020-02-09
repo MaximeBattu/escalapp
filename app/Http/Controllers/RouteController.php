@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ColorRoute;
+use DemeterChain\C;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -211,7 +212,9 @@ class RouteController extends Controller
             ]);
         }
         $routes = $this->route->byRoomAndSector($room->id_room, $sector->id_sector);
-
+        foreach($routes as $route) {
+            $route->color = ColorRoute::find($route->id_color);
+        }
         return view('admin/management-route', [
             'routes' => $routes,
             'sector' => $sector,
@@ -299,12 +302,16 @@ class RouteController extends Controller
      */
     public function ajaxUpdateRoute(Request $request, int $id)
     {
-        $color = json_decode($request->getContent())->color;
+        $id_color = json_decode($request->getContent())->id_color;
+        $color_name = json_decode($request->getContent())->color;
         $difficulty = json_decode($request->getContent())->difficulty;
         $score = json_decode($request->getContent())->score;
 
+        $color = ColorRoute::find($id_color);
+        $color->code_color = $color_name;
+        $color->save();
+
         $route = Route::find($id);
-        $route->color_route = trim($color);
         $route->difficulty_route = trim($difficulty);
         $route->score_route = trim($score);
         $route->save();
