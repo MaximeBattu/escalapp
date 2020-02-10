@@ -82,7 +82,7 @@ Route::put('/admin/gestion-salles/modifier/sector/{id_sector}','SectorController
     ->middleware('auth','admin');
 
 
-Route::get('admin/gestion-salles/{name_room}/{name_sector}/delete{idroute}', 'RouteController@deleteRoute')
+Route::delete('admin/gestion-salles/route/{id_route}', 'RouteController@deleteRoute')
     ->name('delete_route')->middleware('auth','admin');
 
 Route::get('/admin/gestion-salles/{name_room_slug}-{id_room}/{name_sector_slug}-{id_sector}/ajouter-route', 'RouteController@seeAddRoutes')

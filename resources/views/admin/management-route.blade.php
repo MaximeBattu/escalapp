@@ -91,8 +91,11 @@
                     </td>
 
                     <td class="align-middle table-text text-center">
-                        <a type="button" class="fas fa-trash-alt fa-2x delete"
-                           href="{{route('delete_route',['name_room'=>$room->name_room,'name_sector'=>$sector->name,'idroute'=>$route->id_route])}}"></a>
+                        <form method="post" action="{{route('delete_route',['id_route'=>$route->id_route])}}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="fas fa-trash-alt fa-2x delete"></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
