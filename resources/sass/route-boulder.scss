@@ -27,6 +27,8 @@ $finishedRoute: #8bc34a !important;
 .like {
     height: 20px;
     width: 20px;
+    user-select: none;
+    cursor: pointer;
 }
 
 .transparentDiv {

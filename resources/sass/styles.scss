@@ -28,14 +28,20 @@ html {
 .escalapp {
     color: $textColor;
     font-size: 30px;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .nav-link {
     font-size: 17.5px;
     color: $textColor;
+    height: 11vh;
+    line-height: 10vh;
+    transition: 0.1s ease all;
 }
 
+.nav-link:hover {
+    border-bottom: 1vh solid white;
+}
 
 .vertical {
     transform: translateY(125%);

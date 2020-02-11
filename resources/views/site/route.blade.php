@@ -14,7 +14,6 @@
                     <h1>Aucune voie n'a été validée pour l'instant</h1>
                 @endif
             </div>
-            <div id="consult"><a href="">Consulter Contest</a></div>
         </div>
         <div id="closeContest">
             <div class="text-close">

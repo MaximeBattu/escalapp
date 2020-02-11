@@ -74,10 +74,9 @@ for (let title of roomsuccess) {
 }
 open.addEventListener("click", function () {
     contest.style.left = "0"
-    open.style.left = "-5vw"
-    open.style.transition = "0.4s all ease-in-out"
+    open.style.left = "-50vw"
+    open.style.transition = "0.5s all ease-in-out"
     close.style.left = "13vw"
-    escalapp.style.marginLeft = "10%"
 })
 close.addEventListener("click", function () {
     contest.style.left = "-13vw"
