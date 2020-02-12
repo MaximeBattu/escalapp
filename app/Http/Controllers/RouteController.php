@@ -36,7 +36,6 @@ class RouteController extends Controller
 
         $routes = $this->route->byRoomAndType($idRoom, $type, $routeExtraParameters);
 
-
         $routesIntiales = $this->route->byRoomAndType($idRoom, $type, []);
 
         $idsSector = [];
@@ -75,8 +74,6 @@ class RouteController extends Controller
                 ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
                 ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
                 ->where(['finished_routes.id_user' => Auth::user()->id, 'sectors.climbing_type' => $type])->get();
-
-
 
             foreach ($doneByUser as $done) {
                 foreach ($routes as $route) {

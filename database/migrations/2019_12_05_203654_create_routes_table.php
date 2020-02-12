@@ -19,7 +19,7 @@ class CreateRoutesTable extends Migration
             $table->integer('id_color');
             $table->string('difficulty_route',3)->nullable();
             $table->string('url_photo',150)->nullable();
-            $table->integer('score_route')->default(1000);
+            $table->integer('score_route')->nullable()->default(1000);
             $table->integer('nb_user_done')->default(0);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

@@ -16,18 +16,18 @@ class CreateTrigger extends Migration
         DB::unprepared('
             CREATE TRIGGER tr_insert_finished_route AFTER INSERT ON finished_routes
             BEGIN
-                UPDATE routes SET 
+                UPDATE routes SET
                     nb_user_done = nb_user_done + 1,
                     score_route = 1000 / (nb_user_done + 1)
                 WHERE id_route = NEW.id_route;
             END');
 
-        DB::unprepared('
+       DB::unprepared('
             CREATE TRIGGER tr_delete_finished_route AFTER DELETE ON finished_routes
             BEGIN
                 UPDATE routes SET
                     nb_user_done = nb_user_done - 1,
-                    score_route = 1000 / (nb_user_done - 1)               
+                    score_route = 1000 / (nb_user_done - 1)
                 WHERE id_route = OLD.id_route;
             END');
 
@@ -37,8 +37,8 @@ class CreateTrigger extends Migration
             WHEN NEW.score_route = 0
             BEGIN
                 UPDATE routes SET
-                    score_route = 1               
-                WHERE id_route = NEW.id_route; 
+                    score_route = 1
+                WHERE id_route = NEW.id_route;
             END');
     }
 

@@ -44,11 +44,17 @@
                         <td class="align-middle table-text">{{$route->score_route}} pts</td>
                         <td class="align-middle table-text">
                             @if($route->finished)
-                                <a class="fa fa-check fa-2x finished-check"
-                                   href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}"></a>
+                                <form method="post" action="{{route('delete_validated_route',['id'=>$route->id_route])}}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn fa fa-check fa-2x finished-check"></button>
+                                </form>
                             @else
-                                <a class="fas fa-check-square fa-3x validate-check"
-                                   href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$route->id_route])}}"></a>
+                                <form method="post" action="{{route('validate_route',['id_route'=>$route->id_route])}}">
+                                    {{ method_field('PUT') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn fas fa-check-square fa-3x validate-check"></button>
+                                </form>
                             @endif
                         </td>
                         <td class="align-middle table-text align-bottom">

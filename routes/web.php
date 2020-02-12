@@ -132,9 +132,11 @@ Route::get('/{name_room_slug}-{id}/blocs', 'RouteController@viewBlocs')
     ->name('see_blocs')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
 
-// TODO make ajax request
-Route::get('/{name_room}/valider{id}','FinishedRoutesController@addValidatedRoute')
-    ->name('validate_route')->middleware('auth');
-// TODO Delete HTTP Verb
-Route::get('/{name_room}/supprimer{id}','FinishedRoutesController@deleteValidatedRoute')
-    ->name('delete_validated_route')->middleware('auth');
+// TODO
+Route::put('/valider-voie/{id_route}','FinishedRoutesController@addValidatedRoute')
+    ->name('validate_route')->middleware('auth')
+    ->where(['id_route'=>'[0-9]+']);
+
+Route::delete('/retirer-voie/{id}','FinishedRoutesController@deleteValidatedRoute')
+    ->name('delete_validated_route')->middleware('auth')
+    ->where(['id'=>'[0-9]+']);
