@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Http\Controllers;
 
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\Auth;

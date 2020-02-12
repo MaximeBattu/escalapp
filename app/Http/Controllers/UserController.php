@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\ColorRoute;
 use App\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation;
 use App\User;
-use App\FinishedRoute;
 
 class UserController extends Controller
 {
@@ -33,7 +33,12 @@ class UserController extends Controller
             ->join('rooms','rooms.id_room','sectors.id_room')
             ->where('finished_routes.id_user',Auth::user()->id)->get();
 
-        return view('site/profil', [
+        foreach ($doneByUser as $route) {
+            $route->color = null;
+            $route->color = ColorRoute::where('id_color',$route->id_color)->get()->first();
+        }
+
+        return view('site/profile', [
             'user' => $user,
             'finishedRoutes'=>$doneByUser,
         ]);

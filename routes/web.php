@@ -132,7 +132,6 @@ Route::get('/{name_room_slug}-{id}/blocs', 'RouteController@viewBlocs')
     ->name('see_blocs')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
 
-// TODO
 Route::put('/valider-voie/{id_route}','FinishedRoutesController@addValidatedRoute')
     ->name('validate_route')->middleware('auth')
     ->where(['id_route'=>'[0-9]+']);

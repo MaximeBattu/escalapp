@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\ColorRoute;
-use DemeterChain\C;
 use Doctrine\DBAL\Query\QueryException;
+use App\ColorRoute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
