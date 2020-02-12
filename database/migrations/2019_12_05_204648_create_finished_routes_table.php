@@ -18,7 +18,6 @@ class CreateFinishedRoutesTable extends Migration
             $table->integer('id_user');;
             $table->integer('id_sector');
             $table->string('type_route',1);
-            $table->primary(['id_route','id_user']);
             $table->timestamps();
         });
 

@@ -3,16 +3,29 @@ $contestColorDark:#484848!important;
 $contestColor :#484848!important;
 /* Comptes */
 
-#title {
+#profil {
     position: absolute;
     top: 15vh;
-    left: 50vw;
-    transform: translateX(-7.5vw);
+    left: 20vw;
+}
+
+#succes {
+    position: absolute;
+    top: 15vh;
+    right: 15vw;
 }
 
 #infoCompte {
     display: flex;
     margin-top: 15vh;
+}
+
+.infoCompte-center {
+    display: flex;
+    position: absolute;
+    top: 30vh;
+    left: 50vw;
+    transform: translateX(-25vw);
 }
 
 #otherInfo {
@@ -37,6 +50,10 @@ $contestColor :#484848!important;
     border-left: solid;
 }
 
+.achievements {
+    cursor: pointer;
+}
+
 .roomsuccess {
     height: 4.5vh;
     font-size: 4vh;
@@ -44,14 +61,20 @@ $contestColor :#484848!important;
     font-weight: bold;
     background-color: $primaryColor;
     color: white;
-    cursor: pointer;
     margin-top: 2vh;
+    user-select: none;
 }
 
-.score {
-    display: none;
+.inforoute {
     border-bottom: solid;
     margin-bottom: 2vh;
+    width: 100%;
+    transition: 0.5s ease all;
+}
+
+.nope {
+    margin-top: -7.5vh;
+    opacity: 0;
 }
 
 #photo {
@@ -72,20 +95,17 @@ $contestColor :#484848!important;
 }
 
 #photo>i {
-    position: absolute;
     opacity: 0;
-    bottom: 0;
-    right: 0;
     padding: 0.5vw;
-    margin: 0.5vw;
+    margin-left: 10vw;
     border-radius: 100%;
     cursor: pointer;
-    border: solid $primaryColor;
-    transition: 0.2s ease all;
+    border: solid #355664;
+    transition: 0.25s ease all;
 }
 
 #photo>i:hover {
-    background-color: $primaryColor;
+    background-color: #355664;
     color: white;
 }
 

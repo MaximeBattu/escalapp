@@ -6,38 +6,32 @@ $contestColorDark:#484848!important;
     position: fixed;
     top: 0;
     left: -15vw;
-    border: 2px solid black;
-    border-right-color:white ;
     height: 100vh;
     width: 13vw;
+    padding-top: 10vh;
     background-color:$contestColor;
     text-align: center;
-    z-index: 20;
-    transition: 0.4s all linear;
+    transition: 0.2s all linear;
     color: white;
 }
 
 #closeContest {
     position: fixed;
-    border: 2px solid black;
-    border-left: none;
     top: 0;
     left: -2vw;
     width: 2vw;
     height: 100vh;
     background-color: $contestColor;
-    z-index: 20;
-    transition: 0.4s all linear;
+    transition: 0.2s all linear;
     color: white;
 }
 
 #contest > h2 {
     padding: 2vh 0 2vh 0;
-    border-bottom: solid 2px;
 }
 
 .chevron-center {
-    position:fixed;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
     font-size: 32px;
@@ -49,18 +43,20 @@ $contestColorDark:#484848!important;
     width: 2vw;
     font-size: 50px;
 }
-
 #open {
     position: fixed;
     left: 0;
     top: 0;
-    cursor: pointer;
-    width: 2vw;
-    border-right: 2px solid black;
-    background-color: $contestColor;
-    z-index: 20;
     height: 100vh;
+    width: 5vh;
+    cursor: pointer;
+    background-color: $contestColor;
     color: white;
+    transition: 0.25s ease all;
+}
+
+tr {
+    text-align: center;
 }
 
 .text-renverse,
@@ -69,11 +65,7 @@ $contestColorDark:#484848!important;
     top: 50%;
     transform: translateY(-50%);
     font-weight: bold;
-    font-size: 28px;
-}
-
-.text-renverse {
-    transform: rotate(-90deg);
+    font-size: 25px;
 }
 
 #ranking {
@@ -81,13 +73,12 @@ $contestColorDark:#484848!important;
     padding: 1vw;
 }
 
-#consult {
-    padding-top: 2.5vh;
-    text-align: center;
-    border-top: solid 2px;
-}
-
 #open:hover,
 #closeContest:hover {
     background-color: $contestColorDark;
+    cursor: pointer;
+}
+
+.text-renverse {
+    transform: rotate(90deg) translateX(-10vh);
 }

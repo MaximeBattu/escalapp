@@ -29,6 +29,14 @@ html {
 .nav-link {
   font-size: 17.5px;
   color: #ffffff !important;
+  height: 11vh;
+  line-height: 10vh;
+  -webkit-transition: 0.1s ease all;
+  transition: 0.1s ease all;
+}
+
+.nav-link:hover {
+  border-bottom: 1vh solid white;
 }
 
 .vertical {
