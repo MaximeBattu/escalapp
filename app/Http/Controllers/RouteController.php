@@ -47,7 +47,7 @@ class RouteController extends Controller
             $sector->color = ColorRoute::find($sector->id_color);
             $colorsName[] = $sector->color->name_color;
         }
-        $sectors = Sector::findMany($idsSector);
+        $sectors = Sector::findMany($idsSector)->sortBy('name');
 
         $users = $this->user->select('users.*')
             ->join('finished_routes', 'users.id', 'finished_routes.id_user')
@@ -70,12 +70,13 @@ class RouteController extends Controller
             $route->first_person = null;
         }
 
-
         if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')
                 ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
                 ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
                 ->where(['finished_routes.id_user' => Auth::user()->id, 'sectors.climbing_type' => $type])->get();
+
+            $likedByUser = LikedRoute::where('id_user', Auth::user()->id)->get();
 
             foreach ($doneByUser as $done) {
                 foreach ($routes as $route) {
@@ -85,8 +86,6 @@ class RouteController extends Controller
                     }
                 }
             }
-
-            $likedByUser = LikedRoute::where('id_user', Auth::user()->id)->get();
             foreach ($likedByUser as $like) {
                 foreach ($routes as $route) {
                     if ($route->id_route == $like->id_route && Auth::user()->id == $like->id_user) {
@@ -96,7 +95,6 @@ class RouteController extends Controller
                 }
             }
         }
-
         foreach ($routes as $route) {
             $route->number_likes = LikedRoute::where('id_route', $route->id_route)->count();
             $route->color = ColorRoute::find($route->id_color);
@@ -104,8 +102,8 @@ class RouteController extends Controller
 
         foreach ($finishedRoutes as $fr) {
             foreach ($routes as $route) {
-                if($fr->id_route === $route->id_route && $route->first_person === null) {
-                    $route->first_person = User::where('id',$fr->id_user)->get('firstname')->first();
+                if ($fr->id_route === $route->id_route && $route->first_person === null) {
+                    $route->first_person = User::where('id', $fr->id_user)->get('firstname')->first();
                     break;
                 }
             }
@@ -311,17 +309,17 @@ class RouteController extends Controller
     public function ajaxUpdateRoute(Request $request, int $id)
     {
         $id_color = json_decode($request->getContent())->id_color;
-        $color_name = json_decode($request->getContent())->color;
+        $color_code = json_decode($request->getContent())->color;
+        $name_color = json_decode($request->getContent())->nameColor;
         $difficulty = json_decode($request->getContent())->difficulty;
-        $score = json_decode($request->getContent())->score;
 
         $color = ColorRoute::find($id_color);
-        $color->code_color = $color_name;
+        $color->code_color = trim($color_code);
+        $color->name_color = trim($name_color);
         $color->save();
 
         $route = Route::find($id);
         $route->difficulty_route = trim($difficulty);
-        $route->score_route = trim($score);
         $route->save();
 
         return \response('OK', 200);

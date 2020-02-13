@@ -12,8 +12,8 @@ $('.updatable-field-route').on('dblclick', function (e) {
  * @param {number} route.id
  * @param {number} route.id_color
  * @param {string} route.color
+ * @param {string} route.nameColor
  * @param {string} route.difficulty
- * @param {number} route.score
  * @return {Promise}
  */
 function updateRoute(route) {
@@ -26,8 +26,8 @@ function updateRoute(route) {
         data: JSON.stringify({
             id_color: route.id_color,
             color: route.color,
-            difficulty: route.difficulty,
-            score: route.score
+            nameColor: route.nameColor,
+            difficulty: route.difficulty
         })
 
     })
@@ -48,15 +48,15 @@ $(document).on('keydown', '.field-update-route', function (e) {
         const id = $tr.find('.route-id').html()
         const id_color = $tr.find('.color-id').html()
         const color = $tr.find('.route-code').html()
+        const nameColor = $tr.find('.route-color-name').html()
         const difficulty = $tr.find('.route-difficulty').html()
-        const score = $tr.find('.route-score').html()
 
         updateRoute({
             id,
             id_color,
             color,
-            difficulty,
-            score
+            nameColor,
+            difficulty
         }).then(res => {
             console.log('succes route modification')
         }).catch(console.error)

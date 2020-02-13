@@ -4,7 +4,7 @@ html {
 
 .navbar {
   background-color: #212121 !important;
-  height: 80px;
+  height: 8vh;
   z-index: 10;
   color: #ffffff !important;
 }
@@ -29,14 +29,14 @@ html {
 .nav-link {
   font-size: 17.5px;
   color: #ffffff !important;
-  height: 11vh;
-  line-height: 10vh;
+  height: 8vh;
+  line-height: 6.5vh;
   -webkit-transition: 0.1s ease all;
   transition: 0.1s ease all;
 }
 
 .nav-link:hover {
-  border-bottom: 1vh solid white;
+  border-bottom: 0.5vh solid white;
 }
 
 .vertical {

@@ -91,8 +91,8 @@ class DatabaseSeeder extends Seeder
                 'code_color' => '#BB0B0B'
             ],
             [
-                'name_color' => 'Vert',
-                'code_color' => '#B0F2B6'
+                'name_color' => 'Jaune',
+                'code_color' => '#FFFF00'
             ],
             [
                 'name_color' => 'Bleue',
@@ -127,28 +127,28 @@ class DatabaseSeeder extends Seeder
             [
                 'id_sector'=>1,
                 'id_color'=>2,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'3A',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>1,
                 'id_color'=>3,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'9B+',
                 'url_photo'=> "mur3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>2,
                 'id_color'=>4,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'4C',
                 'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>2,
                 'id_color'=>4,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'5A+',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
@@ -162,14 +162,14 @@ class DatabaseSeeder extends Seeder
             [
                 'id_sector'=>3,
                 'id_color'=>1,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'6B+',
                 'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>3,
                 'id_color'=>1,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'6C',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
@@ -183,21 +183,21 @@ class DatabaseSeeder extends Seeder
             [
                 'id_sector'=>5,
                 'id_color'=>1,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'8A',
                 'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
                 'id_color'=>5,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'4A',
                 'url_photo'=> "bloc2.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
             [
                 'id_sector'=>5,
                 'id_color'=>1,
-                'difficulty_route'=>'6B',
+                'difficulty_route'=>'4B+',
                 'url_photo'=> "bloc3.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],

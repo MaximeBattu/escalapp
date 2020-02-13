@@ -9,7 +9,7 @@ html {
 
 .navbar {
     background-color: $primaryColor;
-    height: 80px;
+    height:8vh;
     z-index: 10;
     color: $textColor;
 }
@@ -34,13 +34,13 @@ html {
 .nav-link {
     font-size: 17.5px;
     color: $textColor;
-    height: 11vh;
-    line-height: 10vh;
+    height: 8vh;
+    line-height: 6.5vh;
     transition: 0.1s ease all;
 }
 
 .nav-link:hover {
-    border-bottom: 1vh solid white;
+    border-bottom: 0.5vh solid white;
 }
 
 .vertical {

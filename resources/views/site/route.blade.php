@@ -33,10 +33,10 @@
                     <tr class="text-center">
                         <td>
                             @if($route->color != null)
-                                <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image"
+                                <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img image-route" id="image"
                                      style="border:5px solid {{$route->color->code_color}}">
                             @else
-                                <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img" id="image">
+                                <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img image-route" id="image">
                             @endif
                         </td>
                         <td class="align-middle table-text">{{$route->difficulty_route}}</td>

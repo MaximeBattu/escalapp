@@ -34,12 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let div = create('div', null, body)
     let imageDiv = create("div", null, body, null, "centerImage")
     let centerImage = document.querySelector("#centerImage")
+    centerImage.classList.add('image-route')
     for (let image of images) {
         image.addEventListener('click', function () {
             div.classList.toggle("transparentDiv")
             imageDiv.classList.toggle("imageCenter")
             imageDiv.style.background = "url('" + image.src + "')"
-            imageDiv.style.border = "3px solid " + image.style.borderColor
+            imageDiv.style.border = "7px solid " + image.style.borderColor
             imageDiv.style.opacity = "1"
         })
         div.addEventListener('click', function () {

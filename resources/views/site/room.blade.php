@@ -36,27 +36,22 @@
                     </div>
                 </a>
             @elseif($hasRoutes && $hasBlocs == false)
-                <a href="{{route('see_routes', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-only-voie">
+                <a href="{{route('see_routes', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center">
                     <div class="content-image">
                         <div class="content-image-voie-room">
-                            <img src="{{URL::asset('/img/mur.jpg')}}" alt="" class="image-room">
+                            <img src="{{URL::asset('/img/mur.jpg')}}" alt="" class="image-room__only-voie">
                         </div>
-                        <span class="text-image-route">Voies</span>
+                        <span class="text-image-room__voie-only">Voies</span>
                     </div>
                 </a>
 
             @elseif($hasRoutes == false && $hasBlocs)
-                <div class="text-center content-empty-voie">
+                <a href="{{route('see_blocs', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-only-bloc">
                     <div class="content-image">
-                        <span class="text-image-room">Aucune voies n'a été enregistrées</span>
-                    </div>
-                </div>
-                <a href="{{route('see_blocs',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-bloc">
-                    <div class="content-image">
-                        <div class="content-image-room">
-                            <img src="{{URL::asset('/img/bloc.jpg')}}" alt="" class="image-room room-bloc">
+                        <div class="content-image-voie-room">
+                            <img src="{{URL::asset('/img/mur.jpg')}}" alt="" class="image-room__only-bloc">
                         </div>
-                        <span class="text-image-room">Blocs</span>
+                        <span class="text-image-room__bloc-only">Voies</span>
                     </div>
                 </a>
             @else

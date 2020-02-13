@@ -34,7 +34,7 @@ class Route extends Model
             }
         }
 
-    	return $request->get();
+    	return $request->orderBy('difficulty_route','asc')->get();
     }
 
     public function byRoomAndSector(int $id_room, int $id_sector) {
