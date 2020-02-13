@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\FinishedRoute;
 use Doctrine\DBAL\Query\QueryException;
 use App\ColorRoute;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,7 @@ class RouteController extends Controller
         $room = Room::find($idRoom);
 
         $routes = $this->route->byRoomAndType($idRoom, $type, $routeExtraParameters);
-
+        $finishedRoutes = FinishedRoute::all();
         $routesIntiales = $this->route->byRoomAndType($idRoom, $type, []);
 
         $idsSector = [];
@@ -47,7 +49,7 @@ class RouteController extends Controller
         }
         $sectors = Sector::findMany($idsSector);
 
-        $users = User::select('users.*')
+        $users = $this->user->select('users.*')
             ->join('finished_routes', 'users.id', 'finished_routes.id_user')
             ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
             ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->get();
@@ -65,7 +67,9 @@ class RouteController extends Controller
             $route->number_likes = 0;
             $route->liked = false;
             $route->color = null;
+            $route->first_person = null;
         }
+
 
         if (isset(Auth::user()->id)) {
             $doneByUser = Route::select('routes.*')
@@ -87,15 +91,24 @@ class RouteController extends Controller
                 foreach ($routes as $route) {
                     if ($route->id_route == $like->id_route && Auth::user()->id == $like->id_user) {
                         $route->liked = true;
-
+                        break;
                     }
                 }
             }
-
         }
-        foreach($routes as $route) {
-            $route->number_likes = LikedRoute::where('id_route',$route->id_route)->count();
+
+        foreach ($routes as $route) {
+            $route->number_likes = LikedRoute::where('id_route', $route->id_route)->count();
             $route->color = ColorRoute::find($route->id_color);
+        }
+
+        foreach ($finishedRoutes as $fr) {
+            foreach ($routes as $route) {
+                if($fr->id_route === $route->id_route && $route->first_person === null) {
+                    $route->first_person = User::where('id',$fr->id_user)->get('name')->first();
+                    break;
+                }
+            }
         }
 
         return [
@@ -207,7 +220,7 @@ class RouteController extends Controller
             ]);
         }
         $routes = $this->route->byRoomAndSector($room->id_room, $sector->id_sector);
-        foreach($routes as $route) {
+        foreach ($routes as $route) {
             $route->color = ColorRoute::find($route->id_color);
         }
         return view('admin/management-route', [

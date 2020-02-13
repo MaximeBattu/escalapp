@@ -99,7 +99,7 @@ Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@aj
     ->middleware('auth','admin');
 Route::put('/voies/route/{idRoute}/utilisateur/{idUser}','RouteController@ajaxAddLike')
     ->middleware('auth');
-Route::put('/voies/route/{idRoute}/utilisateur/{idUser}/supprimer','RouteController@ajaxRemoveLike')
+Route::put('/voies/route/{idRoute}/utilisateur/{idUser}/supprimer','RouteController@ajaxRemoveLik')
     ->middleware('auth');
 
 Route::post('{name_room_slug}-{id_room}/blocs/','RouteController@filterBoulder')->name('filter_boulder')

@@ -42,12 +42,32 @@
                         <td class="align-middle table-text">{{$routeBloc->score_route}} pts</td>
                         <td class="align-middle table-text">
                             @if($routeBloc->finished)
-                                <a class="fa fa-check fa-2x finished-check"
-                                   href="{{route('delete_validated_route',['name_room'=>$room->name_room,'id'=>$routeBloc->id_route])}}"></a>
+                                <form method="post" action="{{route('delete_validated_route',['id'=>$routeBloc->id_route])}}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn fa fa-check fa-2x finished-check"></button>
+                                </form>
                             @else
-                                <a class="fas fa-check-square fa-3x validate-check"
-                                   href="{{route('validate_route',['name_room'=>$room->name_room,'id'=>$routeBloc->id_route])}}"></a>
+                                <form method="post" action="{{route('validate_route',['id_route'=>$routeBloc->id_route])}}">
+                                    {{ method_field('PUT') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn fas fa-check-square fa-3x validate-check"></button>
+                                </form>
                             @endif
+                        </td>
+                        <td class="table-text align-bottom">
+                            <span class="d-none like-route-id">{{$routeBloc->id_route}}</span>
+                            <span class="table-text d-block">
+                                {{$routeBloc->first_person['name']}}
+                            </span>
+                            @if($routeBloc->liked)
+                                <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>
+                                <span class="d-inline-block number-like">{{$routeBloc->number_likes}}</span>
+                            @else
+                                <i class="far fa-thumbs-up fa-1x d-inline-block like like-route"></i>
+                                <span class="d-inline-block number-like">{{$routeBloc->number_likes}}</span>
+                            @endif
+
                         </td>
                     </tr>
                 @endforeach

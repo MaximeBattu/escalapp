@@ -56,16 +56,19 @@
                                 </form>
                             @endif
                         </td>
-                        <td class="align-middle table-text align-bottom">
+                        <td class="table-text align-bottom">
                             <span class="d-none like-route-id">{{$route->id_route}}</span>
-                            <i class="far fa-comment fa-1x d-inline-block"></i>
+                            <span class="table-text d-block">
+                                {{$route->first_person['name']}}
+                            </span>
                             @if($route->liked)
                                 <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>
-                                <span class="number-like">{{$route->number_likes}}</span>
+                                <span class="d-inline-block number-like">{{$route->number_likes}}</span>
                             @else
                                 <i class="far fa-thumbs-up fa-1x d-inline-block like like-route"></i>
-                                <span class="number-like">{{$route->number_likes}}</span>
+                                <span class="d-inline-block number-like">{{$route->number_likes}}</span>
                             @endif
+
                         </td>
                     </tr>
                 @endforeach
