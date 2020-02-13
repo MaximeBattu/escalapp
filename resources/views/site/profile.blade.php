@@ -43,14 +43,14 @@
             @foreach($finishedRoutes as $finishedRoute)
                 <div class="achievements">
                     <h1 class="roomsuccess">
-                        <p>{{$finishedRoute->name_room}}</p>
+                        <p>Salle : {{$finishedRoute->name_room}}</p>
                     </h1>
                     <table class="inforoute nope">
                         <thead>
                         <tr>
                             <td>Difficulté</td>
                             <td>Couleur</td>
-                            <td>Nom</td>
+                            <td>Secteur</td>
                         </tr>
                         </thead>
                         <tbody>

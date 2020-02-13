@@ -105,7 +105,7 @@ class RouteController extends Controller
         foreach ($finishedRoutes as $fr) {
             foreach ($routes as $route) {
                 if($fr->id_route === $route->id_route && $route->first_person === null) {
-                    $route->first_person = User::where('id',$fr->id_user)->get('name')->first();
+                    $route->first_person = User::where('id',$fr->id_user)->get('firstname')->first();
                     break;
                 }
             }

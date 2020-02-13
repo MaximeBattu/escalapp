@@ -81,7 +81,7 @@
                                 </a>
                             </div>
                         </li>
-                        
+
                     @endif
                 <!-- Authentication Links -->
                     @guest
@@ -98,7 +98,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle font-size-text" href="#"
                                role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->firstname }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

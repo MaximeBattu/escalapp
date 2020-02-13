@@ -58,7 +58,7 @@
                         <td class="table-text align-bottom">
                             <span class="d-none like-route-id">{{$routeBloc->id_route}}</span>
                             <span class="table-text d-block">
-                                {{$routeBloc->first_person['name']}}
+                                {{$routeBloc->first_person['firstname']}}
                             </span>
                             @if($routeBloc->liked)
                                 <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>
