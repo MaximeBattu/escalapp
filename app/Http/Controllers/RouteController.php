@@ -55,7 +55,11 @@ class RouteController extends Controller
             ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->get();
 
         if ($users->isNotEmpty()) {
-            $scores = $this->user->getUsersScore($users->pluck('id')->toArray());
+            
+            $scores = $this->user->getUsersScore(
+                $users->pluck('id')->toArray(), 
+                $sectors->pluck('id_sector')->toArray());
+
             foreach ($users as $user) {
                 $user->score = $scores[$user->id];
             }
