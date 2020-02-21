@@ -1,25 +1,26 @@
 @extends('layouts.app')
 @section('content')
+    <div class="background">
+        <div>
+            <div class="row align-items-center justify-content-center d-flex starf">
+                @foreach($salles as $salle)
+                    <a href="{{route('see_room', ['name_room_slug'=>Str::slug($salle->name_room),'id'=>$salle->id_room])}}"
+                        class="col-md-3 boxRoom">
+                        <div id="roomInfo">
+                            <p id="roomname">
+                                {{$salle->name_room}}
+                            </p>
+                            <p class="display-none">
+                                {{$salle->email}}
+                            </p>
+                            <p class="display-none">
+                                {{$salle->address_room}}
+                            </p>
+                        </div>
 
-    <div class="container-fluid">
-        <div class="row align-items-center justify-content-center">
-            @foreach($salles as $salle)
-                <a href="{{route('see_room', ['name_room_slug'=>Str::slug($salle->name_room),'id'=>$salle->id_room])}}"
-                    class="col-md-3 boxRoom">
-                    <div id="roomInfo">
-                        <p id="roomname">
-                            {{$salle->name_room}}
-                        </p>
-                        <p class="display-none">
-                            {{$salle->email}}
-                        </p>
-                        <p class="display-none">
-                            {{$salle->address_room}}
-                        </p>
-                    </div>
-
-                </a>
-            @endforeach
+                    </a>
+                @endforeach
+            </div>
         </div>
     </div>
 
