@@ -41,8 +41,8 @@ class User extends Authenticatable
     private function getScores() {
         return User::select(DB::raw('users.id AS ID,
                                     CASE WHEN sum(routes.score_route) IS NULL then 0
-                                        ELSE sum(routes.score_route)
-                                        END as SCORE'))
+                                            ELSE sum(routes.score_route)
+                                            END as SCORE'))
                     ->leftJoin('finished_routes','users.id','finished_routes.id_user')
                     ->leftJoin('routes','finished_routes.id_route','routes.id_route')
                     ->groupBy('users.id');
@@ -52,8 +52,11 @@ class User extends Authenticatable
         return User::getScores()->where('id',$id)->first();
     }
 
-    public function getUsersScore($ids) {
-        return User::getScores()->whereIn('id',$ids)->pluck('SCORE','ID');
+    public function getUsersScore($id_users, $id_sectors) {
+        return User::getScores()
+                    ->whereIn('id',$id_users)
+                    ->whereIn('routes.id_sector', $id_sectors)
+                    ->pluck('SCORE','ID');
     } 
 
 }
