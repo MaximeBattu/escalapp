@@ -6,7 +6,6 @@
     "/css/app.css": "/css/app.css",
     "/css/styles.css": "/css/styles.css",
     "/css/profile.css": "/css/profile.css",
-    "/css/room.css": "/css/room.css",
     "/css/route-boulder.css": "/css/route-boulder.css",
     "/css/admin.css": "/css/admin.css",
     "/css/contest.css": "/css/contest.css",
@@ -14,5 +13,6 @@
     "/css/media-queries.css": "/css/media-queries.css",
     "/js/main.js": "/js/main.js",
     "/js/profile.js": "/js/profile.js",
-    "/js/route.js": "/js/route.js"
+    "/js/route.js": "/js/route.js",
+    "/css/room.css": "/css/room.css"
 }

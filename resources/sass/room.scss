@@ -2,6 +2,20 @@ $primaryColor: #212121 !important;
 $textColor: #ffffff !important;
 /* Accueil */
 
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    background-image: url("../../img/background_room.png");
+    background-size: cover;
+    filter: brightness(0.7);
+    z-index: 0;
+}
+
+
 .boxRoom {
     color: white;
     font-size: 18px;
@@ -11,9 +25,10 @@ $textColor: #ffffff !important;
     border-radius: 2px;
     height: 25vh;
     margin: 50px 50px 0 50px;
-    background-image: url(https://lh3.googleusercontent.com/proxy/5dowzuiBqn3-qDhSmZt5TRmOXuaysn8KSo0oc-K6B7UCmXUh-gx-hNst9NX01aIXnhBVqVdDLI1iBchdURS-Gp8ZolyovWr1nIec9cAJSQAGTG9zYHy3HNfrlIPMphCZeQnOKfRtdvGCiiaPPmicF7ExCqazDiit_JTTclFCUkdPYPSW);
+    background-image: url("../../img/bloc_trotteur.png");
     cursor: pointer;
 }
+
 
 .boxRoom:hover, .boxRoom:visited, .boxRoom:link, .boxRoom:active {
     text-decoration: none;
@@ -42,12 +57,20 @@ $textColor: #ffffff !important;
 .display-none {
     display: none;
     opacity: 0;
+    animation: appear 0.5s linear forwards;
+}
+
+@keyframes appear {
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .boxRoom:hover .display-none {
     display: block;
-    opacity: 1;
-    transition: 0.3s ease all;
 }
 
 .boxRoom:hover #roomInfo {
