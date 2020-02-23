@@ -2,6 +2,7 @@ $primaryColor: #212121 !important;
 $textColor: #ffffff !important;
 /* Accueil */
 
+
 .background {
     position: absolute;
     top: 0;
@@ -179,4 +180,55 @@ $textColor: #ffffff !important;
 .image-room__only-bloc:hover {
     opacity: 0.85;
     transition: 0.4s all linear;
+}
+
+.section__split {
+    position: relative;
+    margin: -50px;
+    height:92vh;
+    z-index: 0;
+    overflow-y: hidden!important;
+}
+
+.section-split__image {
+    overflow: hidden;
+    position: absolute;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 50%;
+    background-repeat: no-repeat;
+    transition: 100ms background-color linear;
+}
+
+.image-left {
+    left: 0;
+    background-image: url('./public/img/voie.png');
+}
+
+.image-right {
+    right:0;
+    background-image: url('./public/img/bloc.png');
+    transform: scaleX(-1);
+}
+
+.section-split__image:hover {
+    background-color: #9ea3a7;
+    opacity: 0.8;
+    transition: 100ms all linear;
+}
+
+.section-split__text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.text-left {
+    left: 25%
+}
+
+.text-right {
+    right: 25%;
 }
