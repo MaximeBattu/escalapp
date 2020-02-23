@@ -58,9 +58,7 @@
                         </td>
                         <td class="table-text align-bottom">
                             <span class="d-none like-route-id">{{$route->id_route}}</span>
-                            <span class="table-text d-block">
-                                {{$route->first_person['firstname']}}
-                            </span>
+
                             @if($route->liked)
                                 <i class="fas fa-thumbs-up fa-1x d-inline-block like unlike-route"></i>
                                 <span class="d-inline-block number-like">{{$route->number_likes}}</span>
@@ -71,6 +69,15 @@
 
                         </td>
                     </tr>
+                    @if(isset($route->first_person['firstname']) && $route->first_person['firstname'] !== "")
+                    <tr>
+                        <td>
+                            <span class="table-text d-block">
+                                {{$route->first_person['firstname']}}
+                            </span>
+                        </td>
+                    </tr>
+                    @endif
                 @endforeach
 
                 </tbody>
