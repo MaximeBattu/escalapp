@@ -22,7 +22,7 @@
                 <a href="{{route('see_routes', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-voie">
                     <div class="content-image">
                         <div class="content-image-room">
-                            <img src="{{URL::asset('/img/mur.jpg')}}" alt="" class="image-room">
+                            <img src="{{URL::asset('/img/image_route.png')}}" alt="" class="image-room">
                         </div>
                         <span class="text-image-room">Voies</span>
                     </div>
@@ -30,7 +30,7 @@
                 <a href="{{route('see_blocs', ['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}" class="text-center content-bloc">
                     <div class="content-image">
                         <div class="content-image-room">
-                            <img src="{{URL::asset('/img/bloc.jpg')}}" alt="" class="image-room room-bloc">
+                            <img src="{{URL::asset('/img/image_boulder.png')}}" alt="" class="image-room room-bloc">
                         </div>
                         <span class="text-image-room">Blocs</span>
                     </div>
