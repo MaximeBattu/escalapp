@@ -55,9 +55,9 @@ class RouteController extends Controller
             ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->get();
 
         if ($users->isNotEmpty()) {
-            
+
             $scores = $this->user->getUsersScore(
-                $users->pluck('id')->toArray(), 
+                $users->pluck('id')->toArray(),
                 $sectors->pluck('id_sector')->toArray());
 
             foreach ($users as $user) {
@@ -188,7 +188,7 @@ class RouteController extends Controller
         ]);
 
         return view('site/boulder', [
-            'routesBloc' => $data['routes'],
+            'routes' => $data['routes'],
             'room' => $data['room'],
             'users' => $data['users'],
             'sectors' => $data['sectors'],

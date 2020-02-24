@@ -15,10 +15,6 @@ class Sector extends Model
     	return Sector::all()->where('id_room', $id_room);
     }
 
-    public function deleteSector(int $id) {
-    	Sector::find($id)->delete();
-    }
-
     public function add(string $name, string $type, int $id_room) {
         try {
             Sector::create([

@@ -78,6 +78,12 @@ class DatabaseSeeder extends Seeder
                 'name'=>'Aravis',
                 'climbing_type'=>'V',
                 'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_room'=>'3',
+                'name'=>'Blocus',
+                'climbing_type'=>'B',
+                'created_at'=>Carbon\Carbon::now()
             ]
         ];
 
@@ -220,6 +226,13 @@ class DatabaseSeeder extends Seeder
                 'id_color'=>1,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur3.jpg",
+                'created_at'=>Carbon\Carbon::now()
+            ],
+            [
+                'id_sector'=>8,
+                'id_color'=>1,
+                'difficulty_route'=>'6B',
+                'url_photo'=> "bloc1.jpg",
                 'created_at'=>Carbon\Carbon::now()
             ],
         ];

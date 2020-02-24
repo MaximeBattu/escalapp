@@ -10,7 +10,7 @@ $textColor: #ffffff !important;
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
-    background-image: url("../../img/background_room.png");
+    background-image: url("./public/img/background_room.png");
     background-size: cover;
     filter: brightness(0.7);
     z-index: 0;
@@ -26,8 +26,9 @@ $textColor: #ffffff !important;
     border-radius: 2px;
     height: 25vh;
     margin: 50px 50px 0 50px;
-    background-image: url("../../img/bloc_trotteur.png");
+    background-image: url("./public/img/home.jpg");
     cursor: pointer;
+
 }
 
 
@@ -191,30 +192,28 @@ $textColor: #ffffff !important;
 }
 
 .section__split {
-    position: relative;
     margin: -50px;
-    height:92vh;
     z-index: 0;
-    overflow-y: hidden!important;
 }
 
 .section-split__image {
-    overflow: hidden;
     position: absolute;
-    box-sizing: border-box;
+    top: 0;
     height: 100vh;
-    width: 50%;
+    width: 50vw;
     background-repeat: no-repeat;
     transition: 100ms background-color linear;
 }
 
 .image-left {
+    top: 0;
     left: 0;
     background-image: url('./public/img/voie.png');
 }
 
 .image-right {
-    right:0;
+    top: 0;
+    right: 0;
     background-image: url('./public/img/bloc.png');
     transform: scaleX(-1);
 }
@@ -227,9 +226,8 @@ $textColor: #ffffff !important;
 
 .section-split__text {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 48px;
+    top: 42%;
+    font-size: 58px;
     font-weight: bold;
 }
 
@@ -239,4 +237,39 @@ $textColor: #ffffff !important;
 
 .text-right {
     right: 25%;
+}
+
+.section-one_image {
+    position: absolute;
+    top: 5vh;
+    margin: -50px;
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    transition: 100ms background-color linear;
+    overflow: hidden;
+}
+
+.image-voie {
+    background-image: url('./public/img/voie.png');
+}
+
+.image-bloc {
+    background-image: url('./public/img/bloc.png');
+    transform: scaleX(-1);
+}
+
+.section-one_image:hover {
+    background-color: #9ea3a7;
+    opacity: 0.8;
+    transition: 100ms all linear;
+}
+
+.section-one__text {
+    position: absolute;
+    top: 17.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 58px;
+    font-weight: bold;
 }

@@ -29,7 +29,6 @@ Route::get('/admin/accueil', 'AdminController@index')->name('see_home_admin')
     ->middleware('auth', 'admin');
 
 // PROFILE
-
 Route::get('/profil', 'UserController@seeMyProfil')->name('see_my_profil')
     ->middleware('auth');
 Route::get('/profil/mise-a-jour', 'UserController@seeUpdateProfile')->name('update_profile')
@@ -37,16 +36,19 @@ Route::get('/profil/mise-a-jour', 'UserController@seeUpdateProfile')->name('upda
 Route::post('/profil/mise-a-jour', 'UserController@updateProfile')->name('set_update_profile')
     ->middleware('auth');
 
-// ROOM ADMINISTRATION
+// ADMIN MANAGEMENT : ROOMS
 Route::get('/admin/gestion-salles', 'RoomController@seeRoomManagement')->name('see_room_management')
     ->middleware('auth', 'admin');
-// TODO Delete HTTP Verb
+
 Route::delete('/admin/gestion-salles/supprimer/{id}', 'RoomController@deleteRoom')->name('delete_room')
     ->middleware('auth', 'admin');
+
 Route::get('/admin/gestion-salles/ajouter-salle', 'RoomController@seeAddRoom')->name('see_add_room')
     ->middleware('auth', 'admin');
+
 Route::post('/admin/gestion-salles/ajouter-salle', 'RoomController@addRoom')->name('add_room')
     ->middleware('auth', 'admin');
+
 Route::put('/admin/gestion-salles/modifier/salle/{id_room}','RoomController@ajaxUpdateRoom')
     ->middleware('auth','admin');
 
@@ -55,8 +57,7 @@ Route::get('/admin/gestion-salles/{name_room_slug}-{id}', 'SectorController@seeA
     ->middleware('auth','admin')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
 
-// TODO Delete HTTP Verb
-Route::get('/admin/gestion-salles/{name_room}/supprimer-secteur', 'SectorController@deleteSector')
+Route::delete('/admin/gestion-salles/supprimer-secteur/{id_sector}', 'SectorController@deleteSector')
     ->name('delete_sector')->middleware('auth','admin');
 
 Route::get('/admin/gestion-salles/{name_room_slug}-{id}/ajouter-secteur', 'SectorController@seeAddSector')
@@ -81,7 +82,6 @@ Route::get('/admin/gestion-salles/{name_room_slug}-{id_room}/{name_sector_slug}-
 Route::put('/admin/gestion-salles/modifier/sector/{id_sector}','SectorController@ajaxUpdateSector')
     ->middleware('auth','admin');
 
-
 Route::delete('admin/gestion-salles/route/{id_route}', 'RouteController@deleteRoute')
     ->name('delete_route')->middleware('auth','admin');
 
@@ -93,12 +93,16 @@ Route::get('/admin/gestion-salles/{name_room_slug}-{id_room}/{name_sector_slug}-
         'name_sector_slug'=>'[a-z0-9\-]+',
         'id_sector'=>'[0-9]+'
     ]);;
+
 Route::post('/admin/gestion-salles/salle/{id_room}/secteur/{id_sector}', 'RouteController@addRoute')
     ->name('add_route')->middleware('auth','admin');
+
 Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@ajaxUpdateRoute')
     ->middleware('auth','admin');
+
 Route::put('/voies/route/{idRoute}/utilisateur/{idUser}','RouteController@ajaxAddLike')
     ->middleware('auth');
+
 Route::put('/voies/route/{idRoute}/utilisateur/{idUser}/supprimer','RouteController@ajaxRemoveLik')
     ->middleware('auth');
 
@@ -108,26 +112,30 @@ Route::post('{name_room_slug}-{id_room}/blocs/','RouteController@filterBoulder')
     'id_room'=>'[0-9]+'
 ]);;
 
-// ACCOUNT ADMINISTRATION
+// ADMIN MANAGEMENT : USERS ACCOUNT
 Route::get('/admin/gestion-comptes', 'UserController@seeUserManagement')->name('see_user_management')
     ->middleware('auth', 'admin');
+
 Route::delete('/admin/gestion-comptes/supprimer/{id}','UserController@deleteUser')->name('delete_user')
     ->middleware('auth','admin');
+
 Route::post('/admin/gestion/modifier/mettre-administrateur/{id}','UserController@modifyUser')
     ->name('modify_user')->middleware('auth','admin');
+
 Route::post('/admin/gestion/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')
     ->name('remove_administrator_right')->middleware('auth','admin');
 
 //Route::get('/classement', 'UserController@ranking')->name('see_classification');
 
-// VALIDATE/TRY CLIBING ROUTE
-
+// VALIDATE ROUTE / BOULDER FOR A USER
 Route::get('/{name_room_slug}-{id}', 'RoomController@viewRoom')
     ->name('see_room')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
+
 Route::get('/{name_room_slug}-{id}/voies', 'RouteController@viewRoutes')
     ->name('see_routes')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
+
 Route::get('/{name_room_slug}-{id}/blocs', 'RouteController@viewBlocs')
     ->name('see_blocs')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
