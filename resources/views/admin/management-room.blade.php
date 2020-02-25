@@ -5,7 +5,7 @@
     <div>
         <a type="button" class="btn button-shadow add-room" href="{{route('see_add_room')}}">Ajouter une salle</a>
     </div>
-    <table class="table table-hover salles-admin">
+    <table class="table salles-admin">
         <thead>
         <tr>
             <th class="table-text">ID</th>

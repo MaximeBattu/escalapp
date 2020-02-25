@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-    <table class="table table-hover users-admin">
+    <table class="table users-admin">
         <thead>
-            <tr>
+            <tr class="order-by">
                 <th class="table-text">ID</th>
                 <th class="table-text">Prénom</th>
                 <th class="table-text">Nom</th>

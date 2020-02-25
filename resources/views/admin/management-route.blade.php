@@ -4,7 +4,7 @@
     @if(isset($routes) && $routes->isEmpty())
 
         <div class="container">
-            <h1 class="text-center">Aucune salle renseignée sur le secteur : <strong>{{$sector->name}}</strong></h1>
+            <h1 class="text-center">Aucune salle renseignée sur le secteur <strong>{{$sector->name}}</strong></h1>
             <h1 class="text-center">Salle : <strong>{{$room->name_room}}</strong></h1>
         </div>
 
@@ -32,7 +32,7 @@
                     ])}}">Ajouter
                 une voie</a>
         </div>
-        <table class="table table-hover voies-admin">
+        <table class="table voies-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>

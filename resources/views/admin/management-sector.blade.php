@@ -22,7 +22,7 @@
                href="{{route('see_add_sector',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}">Ajouter
                 un secteur</a>
         </div>
-        <table class="table table-hover salles-admin">
+        <table class="table salles-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>

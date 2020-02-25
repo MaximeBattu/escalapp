@@ -12,7 +12,7 @@
                     </div>
                 @endforeach
             @else
-                <h1>Aucune voie n'a été validée pour l'instant</h1>
+                <h5>Aucune voie n'a été validée pour l'instant</h5>
             @endif
         </div>
     </div>
@@ -143,7 +143,7 @@
                             </button>
 
                         </form>
-                        <form id="reset-form" action="#">
+                        <form id="reset-form" action="#" class="reset__form-button">
                             <button class="d-inline-block btn button-shadow font-size-text">
                                 Réinitialiser
                             </button>

@@ -3,8 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\ColorRoute;
-
 
 class Route extends Model
 {
