@@ -36,6 +36,9 @@ class UserController extends Controller
         foreach ($doneByUser as $route) {
             $route->color = null;
             $route->color = ColorRoute::where('id_color',$route->id_color)->get()->first();
+            if($route->id_color_secondary !== null) {
+                $route->color_secondary = ColorRoute::where('id_color',$route->id_color_secondary)->get()->first();
+            }
         }
 
         return view('site/profile', [
