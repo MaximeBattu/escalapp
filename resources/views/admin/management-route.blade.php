@@ -87,6 +87,25 @@
                         </form>
                     </td>
                 </tr>
+                @if(isset($route->color_secondary) && $route->color_secondary !== null)
+                <tr>
+                    <td class="secondary-color"></td>
+                    <td class="d-none align-middle table-text route-id"> {{$route->id_route}}</td>
+                    <td class="d-none color-id">{{$route->color_secondary->id_color}}</td>
+                    <td class="align-middle table-text route-color-name updatable-field-route secondary-color">{{$route->color_secondary->name_color}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="align-middle table-text route-code updatable-field-route secondary-color">{{$route->color_secondary->code_color}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="d-none align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
+                    <td class="d-none align-middle route-difficulty-td">
+                        <input type="text" class="route-difficulty-input input-text-size field-update-route">
+                    </td>
+                </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

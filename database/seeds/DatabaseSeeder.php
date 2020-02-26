@@ -126,6 +126,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id_sector'=>1,
                 'id_color'=>1,
+                'id_color_secondary'=>5,
                 'difficulty_route'=>'6B',
                 'url_photo'=> "mur1.jpg",
                 'created_at'=>Carbon\Carbon::now()
@@ -133,6 +134,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id_sector'=>1,
                 'id_color'=>2,
+                'id_color_secondary'=>1,
                 'difficulty_route'=>'3A',
                 'url_photo'=> "mur2.jpg",
                 'created_at'=>Carbon\Carbon::now()
