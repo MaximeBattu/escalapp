@@ -163,7 +163,8 @@ class RouteController extends Controller
             'colors' => $data['colors'],
             'selectedName' => $nameSector,
             'selectedColor' => $colorRoute,
-            'selectedDifficulty' => $difficulty
+            'selectedDifficulty' => $difficulty,
+            'nb_users'=>1
         ]);
     }
 
@@ -201,7 +202,8 @@ class RouteController extends Controller
             'colors' => $data['colors'],
             'selectedName' => $nameSector,
             'selectedColor' => $colorRoute,
-            'selectedDifficulty' => $difficulty
+            'selectedDifficulty' => $difficulty,
+            'nb_users'=>1
         ]);
     }
 

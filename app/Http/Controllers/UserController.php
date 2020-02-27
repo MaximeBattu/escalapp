@@ -44,6 +44,7 @@ class UserController extends Controller
         return view('site/profile', [
             'user' => $user,
             'finishedRoutes'=>$doneByUser,
+            'nb_voies'=>1
         ]);
     }
 
