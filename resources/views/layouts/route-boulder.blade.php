@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <section class="filter">
+    <section class="filter" id="filter">
 
         <div class="container">
             <div class="row justify-content-center">
@@ -116,8 +116,9 @@
                     <div class="card formContainer">
                         <div
                             class="card-header formTitle font-size-head-form">{{ __('Filtre') }}</div>
-                        <div class="card-body d-inline">
+                        <div class="card-body d-inline filter-content">
                             <form id="filter-form" action="#">
+
                                 <div class="form-group row new-infos">
                                     <label for="sector"
                                            class="col-md-4 col-form-label text-md-right font-size-text">{{ __('Nom secteur') }}</label>

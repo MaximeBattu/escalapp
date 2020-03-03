@@ -22,6 +22,27 @@ $primaryColor: #212121 !important;
     }
 }
 
+@media screen and (max-width:1300px) {
+    .section-split__text{
+        font-size: 38px;
+    }
+
+    .infos-room {
+        font-size: 20px;
+        width: 25vw;
+    }
+
+    .filter {
+        width: 20vw;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .filter-content {
+        display: none !important;
+    }
+}
+
 @media screen and (max-width:1270px) {
     .table-text,
     .font-size-text, .button-shadow {
@@ -37,6 +58,10 @@ $primaryColor: #212121 !important;
     .table-text,
     .font-size-text, .button-shadow {
         font-size:16px
+    }
+
+    .section-split__text {
+        font-size: 30px;
     }
 
     .responsive {
@@ -55,8 +80,25 @@ $primaryColor: #212121 !important;
         font-size:16px
     }
 
+    .infos-room {
+        top: 22.5vh;
+        font-size: 16px;
+    }
+
     .boxRoom {
         min-width: 50vw;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .section-split__image {
+        background-size: cover;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .infos-room {
+        font-size: 14px;
     }
 }
 
