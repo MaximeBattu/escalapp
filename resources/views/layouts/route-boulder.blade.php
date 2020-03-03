@@ -8,7 +8,7 @@
                 @if($users != null && $users->isNotEmpty())
                     @foreach($users as $user)
                         <div>
-                            <p>{{$user->name." ".$user->score}}</p>
+                            <p>{{$nb_users++}} - {{$user->name." ".$user->score}}</p>
                         </div>
                     @endforeach
                 @else
@@ -35,7 +35,8 @@
                         <td>
                             @if($route->color !== null)
                                 @if($route->color_secondary !== null)
-                                    <span class="image__secondary-color" id="image" style="border:5px solid {{$route->color_secondary->code_color}};">
+                                    <span class="image__secondary-color" id="image"
+                                          style="border:5px solid {{$route->color_secondary->code_color}};">
 
                                     </span>
                                     <img src="{{URL::asset('/img/'.$route->url_photo)}}" alt="" class="img image-route"
@@ -82,25 +83,29 @@
 
                         </td>
                     </tr>
-                    @if($route->first_person['firstname'] !== null)
-                        <tr>
-                            <td style="border: none">
+
+                    <tr>
+                        @if($route->first_person['firstname'] !== null)
+                            <td class="second-row__route first-person__route" title="Premier grimpeur a avoir validé la voie !">
                             <span class="table-text">
-                                Premier grimpeur : <strong>{{$route->first_person['firstname']}}</strong>
+                                <strong>{{$route->first_person['firstname']}}</strong>
                             </span>
                             </td>
-                            <td style="border: none">
+                        @else
+                            <td class="second-row__route"></td>
+                        @endif
+                        <td class="second-row__route">
                             <span class="table-text">
                                 Labels
                             </span>
-                            </td>
-                            <td style="border: none" class="admin-help">
+                        </td>
+                        <td class="second-row__route admin-help">
                             <span class="table-text">
                                 Aide pour la voie
                             </span>
-                            </td>
-                        </tr>
-                    @endif
+                        </td>
+                    </tr>
+
                 @endforeach
 
                 </tbody>
@@ -108,8 +113,12 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <section class="filter" id="filter">
 
+=======
+    <section class="filter">
+>>>>>>> d30e58af22791788044230e6524bde42557bd5f0
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
