@@ -5,11 +5,11 @@
         <thead>
             <tr>
                 <th class="table-text">ID</th>
-                <th class="table-text">Prénom</th>
-                <th class="table-text">Nom</th>
-                <th class="table-text">email</th>
-                <th class="table-text">Crée le</th>
-                <th class="table-text">Administateur</th>
+                <th class="table-text" id="order-by-firstname">Prénom</th>
+                <th class="table-text" id="order-by-name">Nom</th>
+                <th class="table-text" id="order-by-email">email</th>
+                <th class="table-text" id="order-by-date">Crée le</th>
+                <th class="table-text" id="order-by-admin">Administateur</th>
                 <th class="room-change table-text"></th>
             </tr>
         </thead>

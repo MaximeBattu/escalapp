@@ -151,4 +151,39 @@ class UserController extends Controller
         ]);
         return redirect()->back()->with('remove-administrator-right','You have removed administrator right to '.$name);
     }
+
+    public function orderByName() {
+        $users = User::orderBy('name','asc')->get();
+        return view('admin/management-user', [
+            'users' => $users
+        ]);
+    }
+
+    public function orderByFirstname() {
+        $users = User::orderBy('firstname','asc')->get();
+        return view('admin/management-user', [
+            'users' => $users
+        ]);
+    }
+
+    public function orderByEmail() {
+        $users = User::orderBy('email','asc')->get();
+        return view('admin/management-user', [
+            'users' => $users
+        ]);
+    }
+
+    public function orderByDate() {
+        $users = User::orderBy('created_at','asc')->get();
+        return view('admin/management-user', [
+            'users' => $users
+        ]);
+    }
+
+    public function orderByAdmin() {
+        $users = User::orderBy('isAdmin','asc')->get();
+        return view('admin/management-user', [
+            'users' => $users
+        ]);
+    }
 }

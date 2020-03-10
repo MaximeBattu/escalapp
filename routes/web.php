@@ -113,11 +113,18 @@ Route::get('/admin/gestion-comptes', 'UserController@seeUserManagement')->name('
     ->middleware('auth', 'admin');
 Route::delete('/admin/gestion-comptes/supprimer/{id}','UserController@deleteUser')->name('delete_user')
     ->middleware('auth','admin');
-Route::post('/admin/gestion/modifier/mettre-administrateur/{id}','UserController@modifyUser')
+Route::post('/admin/gestion-comptes/modifier/mettre-administrateur/{id}','UserController@modifyUser')
     ->name('modify_user')->middleware('auth','admin');
-Route::post('/admin/gestion/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')
+Route::post('/admin/gestion-comptes/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')
     ->name('remove_administrator_right')->middleware('auth','admin');
 
+// PROFILE ORDER
+
+Route::post('/admin/gestion-comptes/trier-par-nom','UserController@orderByName')->middleware('auth');
+Route::post('/admin/gestion-comptes/trier-par-prenom','UserController@orderByFirstname')->middleware('auth');
+Route::post('/admin/gestion-comptes/trier-par-email','UserController@orderByEmail')->middleware('auth');
+Route::post('/admin/gestion-comptes/trier-par-date','UserController@orderByDate')->middleware('auth');
+Route::post('/admin/gestion-comptes/trier-par-admin','UserController@orderByAdmin')->middleware('auth');
 //Route::get('/classement', 'UserController@ranking')->name('see_classification');
 
 // VALIDATE/TRY CLIBING ROUTE
