@@ -17,6 +17,7 @@ class CreateRoutesTable extends Migration
             $table->bigIncrements('id_route');
             $table->integer('id_sector');
             $table->integer('id_color');
+            $table->integer('id_color_secondary')->nullable();
             $table->string('difficulty_route',3)->nullable();
             $table->string('url_photo',150)->nullable();
             $table->integer('score_route')->nullable()->default(1000);
@@ -28,6 +29,7 @@ class CreateRoutesTable extends Migration
         Schema::table('routes', function(Blueprint $table) {
             $table->foreign('id_sector')->references('id_sector')->on('sectors');
             $table->foreign('id_color')->references('id_color')->on('colors_routes');
+            $table->foreign('id_color_secondary')->references('id_color')->on('colors_routes');
         });
     }
 

@@ -49,6 +49,7 @@ html {
 
 .main {
     margin: 50px 50px;
+
 }
 
 .text-display{
@@ -71,15 +72,20 @@ html {
     font-size: 18px;
 }
 
-.font-size-text {
+.input-text {
     font-size: 18px;
-    padding: 10px!important;
+    padding: 10px 20px 10px 20px!important;
+}
+
+.font-size-text {
+    text-align:center;
+    font-size: 18px;
+    padding: 10px 20px 10px 20px!important;
 }
 
 .font-size-head-form {
     font-size: 26px;
 }
-
 
 /* Salles */
 

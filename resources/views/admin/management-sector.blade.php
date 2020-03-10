@@ -22,7 +22,7 @@
                href="{{route('see_add_sector',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}">Ajouter
                 un secteur</a>
         </div>
-        <table class="table table-hover salles-admin">
+        <table class="table salles-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>
@@ -62,15 +62,18 @@
                             </a>
                         </div>
                         <div class="d-inline-block">
-                            <a type="button" class="fas fa-trash-alt fa-2x delete"
-                               href="{{route('delete_sector',['name_room'=>$room->name_room,'id'=>$sector->id_sector])}}"></a>
-
+                            <form method="post" action="{{route('delete_sector',['id_sector'=>$sector->id_sector])}}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="fas fa-trash-alt fa-2x delete"></button>
+                            </form>
                         </div>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+
         @if (\Session::has('sector-deletion'))
             <div class="alert alert-success popup font-size-text" id="sector-deletion">
                 {{\Session::get('sector-deletion')}}

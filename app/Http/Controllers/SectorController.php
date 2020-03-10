@@ -49,12 +49,9 @@ class SectorController extends Controller
      * Admin Management
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteSector()
+    public function deleteSector(int $idSector)
     {
-        $id_sector = $_GET['id'];
-
-        $this->sector->deleteSector($id_sector);
-
+        $this->sector->find($idSector)->delete();
         return redirect()->back()->with('sector-deletion', 'Le secteur a été supprimé');
     }
 

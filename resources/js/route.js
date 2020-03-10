@@ -86,6 +86,14 @@ close.addEventListener("click", function () {
     escalapp.style.marginLeft = null
 })
 
+// FILTER RENDER
+let filter = document.querySelector("#filter")
+
+filter.addEventListener("click", function() {
+
+})
+
+
 /**
  *
  * @param {object} parameters

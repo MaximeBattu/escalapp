@@ -31,16 +31,20 @@ class UserController extends Controller
             ->join('finished_routes', 'finished_routes.id_route', 'routes.id_route')
             ->join('sectors', 'sectors.id_sector', 'routes.id_sector')
             ->join('rooms','rooms.id_room','sectors.id_room')
-            ->where('finished_routes.id_user',Auth::user()->id)->get();
+            ->where('finished_routes.id_user',Auth::user()->id)->orderBy('routes.difficulty_route','DESC')->limit(10)->get();
 
         foreach ($doneByUser as $route) {
             $route->color = null;
             $route->color = ColorRoute::where('id_color',$route->id_color)->get()->first();
+            if($route->id_color_secondary !== null) {
+                $route->color_secondary = ColorRoute::where('id_color',$route->id_color_secondary)->get()->first();
+            }
         }
 
         return view('site/profile', [
             'user' => $user,
             'finishedRoutes'=>$doneByUser,
+            'nb_voies'=>1
         ]);
     }
 

@@ -4,7 +4,7 @@
     @if(isset($routes) && $routes->isEmpty())
 
         <div class="container">
-            <h1 class="text-center">Aucune salle renseignée sur le secteur : <strong>{{$sector->name}}</strong></h1>
+            <h1 class="text-center">Aucune salle renseignée sur le secteur <strong>{{$sector->name}}</strong></h1>
             <h1 class="text-center">Salle : <strong>{{$room->name_room}}</strong></h1>
         </div>
 
@@ -32,14 +32,13 @@
                     ])}}">Ajouter
                 une voie</a>
         </div>
-        <table class="table table-hover voies-admin">
+        <table class="table voies-admin">
             <thead>
             <tr>
                 <th class="table-text">ID</th>
                 <th class="table-text">Couleur</th>
                 <th class="table-text">Code Couleur</th>
                 <th class="table-text">Difficulté</th>
-                <th class="table-text">Type de voie</th>
                 <th class="table-text">Dernière mise à jour</th>
                 <th class="table-text">Labels</th>
                 <th class="table-text"></th>
@@ -49,26 +48,19 @@
             @foreach($routes as $route)
                 <tr>
                     <td class="align-middle table-text route-id"> {{$route->id_route}}</td>
-                    @if($sector->climbing_type == "V")
-                        <td class="d-none color-id">{{$route->color->id_color}}</td>
-                        <td class="align-middle table-text route-color-name updatable-field-route">{{$route->color->name_color}}</td>
-                        <td class="d-none align-middle route-color-td">
-                            <input type="text" class="route-color-input input-text-size field-update-route">
-                        </td>
-                        <td class="align-middle table-text route-code updatable-field-route">{{$route->color->code_color}}</td>
-                        <td class="d-none align-middle route-color-td">
-                            <input type="text" class="route-color-input input-text-size field-update-route">
-                        </td>
-                        <td class="align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
-                        <td class="d-none align-middle route-difficulty-td">
-                            <input type="text" class="route-difficulty-input input-text-size field-update-route">
-                        </td>
-                        <td class="align-middle table-text">Voie</td>
-                    @else
-                        <td class="align-middle table-text"></td>
-                        <td class="align-middle table-text">{{$route->color_route}}</td>
-                        <td class="align-middle table-text">Bloc</td>
-                    @endif
+                    <td class="d-none color-id">{{$route->color->id_color}}</td>
+                    <td class="align-middle table-text route-color-name updatable-field-route">{{$route->color->name_color}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="align-middle table-text route-code updatable-field-route">{{$route->color->code_color}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
+                    <td class="d-none align-middle route-difficulty-td">
+                        <input type="text" class="route-difficulty-input input-text-size field-update-route">
+                    </td>
                     <td class="d-none align-middle route-score-td">
                         <input type="text" class="route-score-input input-text-size field-update-route">
                     </td>
@@ -95,6 +87,25 @@
                         </form>
                     </td>
                 </tr>
+                @if(isset($route->color_secondary) && $route->color_secondary !== null)
+                <tr>
+                    <td class="secondary-color"></td>
+                    <td class="d-none align-middle table-text route-id"> {{$route->id_route}}</td>
+                    <td class="d-none color-id">{{$route->color_secondary->id_color}}</td>
+                    <td class="align-middle table-text route-color-name updatable-field-route secondary-color">{{$route->color_secondary->name_color}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="align-middle table-text route-code updatable-field-route secondary-color">{{$route->color_secondary->code_color}}</td>
+                    <td class="d-none align-middle route-color-td">
+                        <input type="text" class="route-color-input input-text-size field-update-route">
+                    </td>
+                    <td class="d-none align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
+                    <td class="d-none align-middle route-difficulty-td">
+                        <input type="text" class="route-difficulty-input input-text-size field-update-route">
+                    </td>
+                </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

@@ -43,7 +43,7 @@
             @foreach($finishedRoutes as $finishedRoute)
                 <div class="achievements">
                     <h1 class="roomsuccess">
-                        <p>Salle : {{$finishedRoute->name_room}}</p>
+                        <p>{{$nb_voies++}} - Salle : {{$finishedRoute->name_room}}</p>
                     </h1>
                     <table class="inforoute nope">
                         <thead>
@@ -56,7 +56,14 @@
                         <tbody>
                         <tr>
                             <td>{{ $finishedRoute->difficulty_route }}</td>
-                            <td>{{ $finishedRoute->color->name_color }}</td>
+                            <td>
+                                @if($finishedRoute->color_secondary !== null)
+                                    {{ $finishedRoute->color->name_color }}
+                                    et {{ $finishedRoute->color_secondary->name_color }}
+                                @else
+                                    {{ $finishedRoute->color->name_color }}
+                                @endif
+                            </td>
                             <td>{{ $finishedRoute->name }}</td>
                         </tr>
                         </tbody>

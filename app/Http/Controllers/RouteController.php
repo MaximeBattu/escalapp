@@ -13,6 +13,7 @@ use App\Room;
 use App\Sector;
 use App\User;
 use App\LikedRoute;
+use PHPUnit\Util\Color;
 
 class RouteController extends Controller
 {
@@ -55,9 +56,9 @@ class RouteController extends Controller
             ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->get();
 
         if ($users->isNotEmpty()) {
-            
+
             $scores = $this->user->getUsersScore(
-                $users->pluck('id')->toArray(), 
+                $users->pluck('id')->toArray(),
                 $sectors->pluck('id_sector')->toArray());
 
             foreach ($users as $user) {
@@ -71,6 +72,7 @@ class RouteController extends Controller
             $route->number_likes = 0;
             $route->liked = false;
             $route->color = null;
+            $route->color_secondary = null;
             $route->first_person = null;
         }
 
@@ -102,6 +104,9 @@ class RouteController extends Controller
         foreach ($routes as $route) {
             $route->number_likes = LikedRoute::where('id_route', $route->id_route)->count();
             $route->color = ColorRoute::find($route->id_color);
+            if($route->id_color_secondary !== null) {
+                $route->color_secondary = ColorRoute::find($route->id_color_secondary);
+            }
         }
 
         foreach ($finishedRoutes as $fr) {
@@ -158,7 +163,8 @@ class RouteController extends Controller
             'colors' => $data['colors'],
             'selectedName' => $nameSector,
             'selectedColor' => $colorRoute,
-            'selectedDifficulty' => $difficulty
+            'selectedDifficulty' => $difficulty,
+            'nb_users'=>1
         ]);
     }
 
@@ -188,7 +194,7 @@ class RouteController extends Controller
         ]);
 
         return view('site/boulder', [
-            'routesBloc' => $data['routes'],
+            'routes' => $data['routes'],
             'room' => $data['room'],
             'users' => $data['users'],
             'sectors' => $data['sectors'],
@@ -196,7 +202,8 @@ class RouteController extends Controller
             'colors' => $data['colors'],
             'selectedName' => $nameSector,
             'selectedColor' => $colorRoute,
-            'selectedDifficulty' => $difficulty
+            'selectedDifficulty' => $difficulty,
+            'nb_users'=>1
         ]);
     }
 
@@ -222,8 +229,12 @@ class RouteController extends Controller
             ]);
         }
         $routes = $this->route->byRoomAndSector($room->id_room, $sector->id_sector);
+
         foreach ($routes as $route) {
             $route->color = ColorRoute::find($route->id_color);
+            if($route->id_color_secondary !== null) {
+                $route->color_secondary = ColorRoute::find($route->id_color_secondary);
+            }
         }
         return view('admin/management-route', [
             'routes' => $routes,

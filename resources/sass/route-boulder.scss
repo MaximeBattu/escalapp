@@ -22,6 +22,13 @@ $finishedRoute: #8bc34a !important;
     cursor: pointer;
 }
 
+.image__secondary-color {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+}
+
 .colorRoute {
     display: block;
     height: 75px;
@@ -151,7 +158,66 @@ th {
 
 .filter {
     position: fixed !important;
-    top: 120px;
+    top: 12vh;
     right: 4.5vw;
     width: 30vw;
+}
+
+.content__climbing-type,
+.content__color,
+.content__difficulty,
+.content__image {
+    border: 5px dashed $contestColor;
+}
+
+.content__climbing-type {
+    position: absolute;
+    top: 21vh;
+    left: 3vw;
+    width: 30vw;
+    height: 15vh;
+}
+
+.content__color {
+    position: absolute;
+    top: 39vh;
+    left: 3vw;
+    width: 30vw;
+    height: 59vh;
+}
+
+.content__difficulty {
+    position: absolute;
+    top: 21vh;
+    left: 34.5vw;
+    width: 30vw;
+    height: 77vh;
+}
+
+.content__image {
+    position: absolute;
+    top: 21vh;
+    left: 66vw;
+    width: 30vw;
+    height: 70vh;
+}
+
+.content__button {
+    position: absolute;
+    width: 30vw;
+    left: 66vw;
+    top: 91vh;
+}
+
+.content__text {
+    text-align: center;
+    padding-top: 1vh;
+}
+
+.second-row__route {
+    border: none!important;
+}
+
+.first-person__route {
+    background-color: $finishedRoute;
 }

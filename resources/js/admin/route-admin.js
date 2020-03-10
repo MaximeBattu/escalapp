@@ -50,6 +50,10 @@ $(document).on('keydown', '.field-update-route', function (e) {
         const color = $tr.find('.route-code').html()
         const nameColor = $tr.find('.route-color-name').html()
         const difficulty = $tr.find('.route-difficulty').html()
+        console.log(id)
+        console.log(id_color)
+        console.log(color)
+        console.log(nameColor)
 
         updateRoute({
             id,
