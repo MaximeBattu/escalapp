@@ -67,3 +67,7 @@
         </div>
     @endif
 @endsection
+
+@section('scripts')
+    <script src="{{asset('js/admin/user-admin.js')}}"></script>
+@endsection
