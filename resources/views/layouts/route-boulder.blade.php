@@ -113,12 +113,8 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <section class="filter" id="filter">
 
-=======
-    <section class="filter">
->>>>>>> d30e58af22791788044230e6524bde42557bd5f0
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
