@@ -21,7 +21,11 @@
 
     @else
 
-        <h1 class="text-center">Salle : {{$room->name_room}} / Secteur : {{$sector->name}}</h1>
+        <h1 class="text-center">
+            <a href="{{route('see_room_management')}}" title="Revenir à la page de gestion des salles" class="navigation-link">Salle : {{$room->name_room}} </a>
+            /
+            <a href="{{route('see_sectors_admin', ['name_room_slug'=>Str::slug($room->name_room), 'id'=>$room->id_room])}}" class="navigation-link" title="Revenir à la page des sectors de la salle : {{$room->name_room}}">Secteur : {{$sector->name}}</a>
+        </h1>
         <div>
             <a type="button" class="btn button-shadow add-route"
                href="{{route('see_add_routes',[
@@ -39,7 +43,7 @@
                 <th class="table-text">Couleur</th>
                 <th class="table-text">Code Couleur</th>
                 <th class="table-text">Difficulté</th>
-                <th class="table-text">Dernière mise à jour</th>
+                <th class="table-text">Crée le</th>
                 <th class="table-text">Labels</th>
                 <th class="table-text"></th>
             </tr>
@@ -64,19 +68,18 @@
                     <td class="d-none align-middle route-score-td">
                         <input type="text" class="route-score-input input-text-size field-update-route">
                     </td>
-                    @if(isset($route->updated_at))
-                        <td class="align-middle table-text">{{$route->updated_at->format('d/m/yy')}}</td>
+                    @if(isset($route->created_at))
+                        <td class="align-middle table-text">{{$route->created_at->format('d/m/yy')}}</td>
                     @else
                         <td class="align-middle table-text">Aucune mise à jour</td>
                     @endif
 
                     <td class="align-middle table-text">
-                        <select name="" id="">
-                            <option value=""></option>
-                            <option value="">Agilité</option>
-                            <option value="">Physique</option>
-                            <option value="">Rapide</option>
-                        </select>
+                        @if($route->labels !== null) 
+                            <input type="text" class="text-center route-labels" placeholder="{{$route->labels}}">
+                        @else
+                            <input type="text" class="text-center route-labels" placeholder="Physique - Agilité ... ">
+                        @endif
                     </td>
 
                     <td class="align-middle table-text text-center">
@@ -100,12 +103,24 @@
                     <td class="d-none align-middle route-color-td">
                         <input type="text" class="route-color-input input-text-size field-update-route">
                     </td>
+                 
                     <td class="d-none align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
                     <td class="d-none align-middle route-difficulty-td">
                         <input type="text" class="route-difficulty-input input-text-size field-update-route">
                     </td>
-                </tr>
+                @else
+                    <td class="secondary-color"></td>
+                    <td class="align-middle table-text route-color-name updatable-field-route secondary-color"></td>
+                    <td class="d-none align-middle route-color-td">
+                    <td class="align-middle table-text route-code updatable-field-route secondary-color"></td>
+                    <td class="d-none align-middle table-text route-difficulty updatable-field-route"></td>
                 @endif
+                    <td class="secondary-color"></td>
+                    <td class="secondary-color"></td>
+                    <td class="secondary-color new-label-route">
+                        {{$route->labels}}
+                    </td>
+                </tr>
             @endforeach
             </tbody>
         </table>

@@ -1,6 +1,7 @@
 $textColor: #ffffff !important;
 $primaryColor: #212121 !important;
 $contestColor :#484848!important;
+$linkTextColor :#484848!important;
 
 .salles-admin,
 .users-admin,
@@ -172,4 +173,14 @@ input::placeholder {
 
 .secondary-color {
     border:none!important;
+}
+
+.navigation-link {
+    text-decoration: none!important;
+    font-weight: bold;
+    color: #212121;
+}
+
+.navigation-link:hover {
+    color: #355664;
 }

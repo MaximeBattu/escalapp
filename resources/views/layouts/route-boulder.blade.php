@@ -92,12 +92,22 @@
                             </span>
                             </td>
                         @else
-                            <td class="second-row__route"></td>
+                            <td class="second-row__route">
+                                <span class="table-text">
+                                    <strong>Pas encore validée</strong>
+                                </span>
+                            </td>
                         @endif
                         <td class="second-row__route">
+                            @if($route->labels === null)
                             <span class="table-text">
                                 Labels
                             </span>
+                            @else
+                            <span class="table-text" style="background-color:red;">
+                                {{$route->labels}}
+                            </span>
+                            @endif
                         </td>
                         <td class="second-row__route admin-help">
                             <span class="table-text">

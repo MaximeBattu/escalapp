@@ -367,4 +367,14 @@ class RouteController extends Controller
         return \response('OK', 200);
     }
 
+    public function ajaxAddLabels(Request $request) {
+        $idRoute = json_decode($request->getContent())->idRoute;
+        $labels = json_decode($request->getContent())->labels;
+
+        $route = Route::find($idRoute);
+        $route->labels = htmlspecialchars($labels);
+        $route->save();
+        return \response('OK', 200);
+    }
+
 }

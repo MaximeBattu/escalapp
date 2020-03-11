@@ -50,10 +50,6 @@ $(document).on('keydown', '.field-update-route', function (e) {
         const color = $tr.find('.route-code').html()
         const nameColor = $tr.find('.route-color-name').html()
         const difficulty = $tr.find('.route-difficulty').html()
-        console.log(id)
-        console.log(id_color)
-        console.log(color)
-        console.log(nameColor)
 
         updateRoute({
             id,
@@ -73,5 +69,49 @@ $(document).on('keydown', '.field-update-route', function (e) {
 
         $td.prev().removeClass(DISPLAY_NONE)
         $td.prev().html(newValue)
+    }
+})
+
+/**
+ * 
+ * @param {object} route
+ * @param {number} route.id
+ * @param {string} routes.labels
+ * @returns {Promise} 
+ */
+function addLabels(route) {
+    return $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/admin/gestion-salles/modifier/route/${route.id}/ajouter-labels`,
+        type: 'PUT',
+        data: JSON.stringify({
+            idRoute: route.id,
+            labels: route.labels
+        })
+
+    })
+} 
+
+$(".route-labels").on('keydown', (e) => {
+
+    if (e.keyCode === 13) { 
+        const id = document.querySelector('.route-id').innerHTML
+        const labels = $('.route-labels').val()
+        console.log(labels)
+        const displayInput =  document.querySelector('.new-label-route')
+        if(displayInput !== null) {
+            displayInput.innerHTML = labels
+        }
+       
+        addLabels({
+            id,
+            labels
+        }).then(res => {
+            console.log('succes update on labels')
+        }).catch(console.error)
+        
+
     }
 })

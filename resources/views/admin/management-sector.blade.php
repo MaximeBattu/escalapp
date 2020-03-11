@@ -16,7 +16,9 @@
 
     @else
 
-        <h1 class="text-center">Tous les secteurs de la salle : {{$room->name_room}}</h1>
+        <h1 class="text-center">
+            <a href="{{route('see_room_management')}}" class="navigation-link" title="Revenir à la page de gestion des salles">Salle : {{$room->name_room}} </a>
+                / Les secteurs</h1>
         <div>
             <a type="button" class="btn button-shadow add-sector"
                href="{{route('see_add_sector',['name_room_slug'=>Str::slug($room->name_room),'id'=>$room->id_room])}}">Ajouter
@@ -29,7 +31,6 @@
                 <th class="table-text">Nom</th>
                 <th class="table-text">Type de voie</th>
                 <th class="table-text">Mise à jour</th>
-
             </tr>
             </thead>
             <tbody>

@@ -52,7 +52,7 @@ Route::post('/admin/gestion-salles/ajouter-salle', 'RoomController@addRoom')->na
 Route::put('/admin/gestion-salles/modifier/salle/{id_room}','RoomController@ajaxUpdateRoom')
     ->middleware('auth','admin');
 
-Route::get('/admin/gestion-salles/{name_room_slug}-{id}', 'SectorController@seeAllSectors')
+Route::get('/admin/gestion-salles/{name_room_slug}-{id}/les-secteurs', 'SectorController@seeAllSectors')
     ->name('see_sectors_admin')
     ->middleware('auth','admin')
     ->where(['name_room_slug'=>'[a-z0-9\-]+','id'=>'[0-9]+']);
@@ -98,7 +98,10 @@ Route::post('/admin/gestion-salles/salle/{id_room}/secteur/{id_sector}', 'RouteC
     ->name('add_route')->middleware('auth','admin');
 
 Route::put('/admin/gestion-salles/modifier/route/{id_route}','RouteController@ajaxUpdateRoute')
-    ->middleware('auth','admin');
+    ->middleware('admin');
+
+Route::put('/admin/gestion-salles/modifier/route/{id_route}/ajouter-labels', 'RouteController@ajaxAddLabels')
+    ->middleware('admin');
 
 Route::put('/voies/route/{idRoute}/utilisateur/{idUser}','RouteController@ajaxAddLike')
     ->middleware('auth');
