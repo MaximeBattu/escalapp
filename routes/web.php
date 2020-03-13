@@ -118,13 +118,14 @@ Route::post('{name_room_slug}-{id_room}/blocs/','RouteController@filterBoulder')
 // ADMIN MANAGEMENT : USERS ACCOUNT
 Route::get('/admin/gestion-comptes', 'UserController@seeUserManagement')->name('see_user_management')
     ->middleware('auth', 'admin');
-
+Route::delete('/admin/gestion-comptes/supprimer/date', 'UserController@deleteUserBetweenDates')->name('delete_user_between_date')->middleware('auth');
 Route::delete('/admin/gestion-comptes/supprimer/{id}','UserController@deleteUser')->name('delete_user')
     ->middleware('auth','admin');
 Route::post('/admin/gestion-comptes/modifier/mettre-administrateur/{id}','UserController@modifyUser')
     ->name('modify_user')->middleware('auth','admin');
 Route::post('/admin/gestion-comptes/modifier/enlever-adminstrateur/{id}','UserController@removeAdministratorRight')
     ->name('remove_administrator_right')->middleware('auth','admin');
+
 
 // PROFILE ORDER
 

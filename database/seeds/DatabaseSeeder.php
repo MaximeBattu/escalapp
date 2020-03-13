@@ -271,7 +271,7 @@ class DatabaseSeeder extends Seeder
                 'email'=>'admin@admin.fr',
                 'password'=>'$2y$13$9n9zCLuJR54jNVcKBqv7uuQ6AZJK73//tS59vB8skR/xQ/IEgBA7e',
                 'isAdmin'=>true,
-                'created_at'=>Carbon\Carbon::now()
+                'created_at'=>Carbon\Carbon::yesterday()
             ]
         ];
 

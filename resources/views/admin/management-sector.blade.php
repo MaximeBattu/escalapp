@@ -66,7 +66,7 @@
                             <form method="post" action="{{route('delete_sector',['id_sector'=>$sector->id_sector])}}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="fas fa-trash-alt fa-2x delete"></button>
+                                <button type="submit" class="fas fa-trash-alt fa-2x delete" onclick="return confirm('Voulez-vous supprimer le secteur {{$sector->name}} ?')"></button>
                             </form>
                         </div>
                     </td>

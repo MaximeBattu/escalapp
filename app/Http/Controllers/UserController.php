@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation;
 use App\User;
+use mysql_xdevapi\Exception;
 
 class UserController extends Controller
 {
@@ -189,5 +190,19 @@ class UserController extends Controller
         return view('admin/management-user', [
             'users' => $users
         ]);
+    }
+
+    public function deleteUserBetweenDates(Request $request) {
+        try{
+            if($request->dateDebut <= $request->dateFin) {
+                User::whereBetween('created_at', [$request->dateDebut, $request->dateFin])->delete();
+            } else {
+                User::whereBetween('created_at', [$request->dateFin, $request->dateDebut])->delete();
+            }
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
+
     }
 }

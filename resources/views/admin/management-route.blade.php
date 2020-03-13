@@ -75,7 +75,7 @@
                     @endif
 
                     <td class="align-middle table-text">
-                        @if($route->labels !== null) 
+                        @if($route->labels !== null)
                             <input type="text" class="text-center route-labels" placeholder="{{$route->labels}}">
                         @else
                             <input type="text" class="text-center route-labels" placeholder="Physique - Agilité ... ">
@@ -86,12 +86,12 @@
                         <form method="post" action="{{route('delete_route',['id_route'=>$route->id_route])}}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="fas fa-trash-alt fa-2x delete"></button>
+                            <button class="fas fa-trash-alt fa-2x delete" onclick="return confirm('Voulez-vous supprimer cette voie ?')"></button>
                         </form>
                     </td>
                 </tr>
                 @if(isset($route->color_secondary) && $route->color_secondary !== null)
-                <tr>
+                <tr id="second-row">
                     <td class="secondary-color"></td>
                     <td class="d-none align-middle table-text route-id"> {{$route->id_route}}</td>
                     <td class="d-none color-id">{{$route->color_secondary->id_color}}</td>
@@ -103,7 +103,7 @@
                     <td class="d-none align-middle route-color-td">
                         <input type="text" class="route-color-input input-text-size field-update-route">
                     </td>
-                 
+
                     <td class="d-none align-middle table-text route-difficulty updatable-field-route">{{$route->difficulty_route}}</td>
                     <td class="d-none align-middle route-difficulty-td">
                         <input type="text" class="route-difficulty-input input-text-size field-update-route">
@@ -117,9 +117,7 @@
                 @endif
                     <td class="secondary-color"></td>
                     <td class="secondary-color"></td>
-                    <td class="secondary-color new-label-route">
-                        {{$route->labels}}
-                    </td>
+                    <td class="secondary-color"></td>
                 </tr>
             @endforeach
             </tbody>

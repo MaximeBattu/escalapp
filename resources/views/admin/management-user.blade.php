@@ -1,6 +1,20 @@
 @extends('layouts.app')
 @section('content')
 
+    <div class="text-center">
+        <h2>Supprimer des utlisateurs par date</h2>
+        <form method="post" action="{{route('delete_user_between_date')}}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <label for="début">Date de début</label>
+            <input id="début" type="date" name="dateDebut">
+            <label for="fin">Date de fin</label>
+            <input id="fin" type="date" name="dateFin">
+
+            <button onclick="return confirm('Voulez-vous vraiment supprimer le(s) compte(s)'">Supprimer les comptes</button>
+        </form>
+    </div>
+
     <table class="table users-admin">
         <thead>
             <tr class="order-by">
@@ -26,12 +40,12 @@
                     <td class="align-middle table-text d-flex justify-content-around">
                         <form method="post" action="{{route('modify_user',['id'=>$user->id])}}">
                             {{ csrf_field() }}
-                            <button class="fas fa-user-edit fa-2x modify-user" type="submit"></button>
+                            <button class="fas fa-user-edit fa-2x modify-user" onclick="return confirm('Voulez-vous vraiment mettre {{$user->firstname}} administrateur ?')"></button>
                         </form>
                         <form method="post" action="{{route('delete_user',['id'=>$user->id])}}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="fas fa-trash-alt fa-2x delete"></button>
+                            <button class="fas fa-trash-alt fa-2x delete" onclick="return confirm('Voulez-vous vraiment supprimer {{$user->firstname}} ?')"></button>
                         </form>
                     </td>
                 @elseif(isset(Auth::user()->id) && Auth::user()->id == $user->id && Auth::user()->isAdmin == true)
@@ -44,12 +58,12 @@
                     <td class="align-middle table-text d-flex justify-content-around">
                         <form method="post" action="{{route('remove_administrator_right',['id'=>$user->id])}}">
                             {{ csrf_field() }}
-                            <button class="fas fa-user-check fa-2x modify-user user-is-admin other-user-is-admin"></button>
+                            <button class="fas fa-user-check fa-2x modify-user user-is-admin other-user-is-admin" onclick="return confirm('Voulez-vous vraiment retirer les droits de {{$user->firstname}} ?')"></button>
                         </form>
                         <form method="post" action="{{route('delete_user',['id'=>$user->id])}}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="fas fa-trash-alt fa-2x delete"></button>
+                            <button class="fas fa-trash-alt fa-2x delete" onclick="return confirm('Voulez-vous vraiment supprimer {{$user->firstname}} ?')"></button>
                         </form>
                     </td>
                 @endif

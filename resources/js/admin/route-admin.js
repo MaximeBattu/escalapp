@@ -73,11 +73,11 @@ $(document).on('keydown', '.field-update-route', function (e) {
 })
 
 /**
- * 
+ *
  * @param {object} route
  * @param {number} route.id
  * @param {string} routes.labels
- * @returns {Promise} 
+ * @returns {Promise}
  */
 function addLabels(route) {
     return $.ajax({
@@ -92,26 +92,19 @@ function addLabels(route) {
         })
 
     })
-} 
+}
 
-$(".route-labels").on('keydown', (e) => {
+$('.route-labels').on('keydown', function(e) {
+    if (e.keyCode === 13) {
+        const $tr = $(this).parent().parent()
+        const id = $tr.find('.route-id').html()
+        const labels = $tr.find('.route-labels').val()
 
-    if (e.keyCode === 13) { 
-        const id = document.querySelector('.route-id').innerHTML
-        const labels = $('.route-labels').val()
-        console.log(labels)
-        const displayInput =  document.querySelector('.new-label-route')
-        if(displayInput !== null) {
-            displayInput.innerHTML = labels
-        }
-       
         addLabels({
             id,
             labels
         }).then(res => {
             console.log('succes update on labels')
         }).catch(console.error)
-        
-
     }
 })

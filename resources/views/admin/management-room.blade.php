@@ -48,7 +48,7 @@
                         <form method="post" action="{{route('delete_room',['id'=>$salle->id_room])}}">
                             {{csrf_field()}}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="fas fa-trash-alt fa-2x delete"></button>
+                            <button type="submit" class="fas fa-trash-alt fa-2x delete" onclick="return confirm('Voulez-vous supprimer la salle {{$salle->name_room}} ?')"></button>
                         </form>
 
                     </div>

@@ -53,7 +53,7 @@ class RouteController extends Controller
         $users = $this->user->select('users.*')
             ->join('finished_routes', 'users.id', 'finished_routes.id_user')
             ->join('sectors', 'finished_routes.id_sector', 'sectors.id_sector')
-            ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->get();
+            ->where(['sectors.climbing_type' => $type, 'sectors.id_room' => $idRoom])->distinct()->limit(20)->get();
 
         if ($users->isNotEmpty()) {
 

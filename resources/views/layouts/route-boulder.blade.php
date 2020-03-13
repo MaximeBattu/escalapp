@@ -7,8 +7,13 @@
             <div id="ranking">
                 @if($users != null && $users->isNotEmpty())
                     @foreach($users as $user)
+
                         <div>
-                            <p>{{$nb_users++}} - {{$user->name." ".$user->score}}</p>
+                            @if($nb_users <= 3)
+                                <p><strong>{{$nb_users++}} - {{$user->name." ".$user->score}}</strong></p>
+                            @else
+                                <p>{{$nb_users++}} - {{$user->name." ".$user->score}}</p>
+                            @endif
                         </div>
                     @endforeach
                 @else
@@ -86,27 +91,21 @@
 
                     <tr>
                         @if($route->first_person['firstname'] !== null)
-                            <td class="second-row__route first-person__route" title="Premier grimpeur a avoir validé la voie !">
+                            <td class="second-row__route first-person__route"
+                                title="Premier grimpeur a avoir validé la voie !">
                             <span class="table-text">
                                 <strong>{{$route->first_person['firstname']}}</strong>
                             </span>
                             </td>
                         @else
                             <td class="second-row__route">
-                                <span class="table-text">
-                                    <strong>Pas encore validée</strong>
-                                </span>
                             </td>
                         @endif
                         <td class="second-row__route">
-                            @if($route->labels === null)
-                            <span class="table-text">
-                                Labels
-                            </span>
-                            @else
-                            <span class="table-text" style="background-color:red;">
-                                {{$route->labels}}
-                            </span>
+                            @if($route->labels !== null)
+                                <span class="table-text" style="background-color:red;">
+                                    {{$route->labels}}
+                                </span>
                             @endif
                         </td>
                         <td class="second-row__route admin-help">
